@@ -1,0 +1,54 @@
+#ifndef TRO_STRING_H_
+#define TRO_STRING_H_
+
+#include "tro/private/api.h"
+
+#include <stddef.h>
+#include <stdint.h>
+
+TRO__C_API_BEGIN
+
+/**
+ * Representa um único byte de
+ * uma string em UTF-8.
+ */
+typedef uint8_t tro_u8code;
+
+/**
+ * Define o máximo que um `rune`/code point
+ * pode chegar em tamanho em UTF-8.
+ */
+#define TRO_MULTI_U8CODE_MAX 4
+
+/**
+ * Representa um único surrogate
+ * (número de 16 bits) de uma
+ * string em UTF-16.
+ */
+typedef uint16_t tro_u16code;
+
+/**
+ * Define o máximo que um `rune`/code point
+ * pode chegar em tamanho em UTF-16.
+ */
+#define TRO_MULTI_U16CODE_MAX 2
+
+/**
+ * Representa um code point Unicode
+ * (e também pode ser usado para criar
+ * string UTF-32).
+ */
+typedef uint32_t tro_urune;
+
+/**
+ * Define o code point Unicode máximo.
+ */
+#define TRO_URUNE_MAX 0x10FFFF
+
+TRO__API size_t tro_urune_to_u8codes(tro_urune rune, tro_u8code *out);
+
+TRO__API size_t tro_urune_to_u16codes(tro_urune rune, tro_u16code *out);
+
+TRO__C_API_END
+
+#endif // TRO_STRING_H_

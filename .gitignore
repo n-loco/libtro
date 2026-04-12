@@ -1,0 +1,7 @@
+# IDEs/code editors
+## Clangd
+.cache/
+.clangd
+
+# etc.
+*[Uu][Ss][Ee][Rr]*
