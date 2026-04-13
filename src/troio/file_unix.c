@@ -10,9 +10,6 @@
 
 #include "tro/string.h"
 
-#define FILE_WRITTABLE(file)                                                   \
-	(file->modes & TRO_FMODE_WRITE || file->modes & TRO_FMODE_APPEND)
-
 tro_file *tro_fopen(const char *filepath, tro_fmodes modes)
 {
 	bool has_any_mandatory_mode = modes & MANDATORY_FMODES;

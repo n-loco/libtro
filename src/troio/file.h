@@ -28,4 +28,7 @@ struct tro_file {
 
 #define MANDATORY_FMODES (TRO_FMODE_READ | TRO_FMODE_WRITE)
 
+#define FILE_WRITTABLE(file)                                                   \
+	(file->modes & TRO_FMODE_WRITE || file->modes & TRO_FMODE_APPEND)
+
 #endif // FILE_H
