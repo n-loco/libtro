@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #if TRO_SYSTEM_WIN32
-# include <synchapi.h>
+# include <windows.h>
 #elif TRO_SYSTEM_UNIX_LIKE
 # include <unistd.h>
 # include <time.h>

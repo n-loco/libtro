@@ -8,7 +8,7 @@
 #include <stdbool.h>
 
 #if TRO_SYSTEM_WIN32
-# include <windef.h>
+# include <windows.h>
 #endif
 
 struct tro_file {
