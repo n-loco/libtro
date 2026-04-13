@@ -90,6 +90,8 @@ lib = static_library(
     dependencies: dependencies,
 )
 
+subdir('tests')
+
 # Importante para build-systems serem capazes
 # de encontrar esta biblioteca automatiamente,
 # especialmente em distribuições de Linux.
