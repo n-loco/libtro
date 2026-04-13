@@ -37,7 +37,7 @@
 
    Em casos de erro de encodificação/decodificação, se usa o
    '�' (REPLACEMENT CHARACTER), seu código Unicode é U+FFFD e aqui
-   há macros definidas para ele em UTF-8 e UTF-16 (REPLACE_U*_*).
+   há macros definidas para ele em UTF-8 e UTF-16 (REPLACE e REPLACE_U*_*).
 
    RFC UTF-8:  https://www.rfc-editor.org/rfc/rfc3629
    RFC UTF-16: https://www.rfc-editor.org/rfc/rfc2781
@@ -49,6 +49,8 @@
 #include <stddef.h>
 #include <stdbool.h>
 
+#define REPLACE 0x00FFFD
+
 #define URUNE_IS_U16_RESERVED(rune) (0xD800 <= rune && rune <= 0xDFFF)
 
 #define URUNE_IS_VALID(rune)                                                   \
@@ -59,7 +61,7 @@
 #define REPLACE_U8_2 0xBD
 
 #define URUNE_CALC_U8_SIZE(rune)                                               \
-	((rune > 0xFFFF) + (rune > 0x7FF) + (rune > 0x7F) + 1)
+	((size_t)((rune > 0xFFFF) + (rune > 0x7FF) + (rune > 0x7F) + 1))
 
 #define U8CODE_0(len, rune)                                                    \
 	(((len == 1) * rune) + ((len == 2) * ((rune >> 6) | 0xC0)) +           \
@@ -90,6 +92,99 @@ size_t tro_urune_to_u8codes(tro_urune rune, tro_u8code *out)
 	return ru8s;
 }
 
+static inline size_t seq_len_u8(const tro_u8code *seq)
+{
+	if (seq[0] == '\0' || seq[1] == '\0')
+		return 1;
+
+	if (seq[2] == '\0')
+		return 2;
+
+	if (seq[3] == '\0')
+		return 3;
+
+	return 4;
+}
+
+#define U8_LEN(seq)                                                            \
+	((((seq[0] & 0xF8) == 0xF0) * 4) + (((seq[0] & 0xF0) == 0xE0) * 3) +   \
+	 (((seq[0] & 0xE0) == 0xC0) * 2) + (((seq[0] & 0x80) == 0x00) * 1))
+
+#define U8_IS_CONT(u8) ((u8 & 0xC0) == 0x80)
+
+static inline size_t u8_seq_valid_until(size_t u8_l, tro_u8code *seq)
+{
+	size_t v;
+	for (v = 1; v < u8_l; v++) {
+		if (!U8_IS_CONT(seq[v]))
+			break;
+	}
+	return v;
+}
+
+#define RUNE_U8_0(len, seq)                                                    \
+	(((len == 1) * seq[0]) + ((len == 2) * ((seq[0] & 0x1F) << 6)) +       \
+	 ((len == 3) * ((seq[0] & 0x0F) << 12)) +                              \
+	 ((len == 4) * ((seq[0] & 0x07) << 18)))
+
+#define RUNE_U8_1(len, seq)                                                    \
+	(((len == 2) * (seq[1] & 0x3F)) +                                      \
+	 ((len == 3) * ((seq[1] & 0x3F) << 6)) +                               \
+	 ((len == 4) * ((seq[1] & 0x3F) << 12)))
+
+#define RUNE_U8_2(len, seq)                                                    \
+	(((len == 3) * (seq[2] & 0x3F)) + ((len == 4) * ((seq[2] & 0x3F) << 6)))
+
+#define RUNE_U8_3(len, seq) ((len == 4) * (seq[3] & 0x3F))
+
+size_t tro_u8codes_to_urune(const tro_u8code *seq, tro_urune *out)
+{
+	size_t seq_l = seq_len_u8(seq);
+	size_t u8_l  = U8_LEN(seq);
+
+	if (u8_l == 0)
+		goto ILLEGAL_BYTE;
+
+	if (seq_l < u8_l)
+		goto SEQ_TOO_SMALL;
+
+	tro_u8code rseq[] = {
+	    seq[0],
+	    (u8_l > 1 ? seq[1] : 0),
+	    (u8_l > 2 ? seq[2] : 0),
+	    (u8_l > 3 ? seq[3] : 0),
+	};
+
+	size_t vu = u8_seq_valid_until(u8_l, rseq);
+	if (vu < u8_l)
+		goto INVALID_SEQ;
+
+	tro_urune rune = RUNE_U8_0(u8_l, rseq) | RUNE_U8_1(u8_l, rseq) |
+	                 RUNE_U8_2(u8_l, rseq) | RUNE_U8_3(u8_l, rseq);
+
+	if (!URUNE_IS_VALID(rune) || (URUNE_CALC_U8_SIZE(rune) < u8_l))
+		goto INVALID_CODE_POINT_OR_OVERLONG;
+
+	*out = rune;
+	return u8_l;
+
+INVALID_CODE_POINT_OR_OVERLONG:
+	*out = REPLACE;
+	return u8_l;
+
+INVALID_SEQ:
+	*out = REPLACE;
+	return vu;
+
+SEQ_TOO_SMALL:
+	*out = REPLACE;
+	return seq_l;
+
+ILLEGAL_BYTE:
+	*out = REPLACE;
+	return 1;
+}
+
 #define REPLACE_U16_W1 0xFFFD
 
 #define URUNE_CALC_U16_SIZE(rune) ((rune > 0xFFFF) + 1)
@@ -101,8 +196,8 @@ size_t tro_urune_to_u8codes(tro_urune rune, tro_u8code *out)
 
 size_t tro_urune_to_u16codes(tro_urune rune, tro_u16code *out)
 {
-	bool vr         = URUNE_IS_VALID(rune);
-	size_t ru16s    = (vr * URUNE_CALC_U16_SIZE(rune)) + (!vr * 1);
+	bool vr      = URUNE_IS_VALID(rune);
+	size_t ru16s = (vr * URUNE_CALC_U16_SIZE(rune)) + (!vr * 1);
 	tro_urune Ul = rune - ((ru16s == 2) * 0x10000);
 
 	out[0] = (vr * U16CODE_W1(ru16s, Ul)) + (!vr * REPLACE_U16_W1);
