@@ -48,6 +48,7 @@
 
 #include <stddef.h>
 #include <stdbool.h>
+#include <string.h>
 
 #define REPLACE 0x00FFFD
 
@@ -112,7 +113,7 @@ static inline size_t seq_len_u8(const tro_u8code *seq)
 
 #define U8_IS_CONT(u8) ((u8 & 0xC0) == 0x80)
 
-static inline size_t u8_seq_valid_until(size_t u8_l, tro_u8code *seq)
+static inline size_t u8_seq_valid_until(size_t u8_l, const tro_u8code *seq)
 {
 	size_t v;
 	for (v = 1; v < u8_l; v++) {
@@ -183,6 +184,44 @@ SEQ_TOO_SMALL:
 ILLEGAL_BYTE:
 	*out = REPLACE;
 	return 1;
+}
+
+size_t tro_str8_urune_len(const char *str, size_t str_l)
+{
+	if (str_l == 0)
+		str_l = strlen(str);
+
+	size_t rune_count = 0;
+
+	size_t i = 0;
+	while (i < str_l) {
+		const tro_u8code *seq = (tro_u8code *)(str + i);
+		const size_t seq_len  = str_l - i;
+
+		size_t u8_len = U8_LEN(seq);
+		if (u8_len == 0 || u8_len == 1) {
+			i++;
+			rune_count++;
+			continue;
+		}
+
+		if (seq_len < u8_len) {
+			rune_count++;
+			break;
+		}
+
+		size_t valid_until = u8_seq_valid_until(u8_len, seq);
+		if (valid_until < u8_len) {
+			i += valid_until;
+			rune_count++;
+			continue;
+		}
+		
+		i += u8_len;
+		rune_count++;
+	}
+
+	return rune_count;
 }
 
 #define REPLACE_U16_W1 0xFFFD

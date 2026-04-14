@@ -78,6 +78,22 @@ rune_to_u16_e2 = executable(
 )
 test('rune_to_u16_e2', rune_to_u16_e2)
 
+str8_rune_len_e = executable(
+    'str8_rune_len_e',
+    'str8_rune_len_e.c',
+    include_directories: [public_includes],
+    link_with: [lib],
+)
+test('str8_rune_len_e', str8_rune_len_e)
+
+str8_rune_len = executable(
+    'str8_rune_len',
+    'str8_rune_len.c',
+    include_directories: [public_includes],
+    link_with: [lib],
+)
+test('str8_rune_len', str8_rune_len)
+
 u8_to_rune_1 = executable(
     'u8_to_rune_1',
     'u8_to_rune_1.c',
