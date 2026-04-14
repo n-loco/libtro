@@ -5,7 +5,7 @@ project(
     meson_version: '>= 1.10.0',
     default_options: [
         'warning_level=3',
-        'c_std=c99',
+        'c_std=c11',
         'b_lto=false', # Garantia de que os símbolos não vão sumir.
     ],
 )

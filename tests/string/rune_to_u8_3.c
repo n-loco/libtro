@@ -3,9 +3,6 @@
 
 #include <tro/string.h>
 
-// 界
-#define CJK_IDEOGRAPH 0x00754C
-
 #define CJK_IDEOGRAPH_0 0xE7
 #define CJK_IDEOGRAPH_1 0x95
 #define CJK_IDEOGRAPH_2 0x8C
@@ -13,7 +10,7 @@
 int main(void)
 {
 	tro_u8code ch[TRO_MULTI_U8CODE_MAX];
-	size_t ch_l = tro_urune_to_u8codes(CJK_IDEOGRAPH, ch);
+	size_t ch_l = tro_urune_to_u8codes(U'界', ch);
 
 	bool expected_len   = ch_l == 3;
 	bool expected_bytes = (ch[0] == CJK_IDEOGRAPH_0) &&

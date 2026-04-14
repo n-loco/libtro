@@ -4,9 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define REPLACEMENT_CHARACTER_U16 0xFFFD
-
-size_t tro_conv_str_to_str16(const char *in, size_t in_len, tro_char16 *out,
+size_t tro_conv_str_to_str16(const char *in, size_t in_len, char16_t *out,
                              size_t out_cap)
 {
 	if (out == NULL || out_cap == 0)
@@ -35,7 +33,7 @@ size_t tro_conv_str_to_str16(const char *in, size_t in_len, tro_char16 *out,
 
 		const size_t remaining_capacity = out_cap_bn - written_out;
 		if (remaining_capacity < surrogates_n) {
-			out[written_out] = REPLACEMENT_CHARACTER_U16;
+			out[written_out] = u'�';
 			written_out++;
 			break;
 		}
@@ -56,7 +54,7 @@ size_t tro_conv_str_to_str16(const char *in, size_t in_len, tro_char16 *out,
 	return written_out;
 }
 
-tro_char16 *tro_cnvlloc_str_to_str16(const char *in, size_t in_len,
+char16_t *tro_cnvlloc_str_to_str16(const char *in, size_t in_len,
                                      size_t *len_out)
 {
 	if (in == NULL) {
@@ -71,7 +69,7 @@ tro_char16 *tro_cnvlloc_str_to_str16(const char *in, size_t in_len,
 	    (tro_str8_urune_len(in, in_len) * sizeof(tro_urune)) + 2;
 	const size_t str_cap = str_mem / 2;
 
-	tro_char16 *str = malloc(str_mem);
+	char16_t *str = malloc(str_mem);
 	size_t str_len  = tro_conv_str_to_str16(in, in_len, str, str_cap);
 
 	if (len_out != NULL)

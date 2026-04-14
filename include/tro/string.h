@@ -5,6 +5,7 @@
 
 #include <stddef.h>
 #include <stdint.h>
+#include <uchar.h>
 
 TRO__C_API_BEGIN
 
@@ -53,17 +54,15 @@ TRO__API size_t tro_urune_to_u16codes(tro_urune rune, tro_u16code *out);
 
 TRO__API size_t tro_str8_urune_len(const char *str, size_t str_l);
 
-typedef uint16_t tro_char16;
-
 static inline size_t tro_strulen(const char *str)
 {
 	return tro_str8_urune_len(str, 0);
 }
 
 TRO__API size_t tro_conv_str_to_str16(const char *in, size_t in_len,
-                                      tro_char16 *out, size_t out_cap);
+                                      char16_t *out, size_t out_cap);
 
-TRO__API tro_char16 *tro_cnvlloc_str_to_str16(const char *in, size_t in_len,
+TRO__API char16_t *tro_cnvlloc_str_to_str16(const char *in, size_t in_len,
                                               size_t *len_out);
 
 TRO__C_API_END
