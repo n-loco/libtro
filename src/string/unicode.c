@@ -74,6 +74,7 @@ tro_char16 *tro_cnvlloc_str_to_str16(const char *in, size_t in_len,
 	tro_char16 *str = malloc(str_mem);
 	size_t str_len  = tro_conv_str_to_str16(in, in_len, str, str_cap);
 
-	*len_out = str_len;
+	if (len_out != NULL)
+		*len_out = str_len;
 	return str;
 }
