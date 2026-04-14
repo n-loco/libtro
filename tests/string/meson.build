@@ -94,6 +94,22 @@ str8_rune_len = executable(
 )
 test('str8_rune_len', str8_rune_len)
 
+str8_to_str16_e = executable(
+    'str8_to_str16_e',
+    'str8_to_str16_e.c',
+    include_directories: [public_includes],
+    link_with: [lib],
+)
+test('str8_to_str16_e', str8_to_str16_e)
+
+str8_to_str16 = executable(
+    'str8_to_str16',
+    'str8_to_str16.c',
+    include_directories: [public_includes],
+    link_with: [lib],
+)
+test('str8_to_str16', str8_to_str16)
+
 u8_to_rune_1 = executable(
     'u8_to_rune_1',
     'u8_to_rune_1.c',
