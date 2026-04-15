@@ -79,6 +79,14 @@ sources = []
 subdir('include')
 subdir('src')
 
+lib_name_prefix = []
+lib_name_suffix = []
+
+if system_name == 'windows'
+    lib_name_prefix = ''
+    lib_name_suffix = 'lib'
+endif
+
 # Para fácil criação de programas
 # com a libtro, ela é SEMPRE estática.
 lib = static_library(
@@ -88,6 +96,8 @@ lib = static_library(
     install: true,
     gnu_symbol_visibility: 'hidden',
     dependencies: dependencies,
+    name_prefix: lib_name_prefix,
+    name_suffix: lib_name_suffix,
 )
 
 subdir('tests')
@@ -95,11 +105,13 @@ subdir('tests')
 # Importante para build-systems serem capazes
 # de encontrar esta biblioteca automatiamente,
 # especialmente em distribuições de Linux.
-pkg_mod = import('pkgconfig')
-pkg_mod.generate(
-    lib,
-    description: 'Uma biblioteca com funções semelhantes às do C para fins educacionais na Eletrônica, IF Sul Pelotas.',
-)
+if is_unix_like
+    pkg_mod = import('pkgconfig')
+    pkg_mod.generate(
+        lib,
+        description: 'Uma biblioteca com funções semelhantes às do C para fins educacionais na Eletrônica, IF Sul Pelotas.',
+    )
+endif
 
 # Isto aqui é coisa específica do Meson.
 # Não é necessário se preocupar no geral,

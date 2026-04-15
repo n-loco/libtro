@@ -17,8 +17,8 @@ struct tro_file {
 	tro_fbufmode buffer_mode;
 	char *buffer;
 #if TRO_SYSTEM_WIN32
-	WCHAR *terminal_buffer;
-	HANDLE *handle;
+	WCHAR *wbuffer;
+	HANDLE handle;
 #elif TRO_SYSTEM_UNIX_LIKE
 	int fd;
 #endif
