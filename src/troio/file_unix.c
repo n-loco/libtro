@@ -1,9 +1,10 @@
 #include "file.h"
 
-#include <stdlib.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <string.h>
+#include <stdlib.h>
 
 #include <unistd.h>
 #include <fcntl.h>
@@ -87,12 +88,17 @@ uintptr_t tro_fileno(tro_file *file)
 	return (uintptr_t)(unsigned int)file->fd;
 }
 
+bool tro_fis_terminal(tro_file *file)
+{
+	return file->is_terminal;
+}
+
 size_t tro_fwrite(tro_file *file, const uint8_t *buffer, size_t bsize)
 {
 	if (!FILE_WRITTABLE(file))
 		return 0;
 
-	if (!(file->modes & TRO_FMODE_APPEND))
+	if (!file->is_terminal && !(file->modes & TRO_FMODE_APPEND))
 		ftruncate(file->fd, 0);
 
 	if (file->buffer_mode == TRO_FBUFMODE_NO_BUFFER) {
@@ -132,6 +138,11 @@ size_t tro_fputc(tro_file *file, tro_urune rune)
 	size_t codes_s = tro_urune_to_u8codes(rune, codes);
 
 	return tro_fwrite(file, codes, codes_s);
+}
+
+size_t tro_fputs(tro_file *file, const char *s)
+{
+	return tro_fwrite(file, (const uint8_t *)s, strlen(s));
 }
 
 bool tro_fflush(tro_file *file)

@@ -19,7 +19,7 @@ tro_file *tro_fopen(const char *filepath, tro_fmodes modes)
 
 	if (modes & TRO_FMODE_READ)
 		desired_access |= FILE_READ_DATA;
-	
+
 	if ((modes & TRO_FMODE_WRITE) && (modes & TRO_FMODE_APPEND))
 		desired_access |= FILE_APPEND_DATA;
 	else if (modes & TRO_FMODE_WRITE)
@@ -106,6 +106,11 @@ void tro_fsetbuf(tro_file *file, tro_fbufmode mode, size_t capacity)
 uintptr_t tro_fileno(tro_file *file)
 {
 	return (uintptr_t)file->handle;
+}
+
+bool tro_fis_terminal(tro_file *file)
+{
+	return file->is_terminal;
 }
 
 static size_t fwrite_file(tro_file *file, const uint8_t *buffer, size_t bsize);
@@ -267,6 +272,11 @@ size_t tro_fputc(tro_file *file, tro_urune rune)
 	tro_u8code bytes[TRO_MULTI_U8CODE_MAX];
 	size_t bytes_n = tro_urune_to_u8codes(rune, bytes);
 	return fwrite_file(file, bytes, bytes_n);
+}
+
+size_t tro_fputs(tro_file *file, const char *s)
+{
+	return tro_fwrite(file, (const uint8_t *)s, strlen(s));
 }
 
 bool tro_fflush(tro_file *file)
