@@ -63,7 +63,7 @@ TRO__API size_t tro_conv_str_to_str16(const char *in, size_t in_len,
                                       char16_t *out, size_t out_cap);
 
 TRO__API char16_t *tro_cnvlloc_str_to_str16(const char *in, size_t in_len,
-                                              size_t *len_out);
+                                            size_t *len_out);
 
 TRO__C_API_END
 

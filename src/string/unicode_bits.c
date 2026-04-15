@@ -216,7 +216,7 @@ size_t tro_str8_urune_len(const char *str, size_t str_l)
 			rune_count++;
 			continue;
 		}
-		
+
 		i += u8_len;
 		rune_count++;
 	}

@@ -6,7 +6,7 @@
 
 #define urune_len_asset(name, expected, got)                                   \
 	{                                                                      \
-		if (expected != got) {                                 \
+		if (expected != got) {                                         \
 			fprintf(stderr, "On \"%s\": expected %zu, got %zu\n",  \
 			        name, (size_t)expected, got);                  \
 			return 1;                                              \

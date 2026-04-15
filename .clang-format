@@ -1,0 +1,157 @@
+LineEnding: LF
+
+IndentCaseBlocks: false
+IndentCaseLabels: false
+IndentExternBlock: AfterExternBlock
+IndentWrappedFunctionNames: false
+IndentGotoLabels: true
+IndentRequiresClause: true
+
+ColumnLimit: 80
+TabWidth: 8
+UseTab: ForIndentation
+IndentWidth: 8
+ContinuationIndentWidth: 4
+IndentPPDirectives: AfterHash
+PPIndentWidth: 1
+SkipMacroDefinitionBody: false
+AlwaysBreakBeforeMultilineStrings: true
+
+SpacesInParens: Never
+SpacesInParensOptions:
+  InCStyleCasts: false
+  InConditionalStatements: false
+  InEmptyParentheses: false
+  Other: false
+SpacesInSquareBrackets: false
+SeparateDefinitionBlocks: Leave
+
+ReflowComments: true
+QualifierAlignment: Leave
+AlignAfterOpenBracket: Align
+AlignArrayOfStructures: Right
+AlignConsecutiveAssignments:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: false
+  AlignCompound: true
+  AlignFunctionPointers: false
+  PadOperators: true
+AlignConsecutiveBitFields:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: false
+  AlignCompound: false
+  AlignFunctionPointers: false
+  PadOperators: false
+AlignConsecutiveDeclarations:
+  Enabled: false
+  AcrossEmptyLines: false
+  AcrossComments: false
+  AlignCompound: false
+  AlignFunctionPointers: false
+  PadOperators: false
+AlignConsecutiveMacros:
+  Enabled: false
+  AcrossEmptyLines: false
+  AcrossComments: false
+  AlignCompound: false
+  AlignFunctionPointers: false
+  PadOperators: false
+AlignConsecutiveShortCaseStatements:
+  Enabled: false
+  AcrossEmptyLines: false
+  AcrossComments: false
+  AlignCaseColons: false
+AlignEscapedNewlines: Right
+AlignOperands: Align
+AlignTrailingComments:
+  Kind: Always
+  OverEmptyLines: 0
+
+AllowAllArgumentsOnNextLine: true
+AllowAllParametersOfDeclarationOnNextLine: true
+AllowShortBlocksOnASingleLine: Never
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+
+BitFieldColonSpacing: After
+
+BinPackArguments: true
+BinPackParameters: true
+
+BraceWrapping:
+  AfterCaseLabel: false
+  AfterClass: true
+  AfterControlStatement: Never
+  AfterEnum: false
+  AfterExternBlock: false
+  AfterFunction: true
+  AfterObjCDeclaration: false
+  AfterStruct: false
+  AfterUnion: false
+  BeforeCatch: false
+  BeforeElse: false
+  BeforeLambdaBody: false
+  BeforeWhile: false
+  IndentBraces: false
+  SplitEmptyFunction: true
+  SplitEmptyRecord: true
+
+BreakAdjacentStringLiterals: true
+BreakArrays: true
+BreakBeforeBinaryOperators: None
+BreakBeforeBraces: Linux
+BreakBeforeTernaryOperators: true
+BreakStringLiterals: true
+
+SortIncludes: Never
+IncludeBlocks: Preserve
+
+InsertBraces: false
+InsertNewlineAtEOF: true
+
+KeepEmptyLinesAtTheStartOfBlocks: true
+KeepEmptyLinesAtEOF: false
+
+RemoveBracesLLVM: false
+RemoveParentheses: Leave
+RemoveSemicolon: false
+
+SpaceAfterCStyleCast: false
+SpaceAfterLogicalNot: false
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeCaseColon: false
+SpaceBeforeParens: ControlStatements
+SpaceBeforeParensOptions:
+  AfterControlStatements: true
+  AfterFunctionDefinitionName: false
+  AfterFunctionDeclarationName: false
+  BeforeNonEmptyParentheses: false
+SpaceBeforeSquareBrackets: false
+SpacesBeforeTrailingComments: 1
+SpaceAroundPointerQualifiers: After
+SpacesInLineCommentPrefix:
+  Minimum: 1
+  Maximum: -1
+
+MaxEmptyLinesToKeep: 1
+
+DerivePointerAlignment: false
+PointerAlignment: Right
+
+PenaltyBreakAssignment: 2
+PenaltyBreakBeforeFirstCallParameter: 19
+PenaltyBreakComment: 300
+PenaltyBreakFirstLessLess: 120
+PenaltyBreakOpenParenthesis: 0
+PenaltyBreakScopeResolution: 500
+PenaltyBreakString: 1000
+PenaltyExcessCharacter: 1000000
+PenaltyIndentedWhitespace: 0
+PenaltyReturnTypeOnItsOwnLine: 60
+
+ExperimentalAutoDetectBinPacking: false

@@ -5,7 +5,7 @@
 
 #include <tro/string.h>
 
-static const char HELLO_WORLD[] = "Olá, mundo! 🌎";
+static const char HELLO_WORLD[]         = "Olá, mundo! 🌎";
 static const char16_t HELLO_WORLD_U16[] = u"Olá, mundo! 🌎";
 
 #define HELLO_WORLD_U16_LEN 14
@@ -17,8 +17,8 @@ int main(void)
 	const size_t str_mem = 15;
 	const size_t str_cap = 15;
 
-	char16_t *str = malloc(str_mem);
-	size_t str_len  = tro_conv_str_to_str16(HELLO_WORLD, 0, str, str_cap);
+	char16_t *str  = malloc(str_mem);
+	size_t str_len = tro_conv_str_to_str16(HELLO_WORLD, 0, str, str_cap);
 
 	bool same_len = str_len == HELLO_WORLD_U16_LEN;
 	bool str_eq   = same_len;
