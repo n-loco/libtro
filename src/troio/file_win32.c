@@ -200,8 +200,9 @@ static size_t fwrite_term(tro_file *file, const uint8_t *buffer, size_t bsize)
 		}
 
 		const tro_u8code *seq = buffer + i;
+		const size_t seq_len = bsize - i;
 		tro_urune rune;
-		i += tro_u8codes_to_urune(seq, &rune);
+		i += tro_u8codes_to_urune(seq, seq_len, &rune);
 		tro_u16code surrogates[TRO_MULTI_U16CODE_MAX];
 		size_t surrogates_n = tro_urune_to_u16codes(rune, surrogates);
 

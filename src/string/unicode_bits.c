@@ -95,7 +95,10 @@ size_t tro_urune_to_u8codes(tro_urune rune, tro_u8code *out)
 
 static inline size_t seq_len_u8(const tro_u8code *seq)
 {
-	if (seq[0] == '\0' || seq[1] == '\0')
+	if (seq[0] == '\0')
+		return 0;
+
+	if (seq[1] == '\0')
 		return 1;
 
 	if (seq[2] == '\0')
@@ -138,9 +141,13 @@ static inline size_t u8_seq_valid_until(size_t u8_l, const tro_u8code *seq)
 
 #define RUNE_U8_3(len, seq) ((len == 4) * (seq[3] & 0x3F))
 
-size_t tro_u8codes_to_urune(const tro_u8code *seq, tro_urune *out)
+size_t tro_u8codes_to_urune(const tro_u8code *seq, size_t seq_l, tro_urune *out)
 {
-	size_t seq_l = seq_len_u8(seq);
+	if (seq_l == 0)
+		seq_l = seq_len_u8(seq);
+	if (seq_l == 0)
+		return 0;
+
 	size_t u8_l  = U8_LEN(seq);
 
 	if (u8_l == 0)

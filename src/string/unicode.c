@@ -24,9 +24,10 @@ size_t tro_conv_str_to_str16(const char *in, size_t in_len, char16_t *out,
 	size_t i = 0;
 	while (i < in_len) {
 		const tro_u8code *seq = (const tro_u8code *)(in + i);
+		const size_t seq_len = in_len - 1;
 
 		tro_urune rune;
-		i += tro_u8codes_to_urune(seq, &rune);
+		i += tro_u8codes_to_urune(seq, seq_len, &rune);
 
 		tro_u16code surrogates[TRO_MULTI_U16CODE_MAX];
 		size_t surrogates_n = tro_urune_to_u16codes(rune, surrogates);
