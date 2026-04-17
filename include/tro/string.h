@@ -53,6 +53,16 @@ TRO__API size_t tro_u8codes_to_urune(const tro_u8code *seq, size_t seq_len,
 
 TRO__API size_t tro_urune_to_u16codes(tro_urune rune, tro_u16code *out);
 
+static inline size_t tro_u8codes_to_u16codes(const tro_u8code *seq,
+                                             size_t seq_len, tro_u16code *out,
+                                             size_t *out_len)
+{
+	tro_urune rune;
+	size_t read = tro_u8codes_to_urune(seq, seq_len, &rune);
+	*out_len    = tro_urune_to_u16codes(rune, out);
+	return read;
+}
+
 TRO__API size_t tro_str8_urune_len(const char *str, size_t str_l);
 
 static inline size_t tro_strulen(const char *str)
