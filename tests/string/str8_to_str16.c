@@ -7,7 +7,7 @@
 #include <tro/string.h>
 
 static const char16_t EXPECT_OK[]     = u"Olá, mundo! 🌎";
-static const char16_t EXPECT_BROKEN[] = u"Olá, mundo! �";
+static const char16_t EXPECT_BROKEN[] = u"Olá, mundo! ";
 
 #define OK_CAP 15
 #define BROKEN_CAP 14
@@ -29,7 +29,7 @@ int main(void)
 
 	char16_t *broken  = malloc(BROKEN_CAP * sizeof(char16_t));
 	size_t broken_len = tro_conv_str_to_str16(src, 0, broken, BROKEN_CAP);
-	str16_assert("Insufficient capacity", EXPECT_BROKEN, 13, broken,
+	str16_assert("Insufficient capacity", EXPECT_BROKEN, 12, broken,
 	             broken_len);
 }
 

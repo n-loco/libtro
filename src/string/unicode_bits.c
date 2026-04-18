@@ -148,7 +148,7 @@ size_t tro_u8codes_to_urune(const tro_u8code *seq, size_t seq_l, tro_urune *out)
 	if (seq_l == 0)
 		return 0;
 
-	size_t u8_l  = U8_LEN(seq);
+	size_t u8_l = U8_LEN(seq);
 
 	if (u8_l == 0)
 		goto ILLEGAL_BYTE;
@@ -171,12 +171,12 @@ size_t tro_u8codes_to_urune(const tro_u8code *seq, size_t seq_l, tro_urune *out)
 	                 RUNE_U8_2(u8_l, rseq) | RUNE_U8_3(u8_l, rseq);
 
 	if (!URUNE_IS_VALID(rune) || (URUNE_CALC_U8_SIZE(rune) < u8_l))
-		goto INVALID_CODE_POINT_OR_OVERLONG;
+		goto OVERLONG;
 
 	*out = rune;
 	return u8_l;
 
-INVALID_CODE_POINT_OR_OVERLONG:
+OVERLONG:
 	*out = REPLACE;
 	return u8_l;
 
@@ -250,4 +250,86 @@ size_t tro_urune_to_u16codes(tro_urune rune, tro_u16code *out)
 	out[1] = vr * U16CODE_W2(ru16s, Ul);
 
 	return ru16s;
+}
+
+static inline size_t seq_len_u16(const tro_u16code *seq)
+{
+	if (seq[0] == '\0')
+		return 0;
+
+	if (seq[1] == '\0')
+		return 1;
+
+	return 2;
+}
+
+#define U16_IS_HIGH(w1) (0xD800 <= w1 && w1 <= 0xDBFF)
+#define U16_IS_LOW(w2) (0xDC00 <= w2 && w2 <= 0xDFFF)
+
+#define U16_LEN(seq) (U16_IS_HIGH(seq[0]) + 1)
+
+size_t tro_u16codes_to_urune(const tro_u16code *seq, size_t seq_len,
+                             tro_urune *out)
+{
+	if (seq_len == 0)
+		seq_len = seq_len_u16(seq);
+	if (seq_len == 0)
+		return 0;
+
+	size_t u16_l = U16_LEN(seq);
+
+	if (seq_len < u16_l)
+		goto SEQ_TOO_SMALL_OR_INVALID_SEQ;
+
+	if (u16_l > 1) {
+		if (!U16_IS_LOW(seq[1]))
+			goto SEQ_TOO_SMALL_OR_INVALID_SEQ;
+
+		*out = (((seq[0] & 0x3FF) << 10) | (seq[1] & 0x3FF)) + 0x10000;
+		return 2;
+	}
+
+	*out = (tro_urune)seq[0];
+	return 1;
+
+SEQ_TOO_SMALL_OR_INVALID_SEQ:
+	*out = REPLACE;
+	return 1;
+}
+
+size_t tro_str16_urune_len(const char16_t *str, size_t str_l)
+{
+	if (str_l == 0)
+		str_l = tro_str16len(str);
+
+	size_t rune_count = 0;
+
+	size_t i = 0;
+	while (i < str_l) {
+		const tro_u16code *seq = (tro_u16code *)(str + i);
+		const size_t seq_len   = str_l - i;
+
+		size_t u16_len = U16_LEN(seq);
+		if (u16_len == 1) {
+			i++;
+			rune_count++;
+			continue;
+		}
+
+		if (seq_len < u16_len) {
+			rune_count++;
+			break;
+		}
+
+		if (!U16_IS_LOW(seq[1])) {
+			i++;
+			rune_count++;
+			continue;
+		}
+
+		i += 2;
+		rune_count++;
+	}
+
+	return rune_count;
 }
