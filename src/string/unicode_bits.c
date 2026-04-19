@@ -2,10 +2,11 @@
 /*
    Este arquivo contém a manipulação Unicode low level de bits.
 
-   O motivo do porque isto está separado é para dividir entre
-   código Unicode "normal" e código Unicode "low-level", pois
-   aqui se tomou a liberdade de usar técnicas não tão boas para
-   leitura, mas que favorecem otimizações, como branchless.
+   O porquê disto estar separado do `unicode.c`, é para dividir entre
+   código Unicode "normal" e código Unicode "low-level", pois aqui
+   ocorre uma manipulação pesada em nível de bits, além de ter sido
+   tomada a liberdade de escrever código menos legível em favor de
+   melhorar o campo para otimizações de compilador e de CPU.
 
    Aqui como os formatos UTF-8 e UTF-16 funcionam:
 
@@ -25,19 +26,18 @@
             2 | 00010000-0010FFFF | 110110xx xxxxxxxx  110111xx xxxxxxxx
    ---------------------------------------------------------------------
 
-   Importante notar que o raio 0xD800-0xDFFF é reservado para a
-   codificação UTF-16 de 2 surrogates, sendo 0xD800-0xDBFF para o
-   primeiro surrogate e 0xDC00-0xDFFF para o segundo surrogate, portanto,
-   não há nenhum code point dentro deste raio, então codificações UTF-8
-   ou code points Unicode puros neste raio são considerados inválidos.
+   Importante notar que o raio 0xD800-0xDFFF é reservado para a codificação
+   UTF-16 de 2 surrogates, sendo 0xD800-0xDBFF para o primeiro surrogate
+   e 0xDC00-0xDFFF para o segundo surrogate, portanto, não há nenhum code
+   point dentro deste raio, então codificações UTF-8 ou code points Unicode
+   puros neste raio são considerados inválidos.
 
    Também importante notar que para o número caber dentro do par de
    surrogates em UTF-16, ele deve ser subtraído por 0x10000, assim
    cabendo dentro dos 20 bits oferecidos pelo par.
 
    Em casos de erro de encodificação/decodificação, se usa o
-   '�' (REPLACEMENT CHARACTER), seu código Unicode é U+FFFD e aqui
-   há macros definidas para ele em UTF-8 e UTF-16 (REPLACE e REPLACE_U*_*).
+   '�' (REPLACEMENT CHARACTER) como substituto.
 
    RFC UTF-8:  https://www.rfc-editor.org/rfc/rfc3629
    RFC UTF-16: https://www.rfc-editor.org/rfc/rfc2781
@@ -50,278 +50,398 @@
 #include <stdbool.h>
 #include <string.h>
 
-#define REPLACE 0x00FFFD
+#include "utils/math.h"
 
-#define URUNE_IS_U16_RESERVED(rune) (0xD800 <= rune && rune <= 0xDFFF)
+// Code point do '�'.
+#define REPLACE_CHAR 0x00FFFD
 
-#define URUNE_IS_VALID(rune)                                                   \
-	((!URUNE_IS_U16_RESERVED(rune)) && rune <= TRO_URUNE_MAX)
+// Primeiro byte em UTF-8 do '�'.
+#define REPLACE_CHAR_U8_0 0xEF
+// Segundo byte em UTF-8 do '�'.
+#define REPLACE_CHAR_U8_1 0xBF
+// Último byte em UTF-8 do '�'.
+#define REPLACE_CHAR_U8_2 0xBD
 
-#define REPLACE_U8_0 0xEF
-#define REPLACE_U8_1 0xBF
-#define REPLACE_U8_2 0xBD
+/*
+   Primeiro surrogate do '�'
+   (igual ao `REPLACE_CHAR`, apenas
+   para separar semântica).
+*/
+#define REPLACE_CHAR_U16_W1 0xFFFD
 
-#define URUNE_CALC_U8_SIZE(rune)                                               \
+/*
+   Calcula o comprimento de `rune`
+   codificado em UTF-8.
+
+   A referência dos valores usados
+   são dos raios da tabela do
+   comentário do topo.
+*/
+#define RUNE_LEN_AS_U8(rune)                                                   \
 	((size_t)((rune > 0xFFFF) + (rune > 0x7FF) + (rune > 0x7F) + 1))
 
-#define U8CODE_0(len, rune)                                                    \
-	(((len == 1) * rune) + ((len == 2) * ((rune >> 6) | 0xC0)) +           \
-	 ((len == 3) * ((rune >> 12) | 0xE0)) +                                \
-	 ((len == 4) * ((rune >> 18) | 0xF0)))
+/*
+   Calcula o comprimento de `rune`
+   codificado em UTF-16.
 
-#define U8CODE_1(len, rune)                                                    \
-	(((len == 2) * ((rune & 0x3F) | 0x80)) +                               \
-	 ((len == 3) * (((rune >> 6) & 0x3F) | 0x80)) +                        \
-	 ((len == 4) * (((rune >> 12) & 0x3F) | 0x80)))
+   A referência do valor usado
+   vem dos raios da tabela do
+   comentário do topo.
+*/
+#define RUNE_LEN_AS_U16(rune) ((size_t)((rune > 0xFFFF) + 1))
 
-#define U8CODE_2(len, rune)                                                    \
-	(((len == 3) * ((rune & 0x3F) | 0x80)) +                               \
-	 ((len == 4) * (((rune >> 6) & 0x3F) | 0x80)))
+/*
+   Valor de deslocamento para code
+   points até `0x10FFFF` caberem
+   dentro dos 20 bits oferecidos pelo
+   par de surrogates.
+*/
+#define U16_OFFSET 0x10000
 
-#define U8CODE_3(len, rune) ((len == 4) * ((rune & 0x3F) | 0x80))
+/*
+   Monta o primeiro byte da encodificação
+   UTF-8 (seguindo os layouts da tabela
+   no comentário do topo).
+
+   O parâmetro `len` é o comprimento
+   pré-processado de `rune` em UTF-8.
+*/
+static inline tro_u8code u8asm_0(size_t len, tro_urune rune);
+
+/*
+   Monta o segundo byte da encodificação
+   UTF-8 (seguindo os layouts da tabela
+   no comentário do topo).
+
+   O parâmetro `len` é o comprimento
+   pré-processado de `rune` em UTF-8.
+*/
+static inline tro_u8code u8asm_1(size_t len, tro_urune rune);
+
+/*
+   Monta o terceiro byte da encodificação
+   UTF-8 (seguindo os layouts da tabela
+   no comentário do topo).
+
+   O parâmetro `len` é o comprimento
+   pré-processado de `rune` em UTF-8.
+*/
+static inline tro_u8code u8asm_2(size_t len, tro_urune rune);
+
+/*
+   Monta o quarto byte da encodificação
+   UTF-8 (seguindo os layouts da tabela
+   no comentário do topo).
+
+   O parâmetro `len` é o comprimento
+   pré-processado de `rune` em UTF-8.
+*/
+static inline tro_u8code u8asm_3(size_t len, tro_urune rune);
 
 size_t tro_urune_to_u8codes(tro_urune rune, tro_u8code *out)
 {
-	bool vr     = URUNE_IS_VALID(rune);
-	size_t ru8s = (vr * URUNE_CALC_U8_SIZE(rune)) + (!vr * 3);
-
-	out[0] = (vr * U8CODE_0(ru8s, rune)) + (!vr * REPLACE_U8_0);
-	out[1] = (vr * U8CODE_1(ru8s, rune)) + (!vr * REPLACE_U8_1);
-	out[2] = (vr * U8CODE_2(ru8s, rune)) + (!vr * REPLACE_U8_2);
-	out[3] = vr * U8CODE_3(ru8s, rune);
-
-	return ru8s;
-}
-
-static inline size_t seq_len_u8(const tro_u8code *seq)
-{
-	if (seq[0] == '\0')
-		return 0;
-
-	if (seq[1] == '\0')
-		return 1;
-
-	if (seq[2] == '\0')
-		return 2;
-
-	if (seq[3] == '\0')
+	if (!TRO_URUNE_IS_VALID(rune)) {
+		out[0] = REPLACE_CHAR_U8_0;
+		out[1] = REPLACE_CHAR_U8_1;
+		out[2] = REPLACE_CHAR_U8_2;
+		out[3] = 0;
 		return 3;
-
-	return 4;
-}
-
-#define U8_LEN(seq)                                                            \
-	((((seq[0] & 0xF8) == 0xF0) * 4) + (((seq[0] & 0xF0) == 0xE0) * 3) +   \
-	 (((seq[0] & 0xE0) == 0xC0) * 2) + (((seq[0] & 0x80) == 0x00) * 1))
-
-#define U8_IS_CONT(u8) ((u8 & 0xC0) == 0x80)
-
-static inline size_t u8_seq_valid_until(size_t u8_l, const tro_u8code *seq)
-{
-	size_t v;
-	for (v = 1; v < u8_l; v++) {
-		if (!U8_IS_CONT(seq[v]))
-			break;
 	}
-	return v;
+
+	const size_t ulen = RUNE_LEN_AS_U8(rune);
+
+	out[0] = u8asm_0(ulen, rune);
+	out[1] = u8asm_1(ulen, rune);
+	out[2] = u8asm_2(ulen, rune);
+	out[3] = u8asm_3(ulen, rune);
+
+	return ulen;
 }
 
-#define RUNE_U8_0(len, seq)                                                    \
-	(((len == 1) * seq[0]) + ((len == 2) * ((seq[0] & 0x1F) << 6)) +       \
-	 ((len == 3) * ((seq[0] & 0x0F) << 12)) +                              \
-	 ((len == 4) * ((seq[0] & 0x07) << 18)))
+/*
+   Retorna o comprimento de uma
+   sequência de bytes UTF-8 terminada
+   em '\0'. Nunca passa de `4`.
+*/
+static inline size_t seq8len(const tro_u8code *seq);
 
-#define RUNE_U8_1(len, seq)                                                    \
-	(((len == 2) * (seq[1] & 0x3F)) +                                      \
-	 ((len == 3) * ((seq[1] & 0x3F) << 6)) +                               \
-	 ((len == 4) * ((seq[1] & 0x3F) << 12)))
+/*
+   Retorna quantos bytes um code point
+   em UTF-8 precisa baseado em `byte`,
+   que deve ser o primeiro byte de uma
+   sequência UTF-8. Nunca passa de `4`,
+   retornar `0` indica erro de byte ilegal.
+*/
+static inline size_t u8len(const tro_u8code byte);
 
-#define RUNE_U8_2(len, seq)                                                    \
-	(((len == 3) * (seq[2] & 0x3F)) + ((len == 4) * ((seq[2] & 0x3F) << 6)))
+/*
+   Valida os bytes de uma sequência UTF-8
+   `seq` de tamanho `len`, assumindo que
+   o primeiro byte já é válido e que
+   `len` é o comprimento do code point em
+   UTF-8.
 
-#define RUNE_U8_3(len, seq) ((len == 4) * (seq[3] & 0x3F))
+   Retorna a posição do último byte válido
+   da sequência, se for igual a `len`, a
+   sequência é válida, caso seja menor que
+   `len`, ela é inválida.
+*/
+static inline size_t u8_validate(const tro_u8code *seq, size_t len);
 
-size_t tro_u8codes_to_urune(const tro_u8code *seq, size_t seq_l, tro_urune *out)
+/*
+   Desmonta o primeiro byte da encodificação
+   UTF-8 (seguindo os layouts da tabela
+   no comentário do topo).
+
+   O parâmetro `len` é o comprimento
+   da sequência UTF-8 de onde `byte` veio.
+*/
+static inline tro_urune u8dasm_0(tro_u8code byte, size_t len);
+
+/*
+   Desmonta o segundo byte da encodificação
+   UTF-8 (seguindo os layouts da tabela
+   no comentário do topo).
+
+   O parâmetro `len` é o comprimento
+   da sequência UTF-8 de onde `byte` veio.
+*/
+static inline tro_urune u8dasm_1(tro_u8code byte, size_t len);
+
+/*
+   Desmonta o terceiro byte da encodificação
+   UTF-8 (seguindo os layouts da tabela
+   no comentário do topo).
+
+   O parâmetro `len` é o comprimento
+   da sequência UTF-8 de onde `byte` veio.
+*/
+static inline tro_urune u8dasm_2(tro_u8code byte, size_t len);
+
+/*
+   Desmonta o quarto byte da encodificação
+   UTF-8 (seguindo os layouts da tabela
+   no comentário do topo).
+
+   O parâmetro `len` é o comprimento
+   da sequência UTF-8 de onde `byte` veio.
+*/
+static inline tro_urune u8dasm_3(tro_u8code byte, size_t len);
+
+size_t tro_u8codes_to_urune(const tro_u8code *seq, size_t seqlen,
+                            tro_urune *out)
 {
-	if (seq_l == 0)
-		seq_l = seq_len_u8(seq);
-	if (seq_l == 0)
+	if (seqlen == 0)
+		seqlen = seq8len(seq);
+	if (seqlen == 0)
 		return 0;
 
-	size_t u8_l = U8_LEN(seq);
+	const size_t ulen = u8len(seq[0]);
 
-	if (u8_l == 0)
-		goto ILLEGAL_BYTE;
+	if (ulen == 0) { // Byte ilegal.
+		*out = REPLACE_CHAR;
+		return 1;
+	}
 
-	if (seq_l < u8_l)
-		goto SEQ_TOO_SMALL;
+	if (seqlen < ulen) {
+		*out = REPLACE_CHAR;
+		return seqlen;
+	}
 
-	tro_u8code rseq[] = {
+	const size_t validl = u8_validate(seq, ulen);
+	if (validl < ulen) {
+		*out = REPLACE_CHAR;
+		return validl;
+	}
+
+	tro_u8code lseq[] = {
 	    seq[0],
-	    (u8_l > 1 ? seq[1] : 0),
-	    (u8_l > 2 ? seq[2] : 0),
-	    (u8_l > 3 ? seq[3] : 0),
+	    (ulen > 1 ? seq[1] : 0),
+	    (ulen > 2 ? seq[2] : 0),
+	    (ulen > 3 ? seq[3] : 0),
 	};
 
-	size_t vu = u8_seq_valid_until(u8_l, rseq);
-	if (vu < u8_l)
-		goto INVALID_SEQ;
+	tro_urune rune = u8dasm_0(lseq[0], ulen) | u8dasm_1(lseq[1], ulen) |
+	                 u8dasm_2(lseq[2], ulen) | u8dasm_3(lseq[3], ulen);
 
-	tro_urune rune = RUNE_U8_0(u8_l, rseq) | RUNE_U8_1(u8_l, rseq) |
-	                 RUNE_U8_2(u8_l, rseq) | RUNE_U8_3(u8_l, rseq);
-
-	if (!URUNE_IS_VALID(rune) || (URUNE_CALC_U8_SIZE(rune) < u8_l))
-		goto OVERLONG;
+	bool invalid  = !TRO_URUNE_IS_VALID(rune);
+	bool overlong = RUNE_LEN_AS_U8(rune) < ulen;
+	if (invalid || overlong) {
+		*out = REPLACE_CHAR;
+		return ulen;
+	}
 
 	*out = rune;
-	return u8_l;
-
-OVERLONG:
-	*out = REPLACE;
-	return u8_l;
-
-INVALID_SEQ:
-	*out = REPLACE;
-	return vu;
-
-SEQ_TOO_SMALL:
-	*out = REPLACE;
-	return seq_l;
-
-ILLEGAL_BYTE:
-	*out = REPLACE;
-	return 1;
+	return ulen;
 }
 
-size_t tro_str8_urune_len(const char *str, size_t str_l)
+size_t tro_str8_urune_len(const char *str, size_t strl)
 {
-	if (str_l == 0)
-		str_l = strlen(str);
+	if (strl == 0)
+		strl = strlen(str);
 
 	size_t rune_count = 0;
 
 	size_t i = 0;
-	while (i < str_l) {
+	while (i < strl) {
 		const tro_u8code *seq = (tro_u8code *)(str + i);
-		const size_t seq_len  = str_l - i;
+		const size_t seqlen   = strl - i;
 
-		size_t u8_len = U8_LEN(seq);
-		if (u8_len == 0 || u8_len == 1) {
+		const size_t ulen = u8len(seq[0]);
+		if (ulen == 0 || ulen == 1) {
 			i++;
 			rune_count++;
 			continue;
 		}
 
-		if (seq_len < u8_len) {
+		if (seqlen < ulen) {
 			rune_count++;
 			break;
 		}
 
-		size_t valid_until = u8_seq_valid_until(u8_len, seq);
-		if (valid_until < u8_len) {
-			i += valid_until;
+		const size_t validl = u8_validate(seq, ulen);
+		if (validl < ulen) {
+			i += validl;
 			rune_count++;
 			continue;
 		}
 
-		i += u8_len;
+		i += ulen;
 		rune_count++;
 	}
 
 	return rune_count;
 }
 
-#define REPLACE_U16_W1 0xFFFD
+/*
+   Monta o surogate high da encodificação
+   UTF-16 (seguindo os layouts da tabela
+   no comentário do topo).
 
-#define URUNE_CALC_U16_SIZE(rune) ((rune > 0xFFFF) + 1)
+   O parâmetro `len` é o comprimento
+   pré-processado de `rune` em UTF-16,
+   e caso `len == 2`, `rune` é assumido
+   com o deslocamento já aplicado.
+*/
+static inline tro_u16code u16asm_w1(size_t len, tro_urune rune);
 
-#define U16CODE_W1(len, rune)                                                  \
-	(((len == 1) * rune) + ((len == 2) * ((rune >> 10) | 0xD800)))
+/*
+   Monta o surogate low da encodificação
+   UTF-16 (seguindo os layouts da tabela
+   no comentário do topo).
 
-#define U16CODE_W2(len, rune) ((len == 2) * ((rune & 0x3FF) | 0xDC00))
+   O parâmetro `len` é o comprimento
+   pré-processado de `rune` em UTF-16,
+   e caso `len == 2`, `rune` é assumido
+   com o deslocamento já aplicado.
+*/
+static inline tro_u16code u16asm_w2(size_t len, tro_urune rune);
 
 size_t tro_urune_to_u16codes(tro_urune rune, tro_u16code *out)
 {
-	bool vr      = URUNE_IS_VALID(rune);
-	size_t ru16s = (vr * URUNE_CALC_U16_SIZE(rune)) + (!vr * 1);
-	tro_urune Ul = rune - ((ru16s == 2) * 0x10000);
+	if (!TRO_URUNE_IS_VALID(rune)) {
+		out[0] = REPLACE_CHAR_U16_W1;
+		out[1] = 0;
+		return 1;
+	}
 
-	out[0] = (vr * U16CODE_W1(ru16s, Ul)) + (!vr * REPLACE_U16_W1);
-	out[1] = vr * U16CODE_W2(ru16s, Ul);
+	const size_t ulen = RUNE_LEN_AS_U16(rune);
 
-	return ru16s;
+	/*
+	   Se `ulen == 1`, o deslocamento não
+	   é aplicado.
+	*/
+	rune -= (ulen == 2) * U16_OFFSET;
+
+	out[0] = u16asm_w1(ulen, rune);
+	out[1] = u16asm_w2(ulen, rune);
+
+	return ulen;
 }
 
-static inline size_t seq_len_u16(const tro_u16code *seq)
+/*
+   Retorna o comprimento de uma
+   sequência de surrogates UTF-16
+   terminada em '\0'.
+
+   Únicos valores possíveis são
+   `1` e `2`.
+*/
+static inline size_t seq16len(const tro_u16code *seq)
 {
 	if (seq[0] == '\0')
 		return 0;
-
-	if (seq[1] == '\0')
+	else if (seq[1] == '\0')
 		return 1;
-
-	return 2;
+	else
+		return 2;
 }
 
-#define U16_IS_HIGH(w1) (0xD800 <= w1 && w1 <= 0xDBFF)
-#define U16_IS_LOW(w2) (0xDC00 <= w2 && w2 <= 0xDFFF)
+#define IS_U16HIGH(w1) (0xD800 <= (w1) && (w1) <= 0xDBFF)
+#define IS_U16LOW(w2) (0xDC00 <= (w2) && (w2) <= 0xDFFF)
 
-#define U16_LEN(seq) (U16_IS_HIGH(seq[0]) + 1)
+/*
+   `surr` é o primeiro surrogate,
+*/
+#define U16LEN(surr) (IS_U16HIGH(surr) + 1)
 
-size_t tro_u16codes_to_urune(const tro_u16code *seq, size_t seq_len,
+#define U16DASM_W1(w1) (((w1) & 0x3FF) << 10)
+#define U16DASM_W2(w2) ((w2) & 0x3FF)
+
+size_t tro_u16codes_to_urune(const tro_u16code *seq, size_t seqlen,
                              tro_urune *out)
 {
-	if (seq_len == 0)
-		seq_len = seq_len_u16(seq);
-	if (seq_len == 0)
+	if (seqlen == 0)
+		seqlen = seq16len(seq);
+	if (seqlen == 0)
 		return 0;
 
-	size_t u16_l = U16_LEN(seq);
+	const size_t ulen = U16LEN(seq[0]);
 
-	if (seq_len < u16_l)
-		goto SEQ_TOO_SMALL_OR_INVALID_SEQ;
+	if (seqlen < ulen)
+		goto ERR;
 
-	if (u16_l > 1) {
-		if (!U16_IS_LOW(seq[1]))
-			goto SEQ_TOO_SMALL_OR_INVALID_SEQ;
+	if (ulen > 1) {
+		if (!IS_U16LOW(seq[1]))
+			goto ERR;
 
-		*out = (((seq[0] & 0x3FF) << 10) | (seq[1] & 0x3FF)) + 0x10000;
+		*out = (U16DASM_W1(seq[0]) | U16DASM_W2(seq[1])) + U16_OFFSET;
 		return 2;
 	}
 
-	*out = (tro_urune)seq[0];
+	*out = seq[0];
 	return 1;
 
-SEQ_TOO_SMALL_OR_INVALID_SEQ:
-	*out = REPLACE;
+ERR:
+	*out = REPLACE_CHAR;
 	return 1;
 }
 
-size_t tro_str16_urune_len(const char16_t *str, size_t str_l)
+size_t tro_str16_urune_len(const char16_t *str, size_t strl)
 {
-	if (str_l == 0)
-		str_l = tro_str16len(str);
+	if (strl == 0)
+		strl = tro_str16len(str);
 
 	size_t rune_count = 0;
 
 	size_t i = 0;
-	while (i < str_l) {
+	while (i < strl) {
 		const tro_u16code *seq = (tro_u16code *)(str + i);
-		const size_t seq_len   = str_l - i;
+		const size_t seqlen   = strl - i;
 
-		size_t u16_len = U16_LEN(seq);
-		if (u16_len == 1) {
+		const size_t ulen = U16LEN(seq[0]);
+		if (ulen == 1) {
 			i++;
 			rune_count++;
 			continue;
 		}
 
-		if (seq_len < u16_len) {
+		if (seqlen < ulen) {
 			rune_count++;
 			break;
 		}
 
-		if (!U16_IS_LOW(seq[1])) {
+		if (!IS_U16LOW(seq[1])) {
 			i++;
 			rune_count++;
 			continue;
@@ -332,4 +452,126 @@ size_t tro_str16_urune_len(const char16_t *str, size_t str_l)
 	}
 
 	return rune_count;
+}
+
+static inline tro_u8code u8asm_0(size_t len, tro_urune rune)
+{
+	return ((len == 1) * rune) // Apenas retorna a própria runa.
+	       + ((len == 2) * ((rune >> 6) | 0xC0))  // Para o segundo layout.
+	       + ((len == 3) * ((rune >> 12) | 0xE0)) // Para o terceiro layout.
+	       + ((len == 4) * ((rune >> 18) | 0xF0)); // Para o último layout.
+}
+/*
+   Macro para montar byte de
+   continuação UTF-8.
+*/
+#define U8CONT(rune) (((rune) & 0x3F) | 0x80)
+static inline tro_u8code u8asm_1(size_t len, tro_urune rune)
+{
+	// Se `len == 1`, só retorna `0x00`
+	return ((len == 2) * U8CONT(rune))          // Para o segundo layout.
+	       + ((len == 3) * U8CONT(rune >> 6))   // Para o terceiro layout.
+	       + ((len == 4) * U8CONT(rune >> 12)); // Para o último layout.
+}
+static inline tro_u8code u8asm_2(size_t len, tro_urune rune)
+{
+	// Se `len == 1` ou `len == 2`, só retorna `0x00`
+	return ((len == 3) * U8CONT(rune))         // Para o terceiro layout.
+	       + ((len == 4) * U8CONT(rune >> 6)); // Para o último layout.
+}
+static inline tro_u8code u8asm_3(size_t len, tro_urune rune)
+{
+	/*
+	   Só retorna algo se precisar montar o byte
+	   do último layout, retorna `0x00` caso contrário.
+	*/
+	return (len == 4) * U8CONT(rune);
+}
+#undef U8CONT
+
+static inline size_t seq8len(const tro_u8code *seq)
+{
+	if (seq[0] == '\0')
+		return 0;
+	else if (seq[1] == '\0')
+		return 1;
+	else if (seq[2] == '\0')
+		return 2;
+	else if (seq[3] == '\0')
+		return 3;
+	else
+		return 4;
+}
+static inline size_t u8len(const tro_u8code byte)
+{
+	/*
+	   A máscara & (and) sempre pega um bit
+	   menos significativo extra do cabeçalho,
+	   pois precisamos garantir que o cabeçalho
+	   é sequido de um bit 0, e então as comparações
+	   fazem sentido.
+	*/
+	return (((byte & 0xF8) == 0xF0) * 4) + (((byte & 0xF0) == 0xE0) * 3) +
+	       (((byte & 0xE0) == 0xC0) * 2) + (((byte & 0x80) == 0x00) * 1);
+}
+/*
+   Macro para validar se um byte
+   é uma continuação UTF-8 ou não
+*/
+#define IS_U8CONT(byte) (((byte) & 0xC0) == 0x80)
+static inline size_t u8_validate(const tro_u8code *seq, size_t len)
+{
+	len = MIN(len, 4);
+	size_t pos;
+	for (pos = 1; pos < len; pos++) {
+		if (!IS_U8CONT(seq[pos]))
+			break;
+	}
+	return pos;
+}
+#undef IS_U8CONT
+
+static inline tro_urune u8dasm_0(tro_u8code byte, size_t len)
+{
+	return ((len == 1) * byte)                    // Apenas retorna o byte.
+	       + ((len == 2) * ((byte & 0x1F) << 6))  // Para o segundo layout.
+	       + ((len == 3) * ((byte & 0x0F) << 12)) // Para o terceiro layout.
+	       + ((len == 4) * ((byte & 0x07) << 18)); // Para o último layout.
+}
+
+static inline tro_urune u8dasm_1(tro_u8code byte, size_t len)
+{
+	// Se `len == 1`, só retorna `0x000000`.
+	return ((len == 2) * (byte & 0x3F))          // Para o segundo layout.
+	       + ((len == 3) * (byte & 0x3F) << 6)   // Para o terceiro layout.
+	       + ((len == 4) * (byte & 0x3F) << 12); // Para o último layout.
+}
+
+static inline tro_urune u8dasm_2(tro_u8code byte, size_t len)
+{
+	// Se `len == 1` ou `len == 2`, só retorna `0x000000`.
+	return ((len == 3) * (byte & 0x3F))           // Para o terceiro layout.
+	       + ((len == 4) * ((byte & 0x3F) << 6)); // Para o último layout.
+}
+
+static inline tro_urune u8dasm_3(tro_u8code byte, size_t len)
+{
+	/*
+	   Só retorna algo se precisar desmontar o byte
+	   do último layout, retorna `0x000000` caso contrário.
+	*/
+	return (len == 4) * (byte & 0x3F);
+}
+
+static inline tro_u16code u16asm_w1(size_t len, tro_urune rune)
+{
+	return ((len == 1) * rune) // Apenas retorna o surrogate.
+	       + ((len == 2) *
+	          ((rune >> 10) | 0xD800)); // Monta o surrogate high.
+}
+
+static inline tro_u16code u16asm_w2(size_t len, tro_urune rune)
+{
+	// Monta o surrogate low, se precisar.
+	return (len == 2) * ((rune & 0x3FF) | 0xDC00);
 }

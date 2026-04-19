@@ -46,39 +46,42 @@ typedef uint32_t tro_urune;
  */
 #define TRO_URUNE_MAX 0x10FFFF
 
+#define TRO_URUNE_IS_VALID(rune)                                               \
+	((rune < 0xD800 || 0xDFFF < rune) && rune <= TRO_URUNE_MAX)
+
 TRO__API size_t tro_urune_to_u8codes(tro_urune rune, tro_u8code *out);
 
-TRO__API size_t tro_u8codes_to_urune(const tro_u8code *seq, size_t seq_len,
+TRO__API size_t tro_u8codes_to_urune(const tro_u8code *seq, size_t seqlen,
                                      tro_urune *out);
 
 TRO__API size_t tro_urune_to_u16codes(tro_urune rune, tro_u16code *out);
 
-TRO__API size_t tro_u16codes_to_urune(const tro_u16code *seq, size_t seq_len,
+TRO__API size_t tro_u16codes_to_urune(const tro_u16code *seq, size_t seqlen,
                                       tro_urune *out);
 
 static inline size_t tro_u8codes_to_u16codes(const tro_u8code *seq,
-                                             size_t seq_len, tro_u16code *out,
-                                             size_t *out_len)
+                                             size_t seqlen, tro_u16code *out,
+                                             size_t *outlen)
 {
 	tro_urune rune;
-	size_t read = tro_u8codes_to_urune(seq, seq_len, &rune);
-	*out_len    = tro_urune_to_u16codes(rune, out);
+	size_t read = tro_u8codes_to_urune(seq, seqlen, &rune);
+	*outlen     = tro_urune_to_u16codes(rune, out);
 	return read;
 }
 
 static inline size_t tro_u16codes_to_u8codes(const tro_u16code *seq,
-                                             size_t seq_len, tro_u8code *out,
-                                             size_t *out_len)
+                                             size_t seqlen, tro_u8code *out,
+                                             size_t *outlen)
 {
 	tro_urune rune;
-	size_t read = tro_u16codes_to_urune(seq, seq_len, &rune);
-	*out_len    = tro_urune_to_u8codes(rune, out);
+	size_t read = tro_u16codes_to_urune(seq, seqlen, &rune);
+	*outlen     = tro_urune_to_u8codes(rune, out);
 	return read;
 }
 
-TRO__API size_t tro_str8_urune_len(const char *str, size_t str_l);
+TRO__API size_t tro_str8_urune_len(const char *str, size_t strl);
 
-TRO__API size_t tro_str16_urune_len(const char16_t *str, size_t str_l);
+TRO__API size_t tro_str16_urune_len(const char16_t *str, size_t strl);
 
 static inline size_t tro_strulen(const char *str)
 {
@@ -90,17 +93,17 @@ static inline size_t tro_str16ulen(const char16_t *str)
 	return tro_str16_urune_len(str, 0);
 }
 
-TRO__API size_t tro_conv_str_to_str16(const char *in, size_t in_len,
-                                      char16_t *out, size_t out_cap);
+TRO__API size_t tro_conv_str_to_str16(const char *in, size_t inlen,
+                                      char16_t *out, size_t outcap);
 
-TRO__API size_t tro_conv_str16_to_str(const char16_t *in, size_t in_len,
-                                      char *out, size_t out_cap);
+TRO__API size_t tro_conv_str16_to_str(const char16_t *in, size_t inlen,
+                                      char *out, size_t outcap);
 
-TRO__API char16_t *tro_cnvlloc_str_to_str16(const char *in, size_t in_len,
-                                            size_t *len_out);
+TRO__API char16_t *tro_cnvlloc_str_to_str16(const char *in, size_t inlen,
+                                            size_t *lenout);
 
-TRO__API char *tro_cnvlloc_str16_to_str(const char16_t *in, size_t in_len,
-                                            size_t *len_out);
+TRO__API char *tro_cnvlloc_str16_to_str(const char16_t *in, size_t inlen,
+                                        size_t *lenout);
 
 static inline size_t tro_str16len(const char16_t *str)
 {
