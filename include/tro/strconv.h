@@ -5,12 +5,17 @@
 
 #include <stddef.h>
 #include <stdint.h>
+#include <uchar.h>
 
 TRO__C_API_BEGIN
 
 TRO__API size_t tro_int2str(int64_t num, char *out, size_t outcap);
 
 TRO__API size_t tro_uint2str(uint64_t num, char *out, size_t outcap);
+
+TRO__API size_t tro_int2str16(int64_t num, char16_t *out, size_t outcap);
+
+TRO__API size_t tro_uint2str16(uint64_t num, char16_t *out, size_t outcap);
 
 TRO__C_API_END
 
