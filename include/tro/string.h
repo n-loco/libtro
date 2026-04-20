@@ -105,15 +105,14 @@ TRO__API char16_t *tro_cnvlloc_str_to_str16(const char *in, size_t inlen,
 TRO__API char *tro_cnvlloc_str16_to_str(const char16_t *in, size_t inlen,
                                         size_t *lenout);
 
-static inline size_t tro_str16len(const char16_t *str)
-{
-	size_t len = 0;
-	while (*str) {
-		len++;
-		str++;
-	}
-	return len;
-}
+TRO__API size_t tro_str16len(const char16_t *str);
+
+TRO__API size_t tro_str16nlen(const char16_t *str, size_t maxlen);
+
+TRO__API int tro_str16cmp(const char16_t *s1, const char16_t *s2);
+
+TRO__API int tro_str16ncmp(const char16_t *s1, const char16_t *s2,
+                           size_t maxlen);
 
 TRO__C_API_END
 
