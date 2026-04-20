@@ -7,11 +7,14 @@
 size_t tro_conv_str_to_str16(const char *in, size_t inlen, char16_t *out,
                              size_t outcap)
 {
-	if (out != NULL && outcap == 0)
-		return 0;
-
 	if (in == NULL) {
-		if (out != NULL && outcap > 1)
+		if (out != NULL && outcap > 0)
+			*out = '\0';
+		return 0;
+	}
+
+	if (out != NULL && outcap < 2) {
+		if (outcap > 0)
 			*out = '\0';
 		return 0;
 	}
@@ -86,11 +89,14 @@ char16_t *tro_cnvlloc_str_to_str16(const char *in, size_t inlen, size_t *lenout)
 size_t tro_conv_str16_to_str(const char16_t *in, size_t inlen, char *out,
                              size_t outcap)
 {
-	if (out != NULL && outcap == 0)
-		return 0;
-
 	if (in == NULL) {
-		if (out != NULL && outcap > 1)
+		if (out != NULL && outcap > 0)
+			*out = '\0';
+		return 0;
+	}
+
+	if (out != NULL && outcap < 2) {
+		if (outcap > 0)
 			*out = '\0';
 		return 0;
 	}
