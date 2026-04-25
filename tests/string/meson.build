@@ -1,3 +1,19 @@
+fmt_parser = executable(
+    'fmt_parser',
+    'fmt_parser.c',
+    include_directories: [public_includes, project_includes],
+    link_with: [lib],
+)
+test('fmt_parser', fmt_parser)
+
+fmt16_parser = executable(
+    'fmt16_parser',
+    'fmt16_parser.c',
+    include_directories: [public_includes, project_includes],
+    link_with: [lib],
+)
+test('fmt16_parser', fmt16_parser)
+
 rune_to_u8 = executable(
     'rune_to_u8',
     'rune_to_u8.c',
