@@ -9,6 +9,9 @@
 
 TRO__C_API_BEGIN
 
+#define TRO_INT_CHAR_MAX 21
+#define TRO_UINT_CHAR_MAX 20
+
 TRO__API size_t tro_int2str(int64_t num, char *out, size_t outcap);
 
 TRO__API size_t tro_uint2str(uint64_t num, char *out, size_t outcap);
