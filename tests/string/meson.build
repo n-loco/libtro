@@ -62,6 +62,22 @@ str16_to_str8 = executable(
 )
 test('str16_to_str8', str16_to_str8)
 
+str16dybuf = executable(
+    'str16dybuf',
+    'str16dybuf.c',
+    include_directories: [public_includes],
+    link_with: [lib],
+)
+test('str16dybuf', str16dybuf)
+
+strdybuf = executable(
+    'strdybuf',
+    'strdybuf.c',
+    include_directories: [public_includes],
+    link_with: [lib],
+)
+test('strdybuf', strdybuf)
+
 u8_to_rune = executable(
     'u8_to_rune',
     'u8_to_rune.c',

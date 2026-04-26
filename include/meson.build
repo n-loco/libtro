@@ -7,6 +7,7 @@ public_includes += include_directories('.')
 headers = [
     'troio.h',
     'tro/conditionals.h',
+    'tro/dybuffer.h',
     'tro/strconv.h',
     'tro/string.h',
     'tro/time.h',

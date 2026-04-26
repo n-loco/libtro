@@ -2,10 +2,16 @@
 #define TRO_STRING_H_
 
 #include "tro/private/api.h"
+#include "tro/private/bool.h"
 
 #include <stddef.h>
 #include <stdint.h>
 #include <uchar.h>
+#if TRO__USE_STDBOOL
+# include <stdbool.h>
+#endif
+
+#include "tro/dybuffer.h"
 
 TRO__C_API_BEGIN
 
@@ -113,6 +119,60 @@ TRO__API int tro_str16cmp(const char16_t *s1, const char16_t *s2);
 
 TRO__API int tro_str16ncmp(const char16_t *s1, const char16_t *s2,
                            size_t maxlen);
+
+typedef struct tro_strdybuf tro_strdybuf;
+TRO__API const tro_dybuffer_i *const tro_strdybuf_dybuffer_vt;
+#define tro_strdybuf_dybuffer(buf)                                             \
+	((tro_dybuffer_obj){                                                   \
+	    .obj    = (void *)buf,                                             \
+	    .vtable = tro_strdybuf_dybuffer_vt,                                \
+	})
+
+TRO__API tro_strdybuf *tro_create_strdybuf(size_t pagecap);
+
+TRO__API void tro_destroy_strdybuf(tro_strdybuf *buf);
+
+TRO__API bool tro_strdybuf_writes(tro_strdybuf *buf, const char *data,
+                                  size_t datal);
+
+TRO__API bool tro_strdybuf_writes16(tro_strdybuf *buf, const char16_t *data,
+                                    size_t datal);
+
+TRO__API bool tro_strdybuf_writeb(tro_strdybuf *buf, const uint8_t *data,
+                                  size_t datal);
+
+TRO__API bool tro_strdybuf_writec(tro_strdybuf *buf, uint32_t c32);
+
+TRO__API size_t tro_strdybuf_get(tro_strdybuf *buf, char *out, size_t outcap);
+
+TRO__API char *tro_strdybuf_getlloc(tro_strdybuf *buf, size_t *outlen);
+
+typedef struct tro_str16dybuf tro_str16dybuf;
+TRO__API const tro_dybuffer_i *const tro_str16dybuf_dybuffer_vt;
+#define tro_str16dybuf_dybuffer(buf)                                           \
+	((tro_dybuffer_obj){                                                   \
+	    .obj    = (void *)buf,                                             \
+	    .vtable = tro_str16dybuf_dybuffer_vt,                              \
+	})
+
+TRO__API tro_str16dybuf *tro_create_str16dybuf(size_t pagecap);
+
+TRO__API void tro_destroy_str16dybuf(tro_str16dybuf *buf);
+
+TRO__API bool tro_str16dybuf_writes(tro_str16dybuf *buf, const char *data,
+                                    size_t datal);
+
+TRO__API bool tro_str16dybuf_writes16(tro_str16dybuf *buf, const char16_t *data,
+                                      size_t datal);
+
+TRO__API bool tro_str16dybuf_writeb(tro_str16dybuf *buf, const uint8_t *data,
+                                    size_t datal);
+
+TRO__API bool tro_str16dybuf_writec(tro_str16dybuf *buf, uint32_t c32);
+
+TRO__API size_t tro_str16dybuf_get(tro_str16dybuf *buf, char16_t *out, size_t outcap);
+
+TRO__API char16_t *tro_str16dybuf_getlloc(tro_str16dybuf *buf, size_t *outlen);
 
 TRO__C_API_END
 
