@@ -1,14 +1,11 @@
 #include <stddef.h>
-#include <stdint.h>
-#include <stdbool.h>
 #include <uchar.h>
-#include <stdlib.h>
-#include <stdio.h>
 
-#include <tro/string.h>
 #include <tro/strconv.h>
 
-#define GENCAP 128
+#include "utils.h"
+
+#define GENCAP TRO_INT_CHAR_MAX
 static char16_t genbuf[GENCAP];
 
 static const char16_t N0[] = u"0";
@@ -20,24 +17,6 @@ static const char16_t N1000[] = u"1000";
 static const char16_t NN1[]    = u"-1";
 static const char16_t NN345[]  = u"-345";
 static const char16_t NN1000[] = u"-1000";
-
-bool impl__str16_assert(const char *name, const char16_t *es, size_t el,
-                        const char16_t *gs, size_t gl);
-
-#define str16_assert(name, es, el, gs, gl)                                     \
-	if (!impl__str16_assert(name, es, el, gs, gl))                         \
-		return 1;
-
-#define len_assert(name, el, gl)                                               \
-	{                                                                      \
-		if ((size_t)el != (size_t)gl) {                                \
-			fprintf(stderr,                                        \
-			        "On \"%s\", unmatched lens: expected %zu, "    \
-			        "got %zu\n",                                   \
-			        name, (size_t)el, (size_t)gl);                 \
-			return 1;                                              \
-		}                                                              \
-	}
 
 int main(void)
 {
@@ -94,32 +73,4 @@ int main(void)
 
 	size_t in1l2 = tro_int2str16(-1, NULL, 0);
 	len_assert("-1 len test", 2, in1l2);
-}
-
-bool impl__str16_assert(const char *name, const char16_t *es, size_t el,
-                        const char16_t *gs, size_t gl)
-{
-	if (el != gl) {
-		fprintf(stderr,
-		        "On \"%s\", unmatched lens: expected %zu, "
-		        "got %zu\n",
-		        name, el, gl);
-		return false;
-	}
-
-	if (tro_str16cmp(es, gs) != 0) {
-		char *u8es = tro_cnvlloc_str16_to_str(es, el, NULL);
-		char *u8gs = tro_cnvlloc_str16_to_str(gs, gl, NULL);
-
-		fprintf(stderr,
-		        "On \"%s\", unmatched string: expected "
-		        "\"%s\", got \"%s\"\n",
-		        name, u8es, u8gs);
-
-		free(u8gs);
-		free(u8es);
-		return false;
-	}
-
-	return true;
 }

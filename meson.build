@@ -8,6 +8,7 @@ project(
         'c_std=c11',
         'b_lto=false', # Garantia de que os símbolos não vão sumir.
     ],
+    subproject_dir: 'vendor'
 )
 
 c_compiler = meson.get_compiler('c')
@@ -67,7 +68,13 @@ else
     add_project_arguments(project_args_gcc_syntax, language: 'c')
 endif
 
-dependencies = []
+# Biblioteca com algoritmo de
+# conversão de float para string.
+ryu_dep = dependency('ryu')
+
+dependencies = [
+    ryu_dep,
+]
 
 # Lista de includes que projetos externos usam.
 public_includes = []

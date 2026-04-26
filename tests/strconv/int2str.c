@@ -1,11 +1,10 @@
 #include <stddef.h>
-#include <stdint.h>
-#include <string.h>
-#include <stdio.h>
 
 #include <tro/strconv.h>
 
-#define GENCAP 128
+#include "utils.h"
+
+#define GENCAP TRO_INT_CHAR_MAX
 static char genbuf[GENCAP];
 
 static const char N0[] = "0";
@@ -17,35 +16,6 @@ static const char N1000[] = "1000";
 static const char NN1[]    = "-1";
 static const char NN345[]  = "-345";
 static const char NN1000[] = "-1000";
-
-#define str_assert(name, es, el, gs, gl)                                       \
-	{                                                                      \
-		if ((size_t)el != (size_t)gl) {                                \
-			fprintf(stderr,                                        \
-			        "On \"%s\", unmatched lens: expected %zu, "    \
-			        "got %zu\n",                                   \
-			        name, (size_t)el, (size_t)gl);                 \
-			return 1;                                              \
-		}                                                              \
-		if (strcmp(es, gs) != 0) {                                     \
-			fprintf(stderr,                                        \
-			        "On \"%s\", unmatched string: expected "       \
-			        "\"%s\", got \"%s\"\n",                        \
-			        name, es, gs);                                 \
-			return 1;                                              \
-		}                                                              \
-	}
-
-#define len_assert(name, el, gl)                                               \
-	{                                                                      \
-		if ((size_t)el != (size_t)gl) {                                \
-			fprintf(stderr,                                        \
-			        "On \"%s\", unmatched lens: expected %zu, "    \
-			        "got %zu\n",                                   \
-			        name, (size_t)el, (size_t)gl);                 \
-			return 1;                                              \
-		}                                                              \
-	}
 
 int main(void)
 {
