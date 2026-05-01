@@ -10,6 +10,7 @@
 #if TRO__USE_STDBOOL
 # include <stdbool.h>
 #endif
+#include <stdarg.h>
 
 #include "tro/dybuffer.h"
 
@@ -141,7 +142,10 @@ TRO__API bool tro_strdybuf_writes16(tro_strdybuf *buf, const char16_t *data,
 TRO__API bool tro_strdybuf_writeb(tro_strdybuf *buf, const uint8_t *data,
                                   size_t datal);
 
-TRO__API bool tro_strdybuf_writec(tro_strdybuf *buf, uint32_t c32);
+TRO__API bool tro_strdybuf_writec(tro_strdybuf *buf, uint32_t c32,
+                                  size_t count);
+
+TRO__API tro_dybuf_pref tro_strdybuf_preference(const tro_strdybuf *buf);
 
 TRO__API size_t tro_strdybuf_get(tro_strdybuf *buf, char *out, size_t outcap);
 
@@ -168,11 +172,23 @@ TRO__API bool tro_str16dybuf_writes16(tro_str16dybuf *buf, const char16_t *data,
 TRO__API bool tro_str16dybuf_writeb(tro_str16dybuf *buf, const uint8_t *data,
                                     size_t datal);
 
-TRO__API bool tro_str16dybuf_writec(tro_str16dybuf *buf, uint32_t c32);
+TRO__API bool tro_str16dybuf_writec(tro_str16dybuf *buf, uint32_t c32,
+                                    size_t count);
 
-TRO__API size_t tro_str16dybuf_get(tro_str16dybuf *buf, char16_t *out, size_t outcap);
+TRO__API tro_dybuf_pref tro_str16dybuf_preference(const tro_str16dybuf *buf);
+
+TRO__API size_t tro_str16dybuf_get(tro_str16dybuf *buf, char16_t *out,
+                                   size_t outcap);
 
 TRO__API char16_t *tro_str16dybuf_getlloc(tro_str16dybuf *buf, size_t *outlen);
+
+TRO__API bool tro_sfmt(tro_dybuffer_obj buf, const char *format, ...);
+
+TRO__API bool tro_vsfmt(tro_dybuffer_obj buf, const char *format, va_list args);
+
+TRO__API bool tro_sfmt16(tro_dybuffer_obj buf, const char16_t *format, ...);
+
+TRO__API bool tro_vsfmt16(tro_dybuffer_obj buf, const char16_t *format, va_list args);
 
 TRO__C_API_END
 

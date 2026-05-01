@@ -16,14 +16,15 @@ int main(void)
 
 	tro_str16dybuf_writes(buf, "8️⃣ ", 0);
 	tro_str16dybuf_writes16(buf, u"1️⃣6️⃣ ", 0);
-	tro_str16dybuf_writec(buf, U'🧐');
+	tro_str16dybuf_writec(buf, U'🧐', 1);
+	tro_str16dybuf_writec(buf, U'🐁', 2);
 
 	size_t strl;
 	char16_t *str = tro_str16dybuf_getlloc(buf, &strl);
 
 	tro_destroy_str16dybuf(buf);
 
-	str16_assert("8️⃣ 1️⃣6️⃣ 🧐", EXP_STR, 13, str, strl);
+	str16_assert("8️⃣ 1️⃣6️⃣ 🧐🐁🐁", EXP_STR, 17, str, strl);
 
 	free(str);
 }

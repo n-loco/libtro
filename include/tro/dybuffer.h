@@ -13,11 +13,18 @@
 
 TRO__C_API_BEGIN
 
+typedef enum tro_dybuf_pref {
+	TRO_DYBUF_PREF_ANY,
+	TRO_DYBUF_PREF_U8,
+	TRO_DYBUF_PREF_U16,
+} tro_dybuf_pref;
+
 typedef struct tro_dybuffer_i {
 	bool (*const writes)(void *buf, const char *data, size_t datal);
 	bool (*const writes16)(void *buf, const char16_t *data, size_t datal);
 	bool (*const writeb)(void *buf, const uint8_t *data, size_t datal);
-	bool (*const writec)(void *buf, uint32_t c32);
+	bool (*const writec)(void *buf, uint32_t c32, size_t count);
+	tro_dybuf_pref (*const preference)(const void *);
 } tro_dybuffer_i;
 
 typedef struct tro_dybuffer_obj {
@@ -25,20 +32,23 @@ typedef struct tro_dybuffer_obj {
 	const tro_dybuffer_i *const vtable;
 } tro_dybuffer_obj;
 
-#define tro_dispatch_dybuffer(obj, varname)                                    \
-	void *const varname = obj.obj;                                         \
+#define tro_dispatch_dybuffer(i, varname)                                      \
+	void *const varname = i.obj;                                           \
                                                                                \
 	bool (*const varname##_writes)(void *buf, const char *data,            \
-	                               size_t datal) = obj.vtable->writes;     \
+	                               size_t datal) = i.vtable->writes;       \
                                                                                \
 	bool (*const varname##_writes16)(void *buf, const char16_t *data,      \
-	                                 size_t datal) = obj.vtable->writes16; \
+	                                 size_t datal) = i.vtable->writes16;   \
                                                                                \
 	bool (*const varname##_writeb)(void *buf, const uint8_t *data,         \
-	                               size_t datal) = obj.vtable->writeb;     \
+	                               size_t datal) = i.vtable->writeb;       \
                                                                                \
-	bool (*const varname##_writec)(void *buf, uint32_t c32) =              \
-	    obj.vtable->writec;                                                \
+	bool (*const varname##_writec)(void *buf, uint32_t c32,                \
+	                               size_t count) = i.vtable->writec;       \
+                                                                               \
+	tro_dybuf_pref (*const varname##_preference)(const void *) =           \
+	    i.vtable->preference;                                              \
                                                                                \
 	/* Supressão de warnings. */ {                                         \
 		(void)varname;                                                 \
@@ -46,6 +56,7 @@ typedef struct tro_dybuffer_obj {
 		(void)varname##_writes16;                                      \
 		(void)varname##_writeb;                                        \
 		(void)varname##_writec;                                        \
+		(void)varname##_preference;                                    \
 	}
 
 TRO__C_API_END
