@@ -1,8 +1,8 @@
+#include <test_utils.h>
+
 #include <stddef.h>
 
 #include <tro/strconv.h>
-
-#include "utils.h"
 
 #define GENCAP TRO_INT_CHAR_MAX
 static char genbuf[GENCAP];

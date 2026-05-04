@@ -1,9 +1,9 @@
+#include <test_utils.h>
+
 #include <stddef.h>
 #include <uchar.h>
 
 #include <tro/strconv.h>
-
-#include "utils.h"
 
 #define GENBUF (TRO_FLOAT_FIXED_CHAR_MAX + 1)
 static char16_t genbuf[GENBUF];

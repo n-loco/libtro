@@ -1,5 +1,5 @@
-#ifndef TESTS_STRCONV_UTILS_H
-#define TESTS_STRCONV_UTILS_H
+#ifndef TEST_UTILS_H
+#define TEST_UTILS_H
 
 #include <stddef.h>
 #include <stdbool.h>
@@ -70,4 +70,4 @@ static inline bool impl__str16_assert(const char *name, const char16_t *es,
 	return true;
 }
 
-#endif // TESTS_STRCONV_UTILS_H
+#endif // TEST_UTILS_H

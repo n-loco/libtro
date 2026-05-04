@@ -1,32 +1,16 @@
-float2str = executable(
+tests = [
     'float2str',
-    'float2str.c',
-    include_directories: public_includes,
-    link_with: [lib],
-)
-test('float2str', float2str)
-
-float2str16 = executable(
     'float2str16',
-    'float2str16.c',
-    include_directories: public_includes,
-    link_with: [lib],
-)
-test('float2str16', float2str16)
-
-int2str = executable(
     'int2str',
-    'int2str.c',
-    include_directories: public_includes,
-    link_with: [lib],
-)
-test('int2str', int2str)
-
-int2str16 = executable(
     'int2str16',
-    'int2str16.c',
-    include_directories: public_includes,
-    link_with: [lib],
-)
-test('int2str16', int2str16)
+]
 
+foreach test_name : tests
+    t = executable(
+        test_name,
+        test_name + '.c',
+        include_directories: general_test_include_dirs,
+        link_with: general_test_libs_to_link,
+    )
+    test('strconv/' + test_name, t)
+endforeach

@@ -1,27 +1,9 @@
+#include <test_utils.h>
+
 #include <stddef.h>
-#include <string.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 #include <tro/string.h>
-
-#define str_assert(name, es, el, gs, gl)                                       \
-	{                                                                      \
-		if ((size_t)el != (size_t)gl) {                                \
-			fprintf(stderr,                                        \
-			        "On \"%s\", unmatched lens: expected %zu, "    \
-			        "got %zu\n",                                   \
-			        name, (size_t)el, (size_t)gl);                 \
-			return 1;                                              \
-		}                                                              \
-		if (strcmp(es, gs) != 0) {                                     \
-			fprintf(stderr,                                        \
-			        "On \"%s\", unmatched string: expected "       \
-			        "\"%s\", got \"%s\"\n",                        \
-			        name, es, gs);                                 \
-			return 1;                                              \
-		}                                                              \
-	}
 
 static const char *EXP_STR = "8️⃣ 1️⃣6️⃣ 🧐";
 
