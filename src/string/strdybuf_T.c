@@ -21,6 +21,7 @@
 # define tro_strdybuf_writes16_T tro_str16dybuf_writes16
 # define tro_strdybuf_writeb_T tro_str16dybuf_writeb
 # define tro_strdybuf_writec_T tro_str16dybuf_writec
+# define tro_strdybuf_preference_T tro_str16dybuf_preference
 #else
 # define CHAR_T char
 
@@ -36,6 +37,7 @@
 # define tro_strdybuf_writes16_T tro_strdybuf_writes16
 # define tro_strdybuf_writeb_T tro_strdybuf_writeb
 # define tro_strdybuf_writec_T tro_strdybuf_writec
+# define tro_strdybuf_preference_T tro_strdybuf_preference
 #endif
 
 typedef struct mempage mempage;
@@ -184,5 +186,6 @@ static const tro_dybuffer_i dybuffer_impl = {
     .writes16 =
         (bool (*)(void *, const char16_t *, size_t))tro_strdybuf_writes16_T,
     .writeb = (bool (*)(void *, const uint8_t *, size_t))tro_strdybuf_writeb_T,
-    .writec = (bool (*)(void *, uint32_t))tro_strdybuf_writec_T,
+    .writec = (bool (*)(void *, uint32_t, size_t))tro_strdybuf_writec_T,
+    .preference = (tro_dybuf_pref(*)(const void *))tro_strdybuf_preference_T,
 };

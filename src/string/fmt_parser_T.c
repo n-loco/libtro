@@ -20,6 +20,10 @@ static const fmt_specifier err_spec = {
     .type = FMT_SPEC_ERROR,
 };
 
+static const fmt_specifier eos_spec = {
+    .type = FMT_SPEC_EOS,
+};
+
 #define IS_DIGIT(c) ('0' <= c && c <= '9')
 #define IS_N0_DIGIT(c) ('1' <= c && c <= '9')
 
@@ -45,8 +49,10 @@ size_t tro__parse_fmt_spec_T(const CHAR_T *sspec, fmt_specifier *out)
 		goto ERROR;
 
 	const CHAR_T intro = *sspec;
-	if (intro == '\0')
-		goto ERROR;
+	if (intro == '\0') {
+		*out = eos_spec;
+		return 0;
+	}
 
 	if (intro != '%') {
 		*out = no_spec;

@@ -238,6 +238,7 @@ static const char *type2s(fmt_spec_type t)
 	switch (t) {
 		str_case(FMT_SPEC_NONE);
 		str_case(FMT_SPEC_ERROR);
+		str_case(FMT_SPEC_EOS);
 		str_case(FMT_SPEC_ESC);
 		str_case(FMT_SPEC_C);
 		str_case(FMT_SPEC_S);

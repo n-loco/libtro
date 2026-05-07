@@ -72,8 +72,14 @@ endif
 # conversão de float para string.
 ryu_dep = dependency('ryu')
 
+# Em sistemas como Linux, a
+# biblioteca de matemática
+# (math.h) é um binário aparte.
+m_dep = c_compiler.find_library('m', required : false)
+
 dependencies = [
     ryu_dep,
+    m_dep,
 ]
 
 # Lista de includes que projetos externos usam.

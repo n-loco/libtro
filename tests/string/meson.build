@@ -1,4 +1,6 @@
 tests = [
+    'sfmt',
+    'sfmt16',
     'fmt_parser',
     'fmt16_parser',
     'rune_to_u8',

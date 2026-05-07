@@ -8,6 +8,7 @@
 typedef enum {
 	FMT_SPEC_NONE  = 0,
 	FMT_SPEC_ERROR = 1,
+	FMT_SPEC_EOS   = -1,
 	FMT_SPEC_ESC   = '%',
 
 	FMT_SPEC_C  = 'c',
@@ -43,7 +44,7 @@ typedef struct {
 } fmt_spec_flags;
 
 typedef struct {
-	int width;
+	unsigned int width;
 	bool from_va: 1;
 	bool dot    : 1;
 } fmt_spec_pad;

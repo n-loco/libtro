@@ -3,6 +3,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <math.h>
 
 #include <ryu/ryu.h>
 
@@ -82,6 +83,12 @@
 */
 // clang-format on
 
+static size_t write_nan(CHAR_T *out, size_t outcap);
+
+static size_t write_infinity(CHAR_T *out, size_t outcap);
+
+static size_t write_ninfinity(CHAR_T *out, size_t outcap);
+
 size_t tro__float2str_general_T(double num, uint32_t precision, CHAR_T *out,
                                 size_t outcap, bool shortest)
 {
@@ -89,6 +96,15 @@ size_t tro__float2str_general_T(double num, uint32_t precision, CHAR_T *out,
 		if (outcap > 0)
 			*out = '\0';
 		return 0;
+	}
+
+	if (isnan(num))
+		return write_nan(out, outcap);
+	else if (isinf(num)) {
+		if (signbit(num))
+			return write_ninfinity(out, outcap);
+		else
+			return write_infinity(out, outcap);
 	}
 
 	precision = MIN(precision, TRO_FLOAT_CHAR_MAX_PRECISION);
@@ -144,6 +160,15 @@ size_t tro__float2str_eE_T(double num, CHAR_T *out, size_t outcap,
 		if (outcap > 0)
 			*out = '\0';
 		return 0;
+	}
+
+	if (isnan(num))
+		return write_nan(out, outcap);
+	else if (isinf(num)) {
+		if (signbit(num))
+			return write_ninfinity(out, outcap);
+		else
+			return write_infinity(out, outcap);
 	}
 
 	char buffer[TRO_FLOAT_E_CHAR_MAX + 1];
@@ -214,5 +239,62 @@ size_t tro__float2str_fixed_eE_T(double num, uint32_t precision, CHAR_T *out,
 	}
 	out[wout] = '\0';
 
+	return wout;
+}
+
+static size_t write_nan(CHAR_T *out, size_t outcap)
+{
+#ifdef USE_CHAR16_T
+	const char16_t str[] = u"NaN";
+#else
+	const char str[] = "NaN";
+#endif
+	const size_t outcap_bn = outcap - 1;
+
+	size_t wout = 0;
+	for (size_t i = 0; i < 3; i++) {
+		out[wout++] = (CHAR_T)str[i];
+		if (wout == outcap_bn)
+			break;
+	}
+	out[wout] = '\0';
+	return wout;
+}
+
+static size_t write_infinity(CHAR_T *out, size_t outcap)
+{
+#ifdef USE_CHAR16_T
+	const char16_t str[] = u"Infinity";
+#else
+	const char str[] = "Infinity";
+#endif
+	const size_t outcap_bn = outcap - 1;
+
+	size_t wout = 0;
+	for (size_t i = 0; i < 8; i++) {
+		out[wout++] = (CHAR_T)str[i];
+		if (wout == outcap_bn)
+			break;
+	}
+	out[wout] = '\0';
+	return wout;
+}
+
+static size_t write_ninfinity(CHAR_T *out, size_t outcap)
+{
+#ifdef USE_CHAR16_T
+	const char16_t str[] = u"-Infinity";
+#else
+	const char str[] = "-Infinity";
+#endif
+	const size_t outcap_bn = outcap - 1;
+
+	size_t wout = 0;
+	for (size_t i = 0; i < 9; i++) {
+		out[wout++] = (CHAR_T)str[i];
+		if (wout == outcap_bn)
+			break;
+	}
+	out[wout] = '\0';
 	return wout;
 }

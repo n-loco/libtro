@@ -73,7 +73,7 @@ bool tro_strdybuf_writes16(tro_strdybuf *buf, const char16_t *data,
 	return true;
 }
 
-bool tro_strdybuf_writec(tro_strdybuf *buf, uint32_t c32)
+bool tro_strdybuf_writec(tro_strdybuf *buf, uint32_t c32, size_t count)
 {
 	if (buf == NULL)
 		return false;
@@ -87,18 +87,26 @@ bool tro_strdybuf_writec(tro_strdybuf *buf, uint32_t c32)
 
 	mempage *page = buf->last;
 
-	for (size_t i = 0; i < bytesn; i++) {
-		if (page->datalen == pagecap) {
-			mempage *new_page = alloc_mempage(pagecap);
+	for (size_t i = 0; i < count; i++) {
+		for (size_t j = 0; j < bytesn; j++) {
+			if (page->datalen == pagecap) {
+				mempage *new_page = alloc_mempage(pagecap);
 
-			page->next = new_page;
-			buf->last  = new_page;
+				page->next = new_page;
+				buf->last  = new_page;
 
-			page = new_page;
+				page = new_page;
+			}
+
+			page->data[page->datalen++] = bytes[j];
 		}
-
-		page->data[page->datalen++] = bytes[i];
 	}
 
 	return true;
+}
+
+tro_dybuf_pref tro_strdybuf_preference(const tro_strdybuf *buf)
+{
+	(void)buf;
+	return TRO_DYBUF_PREF_U8;
 }
