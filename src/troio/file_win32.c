@@ -3,38 +3,49 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <uchar.h>
 #include <stdlib.h>
 
 #include <windows.h>
 
 #include "tro/string.h"
 
-tro_file *tro_fopen(const char *filepath, tro_fmodes modes)
+tro_file *tro_fopen(const char *filepath, tro_fmode mode)
 {
-	bool has_any_mandatory_mode = modes & MANDATORY_FMODES;
-	if (!has_any_mandatory_mode)
-		return NULL;
-
 	DWORD desired_access = 0;
 
-	if (modes & TRO_FMODE_READ)
+	switch (mode) {
+	case TRO_FMODE_NULL:
+		return NULL;
+	case TRO_FMODE_READ:
 		desired_access |= FILE_READ_DATA;
-
-	if ((modes & TRO_FMODE_WRITE) && (modes & TRO_FMODE_APPEND))
-		desired_access |= FILE_APPEND_DATA;
-	else if (modes & TRO_FMODE_WRITE)
+		break;
+	case TRO_FMODE_WRITE:
 		desired_access |= FILE_WRITE_DATA;
+		break;
+	case TRO_FMODE_APPEND:
+		desired_access |= FILE_APPEND_DATA;
+		break;
+	case TRO_FMODE_RDWT:
+		desired_access |= FILE_READ_DATA | FILE_WRITE_DATA;
+		break;
+	case TRO_FMODE_RDAD:
+		desired_access |= FILE_READ_DATA | FILE_APPEND_DATA;
+		break;
+	}
 
-	HANDLE handle = NULL;
+	HANDLE handle;
 	{
 		WCHAR *wfilepath = tro_cnvlloc_str_to_str16(filepath, 0, NULL);
+		if (wfilepath == NULL)
+			return NULL;
 
 		handle = CreateFileW(wfilepath, desired_access, 0, NULL,
 		                     OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
 		free(wfilepath);
 	}
-	if (handle == NULL)
+	if (handle == INVALID_HANDLE_VALUE)
 		return NULL;
 
 	if (GetLastError() == ERROR_ALREADY_EXISTS)
@@ -44,16 +55,19 @@ tro_file *tro_fopen(const char *filepath, tro_fmodes modes)
 
 	tro_file *file = malloc(sizeof(tro_file));
 
-	file->handle = handle;
+	*file = (tro_file){
+	    .handle = handle,
 
-	file->buffer_capacity = TRO_BUFFER_CAPACITY;
-	file->buffer_size     = 0;
-	file->buffer_mode     = modes;
-	file->buffer          = malloc(TRO_BUFFER_CAPACITY);
-	file->wbuffer         = NULL;
+	    .buffer_capacity = TRO_BUFFER_CAPACITY,
+	    .buffer_mode     = TRO_FBUFMODE_NO_BUFFER,
+	    .buffer          = malloc(TRO_BUFFER_CAPACITY),
+	    .wbuffer         = NULL,
+	    .buffer_size     = 0,
 
-	file->modes       = modes;
-	file->is_terminal = false;
+	    .truncated = false,
+	    .mode      = mode,
+	    .terminal  = false,
+	};
 
 	return file;
 }
@@ -71,86 +85,146 @@ void tro_fclose(tro_file *file)
 
 void tro_fsetbuf(tro_file *file, tro_fbufmode mode, size_t capacity)
 {
-	if (mode == TRO_FBUFMODE_NO_BUFFER) {
+	tro_fflush(file);
+
+	const bool no_buffer = mode == TRO_FBUFMODE_NO_BUFFER;
+
+	const bool has_buf_val = file->buffer_capacity != 0 || capacity != 0;
+	const bool use_default = !no_buffer && !has_buf_val;
+
+	const bool new_cap = capacity != 0 && file->buffer_capacity != capacity;
+
+	if (no_buffer) {
 		if (file->buffer != NULL)
 			free(file->buffer);
 		if (file->wbuffer != NULL)
 			free(file->wbuffer);
+
 		file->buffer          = NULL;
 		file->wbuffer         = NULL;
 		file->buffer_capacity = 0;
-	} else {
-		if (capacity == 0)
-			capacity = TRO_BUFFER_CAPACITY;
+	} else if (use_default) {
+		if (file->buffer != NULL)
+			free(file->buffer);
+		if (file->wbuffer != NULL)
+			free(file->wbuffer);
 
-		if (file->buffer_capacity != capacity) {
-			file->buffer_capacity = capacity;
+		if (file->terminal)
+			file->wbuffer =
+			    malloc(TRO_BUFFER_CAPACITY * sizeof(WCHAR));
+		else
+			file->buffer = malloc(TRO_BUFFER_CAPACITY);
+		file->buffer_capacity = TRO_BUFFER_CAPACITY;
+	} else if (new_cap) {
+		if (file->buffer != NULL)
+			free(file->buffer);
+		if (file->wbuffer != NULL)
+			free(file->wbuffer);
 
-			if (file->buffer != NULL)
-				free(file->buffer);
-			if (file->wbuffer != NULL)
-				free(file->wbuffer);
-
-			if (file->is_terminal)
-				file->wbuffer =
-				    malloc(capacity * sizeof(WCHAR));
-			else
-				file->buffer = malloc(capacity);
-		}
+		if (file->terminal)
+			file->wbuffer = malloc(capacity * sizeof(WCHAR));
+		else
+			file->buffer = malloc(capacity);
+		file->buffer_capacity = capacity;
 	}
 
 	file->buffer_mode = mode;
 	file->buffer_size = 0;
 }
 
-uintptr_t tro_fileno(tro_file *file)
+uintptr_t tro_fileno(const tro_file *file)
 {
 	return (uintptr_t)file->handle;
 }
 
-bool tro_fis_terminal(tro_file *file)
+static bool fwrites_file(tro_file *file, const char *data, size_t datal);
+static bool fwrites_term(tro_file *file, const char *data, size_t datal);
+
+bool tro_fwrites(tro_file *file, const char *data, size_t datal)
 {
-	return file->is_terminal;
+	if (file->terminal)
+		return fwrites_term(file, data, datal);
+	return fwrites_file(file, data, datal);
 }
 
-static size_t fwrite_file(tro_file *file, const uint8_t *buffer, size_t bsize);
-static size_t fwrite_term(tro_file *file, const uint8_t *buffer, size_t bsize);
+static bool fwrites16_file(tro_file *file, const char16_t *data, size_t datal);
+static bool fwrites16_term(tro_file *file, const char16_t *data, size_t datal);
 
-size_t tro_fwrite(tro_file *file, const uint8_t *buffer, size_t bsize)
+bool tro_fwrites16(tro_file *file, const char16_t *data, size_t datal)
 {
-	if (file->is_terminal)
-		return fwrite_term(file, buffer, bsize);
-	return fwrite_file(file, buffer, bsize);
+	if (file->terminal)
+		return fwrites16_term(file, data, datal);
+	return fwrites16_file(file, data, datal);
 }
 
-static size_t fwrite_file(tro_file *file, const uint8_t *buffer, size_t bsize)
+bool tro_fwriteb(tro_file *file, const uint8_t *data, size_t datal)
 {
-	if (!FILE_WRITTABLE(file))
-		return 0;
+	if (file->terminal)
+		return fwrites_term(file, (const char *)data, datal);
+	return fwrites_file(file, (const char *)data, datal);
+}
 
-	if (!(file->modes & TRO_FMODE_APPEND)) {
-		LARGE_INTEGER zero = {0};
-		SetFilePointerEx(file->handle, zero, NULL, FILE_BEGIN);
-		SetEndOfFile(file);
-	}
+static bool fwritec_file(tro_file *file, uint32_t rune, size_t count);
+static bool fwritec_term(tro_file *file, uint32_t rune, size_t count);
+
+bool tro_fwritec(tro_file *file, uint32_t rune, size_t count)
+{
+	if (file->terminal)
+		return fwritec_term(file, rune, count);
+	return fwritec_file(file, rune, count);
+}
+
+tro_dybuf_pref tro_fbufpref(const tro_file *file)
+{
+	if (file->terminal)
+		return TRO_DYBUF_PREF_U16;
+	return TRO_DYBUF_PREF_U8;
+}
+
+bool tro_fflush(tro_file *file)
+{
+	if (!writtable(file))
+		return false;
+
+	if (file->buffer_size == 0)
+		return true;
+
+	BOOL ok;
+	if (file->terminal)
+		ok = WriteConsoleW(file->handle, file->wbuffer,
+		                   (DWORD)file->buffer_size, NULL, NULL);
+	else
+		ok = WriteFile(file->handle, file->buffer,
+		               (DWORD)file->buffer_size, NULL, NULL);
+
+	file->buffer_size = 0;
+	return (bool)ok;
+}
+
+static bool truncate(tro_file *file);
+
+static bool fwrites_file(tro_file *file, const char *data, size_t datal)
+{
+	if (!writtable(file))
+		return false;
+
+	if (!truncate(file))
+		return false;
 
 	if (file->buffer_mode == TRO_FBUFMODE_NO_BUFFER) {
-		BOOL ok =
-		    WriteFile(file->handle, buffer, (DWORD)bsize, NULL, NULL);
-		if (!ok)
+		if (!WriteFile(file->handle, data, (DWORD)datal, NULL, NULL))
 			goto WRITE_ERROR;
 
-		return bsize;
+		return true;
 	}
 
-	for (size_t i = 0; i < bsize; i++) {
-		file->buffer[file->buffer_size] = buffer[i];
-		file->buffer_size++;
+	for (size_t i = 0; i < datal; i++) {
+		file->buffer[file->buffer_size++] = data[i];
 
 		bool buffer_full = file->buffer_size == file->buffer_capacity;
 		bool new_line    = false;
 		if (file->buffer_mode == TRO_FBUFMODE_LINE_BUFFER)
-			new_line = buffer[i] == '\n';
+			new_line = data[i] == '\n';
 
 		if (buffer_full || new_line) {
 			bool success = tro_fflush(file);
@@ -159,57 +233,55 @@ static size_t fwrite_file(tro_file *file, const uint8_t *buffer, size_t bsize)
 		}
 	}
 
-	return bsize;
+	return true;
 
 WRITE_ERROR:
 	file->buffer_size = 0;
-	return 0;
+	return false;
 }
 
-static size_t wfwrite_term(tro_file *file, const WCHAR *buffer, size_t bsize);
-
-static size_t fwrite_term(tro_file *file, const uint8_t *buffer, size_t bsize)
+static bool fwrites16_file(tro_file *file, const char16_t *data, size_t datal)
 {
-	if (!FILE_WRITTABLE(file))
-		return 0;
+	if (!writtable(file))
+		return false;
+
+	if (!truncate(file))
+		return false;
 
 	if (file->buffer_mode == TRO_FBUFMODE_NO_BUFFER) {
-		size_t wbsize;
-		WCHAR *wbuffer = tro_cnvlloc_str_to_str16((const char *)buffer,
-		                                          bsize, &wbsize);
+		size_t datal8;
+		char *data8 = tro_cnvlloc_str16_to_str(data, datal, &datal8);
 
-		size_t written = wfwrite_term(file, wbuffer, wbsize);
+		bool success = fwrites_file(file, data8, datal8);
 
-		free(wbuffer);
-		return written > 0 ? bsize : 0;
+		free(data8);
+		return success;
 	}
 
+	return true;
+
 	size_t i = 0;
-	while (i < bsize) {
-		bool new_line = buffer[i] == '\n' &&
+	while (i < datal) {
+		bool new_line = data[i] == '\n' &&
 		                file->buffer_mode == TRO_FBUFMODE_LINE_BUFFER;
 
 		if (new_line) {
 			i++;
-			file->wbuffer[file->buffer_size] = u'\n';
-			file->buffer_size++;
-			bool success = tro_fflush(file);
-			if (!success)
+			file->buffer[file->buffer_size++] = '\n';
+			if (!tro_fflush(file))
 				goto WRITE_ERROR;
 			continue;
 		}
 
-		const tro_u8code *seq = buffer + i;
-		const size_t seq_len  = bsize - i;
+		const tro_u16code *seq = (data + i);
+		const size_t seql      = datal - i;
 
-		tro_u16code surrogates[TRO_MULTI_U16CODE_MAX];
-		size_t surrogates_n;
-		i += tro_u8codes_to_u16codes(seq, seq_len, surrogates,
-		                              &surrogates_n);
+		tro_u8code codes[TRO_MULTI_U8CODE_MAX];
+		size_t codesn;
+		i += tro_u16codes_to_u8codes(seq, seql, codes, &codesn);
 
-		for (size_t i = 0; i < surrogates_n; i++) {
-			file->wbuffer[file->buffer_size] = surrogates[i];
-			file->buffer_size++;
+		for (size_t j = 0; j < codesn; j++) {
+			file->buffer[file->buffer_size++] = codes[j];
 
 			if (file->buffer_size == file->buffer_capacity) {
 				bool success = tro_fflush(file);
@@ -219,35 +291,102 @@ static size_t fwrite_term(tro_file *file, const uint8_t *buffer, size_t bsize)
 		}
 	}
 
-	return bsize;
+WRITE_ERROR:
+	file->buffer_size = 0;
+	return false;
+}
+
+static bool fwritec_file(tro_file *file, uint32_t rune, size_t count)
+{
+	if (!writtable(file))
+		return false;
+
+	tro_u8code codes[TRO_MULTI_U8CODE_MAX];
+	size_t codesn = tro_urune_to_u8codes(rune, codes);
+
+	for (size_t i = 0; i < count; i++) {
+		if (!fwrites_file(file, (const char *)codes, codesn))
+			return false;
+	}
+
+	return true;
+}
+
+static bool fwrites_term(tro_file *file, const char *data, size_t datal)
+{
+	if (!writtable(file))
+		return false;
+
+	if (file->buffer_mode == TRO_FBUFMODE_NO_BUFFER) {
+		size_t data16l;
+		char16_t *data16 =
+		    tro_cnvlloc_str_to_str16(data, datal, &data16l);
+
+		bool success = fwrites16_term(file, data16, data16l);
+
+		free(data16);
+		return success;
+	}
+
+	size_t i = 0;
+	while (i < datal) {
+		bool new_line = data[i] == '\n' &&
+		                file->buffer_mode == TRO_FBUFMODE_LINE_BUFFER;
+
+		if (new_line) {
+			i++;
+			file->wbuffer[file->buffer_size++] = u'\n';
+			if (!tro_fflush(file))
+				goto WRITE_ERROR;
+			continue;
+		}
+
+		const tro_u8code *seq = (const tro_u8code *)(data + i);
+		const size_t seql     = datal - i;
+
+		tro_u16code codes[TRO_MULTI_U16CODE_MAX];
+		size_t codesn;
+		i += tro_u8codes_to_u16codes(seq, seql, codes, &codesn);
+
+		for (size_t i = 0; i < codesn; i++) {
+			file->wbuffer[file->buffer_size++] = codes[i];
+
+			if (file->buffer_size == file->buffer_capacity) {
+				bool success = tro_fflush(file);
+				if (!success)
+					goto WRITE_ERROR;
+			}
+		}
+	}
+
+	return true;
 
 WRITE_ERROR:
 	file->buffer_size = 0;
-	return 0;
+	return false;
 }
 
-static size_t wfwrite_term(tro_file *file, const WCHAR *buffer, size_t bsize)
+static bool fwrites16_term(tro_file *file, const WCHAR *data, size_t datal)
 {
-	if (!FILE_WRITTABLE(file))
-		return 0;
+	if (!writtable(file))
+		return false;
 
 	if (file->buffer_mode == TRO_FBUFMODE_NO_BUFFER) {
-		BOOL ok = WriteConsoleW(file->handle, buffer, (DWORD)bsize,
-		                        NULL, NULL);
+		BOOL ok =
+		    WriteConsoleW(file->handle, data, (DWORD)datal, NULL, NULL);
 		if (!ok)
 			goto WRITE_ERROR;
 
-		return bsize;
+		return true;
 	}
 
-	for (size_t i = 0; i < bsize; i++) {
-		file->wbuffer[file->buffer_size] = buffer[i];
-		file->buffer_size++;
+	for (size_t i = 0; i < datal; i++) {
+		file->wbuffer[file->buffer_size++] = data[i];
 
 		bool buffer_full = file->buffer_size == file->buffer_capacity;
 		bool new_line    = false;
 		if (file->buffer_mode == TRO_FBUFMODE_LINE_BUFFER)
-			new_line = buffer[i] == u'\n';
+			new_line = data[i] == u'\n';
 
 		if (buffer_full || new_line) {
 			bool success = tro_fflush(file);
@@ -256,47 +395,44 @@ static size_t wfwrite_term(tro_file *file, const WCHAR *buffer, size_t bsize)
 		}
 	}
 
-	return bsize;
+	return true;
 
 WRITE_ERROR:
 	file->buffer_size = 0;
-	return 0;
+	return false;
 }
 
-size_t tro_fputc(tro_file *file, tro_urune rune)
+static bool fwritec_term(tro_file *file, uint32_t rune, size_t count)
 {
-	if (file->is_terminal) {
-		tro_u16code surrogates[TRO_MULTI_U16CODE_MAX];
-		size_t surrogates_n = tro_urune_to_u16codes(rune, surrogates);
-		return wfwrite_term(file, surrogates, surrogates_n);
-	}
-
-	tro_u8code bytes[TRO_MULTI_U8CODE_MAX];
-	size_t bytes_n = tro_urune_to_u8codes(rune, bytes);
-	return fwrite_file(file, bytes, bytes_n);
-}
-
-size_t tro_fputs(tro_file *file, const char *s)
-{
-	return tro_fwrite(file, (const uint8_t *)s, strlen(s));
-}
-
-bool tro_fflush(tro_file *file)
-{
-	if (!FILE_WRITTABLE(file))
+	if (!writtable(file))
 		return false;
 
-	if (file->buffer_size == 0)
+	tro_u16code codes[TRO_MULTI_U16CODE_MAX];
+	size_t codesn = tro_urune_to_u16codes(rune, codes);
+
+	for (size_t i = 0; i < count; i++) {
+		if (!fwrites16_term(file, codes, codesn))
+			return false;
+	}
+
+	return true;
+}
+
+static bool truncate(tro_file *file)
+{
+	if (!writtable(file))
+		return false;
+
+	if (file->truncated || appendable(file))
 		return true;
 
-	BOOL ok;
-	if (file->is_terminal)
-		ok = WriteConsoleW(file->handle, file->wbuffer,
-		                   (DWORD)file->buffer_size, NULL, NULL);
-	else
-		ok = WriteFile(file->handle, file->buffer,
-		               (DWORD)file->buffer_size, NULL, NULL);
+	const LARGE_INTEGER zero = {0};
+	if (!SetFilePointerEx(file->handle, zero, NULL, FILE_BEGIN))
+		return false;
 
-	file->buffer_size = 0;
-	return ok;
+	if (!SetEndOfFile(file->handle))
+		return false;
+
+	file->truncated = true;
+	return true;
 }

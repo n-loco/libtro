@@ -97,8 +97,12 @@ size_t tro__parse_fmt_spec_T(const CHAR_T *sspec, fmt_specifier *out)
 	}
 
 	// Tipo principal
-	if (!parse_type(sspec, &spec))
+	if (!parse_type(sspec, &spec)) {
+		const char c = *sspec;
+		if (c != '\0')
+			d_read++;
 		goto ERROR;
+	}
 
 	*out = spec;
 	return d_read + 1;
@@ -323,6 +327,24 @@ static inline bool parse_type(const CHAR_T *sspec, fmt_specifier *spec)
 		return true;
 	case 'f':
 		spec->type = FMT_SPEC_F;
+		return true;
+	case 'e':
+		spec->type = FMT_SPEC_E;
+		return true;
+	case 'E':
+		spec->type = FMT_SPEC_CE;
+		return true;
+	case 'g':
+		spec->type = FMT_SPEC_G;
+		return true;
+	case 'G':
+		spec->type = FMT_SPEC_CG;
+		return true;
+	case 'a':
+		spec->type = FMT_SPEC_A;
+		return true;
+	case 'A':
+		spec->type = FMT_SPEC_CA;
 		return true;
 	case 'p':
 		spec->type = FMT_SPEC_P;

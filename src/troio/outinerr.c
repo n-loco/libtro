@@ -4,6 +4,8 @@
 
 #include <stddef.h>
 #include <stdlib.h>
+#include <uchar.h>
+#include <stdarg.h>
 
 #if TRO_SYSTEM_WIN32
 # include <windows.h>
@@ -15,28 +17,94 @@ static struct tro_file outfstream;
 static struct tro_file infstream;
 static struct tro_file errfstream;
 
-tro_file *troout = &outfstream;
-tro_file *troin  = &infstream;
-tro_file *troerr = &errfstream;
+tro_file *const troout = &outfstream;
+tro_file *const troin  = &infstream;
+tro_file *const troerr = &errfstream;
 
-size_t tro_putc(tro_urune rune)
+bool tro_putc(tro_urune rune)
 {
 	return tro_fputc(troout, rune);
 }
 
-size_t tro_puts(const char *s)
+bool tro_puts(const char *s)
 {
 	return tro_fputs(troout, s);
 }
 
-size_t tro_eputc(tro_urune rune)
+bool tro_puts16(const char16_t *s)
+{
+	return tro_fputs16(troout, s);
+}
+
+bool tro_eputc(tro_urune rune)
 {
 	return tro_fputc(troerr, rune);
 }
 
-size_t tro_eputs(const char *s)
+bool tro_eputs(const char *s)
 {
 	return tro_fputs(troerr, s);
+}
+
+bool tro_eputs16(const char16_t *s)
+{
+	return tro_fputs16(troerr, s);
+}
+
+bool tro_printf(const char *format, ...)
+{
+	va_list args;
+	va_start(args, format);
+	bool r = tro_vprintf(format, args);
+	va_end(args);
+	return r;
+}
+
+bool tro_vprintf(const char *format, va_list args)
+{
+	return tro_vfprintf(troout, format, args);
+}
+
+bool tro_printf16(const char16_t *format, ...)
+{
+	va_list args;
+	va_start(args, format);
+	bool r = tro_vprintf16(format, args);
+	va_end(args);
+	return r;
+}
+
+bool tro_vprintf16(const char16_t *format, va_list args)
+{
+	return tro_vfprintf16(troout, format, args);
+}
+
+bool tro_eprintf(const char *format, ...)
+{
+	va_list args;
+	va_start(args, format);
+	bool r = tro_veprintf(format, args);
+	va_end(args);
+	return r;
+}
+
+bool tro_veprintf(const char *format, va_list args)
+{
+	return tro_vfprintf(troerr, format, args);
+}
+
+bool tro_eprintf16(const char16_t *format, ...)
+{
+	va_list args;
+	va_start(args, format);
+	bool r = tro_veprintf16(format, args);
+	va_end(args);
+	return r;
+}
+
+bool tro_veprintf16(const char16_t *format, va_list args)
+{
+	return tro_vfprintf16(troerr, format, args);
 }
 
 // Inicializadores e de-inicializadores abaixo.
@@ -70,9 +138,9 @@ static void outinerr_ctor(void)
 	troin->handle  = in_handle;
 	troerr->handle = err_handle;
 
-	troout->is_terminal = out_is_terminal;
-	troin->is_terminal  = in_is_terminal;
-	troerr->is_terminal = err_is_terminal;
+	troout->terminal = out_is_terminal;
+	troin->terminal  = in_is_terminal;
+	troerr->terminal = err_is_terminal;
 
 	DWORD new_out_mode = og_out_mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING;
 	DWORD new_in_mode  = og_in_mode | ENABLE_VIRTUAL_TERMINAL_INPUT;
@@ -99,9 +167,9 @@ static void outinerr_ctor(void)
 	troin->fd  = STDIN_FILENO;
 	troerr->fd = STDERR_FILENO;
 
-	troout->is_terminal = isatty(STDOUT_FILENO);
-	troin->is_terminal  = isatty(STDIN_FILENO);
-	troerr->is_terminal = isatty(STDERR_FILENO);
+	troout->terminal = isatty(STDOUT_FILENO);
+	troin->terminal  = isatty(STDIN_FILENO);
+	troerr->terminal = isatty(STDERR_FILENO);
 
 	troout->buffer = malloc(TRO_BUFFER_CAPACITY);
 	troerr->buffer = malloc(TRO_BUFFER_CAPACITY);
@@ -138,11 +206,11 @@ static void outinerr_dtor(void)
 		free(troerr->buffer);
 
 #if TRO_SYSTEM_WIN32
-	if (troout->is_terminal)
+	if (troout->terminal)
 		SetConsoleMode(troout->handle, og_out_mode);
-	if (troin->is_terminal)
+	if (troin->terminal)
 		SetConsoleMode(troin->handle, og_in_mode);
-	if (troerr->is_terminal)
+	if (troerr->terminal)
 		SetConsoleMode(troerr->handle, og_err_mode);
 
 	if (troout->wbuffer != NULL)
@@ -166,15 +234,15 @@ void (*tro__outinerr_dtor)(void) = outinerr_dtor;
 
 static struct tro_file outfstream = {
     .buffer_capacity = TRO_BUFFER_CAPACITY,
-    .modes           = TRO_FMODE_WRITE,
+    .mode            = TRO_FMODE_WRITE,
     .buffer_mode     = TRO_FBUFMODE_LINE_BUFFER,
 };
 static struct tro_file infstream = {
-    .modes       = TRO_FMODE_READ,
+    .mode        = TRO_FMODE_READ,
     .buffer_mode = TRO_FBUFMODE_NO_BUFFER,
 };
 static struct tro_file errfstream = {
     .buffer_capacity = TRO_BUFFER_CAPACITY,
-    .modes           = TRO_FMODE_WRITE,
+    .mode            = TRO_FMODE_WRITE,
     .buffer_mode     = TRO_FBUFMODE_LINE_BUFFER,
 };

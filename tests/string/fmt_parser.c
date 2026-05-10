@@ -110,7 +110,7 @@ int main(void)
 
 	fmt_specifier fmt_invalid;
 	size_t fmt_invalid_r = tro__parse_fmt_spec("%lv", &fmt_invalid);
-	fmt_assert("Invalid", XPT_FMT_ERROR, fmt_invalid, 2, fmt_invalid_r);
+	fmt_assert("Invalid", XPT_FMT_ERROR, fmt_invalid, 3, fmt_invalid_r);
 }
 
 static const char *type2s(fmt_spec_type t);
@@ -249,6 +249,12 @@ static const char *type2s(fmt_spec_type t)
 		str_case(FMT_SPEC_CX);
 		str_case(FMT_SPEC_U);
 		str_case(FMT_SPEC_F);
+		str_case(FMT_SPEC_E);
+		str_case(FMT_SPEC_CE);
+		str_case(FMT_SPEC_G);
+		str_case(FMT_SPEC_CG);
+		str_case(FMT_SPEC_A);
+		str_case(FMT_SPEC_CA);
 		str_case(FMT_SPEC_P);
 	}
 	return "";

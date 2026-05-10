@@ -1,4 +1,5 @@
 sources += files(
+    'file_share.c',
     'outinerr.c',
 )
 

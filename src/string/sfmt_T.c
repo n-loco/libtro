@@ -52,17 +52,217 @@ static bool write_text(tro_dybuffer_obj buf, write_text_state *state);
 
 static bool write_pad(tro_dybuffer_obj buf, size_t n, bool zero);
 
-static bool fmt_s(tro_dybuffer_obj buf, const fmt_specifier *fmt, va_list args);
+typedef struct {
+	const char *str;
+	size_t width;
+	bool left_justified;
+} opts_s;
 
-static bool fmt_S(tro_dybuffer_obj buf, const fmt_specifier *fmt, va_list args);
+#define arg_s(ap, fmt, o)                                                      \
+	do {                                                                   \
+		(o)->str   = va_arg(ap, const char *);                         \
+		(o)->width = (fmt)->field_width.from_va                        \
+		                 ? (size_t)va_arg(ap, unsigned int)            \
+		                 : (fmt)->field_width.width;                   \
+                                                                               \
+		(o)->left_justified = (fmt)->flags.left_justified;             \
+	} while (0)
 
-static bool fmt_c(tro_dybuffer_obj buf, const fmt_specifier *fmt, va_list args);
+static bool fmt_s(tro_dybuffer_obj buf, const opts_s *opts);
 
-static bool fmt_d(tro_dybuffer_obj buf, const fmt_specifier *fmt, va_list args);
+typedef struct {
+	const char16_t *str;
+	size_t width;
+	bool left_justified;
+} opts_S;
 
-static bool fmt_u(tro_dybuffer_obj buf, const fmt_specifier *fmt, va_list args);
+#define arg_S(ap, fmt, o)                                                      \
+	do {                                                                   \
+		(o)->str   = va_arg(ap, const char16_t *);                     \
+		(o)->width = (fmt)->field_width.from_va                        \
+		                 ? (size_t)va_arg(ap, unsigned int)            \
+		                 : (fmt)->field_width.width;                   \
+                                                                               \
+		(o)->left_justified = (fmt)->flags.left_justified;             \
+	} while (0)
 
-static bool fmt_f(tro_dybuffer_obj buf, const fmt_specifier *fmt, va_list args);
+static bool fmt_S(tro_dybuffer_obj buf, const opts_S *opts);
+
+typedef struct {
+	tro_urune rune;
+	size_t width;
+	bool left_justified: 1;
+	bool alternative   : 1;
+} opts_c;
+
+#define arg_c(ap, fmt, o)                                                      \
+	do {                                                                   \
+		(o)->rune  = va_arg(ap, tro_urune);                            \
+		(o)->width = (fmt)->field_width.from_va                        \
+		                 ? (size_t)va_arg(ap, unsigned int)            \
+		                 : (fmt)->field_width.width;                   \
+                                                                               \
+		(o)->left_justified = (fmt)->flags.left_justified;             \
+		(o)->alternative    = (fmt)->flags.alternative;                \
+	} while (0)
+
+static bool fmt_c(tro_dybuffer_obj buf, const opts_c *opts);
+
+typedef struct {
+	int64_t sint;
+	size_t width;
+	bool left_justified: 1;
+	bool zero_pad      : 1;
+	bool sign_always   : 1;
+} opts_d;
+
+#define arg_d(ap, fmt, o)                                                      \
+	do {                                                                   \
+		switch ((fmt)->len) {                                          \
+		default:                                                       \
+			(o)->sint = (int64_t)va_arg(ap, int);                  \
+			break;                                                 \
+		case FMT_SPEC_LEN_HH:                                          \
+			(o)->sint =                                            \
+			    (int64_t)(signed char)(va_arg(ap, unsigned int) &  \
+			                           UCHAR_MAX);                 \
+			break;                                                 \
+		case FMT_SPEC_LEN_H:                                           \
+			(o)->sint =                                            \
+			    (int64_t)(short)(va_arg(ap, unsigned int) &        \
+			                     USHRT_MAX);                       \
+			break;                                                 \
+		case FMT_SPEC_LEN_L:                                           \
+			(o)->sint = (int64_t)va_arg(ap, long);                 \
+			break;                                                 \
+		case FMT_SPEC_LEN_LL:                                          \
+			(o)->sint = (int64_t)va_arg(ap, long long);            \
+			break;                                                 \
+		case FMT_SPEC_LEN_J:                                           \
+			(o)->sint = (int64_t)va_arg(ap, intmax_t);             \
+			break;                                                 \
+		case FMT_SPEC_LEN_Z:                                           \
+			/* fall through */                                     \
+		case FMT_SPEC_LEN_T:                                           \
+			(o)->sint = (int64_t)va_arg(ap, ptrdiff_t);            \
+			break;                                                 \
+		}                                                              \
+                                                                               \
+		(o)->width = (fmt)->field_width.from_va                        \
+		                 ? (size_t)va_arg(ap, unsigned int)            \
+		                 : (fmt)->field_width.width;                   \
+                                                                               \
+		(o)->left_justified = (fmt)->flags.left_justified;             \
+		(o)->zero_pad       = (fmt)->flags.zero_pad;                   \
+		(o)->sign_always    = (fmt)->flags.sign_always;                \
+	} while (0)
+
+static bool fmt_d(tro_dybuffer_obj buf, const opts_d *opts);
+
+typedef struct {
+	uint64_t uint;
+	size_t width;
+	bool left_justified: 1;
+	bool zero_pad      : 1;
+	bool sign_always   : 1;
+} opts_oxXu;
+
+#define arg_oxXu(ap, fmt, o)                                                   \
+	do {                                                                   \
+		switch ((fmt)->len) {                                          \
+		default:                                                       \
+			(o)->uint = (uint64_t)va_arg(ap, unsigned int);        \
+			break;                                                 \
+		case FMT_SPEC_LEN_HH:                                          \
+			(o)->uint =                                            \
+			    (uint64_t)(unsigned char)(va_arg(ap,               \
+			                                     unsigned int) &   \
+			                              UCHAR_MAX);              \
+			break;                                                 \
+		case FMT_SPEC_LEN_H:                                           \
+			(o)->uint =                                            \
+			    (uint64_t)(unsigned short)(va_arg(ap,              \
+			                                      unsigned int) &  \
+			                               USHRT_MAX);             \
+			break;                                                 \
+		case FMT_SPEC_LEN_L:                                           \
+			(o)->uint = (uint64_t)va_arg(ap, unsigned long);       \
+			break;                                                 \
+		case FMT_SPEC_LEN_LL:                                          \
+			(o)->uint = (uint64_t)va_arg(ap, unsigned long long);  \
+			break;                                                 \
+		case FMT_SPEC_LEN_J:                                           \
+			(o)->uint = (uint64_t)va_arg(ap, uintmax_t);           \
+			break;                                                 \
+		case FMT_SPEC_LEN_Z:                                           \
+			/* fall through */                                     \
+		case FMT_SPEC_LEN_T:                                           \
+			(o)->uint = (uint64_t)va_arg(ap, size_t);              \
+			break;                                                 \
+		}                                                              \
+                                                                               \
+		(o)->width = (fmt)->field_width.from_va                        \
+		                 ? (size_t)va_arg(ap, unsigned int)            \
+		                 : (fmt)->field_width.width;                   \
+                                                                               \
+		(o)->left_justified = (fmt)->flags.left_justified;             \
+		(o)->zero_pad       = (fmt)->flags.zero_pad;                   \
+		(o)->sign_always    = (fmt)->flags.sign_always;                \
+	} while (0)
+
+static bool fmt_u(tro_dybuffer_obj buf, const opts_oxXu *opts);
+
+typedef struct {
+	double_t dfloat;
+	size_t width;
+	size_t precision;
+	bool left_justified: 1;
+	bool zero_pad      : 1;
+	bool sign_always   : 1;
+	bool alternative   : 1;
+} opts_feEgGaA;
+
+#define arg_feEgGaA(ap, fmt, o)                                                \
+	do {                                                                   \
+		if ((fmt)->len == FMT_SPEC_LEN_CL)                             \
+			(o)->dfloat = (double)va_arg(ap, long double);         \
+		else                                                           \
+			(o)->dfloat = va_arg(ap, double);                      \
+                                                                               \
+		(o)->width = (fmt)->field_width.from_va                        \
+		                 ? (size_t)va_arg(ap, unsigned int)            \
+		                 : (fmt)->field_width.width;                   \
+                                                                               \
+		(o)->precision = (fmt)->precision_width.dot                    \
+		                     ? (fmt)->precision_width.from_va          \
+		                           ? (size_t)va_arg(ap, unsigned int)  \
+		                           : (fmt)->precision_width.width      \
+		                     : 6;                                      \
+                                                                               \
+		(o)->left_justified = (fmt)->flags.left_justified;             \
+		(o)->zero_pad       = (fmt)->flags.zero_pad;                   \
+		(o)->sign_always    = (fmt)->flags.sign_always;                \
+		(o)->alternative    = (fmt)->flags.alternative;                \
+	} while (0)
+
+static bool fmt_f(tro_dybuffer_obj buf, const opts_feEgGaA *opts);
+
+typedef struct {
+	uint64_t ptr;
+	size_t width;
+	bool left_justified;
+} opts_p;
+
+#define arg_p(ap, fmt, o)                                                      \
+	do {                                                                   \
+		(o)->ptr = (uint64_t)va_arg(ap, uintptr_t);                    \
+                                                                               \
+		(o)->width = (fmt)->field_width.from_va                        \
+		                 ? (size_t)va_arg(ap, unsigned int)            \
+		                 : (fmt)->field_width.width;                   \
+                                                                               \
+		(o)->left_justified = (fmt)->flags.left_justified;             \
+	} while (0)
 
 static inline bool (*buf_get_writes_DYN(tro_dybuffer_obj buf_obj))(void *,
                                                                    const void *,
@@ -105,50 +305,112 @@ bool tro_vsfmt_T(tro_dybuffer_obj buf_obj, const CHAR_T *format, va_list args)
 			if (!buf_writec(buf, '%', 1))
 				return false;
 			break;
-		case FMT_SPEC_C:
-			if (!fmt_c(buf_obj, &spec, args))
+		case FMT_SPEC_C: {
+			opts_c opts;
+			arg_c(args, &spec, &opts);
+			if (!fmt_c(buf_obj, &opts))
 				return false;
-			break;
-		case FMT_SPEC_S:
-			if (!fmt_s(buf_obj, &spec, args))
+		} break;
+		case FMT_SPEC_S: {
+			opts_s opts;
+			arg_s(args, &spec, &opts);
+			if (!fmt_s(buf_obj, &opts))
 				return false;
-			break;
-		case FMT_SPEC_CS:
-			if (!fmt_S(buf_obj, &spec, args))
+		} break;
+		case FMT_SPEC_CS: {
+			opts_S opts;
+			arg_S(args, &spec, &opts);
+			if (!fmt_S(buf_obj, &opts))
 				return false;
-			break;
-		case FMT_SPEC_D:
-			if (!fmt_d(buf_obj, &spec, args))
+		} break;
+		case FMT_SPEC_D: {
+			opts_d opts;
+			arg_d(args, &spec, &opts);
+			if (!fmt_d(buf_obj, &opts))
 				return false;
-			break;
-		case FMT_SPEC_O:
+		} break;
+		case FMT_SPEC_O: {
 			// TODO!
+			opts_oxXu opts;
+			arg_oxXu(args, &spec, &opts);
 			if (!buf_writec(buf, u'␀', 1))
 				return false;
-			break;
-		case FMT_SPEC_X:
+		} break;
+		case FMT_SPEC_X: {
 			// TODO!
+			opts_oxXu opts;
+			arg_oxXu(args, &spec, &opts);
 			if (!buf_writec(buf, u'␀', 1))
 				return false;
-			break;
-		case FMT_SPEC_CX:
+		} break;
+		case FMT_SPEC_CX: {
 			// TODO!
+			opts_oxXu opts;
+			arg_oxXu(args, &spec, &opts);
 			if (!buf_writec(buf, u'␀', 1))
 				return false;
-			break;
-		case FMT_SPEC_U:
-			if (!fmt_u(buf_obj, &spec, args))
+		} break;
+		case FMT_SPEC_U: {
+			opts_oxXu opts;
+			arg_oxXu(args, &spec, &opts);
+			if (!fmt_u(buf_obj, &opts))
 				return false;
-			break;
-		case FMT_SPEC_F:
-			if (!fmt_f(buf_obj, &spec, args))
+		} break;
+		case FMT_SPEC_F: {
+			opts_feEgGaA opts;
+			arg_feEgGaA(args, &spec, &opts);
+			if (!fmt_f(buf_obj, &opts))
 				return false;
-			break;
-		case FMT_SPEC_P:
+		} break;
+		case FMT_SPEC_E: {
 			// TODO!
+			opts_feEgGaA opts;
+			arg_feEgGaA(args, &spec, &opts);
 			if (!buf_writec(buf, u'␀', 1))
 				return false;
-			break;
+		} break;
+		case FMT_SPEC_CE: {
+			// TODO!
+			opts_feEgGaA opts;
+			arg_feEgGaA(args, &spec, &opts);
+			if (!buf_writec(buf, u'␀', 1))
+				return false;
+		} break;
+		case FMT_SPEC_G: {
+			// TODO!
+			opts_feEgGaA opts;
+			arg_feEgGaA(args, &spec, &opts);
+			if (!buf_writec(buf, u'␀', 1))
+				return false;
+		} break;
+		case FMT_SPEC_CG: {
+			// TODO!
+			opts_feEgGaA opts;
+			arg_feEgGaA(args, &spec, &opts);
+			if (!buf_writec(buf, u'␀', 1))
+				return false;
+		} break;
+		case FMT_SPEC_A: {
+			// TODO!
+			opts_feEgGaA opts;
+			arg_feEgGaA(args, &spec, &opts);
+			if (!buf_writec(buf, u'␀', 1))
+				return false;
+		} break;
+		case FMT_SPEC_CA: {
+			// TODO!
+			opts_feEgGaA opts;
+			arg_feEgGaA(args, &spec, &opts);
+			if (!buf_writec(buf, u'␀', 1))
+				return false;
+		} break;
+		case FMT_SPEC_P: {
+			// TODO!
+			opts_p opts;
+			arg_p(args, &spec, &opts);
+			if (!buf_writec(buf, u'␀', 1))
+				return false;
+		} break;
 		}
 
 		i += specl;
@@ -183,23 +445,18 @@ static bool write_pad(tro_dybuffer_obj buf_obj, size_t n, bool zero)
 	return buf_writec(buf, c, n);
 }
 
-static bool fmt_s(tro_dybuffer_obj buf_obj, const fmt_specifier *fmt,
-                  va_list args)
+static bool fmt_s(tro_dybuffer_obj buf_obj, const opts_s *opts)
 {
 	tro_dispatch_dybuffer(buf_obj, buf);
 
-	const fmt_spec_pad field = fmt->field_width;
-
-	const char *str   = va_arg(args, const char *);
-	const size_t strl = strlen(str);
-
-	const size_t width =
-	    field.from_va ? (size_t)va_arg(args, unsigned int) : field.width;
+	const char *const str = opts->str;
+	const size_t strl     = strlen(str);
+	const size_t width    = opts->width;
+	const bool left_just  = opts->left_justified;
 
 	if (width > 0) {
-		const size_t strw    = tro_str8_urune_len(str, strl);
-		const size_t justw   = MAX(width, strw) - strw;
-		const bool left_just = fmt->flags.left_justified;
+		const size_t strw  = tro_str8_urune_len(str, strl);
+		const size_t justw = MAX(width, strw) - strw;
 
 		if (left_just) {
 			if (!buf_writes(buf, str, strl))
@@ -215,23 +472,18 @@ static bool fmt_s(tro_dybuffer_obj buf_obj, const fmt_specifier *fmt,
 	return buf_writes(buf, str, strl);
 }
 
-static bool fmt_S(tro_dybuffer_obj buf_obj, const fmt_specifier *fmt,
-                  va_list args)
+static bool fmt_S(tro_dybuffer_obj buf_obj, const opts_S *opts)
 {
 	tro_dispatch_dybuffer(buf_obj, buf);
 
-	const fmt_spec_pad field = fmt->field_width;
-
-	const char16_t *str = va_arg(args, const char16_t *);
-	const size_t strl   = tro_str16len(str);
-
-	const size_t width =
-	    field.from_va ? (size_t)va_arg(args, unsigned int) : field.width;
+	const char16_t *const str = opts->str;
+	const size_t strl         = tro_str16len(str);
+	const size_t width        = opts->width;
+	const bool left_just      = opts->left_justified;
 
 	if (width > 0) {
-		const size_t strw    = tro_str16_urune_len(str, strl);
-		const size_t justw   = MAX(width, strw) - strw;
-		const bool left_just = fmt->flags.left_justified;
+		const size_t strw  = tro_str16_urune_len(str, strl);
+		const size_t justw = MAX(width, strw) - strw;
 
 		if (left_just) {
 			if (!buf_writes16(buf, str, strl))
@@ -247,19 +499,15 @@ static bool fmt_S(tro_dybuffer_obj buf_obj, const fmt_specifier *fmt,
 	return buf_writes16(buf, str, strl);
 }
 
-static bool fmt_c(tro_dybuffer_obj buf_obj, const fmt_specifier *fmt,
-                  va_list args)
+static bool fmt_c(tro_dybuffer_obj buf_obj, const opts_c *opts)
 {
 	tro_dispatch_dybuffer(buf_obj, buf);
 
-	const tro_urune rune     = va_arg(args, tro_urune);
-	const fmt_spec_pad field = fmt->field_width;
+	const tro_urune rune   = opts->rune;
+	const bool alternative = opts->alternative;
+	const bool left_just   = opts->left_justified;
 
-	const bool alternative = fmt->flags.alternative;
-	const bool left_just   = fmt->flags.left_justified;
-
-	size_t width =
-	    field.from_va ? (size_t)va_arg(args, unsigned int) : field.width;
+	size_t width = opts->width;
 
 	if (alternative) {
 		if (width == 0)
@@ -282,19 +530,19 @@ static bool fmt_c(tro_dybuffer_obj buf_obj, const fmt_specifier *fmt,
 	return buf_writec(buf, rune, 1);
 }
 
-static inline int64_t get_int_arg(fmt_spec_len len, va_list args);
-
-static bool fmt_d(tro_dybuffer_obj buf_obj, const fmt_specifier *fmt,
-                  va_list args)
+static bool fmt_d(tro_dybuffer_obj buf_obj, const opts_d *opts)
 {
 	tro_dispatch_dybuffer(buf_obj, buf);
 	const tro_dybuf_pref buf_pref = buf_preference(buf);
 	bool (*const buf_writes_DYN)(void *, const void *, size_t) =
 	    buf_get_writes_DYN(buf_obj);
 
-	const fmt_spec_pad field = fmt->field_width;
+	const int64_t num      = opts->sint;
+	const bool left_just   = opts->left_justified;
+	const bool zero_pad    = opts->zero_pad;
+	const bool sign_always = opts->sign_always;
 
-	int64_t num = get_int_arg(fmt->len, args);
+	size_t width = opts->width;
 
 	uint8_t genbuf[(TRO_UINT_CHAR_MAX + 1) * sizeof(char16_t)];
 	void *str = genbuf;
@@ -312,10 +560,7 @@ static bool fmt_d(tro_dybuffer_obj buf_obj, const fmt_specifier *fmt,
 		break;
 	}
 
-	size_t width =
-	    (field.from_va ? (size_t)va_arg(args, unsigned int) : field.width);
-
-	const bool plus_sign = fmt->flags.sign_always && num >= 0;
+	const bool plus_sign = sign_always && num >= 0;
 	if (plus_sign) {
 		if (!buf_writec(buf, '+', 1))
 			return false;
@@ -324,9 +569,7 @@ static bool fmt_d(tro_dybuffer_obj buf_obj, const fmt_specifier *fmt,
 	}
 
 	if (width > 0) {
-		const size_t justw   = MAX(width, strl) - strl;
-		const bool left_just = fmt->flags.left_justified;
-		const bool zero_pad  = fmt->flags.zero_pad;
+		const size_t justw = MAX(width, strl) - strl;
 
 		if (left_just) {
 			if (!buf_writes_DYN(buf, str, strl))
@@ -342,19 +585,18 @@ static bool fmt_d(tro_dybuffer_obj buf_obj, const fmt_specifier *fmt,
 	return buf_writes_DYN(buf, str, strl);
 }
 
-static inline uint64_t get_uint_arg(fmt_spec_len len, va_list args);
-
-static bool fmt_u(tro_dybuffer_obj buf_obj, const fmt_specifier *fmt,
-                  va_list args)
+static bool fmt_u(tro_dybuffer_obj buf_obj, const opts_oxXu *opts)
 {
 	tro_dispatch_dybuffer(buf_obj, buf);
 	const tro_dybuf_pref buf_pref = buf_preference(buf);
 	bool (*const buf_writes_DYN)(void *, const void *, size_t) =
 	    buf_get_writes_DYN(buf_obj);
 
-	const fmt_spec_pad field = fmt->field_width;
+	const uint64_t num   = opts->uint;
+	const bool left_just = opts->left_justified;
+	const bool zero_pad  = opts->zero_pad;
 
-	uint64_t num = get_uint_arg(fmt->len, args);
+	size_t width = opts->width;
 
 	uint8_t genbuf[(TRO_UINT_CHAR_MAX + 1) * sizeof(char16_t)];
 	void *str = genbuf;
@@ -372,10 +614,7 @@ static bool fmt_u(tro_dybuffer_obj buf_obj, const fmt_specifier *fmt,
 		break;
 	}
 
-	size_t width =
-	    field.from_va ? (size_t)va_arg(args, unsigned int) : field.width;
-
-	const bool plus_sign = fmt->flags.sign_always;
+	const bool plus_sign = opts->sign_always;
 	if (plus_sign) {
 		if (!buf_writec(buf, '+', 1))
 			return false;
@@ -384,9 +623,7 @@ static bool fmt_u(tro_dybuffer_obj buf_obj, const fmt_specifier *fmt,
 	}
 
 	if (width > 0) {
-		const size_t justw   = MAX(width, strl) - strl;
-		const bool left_just = fmt->flags.left_justified;
-		const bool zero_pad  = fmt->flags.zero_pad;
+		const size_t justw = MAX(width, strl) - strl;
 
 		if (left_just) {
 			if (!buf_writes_DYN(buf, str, strl))
@@ -402,31 +639,26 @@ static bool fmt_u(tro_dybuffer_obj buf_obj, const fmt_specifier *fmt,
 	return buf_writes_DYN(buf, str, strl);
 }
 
-static inline double get_double_arg(fmt_spec_len len, va_list args);
-
-static bool fmt_f(tro_dybuffer_obj buf_obj, const fmt_specifier *fmt,
-                  va_list args)
+static bool fmt_f(tro_dybuffer_obj buf_obj, const opts_feEgGaA *opts)
 {
 	tro_dispatch_dybuffer(buf_obj, buf);
 	const tro_dybuf_pref buf_pref = buf_preference(buf);
 	bool (*const buf_writes_DYN)(void *, const void *, size_t) =
 	    buf_get_writes_DYN(buf_obj);
 
-	const fmt_spec_pad field = fmt->field_width;
+	const double num       = opts->dfloat;
+	const size_t precision = opts->precision;
+	const bool alternative = opts->alternative;
+	const bool sign_always = opts->sign_always;
+	const bool left_just   = opts->left_justified;
+	const bool zero_pad    = opts->zero_pad;
 
-	double num = get_double_arg(fmt->len, args);
+	size_t width = opts->width;
 
 	uint8_t genbuf[(TRO_FLOAT_FIXED_CHAR_MAX + 1) * sizeof(char16_t)];
 	void *str = genbuf;
 	size_t strl;
 
-	const fmt_spec_pad precsw = fmt->precision_width;
-	const size_t precision =
-	    precsw.dot ? precsw.from_va ? (size_t)va_arg(args, unsigned int)
-	                                : precsw.width
-	               : 6;
-
-	const bool alternative = fmt->flags.alternative;
 	switch (buf_pref) {
 	case TRO_DYBUF_PREF_U8:
 		if (alternative)
@@ -454,12 +686,8 @@ static bool fmt_f(tro_dybuffer_obj buf_obj, const fmt_specifier *fmt,
 		break;
 	}
 
-	size_t width =
-	    field.from_va ? (size_t)va_arg(args, unsigned int) : field.width;
-
-	const bool plus_sign = fmt->flags.sign_always && !signbit(num);
-	const bool minus_sign =
-	    fmt->flags.sign_always && signbit(num) && isnan(num);
+	const bool plus_sign  = sign_always && !signbit(num);
+	const bool minus_sign = sign_always && signbit(num) && isnan(num);
 
 	if (plus_sign)
 		if (!buf_writec(buf, '+', 1))
@@ -472,9 +700,7 @@ static bool fmt_f(tro_dybuffer_obj buf_obj, const fmt_specifier *fmt,
 		width--;
 
 	if (width > 0) {
-		const size_t justw   = MAX(width, strl) - strl;
-		const bool left_just = fmt->flags.left_justified;
-		const bool zero_pad  = fmt->flags.zero_pad;
+		const size_t justw = MAX(width, strl) - strl;
 
 		if (left_just) {
 			if (!buf_writes_DYN(buf, str, strl))
@@ -504,59 +730,4 @@ static inline bool (*buf_get_writes_DYN(tro_dybuffer_obj buf_obj))(void *,
 	default:
 		return (bool (*)(void *, const void *, size_t))buf_writes_T;
 	}
-}
-
-static inline int64_t get_int_arg(fmt_spec_len len, va_list args)
-{
-	switch (len) {
-	default:
-		return (int64_t)va_arg(args, int);
-	case FMT_SPEC_LEN_HH:
-		return (int64_t)(signed char)(va_arg(args, unsigned int) &
-		                              UCHAR_MAX);
-	case FMT_SPEC_LEN_H:
-		return (int64_t)(short)(va_arg(args, unsigned int) & USHRT_MAX);
-	case FMT_SPEC_LEN_L:
-		return (int64_t)va_arg(args, long);
-	case FMT_SPEC_LEN_LL:
-		return (int64_t)va_arg(args, long long);
-	case FMT_SPEC_LEN_J:
-		return (int64_t)va_arg(args, intmax_t);
-	case FMT_SPEC_LEN_Z:
-		// fall through
-	case FMT_SPEC_LEN_T:
-		return (int64_t)va_arg(args, ptrdiff_t);
-	}
-}
-
-static inline uint64_t get_uint_arg(fmt_spec_len len, va_list args)
-{
-	switch (len) {
-	default:
-		return (uint64_t)va_arg(args, unsigned int);
-	case FMT_SPEC_LEN_HH:
-		return (uint64_t)(unsigned char)(va_arg(args, unsigned int) &
-		                                 UCHAR_MAX);
-	case FMT_SPEC_LEN_H:
-		return (uint64_t)(unsigned short)(va_arg(args, unsigned int) &
-		                                  USHRT_MAX);
-	case FMT_SPEC_LEN_L:
-		return (uint64_t)va_arg(args, unsigned long);
-	case FMT_SPEC_LEN_LL:
-		return (uint64_t)va_arg(args, unsigned long long);
-	case FMT_SPEC_LEN_J:
-		return (uint64_t)va_arg(args, uintmax_t);
-	case FMT_SPEC_LEN_Z:
-		// fall through
-	case FMT_SPEC_LEN_T:
-		return (uint64_t)va_arg(args, size_t);
-	}
-}
-
-static inline double get_double_arg(fmt_spec_len len, va_list args)
-{
-	if (len == FMT_SPEC_LEN_CL)
-		return (double)va_arg(args, long double);
-
-	return va_arg(args, double);
 }

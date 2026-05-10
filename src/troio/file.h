@@ -11,7 +11,7 @@
 # include <windows.h>
 #endif
 
-struct tro_file {
+typedef struct tro_file {
 	size_t buffer_capacity;
 	size_t buffer_size;
 	tro_fbufmode buffer_mode;
@@ -19,16 +19,30 @@ struct tro_file {
 #if TRO_SYSTEM_WIN32
 	WCHAR *wbuffer;
 	HANDLE handle;
+	bool truncated;
 #elif TRO_SYSTEM_UNIX_LIKE
 	int fd;
 #endif
-	tro_fmodes modes;
-	bool is_terminal;
-};
+	tro_fmode mode;
+	bool terminal;
+} tro_file;
 
-#define MANDATORY_FMODES (TRO_FMODE_READ | TRO_FMODE_WRITE)
+static inline bool readable(const tro_file *file)
+{
+	return file->mode == TRO_FMODE_READ || file->mode == TRO_FMODE_RDWT ||
+	       file->mode == TRO_FMODE_RDAD;
+}
 
-#define FILE_WRITTABLE(file)                                                   \
-	(file->modes & TRO_FMODE_WRITE || file->modes & TRO_FMODE_APPEND)
+static inline bool writtable(const tro_file *file)
+{
+	return file->mode == TRO_FMODE_WRITE ||
+	       file->mode == TRO_FMODE_APPEND || file->mode == TRO_FMODE_RDWT ||
+	       file->mode == TRO_FMODE_RDAD;
+}
+
+static inline bool appendable(const tro_file *file)
+{
+	return file->mode == TRO_FMODE_APPEND || file->mode == TRO_FMODE_RDAD;
+}
 
 #endif // FILE_H

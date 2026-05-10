@@ -20,6 +20,12 @@ typedef enum {
 	FMT_SPEC_CX = 'X',
 	FMT_SPEC_U  = 'u',
 	FMT_SPEC_F  = 'f',
+	FMT_SPEC_E  = 'e',
+	FMT_SPEC_CE = 'E',
+	FMT_SPEC_G  = 'g',
+	FMT_SPEC_CG = 'G',
+	FMT_SPEC_A  = 'a',
+	FMT_SPEC_CA = 'A',
 	FMT_SPEC_P  = 'p',
 } fmt_spec_type;
 
