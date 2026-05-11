@@ -9,9 +9,9 @@ launch_data = {
 }
 
 def append_launch(name: str, program: str):
-    program = posixpath.normpath(program)
+    program = program.replace('\\', '/')
 
-    TASK_PATH = program.replace(posixpath.normpath(MESON_BUILDDIR)+'/', '').replace('.exe', '')
+    TASK_PATH = program.replace(posixpath.normpath(MESON_BUILDDIR.replace('\\', '/'))+'/', '').replace('.exe', '')
     TASK = f'Meson: Build {TASK_PATH}:executable'
 
     launch_data['configurations'].append({
