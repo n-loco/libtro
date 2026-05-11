@@ -6,9 +6,11 @@ project(
     default_options: [
         'warning_level=3',
         'c_std=c11',
-        'b_lto=false', # Garantia de que os símbolos não vão sumir.
+        'b_lto=false',  # Garantia de que os símbolos não vão sumir.
     ],
-    subproject_dir: 'vendor'
+    subproject_dir: 'vendor',
+    license: 'BSD 3-Clause',
+    license_files: 'LICENSE',
 )
 
 c_compiler = meson.get_compiler('c')
@@ -75,7 +77,7 @@ ryu_dep = dependency('ryu')
 # Em sistemas como Linux, a
 # biblioteca de matemática
 # (math.h) é um binário aparte.
-m_dep = c_compiler.find_library('m', required : false)
+m_dep = c_compiler.find_library('m', required: false)
 
 dependencies = [
     ryu_dep,

@@ -5,6 +5,8 @@ project(
     version: '2.0',
     meson_version: '>= 1.3.0',
     default_options: ['warning_level=0'],
+    license: 'Apache 2.0',
+    license_files: 'LICENSE-Apache2',
 )
 
 includes = include_directories('.')

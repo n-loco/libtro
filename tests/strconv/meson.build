@@ -12,5 +12,5 @@ foreach test_name : tests
         include_directories: general_test_include_dirs,
         link_with: general_test_libs_to_link,
     )
-    test('strconv/' + test_name, t)
+    test(test_name, t, suite: 'strconv')
 endforeach

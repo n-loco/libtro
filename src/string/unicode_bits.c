@@ -427,7 +427,7 @@ size_t tro_str16_urune_len(const char16_t *str, size_t strl)
 	size_t i = 0;
 	while (i < strl) {
 		const tro_u16code *seq = (tro_u16code *)(str + i);
-		const size_t seqlen   = strl - i;
+		const size_t seqlen    = strl - i;
 
 		const size_t ulen = U16LEN(seq[0]);
 		if (ulen == 1) {

@@ -1,7 +1,23 @@
-# IDEs/code editors
+# IDEs/editores de código/LSs
+## Visual Studico Code
+.vscode/*
+!.vscode/extensions.json
+*.code-workspace
+## IDEs da JetBrains
+.idea/*
+!.idea/externalDependencies.xml
+## Vim/Nano
+*.swp
+*.swo
 ## Clangd
 .cache/
 .clangd
+compile_commands.json
+
+# Python
+__pycache__/
+*.pyc
 
 # etc.
 *[Uu][Ss][Ee][Rr]*
+.env

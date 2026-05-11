@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "vadimcn.vscode-lldb",
+    "mesonbuild.mesonbuild",
+    "llvm-vs-code-extensions.vscode-clangd",
+    "EditorConfig.EditorConfig",
+    "nefrob.vscode-just-syntax",
+    "ms-python.python"
+  ]
+}

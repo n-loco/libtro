@@ -22,5 +22,5 @@ foreach test_name : tests
         include_directories: general_test_include_dirs,
         link_with: general_test_libs_to_link,
     )
-    test('string/' + test_name, t)
+    test(test_name, t, suite: 'string')
 endforeach
