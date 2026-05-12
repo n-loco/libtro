@@ -4,8 +4,8 @@
 #include <stdbool.h>
 
 #ifdef USE_CHAR16_T
-# include <uchar.h>
-# define CHAR_T char16_t
+# include "tro/uchar.h"
+# define CHAR_T tro_char16
 # define tro__parse_fmt_spec_T tro__parse_fmt16_spec
 #else
 # define CHAR_T char

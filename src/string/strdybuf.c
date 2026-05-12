@@ -1,10 +1,10 @@
 #include "strdybuf_T.c"
 
 #include <stddef.h>
-#include <uchar.h>
 #include <string.h>
 
 #include "tro/string.h"
+#include "tro/uchar.h"
 
 bool tro_strdybuf_writes(tro_strdybuf *buf, const char *data, size_t datal)
 {
@@ -34,7 +34,7 @@ bool tro_strdybuf_writes(tro_strdybuf *buf, const char *data, size_t datal)
 	return true;
 }
 
-bool tro_strdybuf_writes16(tro_strdybuf *buf, const char16_t *data,
+bool tro_strdybuf_writes16(tro_strdybuf *buf, const tro_char16 *data,
                            size_t datal)
 {
 	if (buf == NULL)
@@ -73,12 +73,10 @@ bool tro_strdybuf_writes16(tro_strdybuf *buf, const char16_t *data,
 	return true;
 }
 
-bool tro_strdybuf_writec(tro_strdybuf *buf, uint32_t c32, size_t count)
+bool tro_strdybuf_writec(tro_strdybuf *buf, tro_urune rune, size_t count)
 {
 	if (buf == NULL)
 		return false;
-
-	const tro_urune rune = c32;
 
 	tro_u8code bytes[TRO_MULTI_U8CODE_MAX];
 	const size_t bytesn = tro_urune_to_u8codes(rune, bytes);

@@ -11,8 +11,8 @@
 #endif
 #include <stdarg.h>
 
-#include "tro/string.h"
 #include "tro/dybuffer.h"
+#include "tro/uchar.h"
 
 TRO__C_API_BEGIN
 
@@ -53,7 +53,8 @@ TRO__API bool tro_fterminal(const tro_file *file);
 
 TRO__API bool tro_fwrites(tro_file *file, const char *data, size_t datal);
 
-TRO__API bool tro_fwrites16(tro_file *file, const char16_t *data, size_t datal);
+TRO__API bool tro_fwrites16(tro_file *file, const tro_char16 *data,
+                            size_t datal);
 
 TRO__API bool tro_fwriteb(tro_file *file, const uint8_t *data, size_t datal);
 
@@ -65,7 +66,7 @@ TRO__API bool tro_fputc(tro_file *file, tro_urune rune);
 
 TRO__API bool tro_fputs(tro_file *file, const char *s);
 
-TRO__API bool tro_fputs16(tro_file *file, const char16_t *s);
+TRO__API bool tro_fputs16(tro_file *file, const tro_char16 *s);
 
 TRO__API bool tro_fflush(tro_file *file);
 
@@ -73,9 +74,9 @@ TRO__API bool tro_fprintf(tro_file *file, const char *format, ...);
 
 TRO__API bool tro_vfprintf(tro_file *file, const char *format, va_list args);
 
-TRO__API bool tro_fprintf16(tro_file *file, const char16_t *format, ...);
+TRO__API bool tro_fprintf16(tro_file *file, const tro_char16 *format, ...);
 
-TRO__API bool tro_vfprintf16(tro_file *file, const char16_t *format,
+TRO__API bool tro_vfprintf16(tro_file *file, const tro_char16 *format,
                              va_list args);
 
 extern tro_file *const troout;
@@ -86,29 +87,29 @@ TRO__API bool tro_putc(tro_urune rune);
 
 TRO__API bool tro_puts(const char *s);
 
-TRO__API bool tro_puts16(const char16_t *s);
+TRO__API bool tro_puts16(const tro_char16 *s);
 
 TRO__API bool tro_eputc(tro_urune rune);
 
 TRO__API bool tro_eputs(const char *s);
 
-TRO__API bool tro_eputs16(const char16_t *s);
+TRO__API bool tro_eputs16(const tro_char16 *s);
 
 TRO__API bool tro_printf(const char *format, ...);
 
 TRO__API bool tro_vprintf(const char *format, va_list args);
 
-TRO__API bool tro_printf16(const char16_t *format, ...);
+TRO__API bool tro_printf16(const tro_char16 *format, ...);
 
-TRO__API bool tro_vprintf16(const char16_t *format, va_list args);
+TRO__API bool tro_vprintf16(const tro_char16 *format, va_list args);
 
 TRO__API bool tro_eprintf(const char *format, ...);
 
 TRO__API bool tro_veprintf(const char *format, va_list args);
 
-TRO__API bool tro_eprintf16(const char16_t *format, ...);
+TRO__API bool tro_eprintf16(const tro_char16 *format, ...);
 
-TRO__API bool tro_veprintf16(const char16_t *format, va_list args);
+TRO__API bool tro_veprintf16(const tro_char16 *format, va_list args);
 
 TRO__C_API_END
 

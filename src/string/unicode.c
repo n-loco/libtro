@@ -4,7 +4,9 @@
 #include <string.h>
 #include <stdlib.h>
 
-size_t tro_conv_str_to_str16(const char *in, size_t inlen, char16_t *out,
+#include "tro/uchar.h"
+
+size_t tro_conv_str_to_str16(const char *in, size_t inlen, tro_char16 *out,
                              size_t outcap)
 {
 	if (in == NULL) {
@@ -64,7 +66,8 @@ size_t tro_conv_str_to_str16(const char *in, size_t inlen, char16_t *out,
 	return written_out;
 }
 
-char16_t *tro_cnvlloc_str_to_str16(const char *in, size_t inlen, size_t *lenout)
+tro_char16 *tro_cnvlloc_str_to_str16(const char *in, size_t inlen,
+                                     size_t *lenout)
 {
 	if (in == NULL) {
 		*lenout = 0;
@@ -78,15 +81,15 @@ char16_t *tro_cnvlloc_str_to_str16(const char *in, size_t inlen, size_t *lenout)
 	    (tro_str8_urune_len(in, inlen) * sizeof(tro_urune)) + 2;
 	const size_t strcap = strmem / 2;
 
-	char16_t *str = malloc(strmem);
-	size_t strl   = tro_conv_str_to_str16(in, inlen, str, strcap);
+	tro_char16 *str = malloc(strmem);
+	size_t strl     = tro_conv_str_to_str16(in, inlen, str, strcap);
 
 	if (lenout != NULL)
 		*lenout = strl;
 	return str;
 }
 
-size_t tro_conv_str16_to_str(const char16_t *in, size_t inlen, char *out,
+size_t tro_conv_str16_to_str(const tro_char16 *in, size_t inlen, char *out,
                              size_t outcap)
 {
 	if (in == NULL) {
@@ -141,7 +144,8 @@ size_t tro_conv_str16_to_str(const char16_t *in, size_t inlen, char *out,
 	return written_out;
 }
 
-char *tro_cnvlloc_str16_to_str(const char16_t *in, size_t inlen, size_t *lenout)
+char *tro_cnvlloc_str16_to_str(const tro_char16 *in, size_t inlen,
+                               size_t *lenout)
 {
 	if (in == NULL) {
 		*lenout = 0;

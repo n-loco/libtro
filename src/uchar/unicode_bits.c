@@ -1,12 +1,8 @@
 // clang-format off
 /*
-   Este arquivo contém a manipulação Unicode low level de bits.
-
-   O porquê disto estar separado do `unicode.c`, é para dividir entre
-   código Unicode "normal" e código Unicode "low-level", pois aqui
-   ocorre uma manipulação pesada em nível de bits, além de ter sido
-   tomada a liberdade de escrever código menos legível em favor de
-   melhorar o campo para otimizações de compilador e de CPU.
+   Aqui ocorre uma manipulação pesada em nível de bits, além de ter
+   sido tomada a liberdade de escrever código menos legível em favor
+   de melhorar o campo para otimizações pelo compilador e pela CPU.
 
    Aqui como os formatos UTF-8 e UTF-16 funcionam:
 
@@ -44,13 +40,14 @@
 */
 // clang-format on
 
-#include "tro/string.h"
+#include "tro/uchar.h"
 
 #include <stddef.h>
 #include <stdbool.h>
 #include <string.h>
 
 #include "utils/math.h"
+#include "tro/string.h"
 
 // Code point do '�'.
 #define REPLACE_CHAR 0x00FFFD
@@ -362,10 +359,8 @@ size_t tro_urune_to_u16codes(tro_urune rune, tro_u16code *out)
 /*
    Retorna o comprimento de uma
    sequência de surrogates UTF-16
-   terminada em '\0'.
-
-   Únicos valores possíveis são
-   `1` e `2`.
+   terminada em '\0'. Nunca passa
+   de 2.
 */
 static inline size_t seq16len(const tro_u16code *seq)
 {
@@ -417,7 +412,7 @@ ERR:
 	return 1;
 }
 
-size_t tro_str16_urune_len(const char16_t *str, size_t strl)
+size_t tro_str16_urune_len(const tro_char16 *str, size_t strl)
 {
 	if (strl == 0)
 		strl = tro_str16len(str);

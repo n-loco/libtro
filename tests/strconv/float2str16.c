@@ -1,35 +1,36 @@
 #include <test_utils.h>
 
 #include <stddef.h>
-#include <uchar.h>
 
 #include <tro/strconv.h>
 
+#include "tro/uchar.h"
+
 #define GENBUF (TRO_FLOAT_FIXED_CHAR_MAX + 1)
-static char16_t genbuf[GENBUF];
+static tro_char16 genbuf[GENBUF];
 
-static const char16_t EXP_f0[]           = u"0";
-static const char16_t EXP_f0dot00[]      = u"0.00";
-static const char16_t EXP_f0E0[]         = u"0e0";
-static const char16_t EXP_f0cE0[]        = u"0E0";
-static const char16_t EXP_f0dot00Ep00[]  = u"0.00e+00";
-static const char16_t EXP_f0dot00cEp00[] = u"0.00E+00";
+static const tro_char16 EXP_f0[]           = u"0";
+static const tro_char16 EXP_f0dot00[]      = u"0.00";
+static const tro_char16 EXP_f0E0[]         = u"0e0";
+static const tro_char16 EXP_f0cE0[]        = u"0E0";
+static const tro_char16 EXP_f0dot00Ep00[]  = u"0.00e+00";
+static const tro_char16 EXP_f0dot00cEp00[] = u"0.00E+00";
 
-static const char16_t EXP_f0dot0035[]     = u"0.0035";
-static const char16_t EXP_f0dot00350000[] = u"0.00350000";
-static const char16_t EXP_f0dot004[]      = u"0.004";
-static const char16_t EXP_f3dot5En3[]     = u"3.5e-3";
-static const char16_t EXP_f3dot5cEn3[]    = u"3.5E-3";
-static const char16_t EXP_f3dot50En03[]   = u"3.50e-03";
-static const char16_t EXP_f3dot50cEn03[]  = u"3.50E-03";
+static const tro_char16 EXP_f0dot0035[]     = u"0.0035";
+static const tro_char16 EXP_f0dot00350000[] = u"0.00350000";
+static const tro_char16 EXP_f0dot004[]      = u"0.004";
+static const tro_char16 EXP_f3dot5En3[]     = u"3.5e-3";
+static const tro_char16 EXP_f3dot5cEn3[]    = u"3.5E-3";
+static const tro_char16 EXP_f3dot50En03[]   = u"3.50e-03";
+static const tro_char16 EXP_f3dot50cEn03[]  = u"3.50E-03";
 
-static const char16_t EXP_fn0dot0035[]     = u"-0.0035";
-static const char16_t EXP_fn0dot00350000[] = u"-0.00350000";
-static const char16_t EXP_fn0dot004[]      = u"-0.004";
-static const char16_t EXP_fn3dot5En3[]     = u"-3.5e-3";
-static const char16_t EXP_fn3dot5cEn3[]    = u"-3.5E-3";
-static const char16_t EXP_fn3dot50En03[]   = u"-3.50e-03";
-static const char16_t EXP_fn3dot50cEn03[]  = u"-3.50E-03";
+static const tro_char16 EXP_fn0dot0035[]     = u"-0.0035";
+static const tro_char16 EXP_fn0dot00350000[] = u"-0.00350000";
+static const tro_char16 EXP_fn0dot004[]      = u"-0.004";
+static const tro_char16 EXP_fn3dot5En3[]     = u"-3.5e-3";
+static const tro_char16 EXP_fn3dot5cEn3[]    = u"-3.5E-3";
+static const tro_char16 EXP_fn3dot50En03[]   = u"-3.50e-03";
+static const tro_char16 EXP_fn3dot50cEn03[]  = u"-3.50E-03";
 
 int main(void)
 {

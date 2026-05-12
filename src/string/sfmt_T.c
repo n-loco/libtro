@@ -9,11 +9,12 @@
 
 #include "tro/dybuffer.h"
 #include "tro/strconv.h"
+#include "tro/uchar.h"
 #include "fmt_parser.h"
 #include "utils/math.h"
 
 #ifdef USE_CHAR16_T
-# define CHAR_T char16_t
+# define CHAR_T tro_char16
 
 # define tro_sfmt_T tro_sfmt16
 # define tro_vsfmt_T tro_vsfmt16
@@ -71,14 +72,14 @@ typedef struct {
 static bool fmt_s(tro_dybuffer_obj buf, const opts_s *opts);
 
 typedef struct {
-	const char16_t *str;
+	const tro_char16 *str;
 	size_t width;
 	bool left_justified;
 } opts_S;
 
 #define arg_S(ap, fmt, o)                                                      \
 	do {                                                                   \
-		(o)->str   = va_arg(ap, const char16_t *);                     \
+		(o)->str   = va_arg(ap, const tro_char16 *);                   \
 		(o)->width = (fmt)->field_width.from_va                        \
 		                 ? (size_t)va_arg(ap, unsigned int)            \
 		                 : (fmt)->field_width.width;                   \
@@ -476,10 +477,10 @@ static bool fmt_S(tro_dybuffer_obj buf_obj, const opts_S *opts)
 {
 	tro_dispatch_dybuffer(buf_obj, buf);
 
-	const char16_t *const str = opts->str;
-	const size_t strl         = tro_str16len(str);
-	const size_t width        = opts->width;
-	const bool left_just      = opts->left_justified;
+	const tro_char16 *const str = opts->str;
+	const size_t strl           = tro_str16len(str);
+	const size_t width          = opts->width;
+	const bool left_just        = opts->left_justified;
 
 	if (width > 0) {
 		const size_t strw  = tro_str16_urune_len(str, strl);
@@ -544,7 +545,7 @@ static bool fmt_d(tro_dybuffer_obj buf_obj, const opts_d *opts)
 
 	size_t width = opts->width;
 
-	uint8_t genbuf[(TRO_UINT_CHAR_MAX + 1) * sizeof(char16_t)];
+	uint8_t genbuf[(TRO_UINT_CHAR_MAX + 1) * sizeof(tro_char16)];
 	void *str = genbuf;
 	size_t strl;
 
@@ -598,7 +599,7 @@ static bool fmt_u(tro_dybuffer_obj buf_obj, const opts_oxXu *opts)
 
 	size_t width = opts->width;
 
-	uint8_t genbuf[(TRO_UINT_CHAR_MAX + 1) * sizeof(char16_t)];
+	uint8_t genbuf[(TRO_UINT_CHAR_MAX + 1) * sizeof(tro_char16)];
 	void *str = genbuf;
 	size_t strl;
 
@@ -655,7 +656,7 @@ static bool fmt_f(tro_dybuffer_obj buf_obj, const opts_feEgGaA *opts)
 
 	size_t width = opts->width;
 
-	uint8_t genbuf[(TRO_FLOAT_FIXED_CHAR_MAX + 1) * sizeof(char16_t)];
+	uint8_t genbuf[(TRO_FLOAT_FIXED_CHAR_MAX + 1) * sizeof(tro_char16)];
 	void *str = genbuf;
 	size_t strl;
 

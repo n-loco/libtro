@@ -1,10 +1,11 @@
 #include "tro/string.h"
 
 #include <stddef.h>
-#include <uchar.h>
 #include <stdbool.h>
 
-size_t tro_str16len(const char16_t *str)
+#include "tro/uchar.h"
+
+size_t tro_str16len(const tro_char16 *str)
 {
 	size_t len = 0;
 	while (*str) {
@@ -14,7 +15,7 @@ size_t tro_str16len(const char16_t *str)
 	return len;
 }
 
-size_t tro_str16nlen(const char16_t *str, size_t maxlen)
+size_t tro_str16nlen(const tro_char16 *str, size_t maxlen)
 {
 	size_t len = 0;
 	while (len < maxlen) {
@@ -27,13 +28,13 @@ size_t tro_str16nlen(const char16_t *str, size_t maxlen)
 	return len;
 }
 
-int tro_str16cmp(const char16_t *s1, const char16_t *s2)
+int tro_str16cmp(const tro_char16 *s1, const tro_char16 *s2)
 {
 	int diff = 0;
 
 	while (true) {
-		const char16_t c1 = *s1;
-		const char16_t c2 = *s2;
+		const tro_char16 c1 = *s1;
+		const tro_char16 c2 = *s2;
 
 		diff = c1 - c2;
 
@@ -50,13 +51,13 @@ int tro_str16cmp(const char16_t *s1, const char16_t *s2)
 	return diff;
 }
 
-int tro_str16ncmp(const char16_t *s1, const char16_t *s2, size_t maxlen)
+int tro_str16ncmp(const tro_char16 *s1, const tro_char16 *s2, size_t maxlen)
 {
 	int diff = 0;
 
 	for (size_t i = 0; i < maxlen; i++) {
-		const char16_t c1 = *s1;
-		const char16_t c2 = *s2;
+		const tro_char16 c1 = *s1;
+		const tro_char16 c2 = *s2;
 
 		const bool is_diff = diff != 0;
 		const bool is_eos  = c1 == '\0' && c2 == '\0';

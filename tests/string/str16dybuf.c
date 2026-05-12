@@ -2,12 +2,12 @@
 
 #include <stddef.h>
 #include <stdbool.h>
-#include <uchar.h>
 #include <stdlib.h>
 
 #include <tro/string.h>
+#include <tro/uchar.h>
 
-static const char16_t *EXP_STR = u"8️⃣ 1️⃣6️⃣ 🧐🐁🐁";
+static const tro_char16 *EXP_STR = u"8️⃣ 1️⃣6️⃣ 🧐🐁🐁";
 
 int main(void)
 {
@@ -20,7 +20,7 @@ int main(void)
 	tro_str16dybuf_writec(buf, U'🐁', 2);
 
 	size_t strl;
-	char16_t *str = tro_str16dybuf_getlloc(buf, &strl);
+	tro_char16 *str = tro_str16dybuf_getlloc(buf, &strl);
 
 	tro_destroy_str16dybuf(buf);
 

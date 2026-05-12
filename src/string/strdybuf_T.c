@@ -3,11 +3,12 @@
 
 #include <stddef.h>
 #include <stdbool.h>
-#include <uchar.h>
 #include <stdlib.h>
 
+#include "tro/uchar.h"
+
 #ifdef USE_CHAR16_T
-# define CHAR_T char16_t
+# define CHAR_T tro_char16
 
 # define tro_strdybuf_T tro_str16dybuf
 # define tro_strdybuf_dybuffer_vt_T tro_str16dybuf_dybuffer_vt
@@ -184,7 +185,7 @@ bool tro_strdybuf_writeb_T(tro_strdybuf_T *buf, const uint8_t *data,
 static const tro_dybuffer_i dybuffer_impl = {
     .writes = (bool (*)(void *, const char *, size_t))tro_strdybuf_writes_T,
     .writes16 =
-        (bool (*)(void *, const char16_t *, size_t))tro_strdybuf_writes16_T,
+        (bool (*)(void *, const tro_char16 *, size_t))tro_strdybuf_writes16_T,
     .writeb = (bool (*)(void *, const uint8_t *, size_t))tro_strdybuf_writeb_T,
     .writec = (bool (*)(void *, uint32_t, size_t))tro_strdybuf_writec_T,
     .preference = (tro_dybuf_pref(*)(const void *))tro_strdybuf_preference_T,

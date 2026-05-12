@@ -10,6 +10,7 @@
 #include <fcntl.h>
 
 #include "tro/string.h"
+#include "tro/uchar.h"
 #include "tro/dybuffer.h"
 
 #define FILE_PERMS (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH)
@@ -119,7 +120,7 @@ bool tro_fwrites(tro_file *file, const char *data, size_t datal)
 	return tro_fwriteb(file, (const uint8_t *)data, datal);
 }
 
-bool tro_fwrites16(tro_file *file, const char16_t *data, size_t datal)
+bool tro_fwrites16(tro_file *file, const tro_char16 *data, size_t datal)
 {
 	if (!writtable(file))
 		return false;
@@ -198,13 +199,13 @@ WRITE_ERROR:
 	return false;
 }
 
-bool tro_fwritec(tro_file *file, uint32_t c, size_t count)
+bool tro_fwritec(tro_file *file, tro_urune rune, size_t count)
 {
 	if (!writtable(file))
 		return false;
 
 	tro_u8code codes[TRO_MULTI_U8CODE_MAX];
-	size_t codesn = tro_urune_to_u8codes(c, codes);
+	size_t codesn = tro_urune_to_u8codes(rune, codes);
 
 	for (size_t i = 0; i < count; i++) {
 		if (!tro_fwriteb(file, codes, codesn))

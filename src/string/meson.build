@@ -9,5 +9,4 @@ sources += files(
     'str_fmt.c',
     'strdybuf.c',
     'unicode.c',
-    'unicode_bits.c',
 )

@@ -1,22 +1,23 @@
 #include <test_utils.h>
 
 #include <stddef.h>
-#include <uchar.h>
 
 #include <tro/strconv.h>
 
+#include "tro/uchar.h"
+
 #define GENCAP TRO_INT_CHAR_MAX
-static char16_t genbuf[GENCAP];
+static tro_char16 genbuf[GENCAP];
 
-static const char16_t N0[] = u"0";
+static const tro_char16 N0[] = u"0";
 
-static const char16_t N1[]    = u"1";
-static const char16_t N345[]  = u"345";
-static const char16_t N1000[] = u"1000";
+static const tro_char16 N1[]    = u"1";
+static const tro_char16 N345[]  = u"345";
+static const tro_char16 N1000[] = u"1000";
 
-static const char16_t NN1[]    = u"-1";
-static const char16_t NN345[]  = u"-345";
-static const char16_t NN1000[] = u"-1000";
+static const tro_char16 NN1[]    = u"-1";
+static const tro_char16 NN345[]  = u"-345";
+static const tro_char16 NN1000[] = u"-1000";
 
 int main(void)
 {

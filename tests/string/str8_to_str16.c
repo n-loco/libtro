@@ -2,18 +2,18 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <uchar.h>
 
 #include <tro/string.h>
+#include <tro/uchar.h>
 
-static const char16_t EXPECT_OK[]     = u"Olá, mundo! 🌎";
-static const char16_t EXPECT_BROKEN[] = u"Olá, mundo! ";
+static const tro_char16 EXPECT_OK[]     = u"Olá, mundo! 🌎";
+static const tro_char16 EXPECT_BROKEN[] = u"Olá, mundo! ";
 
 #define OK_CAP 15
 #define BROKEN_CAP 14
 
-static bool impl__str16_assert(const char *name, const char16_t *e, size_t el,
-                               const char16_t *g, size_t gl);
+static bool impl__str16_assert(const char *name, const tro_char16 *e, size_t el,
+                               const tro_char16 *g, size_t gl);
 
 #define str16_assert(name, e, el, g, gl)                                       \
 	if (!impl__str16_assert(name, e, el, g, gl))                           \
@@ -34,15 +34,15 @@ int main(void)
 {
 	const char src[] = "Olá, mundo! 🌎";
 
-	char16_t *ok  = malloc(OK_CAP * sizeof(char16_t));
-	size_t ok_len = tro_conv_str_to_str16(src, 0, ok, OK_CAP);
+	tro_char16 *ok = malloc(OK_CAP * sizeof(tro_char16));
+	size_t ok_len  = tro_conv_str_to_str16(src, 0, ok, OK_CAP);
 	str16_assert("Ok capacity", EXPECT_OK, 14, ok, ok_len);
 
 	size_t ok_siz_test = tro_conv_str_to_str16(src, 0, NULL, 0);
 	len16_only_assert("Ok size test", 14, ok_siz_test);
 
-	char16_t *broken  = malloc(BROKEN_CAP * sizeof(char16_t));
-	size_t broken_len = tro_conv_str_to_str16(src, 0, broken, BROKEN_CAP);
+	tro_char16 *broken = malloc(BROKEN_CAP * sizeof(tro_char16));
+	size_t broken_len  = tro_conv_str_to_str16(src, 0, broken, BROKEN_CAP);
 	str16_assert("Insufficient capacity", EXPECT_BROKEN, 12, broken,
 	             broken_len);
 
@@ -50,8 +50,8 @@ int main(void)
 	len16_only_assert("Not ok size test", 0, nk_siz_test);
 }
 
-static bool impl__str16_assert(const char *name, const char16_t *e, size_t el,
-                               const char16_t *g, size_t gl)
+static bool impl__str16_assert(const char *name, const tro_char16 *e, size_t el,
+                               const tro_char16 *g, size_t gl)
 {
 	if (el != gl) {
 		fprintf(stderr,
@@ -61,8 +61,8 @@ static bool impl__str16_assert(const char *name, const char16_t *e, size_t el,
 	}
 
 	for (size_t i = 0; i < el; i++) {
-		const char16_t expected = e[i];
-		const char16_t got      = g[i];
+		const tro_char16 expected = e[i];
+		const tro_char16 got      = g[i];
 
 		if (expected != got) {
 			fprintf(

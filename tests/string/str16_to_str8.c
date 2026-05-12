@@ -2,9 +2,9 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <uchar.h>
 
 #include <tro/string.h>
+#include <tro/uchar.h>
 
 static const char EXPECT_OK[]     = "Olá, mundo! 🌎";
 static const char EXPECT_BROKEN[] = "Olá, mundo! ";
@@ -32,7 +32,7 @@ static bool impl__str8_assert(const char *name, const char *e, size_t el,
 
 int main(void)
 {
-	const char16_t src[] = u"Olá, mundo! 🌎";
+	const tro_char16 src[] = u"Olá, mundo! 🌎";
 
 	char *ok      = malloc(OK_CAP);
 	size_t ok_len = tro_conv_str16_to_str(src, 0, ok, OK_CAP);

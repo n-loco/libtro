@@ -3,11 +3,12 @@
 
 #include <stddef.h>
 #include <stdbool.h>
-#include <uchar.h>
 #include <string.h>
 #include <tro/string.h>
 #include <stdlib.h>
 #include <stdio.h>
+
+#include "tro/uchar.h"
 
 #define str_assert(name, es, el, gs, gl)                                       \
 	{                                                                      \
@@ -42,8 +43,9 @@
 		}                                                              \
 	}
 
-static inline bool impl__str16_assert(const char *name, const char16_t *es,
-                                      size_t el, const char16_t *gs, size_t gl)
+static inline bool impl__str16_assert(const char *name, const tro_char16 *es,
+                                      size_t el, const tro_char16 *gs,
+                                      size_t gl)
 {
 	if (el != gl) {
 		fprintf(stderr,

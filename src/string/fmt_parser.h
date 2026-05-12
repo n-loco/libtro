@@ -3,7 +3,8 @@
 
 #include <stddef.h>
 #include <stdbool.h>
-#include <uchar.h>
+
+#include "tro/uchar.h"
 
 typedef enum {
 	FMT_SPEC_NONE  = 0,
@@ -64,6 +65,6 @@ typedef struct {
 } fmt_specifier;
 
 size_t tro__parse_fmt_spec(const char *sspec, fmt_specifier *out);
-size_t tro__parse_fmt16_spec(const char16_t *sspec, fmt_specifier *out);
+size_t tro__parse_fmt16_spec(const tro_char16 *sspec, fmt_specifier *out);
 
 #endif // FMT_PARSER_H

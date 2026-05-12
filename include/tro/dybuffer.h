@@ -6,10 +6,11 @@
 
 #include <stddef.h>
 #include <stdint.h>
-#include <uchar.h>
 #if TRO__USE_STDBOOL
 # include <stdbool.h>
 #endif
+
+#include "tro/uchar.h"
 
 TRO__C_API_BEGIN
 
@@ -21,9 +22,9 @@ typedef enum tro_dybuf_pref {
 
 typedef struct tro_dybuffer_i {
 	bool (*const writes)(void *buf, const char *data, size_t datal);
-	bool (*const writes16)(void *buf, const char16_t *data, size_t datal);
+	bool (*const writes16)(void *buf, const tro_char16 *data, size_t datal);
 	bool (*const writeb)(void *buf, const uint8_t *data, size_t datal);
-	bool (*const writec)(void *buf, uint32_t c32, size_t count);
+	bool (*const writec)(void *buf, tro_urune rune, size_t count);
 	tro_dybuf_pref (*const preference)(const void *);
 } tro_dybuffer_i;
 
@@ -38,13 +39,13 @@ typedef struct tro_dybuffer_obj {
 	bool (*const varname##_writes)(void *buf, const char *data,            \
 	                               size_t datal) = i.vtable->writes;       \
                                                                                \
-	bool (*const varname##_writes16)(void *buf, const char16_t *data,      \
+	bool (*const varname##_writes16)(void *buf, const tro_char16 *data,    \
 	                                 size_t datal) = i.vtable->writes16;   \
                                                                                \
 	bool (*const varname##_writeb)(void *buf, const uint8_t *data,         \
 	                               size_t datal) = i.vtable->writeb;       \
                                                                                \
-	bool (*const varname##_writec)(void *buf, uint32_t c32,                \
+	bool (*const varname##_writec)(void *buf, tro_urune rune,              \
 	                               size_t count) = i.vtable->writec;       \
                                                                                \
 	tro_dybuf_pref (*const varname##_preference)(const void *) =           \

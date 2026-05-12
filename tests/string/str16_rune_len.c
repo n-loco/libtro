@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 #include <tro/string.h>
+#include <tro/uchar.h>
 
 #define urune_len_assert(name, expected, got)                                  \
 	{                                                                      \
@@ -14,7 +15,7 @@
 	}
 
 #define rs(...)                                                                \
-	(const char16_t[])                                                     \
+	(const tro_char16[])                                                   \
 	{                                                                      \
 		__VA_ARGS__, 0x0000                                            \
 	}

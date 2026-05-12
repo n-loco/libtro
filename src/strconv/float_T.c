@@ -10,8 +10,8 @@
 #include "utils/math.h"
 
 #ifdef USE_CHAR16_T
-# include <uchar.h>
-# define CHAR_T char16_t
+# include "tro/uchar.h"
+# define CHAR_T tro_char16
 # define tro__float2str_general_T tro__float2str16_general
 # define tro__float2str_eE_T tro__float2str16_eE
 # define tro__float2str_fixed_eE_T tro__float2str16_fixed_eE
@@ -245,7 +245,7 @@ size_t tro__float2str_fixed_eE_T(double num, uint32_t precision, CHAR_T *out,
 static size_t write_nan(CHAR_T *out, size_t outcap)
 {
 #ifdef USE_CHAR16_T
-	const char16_t str[] = u"NaN";
+	const tro_char16 str[] = u"NaN";
 #else
 	const char str[] = "NaN";
 #endif
@@ -264,7 +264,7 @@ static size_t write_nan(CHAR_T *out, size_t outcap)
 static size_t write_infinity(CHAR_T *out, size_t outcap)
 {
 #ifdef USE_CHAR16_T
-	const char16_t str[] = u"Infinity";
+	const tro_char16 str[] = u"Infinity";
 #else
 	const char str[] = "Infinity";
 #endif
@@ -283,7 +283,7 @@ static size_t write_infinity(CHAR_T *out, size_t outcap)
 static size_t write_ninfinity(CHAR_T *out, size_t outcap)
 {
 #ifdef USE_CHAR16_T
-	const char16_t str[] = u"-Infinity";
+	const tro_char16 str[] = u"-Infinity";
 #else
 	const char str[] = "-Infinity";
 #endif

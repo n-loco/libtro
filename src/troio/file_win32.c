@@ -3,12 +3,13 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include <uchar.h>
 #include <stdlib.h>
 
 #include <windows.h>
 
 #include "tro/string.h"
+#include "tro/uchar.h"
+#include "tro/dybuffer.h"
 
 tro_file *tro_fopen(const char *filepath, tro_fmode mode)
 {
@@ -147,10 +148,12 @@ bool tro_fwrites(tro_file *file, const char *data, size_t datal)
 	return fwrites_file(file, data, datal);
 }
 
-static bool fwrites16_file(tro_file *file, const char16_t *data, size_t datal);
-static bool fwrites16_term(tro_file *file, const char16_t *data, size_t datal);
+static bool fwrites16_file(tro_file *file, const tro_char16 *data,
+                           size_t datal);
+static bool fwrites16_term(tro_file *file, const tro_char16 *data,
+                           size_t datal);
 
-bool tro_fwrites16(tro_file *file, const char16_t *data, size_t datal)
+bool tro_fwrites16(tro_file *file, const tro_char16 *data, size_t datal)
 {
 	if (file->terminal)
 		return fwrites16_term(file, data, datal);
@@ -167,7 +170,7 @@ bool tro_fwriteb(tro_file *file, const uint8_t *data, size_t datal)
 static bool fwritec_file(tro_file *file, uint32_t rune, size_t count);
 static bool fwritec_term(tro_file *file, uint32_t rune, size_t count);
 
-bool tro_fwritec(tro_file *file, uint32_t rune, size_t count)
+bool tro_fwritec(tro_file *file, tro_char16 rune, size_t count)
 {
 	if (file->terminal)
 		return fwritec_term(file, rune, count);
@@ -240,7 +243,7 @@ WRITE_ERROR:
 	return false;
 }
 
-static bool fwrites16_file(tro_file *file, const char16_t *data, size_t datal)
+static bool fwrites16_file(tro_file *file, const tro_char16 *data, size_t datal)
 {
 	if (!writtable(file))
 		return false;
@@ -296,7 +299,7 @@ WRITE_ERROR:
 	return false;
 }
 
-static bool fwritec_file(tro_file *file, uint32_t rune, size_t count)
+static bool fwritec_file(tro_file *file, tro_urune rune, size_t count)
 {
 	if (!writtable(file))
 		return false;
@@ -319,7 +322,7 @@ static bool fwrites_term(tro_file *file, const char *data, size_t datal)
 
 	if (file->buffer_mode == TRO_FBUFMODE_NO_BUFFER) {
 		size_t data16l;
-		char16_t *data16 =
+		tro_char16 *data16 =
 		    tro_cnvlloc_str_to_str16(data, datal, &data16l);
 
 		bool success = fwrites16_term(file, data16, data16l);
@@ -402,7 +405,7 @@ WRITE_ERROR:
 	return false;
 }
 
-static bool fwritec_term(tro_file *file, uint32_t rune, size_t count)
+static bool fwritec_term(tro_file *file, tro_urune rune, size_t count)
 {
 	if (!writtable(file))
 		return false;

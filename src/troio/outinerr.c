@@ -4,7 +4,6 @@
 
 #include <stddef.h>
 #include <stdlib.h>
-#include <uchar.h>
 #include <stdarg.h>
 
 #if TRO_SYSTEM_WIN32
@@ -12,6 +11,8 @@
 #elif TRO_SYSTEM_UNIX_LIKE
 # include <unistd.h>
 #endif
+
+#include "tro/uchar.h"
 
 static struct tro_file outfstream;
 static struct tro_file infstream;
@@ -31,7 +32,7 @@ bool tro_puts(const char *s)
 	return tro_fputs(troout, s);
 }
 
-bool tro_puts16(const char16_t *s)
+bool tro_puts16(const tro_char16 *s)
 {
 	return tro_fputs16(troout, s);
 }
@@ -46,7 +47,7 @@ bool tro_eputs(const char *s)
 	return tro_fputs(troerr, s);
 }
 
-bool tro_eputs16(const char16_t *s)
+bool tro_eputs16(const tro_char16 *s)
 {
 	return tro_fputs16(troerr, s);
 }
@@ -65,7 +66,7 @@ bool tro_vprintf(const char *format, va_list args)
 	return tro_vfprintf(troout, format, args);
 }
 
-bool tro_printf16(const char16_t *format, ...)
+bool tro_printf16(const tro_char16 *format, ...)
 {
 	va_list args;
 	va_start(args, format);
@@ -74,7 +75,7 @@ bool tro_printf16(const char16_t *format, ...)
 	return r;
 }
 
-bool tro_vprintf16(const char16_t *format, va_list args)
+bool tro_vprintf16(const tro_char16 *format, va_list args)
 {
 	return tro_vfprintf16(troout, format, args);
 }
@@ -93,7 +94,7 @@ bool tro_veprintf(const char *format, va_list args)
 	return tro_vfprintf(troerr, format, args);
 }
 
-bool tro_eprintf16(const char16_t *format, ...)
+bool tro_eprintf16(const tro_char16 *format, ...)
 {
 	va_list args;
 	va_start(args, format);
@@ -102,7 +103,7 @@ bool tro_eprintf16(const char16_t *format, ...)
 	return r;
 }
 
-bool tro_veprintf16(const char16_t *format, va_list args)
+bool tro_veprintf16(const tro_char16 *format, va_list args)
 {
 	return tro_vfprintf16(troerr, format, args);
 }

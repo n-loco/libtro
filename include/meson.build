@@ -11,6 +11,7 @@ headers = [
     'tro/strconv.h',
     'tro/string.h',
     'tro/time.h',
+    'tro/uchar.h',
     'tro/private/api.h',
     'tro/private/bool.h',
 ]

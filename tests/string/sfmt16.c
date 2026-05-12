@@ -3,31 +3,31 @@
 
 #include <stddef.h>
 #include <stdbool.h>
-#include <uchar.h>
 #include <stdarg.h>
 #include <math.h>
 
 #include <tro/string.h>
+#include <tro/uchar.h>
 #include <tro/dybuffer.h>
 
 #define GENSTRCAP 513
-static char16_t genstr[GENSTRCAP];
+static tro_char16 genstr[GENSTRCAP];
 
-static size_t wrappbuf_sfmt16(const char16_t *format, ...);
+static size_t wrappbuf_sfmt16(const tro_char16 *format, ...);
 
 int main(void)
 {
 	{
-		const char16_t XSTR[] = u"Texto random 1\n";
-		const size_t XLEN     = (sizeof(XSTR) / sizeof(char16_t)) - 1;
+		const tro_char16 XSTR[] = u"Texto random 1\n";
+		const size_t XLEN = (sizeof(XSTR) / sizeof(tro_char16)) - 1;
 
 		size_t strl = wrappbuf_sfmt16(u"Texto %s %d\n", "random", 1);
 		str16_assert("Texto random 1", XSTR, XLEN, genstr, strl);
 	}
 
 	{
-		const char16_t XSTR[] = u"[TRO] [   TRO] [TRO   ]";
-		const size_t XLEN     = (sizeof(XSTR) / sizeof(char16_t)) - 1;
+		const tro_char16 XSTR[] = u"[TRO] [   TRO] [TRO   ]";
+		const size_t XLEN = (sizeof(XSTR) / sizeof(tro_char16)) - 1;
 
 		size_t strl =
 		    wrappbuf_sfmt16(u"[%s] [%6s] [%-6s]", "TRO", "TRO", "TRO");
@@ -36,8 +36,8 @@ int main(void)
 	}
 
 	{
-		const char16_t XSTR[] = u"Olá 8, Olá 16, 👋 32";
-		const size_t XLEN     = (sizeof(XSTR) / sizeof(char16_t)) - 1;
+		const tro_char16 XSTR[] = u"Olá 8, Olá 16, 👋 32";
+		const size_t XLEN = (sizeof(XSTR) / sizeof(tro_char16)) - 1;
 
 		size_t strl = wrappbuf_sfmt16(u"%s 8, %S 16, %c 32", "Olá",
 		                              u"Olá", U'👋');
@@ -45,8 +45,8 @@ int main(void)
 	}
 
 	{
-		const char16_t XSTR[] = u"[🔋     ] [     🔋] [🔋🔋🔋🔋🔋🔋]";
-		const size_t XLEN = (sizeof(XSTR) / sizeof(char16_t)) - 1;
+		const tro_char16 XSTR[] = u"[🔋     ] [     🔋] [🔋🔋🔋🔋🔋🔋]";
+		const size_t XLEN = (sizeof(XSTR) / sizeof(tro_char16)) - 1;
 
 		size_t strl = wrappbuf_sfmt16(u"[%-6c] [%6c] [%#6c]", U'🔋',
 		                              U'🔋', U'🔋');
@@ -54,8 +54,8 @@ int main(void)
 	}
 
 	{
-		const char16_t XSTR[] = u"    32 000032 321608040201";
-		const size_t XLEN     = (sizeof(XSTR) / sizeof(char16_t)) - 1;
+		const tro_char16 XSTR[] = u"    32 000032 321608040201";
+		const size_t XLEN = (sizeof(XSTR) / sizeof(tro_char16)) - 1;
 
 		size_t strl =
 		    wrappbuf_sfmt16(u"%6d %06d %6llu", 32, 32, 321608040201ULL);
@@ -64,8 +64,8 @@ int main(void)
 	}
 
 	{
-		const char16_t XSTR[] = u" 1 -1 +1 -1  1 +1";
-		const size_t XLEN     = (sizeof(XSTR) / sizeof(char16_t)) - 1;
+		const tro_char16 XSTR[] = u" 1 -1 +1 -1  1 +1";
+		const size_t XLEN = (sizeof(XSTR) / sizeof(tro_char16)) - 1;
 
 		size_t strl = wrappbuf_sfmt16(u"%2d %2d %+2d %+2d %2u %+2u", 1,
 		                              -1, 1, -1, 1, 1);
@@ -73,10 +73,10 @@ int main(void)
 	}
 
 	{
-		const char16_t XSTR[] =
+		const tro_char16 XSTR[] =
 		    u"0 0 0.0 0.000000 "
 		    "   3.5 0003.5   3.50 003.50";
-		const size_t XLEN = (sizeof(XSTR) / sizeof(char16_t)) - 1;
+		const size_t XLEN = (sizeof(XSTR) / sizeof(tro_char16)) - 1;
 
 		size_t strl = wrappbuf_sfmt16(
 		    u"%#f %.f %.1f %f "
@@ -86,8 +86,8 @@ int main(void)
 	}
 
 	{
-		const char16_t XSTR[] = u" 1 -1 +1 -1  0 -0 +0 -0";
-		const size_t XLEN     = (sizeof(XSTR) / sizeof(char16_t)) - 1;
+		const tro_char16 XSTR[] = u" 1 -1 +1 -1  0 -0 +0 -0";
+		const size_t XLEN = (sizeof(XSTR) / sizeof(tro_char16)) - 1;
 
 		size_t strl = wrappbuf_sfmt16(
 		    u"%#2f %#2f %+#2f %+#2f "
@@ -98,8 +98,8 @@ int main(void)
 	}
 
 	{
-		const char16_t XSTR[] = u"NaN NaN +NaN -NaN";
-		const size_t XLEN     = (sizeof(XSTR) / sizeof(char16_t)) - 1;
+		const tro_char16 XSTR[] = u"NaN NaN +NaN -NaN";
+		const size_t XLEN = (sizeof(XSTR) / sizeof(tro_char16)) - 1;
 
 		size_t strl =
 		    wrappbuf_sfmt16(u"%f %f %+f %+f", NAN, -NAN, NAN, -NAN);
@@ -107,9 +107,9 @@ int main(void)
 	}
 
 	{
-		const char16_t XSTR[] =
+		const tro_char16 XSTR[] =
 		    u"Infinity -Infinity +Infinity -Infinity";
-		const size_t XLEN = (sizeof(XSTR) / sizeof(char16_t)) - 1;
+		const size_t XLEN = (sizeof(XSTR) / sizeof(tro_char16)) - 1;
 
 		size_t strl = wrappbuf_sfmt16(u"%f %f %+f %+f", INFINITY,
 		                              -INFINITY, INFINITY, -INFINITY);
@@ -119,7 +119,7 @@ int main(void)
 
 #define dynbuf tro_str16dybuf_dybuffer(buf)
 
-static size_t wrappbuf_sfmt16(const char16_t *format, ...)
+static size_t wrappbuf_sfmt16(const tro_char16 *format, ...)
 {
 	tro_str16dybuf *buf = tro_create_str16dybuf(GENSTRCAP);
 	assert(buf != NULL);

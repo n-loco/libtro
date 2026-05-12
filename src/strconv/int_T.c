@@ -6,8 +6,8 @@
 #include "utils/math.h"
 
 #ifdef USE_CHAR16_T
-# include <uchar.h>
-# define CHAR_T char16_t
+# include "tro/uchar.h"
+# define CHAR_T tro_char16
 # define tro_int2str_T tro_int2str16
 # define tro_uint2str_T tro_uint2str16
 #else
