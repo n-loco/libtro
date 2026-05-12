@@ -58,5 +58,5 @@ format:
 
 # Roda um script de configuração.
 [arg("tool", help="A ferramenta. (valores: CodeLLDB)")]
-config tool:
+config tool: setup
     {{ python }} tools/configs/{{ tool }}.py
