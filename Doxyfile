@@ -1,0 +1,270 @@
+#===========================================#
+#              Doxyfile 1.17.0              #
+# https://www.doxygen.nl/manual/config.html #
+#===========================================#
+
+DOXYFILE_ENCODING      = UTF-8
+
+PROJECT_NAME           = "LibTRO"
+
+# Manter sincronizado com o MAJOR
+# da versão do projeto em meson.build.
+PROJECT_NUMBER         = 0
+
+# Manter sincronizado com o meson.build,
+# o README.md e a descrição no GitHub.
+PROJECT_BRIEF          = Uma biblioteca com funções semelhantes às do C \
+                         para fins educacionais na Eletrônica, IF Sul Pelotas.
+
+PROJECT_LOGO           =
+
+PROJECT_ICON           =
+
+OUTPUT_DIRECTORY       = doc/dist
+
+CREATE_SUBDIRS         = YES
+
+CREATE_SUBDIRS_LEVEL   = 8
+
+ALLOW_UNICODE_NAMES    = NO
+
+OUTPUT_LANGUAGE        = Brazilian
+
+BRIEF_MEMBER_DESC      = NO
+
+# REPEAT_BRIEF           = YES
+
+ABBREVIATE_BRIEF       =
+
+ALWAYS_DETAILED_SEC    = NO
+
+INLINE_INHERITED_MEMB  = NO
+
+FULL_PATH_NAMES        = YES
+
+STRIP_FROM_PATH        = include/
+
+STRIP_FROM_INC_PATH    =
+
+SHORT_NAMES            = NO
+
+SEPARATE_MEMBER_PAGES  = NO
+
+TAB_SIZE               = 8
+
+ALIASES                =
+
+OPTIMIZE_OUTPUT_FOR_C  = YES
+
+EXTENSION_MAPPING      =
+
+MARKDOWN_SUPPORT       = YES
+
+MARKDOWN_STRICT        = YES
+
+TOC_INCLUDE_HEADINGS   = 6
+
+MARKDOWN_ID_STYLE      = DOXYGEN
+
+AUTOLINK_SUPPORT       = YES
+
+AUTOLINK_IGNORE_WORDS  =
+
+DISTRIBUTE_GROUP_DOC   = NO
+
+GROUP_NESTED_COMPOUNDS = NO
+
+SUBGROUPING            = YES
+
+INLINE_SIMPLE_STRUCTS  = NO
+
+TYPEDEF_HIDES_STRUCT   = NO
+
+LOOKUP_CACHE_SIZE      = 0
+
+NUM_PROC_THREADS       = 6
+
+TIMESTAMP              = NO
+
+#=====================================#
+# Configurações relacionadas ao build #
+#=====================================#
+
+EXTRACT_ALL            = NO
+
+EXTRACT_STATIC         = NO
+
+HIDE_UNDOC_MEMBERS     = NO
+
+HIDE_IN_BODY_DOCS      = YES
+
+INTERNAL_DOCS          = NO
+
+CASE_SENSE_NAMES       = YES
+
+HIDE_COMPOUND_REFERENCE= NO
+
+SHOW_HEADERFILE        = NO
+
+SHOW_INCLUDE_FILES     = NO
+
+SHOW_GROUPED_MEMB_INC  = NO
+
+FORCE_LOCAL_INCLUDES   = NO
+
+INLINE_INFO            = YES
+
+SORT_MEMBER_DOCS       = NO
+
+SORT_BRIEF_DOCS        = NO
+
+# SORT_MEMBERS_CTORS_1ST = NO
+
+SORT_GROUP_NAMES       = NO
+
+STRICT_PROTO_MATCHING  = NO
+
+GENERATE_TODOLIST      = NO
+
+GENERATE_TESTLIST      = NO
+
+GENERATE_BUGLIST       = YES
+
+GENERATE_DEPRECATEDLIST= YES
+
+GENERATE_REQUIREMENTS  = YES
+
+REQ_TRACEABILITY_INFO  = YES
+
+ENABLED_SECTIONS       =
+
+MAX_INITIALIZER_LINES  = 30
+
+SHOW_USED_FILES        = YES
+
+SHOW_FILES             = YES
+
+FILE_VERSION_FILTER    =
+
+LAYOUT_FILE            =
+
+CITE_BIB_FILES         =
+
+EXTERNAL_TOOL_PATH     =
+
+#====================================================#
+# Configurações relacionadas aos arquivos de entrada #
+#====================================================#
+
+INPUT                  = include doc/md
+
+INPUT_ENCODING         = UTF-8
+
+INPUT_FILE_ENCODING    = *=UTF-8
+
+FILE_PATTERNS          = *.c \
+                         *.h \
+                         *.md \
+
+RECURSIVE              = YES
+
+EXCLUDE                = include/tro/private
+
+EXCLUDE_SYMLINKS       = NO
+
+EXCLUDE_PATTERNS       =
+
+EXCLUDE_SYMBOLS        =
+
+EXAMPLE_PATH           =
+
+EXAMPLE_PATTERNS       = *
+
+EXAMPLE_RECURSIVE      = NO
+
+IMAGE_PATH             =
+
+INPUT_FILTER           =
+
+FILTER_PATTERNS        =
+
+FILTER_SOURCE_FILES    = NO
+
+FILTER_SOURCE_PATTERNS =
+
+USE_MDFILE_AS_MAINPAGE = doc/md/main.md
+
+IMPLICIT_DIR_DOCS      = NO
+
+#====================================#
+# Configurações de índice alfabético #
+#====================================#
+
+ALPHABETICAL_INDEX     = YES
+
+IGNORE_PREFIX          = tro_ TRO_
+
+#============================================#
+# Configurações relacionadas a saída em HTML #
+#============================================#
+
+HTML_STYLESHEET        =
+
+HTML_COLORSTYLE        = AUTO_LIGHT
+
+HTML_COLORSTYLE_HUE    = 4
+
+HTML_COLORSTYLE_SAT    = 90
+
+HTML_COLORSTYLE_GAMMA  = 80
+
+ENUM_VALUES_PER_LINE   = 1
+
+SHOW_ENUM_VALUES       = NO
+
+TREEVIEW_WIDTH         = 250
+
+SEARCHENGINE           = YES
+
+SERVER_BASED_SEARCH    = NO
+
+EXTERNAL_SEARCH        = NO
+
+SEARCHDATA_FILE        = searchdata.xml
+
+#=============================================#
+# Configurações relacionadas a saída em LaTeX #
+#=============================================#
+
+# Só não.
+GENERATE_LATEX         = NO
+
+#====================================================#
+# Configurações relacionadas ao pré-processador do C #
+#====================================================#
+
+ENABLE_PREPROCESSING   = YES
+
+MACRO_EXPANSION        = YES
+
+EXPAND_ONLY_PREDEF     = YES
+
+SEARCH_INCLUDES        = YES
+
+INCLUDE_PATH           = include
+
+INCLUDE_FILE_PATTERNS  =
+
+# Estas macros não são úteis para
+# o Doxygen, então aqui elas são
+# configuradas para ser nada.
+PREDEFINED             += TRO__C_API_BEGIN=
+PREDEFINED             += TRO__C_API_END=
+PREDEFINED             += TRO__API=
+
+# Mais informações sobre em include/tro/private/doxy.h
+PREDEFINED             += tro__ndoxy(id)=
+
+EXPAND_AS_DEFINED      =
+
+SKIP_FUNCTION_MACROS   = YES

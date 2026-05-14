@@ -1,3 +1,5 @@
+/** @file */
+
 #ifndef TRO_CONDITIONALS_H_
 #define TRO_CONDITIONALS_H_
 
@@ -8,61 +10,102 @@
 // ===== Definições das Condicionais ===== //
 
 /**
- * 1 se o compilador for MSVC,
+ * @def TRO_COMPILER_MSVC
+ *
+ * 1 se o compilador for **MSVC**,
  * 0 caso contrário.
  */
 #define TRO_COMPILER_MSVC 0
+
 /**
- * 1 se o compilador for tipo GCC
- * (o próprio GCC, Clang, etc.),
+ * @def TRO_COMPILER_GCC_LIKE
+ *
+ * 1 se o compilador for **tipo GCC**
+ * (o próprio *GCC*, *Clang*, etc.),
  * 0 caso contrário.
  */
 #define TRO_COMPILER_GCC_LIKE 0
 
 /**
- * 1 se o sistema for Win32 (Windows),
+ * @def TRO_SYSTEM_WIN32
+ *
+ * 1 se o sistema for **Win32** (*Windows*),
  * 0 caso contrário.
  */
 #define TRO_SYSTEM_WIN32 0
+
 /**
- * 1 se o sistema for UNIX® ou tipo Unix,
+ * @def TRO_SYSTEM_UNIX_LIKE
+ *
+ * 1 se o sistema for **UNIX®** ou **tipo Unix**,
  * 0 caso contrário.
  */
 #define TRO_SYSTEM_UNIX_LIKE 0
+
 /**
- * 1 se o sistema for Darwin (macOS e iOS),
- * 0 caso contrário.
- */
-#define TRO_SYSTEM_DARWIN 0
-/**
- * 1 se o sistema for derivado de Linux
- * (distribuições no geral, como Ubuntu, Fedora ou Android),
- * 0 caso contrário.
- */
-#define TRO_SYSTEM_LINUX 0
-/**
- * 1 se o sistema for Android,
+ * @def TRO_SYSTEM_DARWIN
+ *
+ * 1 se o sistema for **Darwin** (*macOS* e *iOS*),
  * 0 caso contrário.
  *
- * **NOTA:** o motivo desta condicional
- * é para pessoas que usam celulares Android para
- * programar, usando editores de código de
- * celular ou via Termux.
+ * @see TRO_SYSTEM_UNIX_LIKE
+ */
+#define TRO_SYSTEM_DARWIN 0
+
+/**
+ * @def TRO_SYSTEM_LINUX
+ *
+ * 1 se o sistema for **derivado de Linux**
+ * (distribuições no geral, como *Ubuntu*, *Fedora* ou *Android*),
+ * 0 caso contrário.
+ *
+ * @see TRO_SYSTEM_UNIX_LIKE
+ */
+#define TRO_SYSTEM_LINUX 0
+
+/**
+ * @def TRO_SYSTEM_ANDROID_LINUX
+ *
+ * 1 se o sistema for **Android**,
+ * 0 caso contrário.
+ *
+ * @note
+ * O motivo desta condicional
+ * é para pessoas que **usam celulares Android para
+ * programar**, usando editores de código de
+ * celular ou via *Termux*.
+ *
+ * @see TRO_SYSTEM_UNIX_LIKE
  */
 #define TRO_SYSTEM_ANDROID_LINUX 0
+
 /**
- * 1 se o sistema for derivado de Linux que não Android,
+ * @def TRO_SYSTEM_GENERIC_LINUX
+ *
+ * 1 se o sistema for **derivado de Linux** que **não Android**,
  * 0 caso contrário.
+ *
+ * @see TRO_SYSTEM_UNIX_LIKE
  */
 #define TRO_SYSTEM_GENERIC_LINUX 0
+
 /**
- * 1 se o sistema for derivado de BSD,
+ * @def TRO_SYSTEM_BSD
+ *
+ * 1 se o sistema for **derivado de BSD**,
  * 0 caso contrário.
+ *
+ * @see TRO_SYSTEM_UNIX_LIKE
  */
 #define TRO_SYSTEM_BSD 0
+
 /**
- * Igual ao `TRO_SYSTEM_BSD`, mas se o
- * sistema for Darwin, também resulta em 1.
+ * @def TRO_SYSTEM_BSD_LIKE
+ *
+ * Igual ao @ref TRO_SYSTEM_BSD, mas se o
+ * sistema for **Darwin**, também resulta em 1.
+ *
+ * @see TRO_SYSTEM_UNIX_LIKE
  */
 #define TRO_SYSTEM_BSD_LIKE 0
 

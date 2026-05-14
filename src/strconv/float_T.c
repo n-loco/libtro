@@ -12,14 +12,24 @@
 #ifdef USE_CHAR16_T
 # include "tro/uchar.h"
 # define CHAR_T tro_char16
-# define tro__float2str_general_T tro__float2str16_general
-# define tro__float2str_eE_T tro__float2str16_eE
-# define tro__float2str_fixed_eE_T tro__float2str16_fixed_eE
+
+# define tro_float2str_T tro_float2str16
+# define tro_float2str_adjustable_T tro_float2str16_adjustable
+# define tro_float2str_fixed_T tro_float2str16_fixed
+# define tro_float2str_E_T tro_float2str16_E
+# define tro_float2str_e_T tro_float2str16_e
+# define tro_float2str_fixed_E_T tro_float2str16_fixed_E
+# define tro_float2str_fixed_e_T tro_float2str16_fixed_e
 #else
 # define CHAR_T char
-# define tro__float2str_general_T tro__float2str_general
-# define tro__float2str_eE_T tro__float2str_eE
-# define tro__float2str_fixed_eE_T tro__float2str_fixed_eE
+
+# define tro_float2str_T tro_float2str
+# define tro_float2str_adjustable_T tro_float2str_adjustable
+# define tro_float2str_fixed_T tro_float2str_fixed
+# define tro_float2str_E_T tro_float2str_E
+# define tro_float2str_e_T tro_float2str_e
+# define tro_float2str_fixed_E_T tro_float2str_fixed_E
+# define tro_float2str_fixed_e_T tro_float2str_fixed_e
 #endif
 
 // clang-format off
@@ -89,7 +99,7 @@ static size_t write_infinity(CHAR_T *out, size_t outcap);
 
 static size_t write_ninfinity(CHAR_T *out, size_t outcap);
 
-size_t tro__float2str_general_T(double num, uint32_t precision, CHAR_T *out,
+static size_t float2str_general(double num, uint32_t precision, CHAR_T *out,
                                 size_t outcap, bool shortest)
 {
 	if (out != NULL && outcap < 2) {
@@ -153,7 +163,7 @@ size_t tro__float2str_general_T(double num, uint32_t precision, CHAR_T *out,
 	return wout;
 }
 
-size_t tro__float2str_eE_T(double num, CHAR_T *out, size_t outcap,
+static size_t float2str_eE(double num, CHAR_T *out, size_t outcap,
                            bool capital_e)
 {
 	if (out != NULL && outcap < 2) {
@@ -201,7 +211,7 @@ size_t tro__float2str_eE_T(double num, CHAR_T *out, size_t outcap,
 	return wout;
 }
 
-size_t tro__float2str_fixed_eE_T(double num, uint32_t precision, CHAR_T *out,
+static size_t float2str_fixed_eE(double num, uint32_t precision, CHAR_T *out,
                                  size_t outcap, bool capital_e)
 {
 	if (out != NULL && outcap < 2) {
@@ -297,4 +307,43 @@ static size_t write_ninfinity(CHAR_T *out, size_t outcap)
 	}
 	out[wout] = '\0';
 	return wout;
+}
+
+size_t tro_float2str_T(double num, CHAR_T *out, size_t outcap)
+{
+	return float2str_general(num, 6, out, outcap, true);
+}
+
+size_t tro_float2str_adjustable_T(double num, uint32_t precision, CHAR_T *out,
+                                  size_t outcap)
+{
+	return float2str_general(num, precision, out, outcap, true);
+}
+
+size_t tro_float2str_fixed_T(double num, uint32_t precision, CHAR_T *out,
+                             size_t outcap)
+{
+	return float2str_general(num, precision, out, outcap, false);
+}
+
+size_t tro_float2str_E_T(double num, CHAR_T *out, size_t outcap)
+{
+	return float2str_eE(num, out, outcap, true);
+}
+
+size_t tro_float2str_e_T(double num, CHAR_T *out, size_t outcap)
+{
+	return float2str_eE(num, out, outcap, false);
+}
+
+size_t tro_float2str_fixed_E_T(double num, uint32_t precision, CHAR_T *out,
+                               size_t outcap)
+{
+	return float2str_fixed_eE(num, precision, out, outcap, true);
+}
+
+size_t tro_float2str_fixed_e_T(double num, uint32_t precision, CHAR_T *out,
+                               size_t outcap)
+{
+	return float2str_fixed_eE(num, precision, out, outcap, false);
 }

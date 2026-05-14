@@ -6,6 +6,16 @@
 
 #include "tro/uchar.h"
 
+size_t tro_strulen(const char *str)
+{
+	return tro_str8_urune_len(str, 0);
+}
+
+size_t tro_str16ulen(const tro_char16 *str)
+{
+	return tro_str16_urune_len(str, 0);
+}
+
 size_t tro_conv_str_to_str16(const char *in, size_t inlen, tro_char16 *out,
                              size_t outcap)
 {

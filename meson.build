@@ -1,6 +1,8 @@
 project(
     'libtro',
     'c',
+    # Manter MAJOR sincronizado com o
+    # PROJECT_NUMBER no Doxyfile.
     version: '0.1',
     meson_version: '>= 1.10.0',
     default_options: [
@@ -124,6 +126,8 @@ if is_unix_like
     pkg_mod = import('pkgconfig')
     pkg_mod.generate(
         lib,
+        # Manter sincronizado com o Doxyfile, com o
+        # README.md e com a descrição no GitHub.
         description: 'Uma biblioteca com funções semelhantes às do C para fins educacionais na Eletrônica, IF Sul Pelotas.',
     )
 endif

@@ -18,6 +18,9 @@ compile_commands.json
 __pycache__/
 *.pyc
 
+# Doxygen
+doc/dist
+
 # etc.
 *[Uu][Ss][Ee][Rr]*
 .env

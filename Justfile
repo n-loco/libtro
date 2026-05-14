@@ -11,6 +11,7 @@ set shell := ["sh", "-c"]
 python := if os() == "windows" { require("python") } else { require("python3") }
 meson := require("meson")
 clang-format := require("clang-format")
+doxygen := which('doxygen')
 
 # Opções #
 #========#
@@ -31,9 +32,9 @@ export MESON_BUILDDIR := build-dir
 # Documenta o Justfile.
 [arg("term", help="Opcional, para obter ajuda sobre um recipe em específico.")]
 [default]
-help term="":
-    @just {{ if term == "" { "--list" } else { "--usage " + term } }}
-    @echo {{ if term == "" { BOLD + MAGENTA + "DICA:" + NORMAL + " Use: just help help." } else { "" } }}
+@help term="":
+    just {{ if term == "" { "--list" } else { "--usage " + term } }}
+    echo {{ if term == "" { BOLD + MAGENTA + "DICA:" + NORMAL + " Use: just help help." } else { "" } }}
 
 # Cria setup do projeto Meson.
 setup:
@@ -60,3 +61,7 @@ format:
 [arg("tool", help="A ferramenta. (valores: CodeLLDB)")]
 config tool: setup
     {{ python }} tools/configs/{{ tool }}.py
+
+# Gera documentação (depende do Doxygen).
+document:
+    {{ if doxygen == "" { error("Doxygen não encontrado") } else { doxygen } }}

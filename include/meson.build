@@ -14,6 +14,7 @@ headers = [
     'tro/uchar.h',
     'tro/private/api.h',
     'tro/private/bool.h',
+    'tro/private/doxy.h',
 ]
 
 install_headers(headers, preserve_path: true)
