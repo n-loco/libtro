@@ -60,6 +60,6 @@ just config CodeLLDB
 que ira gerar um `launch.json` do *Visual Studio Code*
 com todos os *targets* gerados pelo **Meson**.
 
-> [!info]  
+> [!note]  
 > Sempre que um *target* novo é adicionado,
 > é recomendado executar esta tarefa novamente.
