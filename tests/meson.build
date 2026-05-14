@@ -8,3 +8,4 @@ general_test_libs_to_link = [lib]
 # Os testes.
 subdir('strconv')
 subdir('string')
+subdir('uchar')

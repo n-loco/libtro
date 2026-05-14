@@ -2,7 +2,6 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-#include <tro/string.h>
 #include <tro/uchar.h>
 
 #define urune_len_assert(name, expected, got)                                  \

@@ -2,7 +2,7 @@
 #include <stddef.h>
 #include <stdio.h>
 
-#include <tro/string.h>
+#include <tro/uchar.h>
 
 static bool impl__u16_assert(const char *name, const tro_u16code *eu16,
                              size_t eu16l, const tro_u16code *gu16,
@@ -12,8 +12,8 @@ static bool impl__u16_assert(const char *name, const tro_u16code *eu16,
 	if (!impl__u16_assert(name, eu16, eu16l, gu16, gu16l))                 \
 		return 1;
 
-static const tro_u16code EXPECT_A_WACUTE[TRO_MULTI_U16CODE_MAX]    = u"Á";
-static const tro_u16code EXPECT_EARTH_GLOBE[TRO_MULTI_U16CODE_MAX] = u"🌎";
+static const tro_u16code EXPECT_A_WACUTE[TRO_MULTI_U16CODE_MAX]        = u"Á";
+static const tro_u16code EXPECT_EARTH_GLOBE[TRO_MULTI_U16CODE_MAX + 1] = u"🌎";
 
 static const tro_u16code EXPECT_REPLACE_CHAR[TRO_MULTI_U16CODE_MAX] = u"�";
 

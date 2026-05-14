@@ -2,7 +2,7 @@
 #include <stddef.h>
 #include <stdio.h>
 
-#include <tro/string.h>
+#include <tro/uchar.h>
 
 static bool impl__u8_assert(const char *name, const tro_u8code *eu8,
                             size_t eu8l, const tro_u8code *gu8, size_t gu8l);
@@ -11,10 +11,10 @@ static bool impl__u8_assert(const char *name, const tro_u8code *eu8,
 	if (!impl__u8_assert(name, eu8, eu8l, gu8, gu8l))                      \
 		return 1;
 
-static const tro_u8code EXPECT_A[TRO_MULTI_U8CODE_MAX]           = "A";
-static const tro_u8code EXPECT_A_WACUTE[TRO_MULTI_U8CODE_MAX]    = "Á";
-static const tro_u8code EXPECT_CJK[TRO_MULTI_U8CODE_MAX]         = "界";
-static const tro_u8code EXPECT_EARTH_GLOBE[TRO_MULTI_U8CODE_MAX] = "🌎";
+static const tro_u8code EXPECT_A[TRO_MULTI_U8CODE_MAX]               = "A";
+static const tro_u8code EXPECT_A_WACUTE[TRO_MULTI_U8CODE_MAX]        = "Á";
+static const tro_u8code EXPECT_CJK[TRO_MULTI_U8CODE_MAX]             = "界";
+static const tro_u8code EXPECT_EARTH_GLOBE[TRO_MULTI_U8CODE_MAX + 1] = "🌎";
 
 static const tro_u8code EXPECT_REPLACE_CHAR[TRO_MULTI_U8CODE_MAX] = "�";
 
