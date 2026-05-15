@@ -9,8 +9,8 @@ def run_tool(toolexe: str, args: list[str]) -> int:
     TOOLNAME = path.basename(toolexe)
 
     argline: str
-    if len(args) > 6:
-        argline = ' '.join(args[:4]) + f' ...{ITALLIC}+{len(args) - 6}{RESET}'
+    if len(args) > 4:
+        argline = ' '.join(args[:4]) + f' ...{ITALLIC}+{len(args) - 4}{RESET}'
     else:
         argline = ' '.join(args)
 
