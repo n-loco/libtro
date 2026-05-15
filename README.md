@@ -18,7 +18,6 @@ a [documentação de referência online](https://n-loco.github.io/libtro).
  - [**Meson**](https://mesonbuild.com/) >= 1.10.x;
    - [**Ninja**](https://ninja-build.org/) >= 1.23.x — _**Meson** precisa_.
  - **Clang Format** >= 18.1.x — *opcional*
-   > [!note]  
    > Opcional para *build*, mas **extremamente**
    > recomendado para *desenvolvimento*.
  - [**Doxygen**](https://www.doxygen.nl/) >= 1.17.x — *opcional*.
