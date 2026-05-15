@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['tro_5fbuffer_5fcapacity_0',['TRO_BUFFER_CAPACITY',['../d3/d3c/troio_8h.html#a7c4628959a272e90c4beaae4a7f77aaa',1,'troio.h']]],
+  ['tro_5fcompiler_5fgcc_5flike_1',['TRO_COMPILER_GCC_LIKE',['../d9/d6a/conditionals_8h.html#a853c9e7f537c5689c09348a45ba27b21',1,'conditionals.h']]],
+  ['tro_5fcompiler_5fmsvc_2',['TRO_COMPILER_MSVC',['../d9/d6a/conditionals_8h.html#a628c7cc299155a114206519160bcbee8',1,'conditionals.h']]],
+  ['tro_5fdispatch_5fdybuffer_3',['tro_dispatch_dybuffer',['../d6/d60/dybuffer_8h.html#acb2b1f981162627854b2b675551d079d',1,'dybuffer.h']]],
+  ['tro_5ffdybuffer_4',['tro_fdybuffer',['../d3/d3c/troio_8h.html#af23ff27e9c25d4665cd1a517c1412962',1,'troio.h']]],
+  ['tro_5ffloat_5fchar_5fmax_5fprecision_5',['TRO_FLOAT_CHAR_MAX_PRECISION',['../da/d55/strconv_8h.html#af3922d6d851d091a367867de00105af1',1,'strconv.h']]],
+  ['tro_5ffloat_5fe_5fchar_5fmax_6',['TRO_FLOAT_E_CHAR_MAX',['../da/d55/strconv_8h.html#ac268ba431e65ea21c3e865d70bc94e18',1,'strconv.h']]],
+  ['tro_5ffloat_5ffixed_5fchar_5fmax_7',['TRO_FLOAT_FIXED_CHAR_MAX',['../da/d55/strconv_8h.html#ac94cff3ccf158e3024ecc43cf9859bec',1,'strconv.h']]],
+  ['tro_5fint_5fchar_5fmax_8',['TRO_INT_CHAR_MAX',['../da/d55/strconv_8h.html#a08302314cf43892dc97c09f28da23176',1,'strconv.h']]],
+  ['tro_5fmulti_5fu16code_5fmax_9',['TRO_MULTI_U16CODE_MAX',['../d5/d5e/uchar_8h.html#a42c5e98c3a0c64b1d1557ffc9ab30adb',1,'uchar.h']]],
+  ['tro_5fmulti_5fu8code_5fmax_10',['TRO_MULTI_U8CODE_MAX',['../d5/d5e/uchar_8h.html#a4ea70217bb9a3b97cb649727d750b542',1,'uchar.h']]],
+  ['tro_5fstr16dybuf_5fdybuffer_11',['tro_str16dybuf_dybuffer',['../da/d66/string_8h.html#a6b787aa76502e3aebe11738509a5d361',1,'string.h']]],
+  ['tro_5fstrdybuf_5fdybuffer_12',['tro_strdybuf_dybuffer',['../da/d66/string_8h.html#add9b41e787849908a32a7a38d2ff672c',1,'string.h']]],
+  ['tro_5fsystem_5fandroid_5flinux_13',['TRO_SYSTEM_ANDROID_LINUX',['../d9/d6a/conditionals_8h.html#a3eaa3bee6f9311725cf74ed34252ba4b',1,'conditionals.h']]],
+  ['tro_5fsystem_5fbsd_14',['TRO_SYSTEM_BSD',['../d9/d6a/conditionals_8h.html#a202cc31420b8862ddd4949fdcd9f5862',1,'conditionals.h']]],
+  ['tro_5fsystem_5fbsd_5flike_15',['TRO_SYSTEM_BSD_LIKE',['../d9/d6a/conditionals_8h.html#aa26b42f9d6ab58c39f806c2bd90e61e5',1,'conditionals.h']]],
+  ['tro_5fsystem_5fdarwin_16',['TRO_SYSTEM_DARWIN',['../d9/d6a/conditionals_8h.html#a706ea34cacf5b9c333ab043314f5e097',1,'conditionals.h']]],
+  ['tro_5fsystem_5fgeneric_5flinux_17',['TRO_SYSTEM_GENERIC_LINUX',['../d9/d6a/conditionals_8h.html#a2e4d77c024be5cf611f0546e143505d8',1,'conditionals.h']]],
+  ['tro_5fsystem_5flinux_18',['TRO_SYSTEM_LINUX',['../d9/d6a/conditionals_8h.html#a100c3055b49791b4bded39bd746cc427',1,'conditionals.h']]],
+  ['tro_5fsystem_5funix_5flike_19',['TRO_SYSTEM_UNIX_LIKE',['../d9/d6a/conditionals_8h.html#a0a25d3c8564506ce7fb13a6a6abdf08b',1,'conditionals.h']]],
+  ['tro_5fsystem_5fwin32_20',['TRO_SYSTEM_WIN32',['../d9/d6a/conditionals_8h.html#a4207a2ae4abe926eb50ec6f31bf9e527',1,'conditionals.h']]],
+  ['tro_5fuint_5fchar_5fmax_21',['TRO_UINT_CHAR_MAX',['../da/d55/strconv_8h.html#a3fda8cc72656618e7b8526393242efe9',1,'strconv.h']]],
+  ['tro_5furune_5fis_5fvalid_22',['TRO_URUNE_IS_VALID',['../d5/d5e/uchar_8h.html#aed415bf99af95f7fd063059ca9e99d33',1,'uchar.h']]],
+  ['tro_5furune_5fmax_23',['TRO_URUNE_MAX',['../d5/d5e/uchar_8h.html#adb11081eca597e00fc4acc3593431490',1,'uchar.h']]]
+];

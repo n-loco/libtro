@@ -1,0 +1,314 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LibTRO: Referência do Arquivo tro/conditionals.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../codefolding.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../navtreedata.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">LibTRO<span id="projectnumber">&#160;0</span>
+   </div>
+   <div id="projectbrief">Uma biblioteca com funções semelhantes às do C                           para fins educacionais na Eletrônica, IF Sul Pelotas.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "../../search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('../../',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Busca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('d9/d6a/conditionals_8h.html','../../',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrado</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referência do Arquivo conditionals.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><a href="../../d9/d6a/conditionals_8h_source.html">Ir para o código-fonte desse arquivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Definições e Macros</h2></td></tr>
+<tr class="memitem:a628c7cc299155a114206519160bcbee8" id="r_a628c7cc299155a114206519160bcbee8"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a628c7cc299155a114206519160bcbee8">TRO_COMPILER_MSVC</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memitem:a853c9e7f537c5689c09348a45ba27b21" id="r_a853c9e7f537c5689c09348a45ba27b21"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a853c9e7f537c5689c09348a45ba27b21">TRO_COMPILER_GCC_LIKE</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memitem:a4207a2ae4abe926eb50ec6f31bf9e527" id="r_a4207a2ae4abe926eb50ec6f31bf9e527"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a4207a2ae4abe926eb50ec6f31bf9e527">TRO_SYSTEM_WIN32</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memitem:a0a25d3c8564506ce7fb13a6a6abdf08b" id="r_a0a25d3c8564506ce7fb13a6a6abdf08b"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a0a25d3c8564506ce7fb13a6a6abdf08b">TRO_SYSTEM_UNIX_LIKE</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memitem:a706ea34cacf5b9c333ab043314f5e097" id="r_a706ea34cacf5b9c333ab043314f5e097"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a706ea34cacf5b9c333ab043314f5e097">TRO_SYSTEM_DARWIN</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memitem:a100c3055b49791b4bded39bd746cc427" id="r_a100c3055b49791b4bded39bd746cc427"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a100c3055b49791b4bded39bd746cc427">TRO_SYSTEM_LINUX</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memitem:a3eaa3bee6f9311725cf74ed34252ba4b" id="r_a3eaa3bee6f9311725cf74ed34252ba4b"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a3eaa3bee6f9311725cf74ed34252ba4b">TRO_SYSTEM_ANDROID_LINUX</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memitem:a2e4d77c024be5cf611f0546e143505d8" id="r_a2e4d77c024be5cf611f0546e143505d8"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a2e4d77c024be5cf611f0546e143505d8">TRO_SYSTEM_GENERIC_LINUX</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memitem:a202cc31420b8862ddd4949fdcd9f5862" id="r_a202cc31420b8862ddd4949fdcd9f5862"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a202cc31420b8862ddd4949fdcd9f5862">TRO_SYSTEM_BSD</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memitem:aa26b42f9d6ab58c39f806c2bd90e61e5" id="r_aa26b42f9d6ab58c39f806c2bd90e61e5"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aa26b42f9d6ab58c39f806c2bd90e61e5">TRO_SYSTEM_BSD_LIKE</a>&#160;&#160;&#160;0</td></tr>
+</table>
+<a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Definições e macros</h2>
+<a id="a628c7cc299155a114206519160bcbee8" name="a628c7cc299155a114206519160bcbee8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a628c7cc299155a114206519160bcbee8">&#9670;&#160;</a></span>TRO_COMPILER_MSVC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRO_COMPILER_MSVC&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>1 se o compilador for <b>MSVC</b>, 0 caso contrário. </p>
+
+</div>
+</div>
+<a id="a853c9e7f537c5689c09348a45ba27b21" name="a853c9e7f537c5689c09348a45ba27b21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a853c9e7f537c5689c09348a45ba27b21">&#9670;&#160;</a></span>TRO_COMPILER_GCC_LIKE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRO_COMPILER_GCC_LIKE&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>1 se o compilador for <b>tipo GCC</b> (o próprio <em>GCC</em>, <em>Clang</em>, etc.), 0 caso contrário. </p>
+
+</div>
+</div>
+<a id="a4207a2ae4abe926eb50ec6f31bf9e527" name="a4207a2ae4abe926eb50ec6f31bf9e527"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4207a2ae4abe926eb50ec6f31bf9e527">&#9670;&#160;</a></span>TRO_SYSTEM_WIN32</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRO_SYSTEM_WIN32&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>1 se o sistema for <b>Win32</b> (<em>Windows</em>), 0 caso contrário. </p>
+
+</div>
+</div>
+<a id="a0a25d3c8564506ce7fb13a6a6abdf08b" name="a0a25d3c8564506ce7fb13a6a6abdf08b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a25d3c8564506ce7fb13a6a6abdf08b">&#9670;&#160;</a></span>TRO_SYSTEM_UNIX_LIKE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRO_SYSTEM_UNIX_LIKE&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>1 se o sistema for <b>UNIX®</b> ou <b>tipo Unix</b>, 0 caso contrário. </p>
+
+</div>
+</div>
+<a id="a706ea34cacf5b9c333ab043314f5e097" name="a706ea34cacf5b9c333ab043314f5e097"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a706ea34cacf5b9c333ab043314f5e097">&#9670;&#160;</a></span>TRO_SYSTEM_DARWIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRO_SYSTEM_DARWIN&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>1 se o sistema for <b>Darwin</b> (<em>macOS</em> e <em>iOS</em>), 0 caso contrário.</p>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="#a0a25d3c8564506ce7fb13a6a6abdf08b">TRO_SYSTEM_UNIX_LIKE</a> </dd></dl>
+
+</div>
+</div>
+<a id="a100c3055b49791b4bded39bd746cc427" name="a100c3055b49791b4bded39bd746cc427"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a100c3055b49791b4bded39bd746cc427">&#9670;&#160;</a></span>TRO_SYSTEM_LINUX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRO_SYSTEM_LINUX&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>1 se o sistema for <b>derivado de Linux</b> (distribuições no geral, como <em>Ubuntu</em>, <em>Fedora</em> ou <em>Android</em>), 0 caso contrário.</p>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="#a0a25d3c8564506ce7fb13a6a6abdf08b">TRO_SYSTEM_UNIX_LIKE</a> </dd></dl>
+
+</div>
+</div>
+<a id="a3eaa3bee6f9311725cf74ed34252ba4b" name="a3eaa3bee6f9311725cf74ed34252ba4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3eaa3bee6f9311725cf74ed34252ba4b">&#9670;&#160;</a></span>TRO_SYSTEM_ANDROID_LINUX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRO_SYSTEM_ANDROID_LINUX&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>1 se o sistema for <b>Android</b>, 0 caso contrário.</p>
+<dl class="section note"><dt>Observação</dt><dd>O motivo desta condicional é para pessoas que <b>usam celulares Android para programar</b>, usando editores de código de celular ou via <em>Termux</em>.</dd></dl>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="#a0a25d3c8564506ce7fb13a6a6abdf08b">TRO_SYSTEM_UNIX_LIKE</a> </dd></dl>
+
+</div>
+</div>
+<a id="a2e4d77c024be5cf611f0546e143505d8" name="a2e4d77c024be5cf611f0546e143505d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e4d77c024be5cf611f0546e143505d8">&#9670;&#160;</a></span>TRO_SYSTEM_GENERIC_LINUX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRO_SYSTEM_GENERIC_LINUX&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>1 se o sistema for <b>derivado de Linux</b> que <b>não Android</b>, 0 caso contrário.</p>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="#a0a25d3c8564506ce7fb13a6a6abdf08b">TRO_SYSTEM_UNIX_LIKE</a> </dd></dl>
+
+</div>
+</div>
+<a id="a202cc31420b8862ddd4949fdcd9f5862" name="a202cc31420b8862ddd4949fdcd9f5862"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a202cc31420b8862ddd4949fdcd9f5862">&#9670;&#160;</a></span>TRO_SYSTEM_BSD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRO_SYSTEM_BSD&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>1 se o sistema for <b>derivado de BSD</b>, 0 caso contrário.</p>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="#a0a25d3c8564506ce7fb13a6a6abdf08b">TRO_SYSTEM_UNIX_LIKE</a> </dd></dl>
+
+</div>
+</div>
+<a id="aa26b42f9d6ab58c39f806c2bd90e61e5" name="aa26b42f9d6ab58c39f806c2bd90e61e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa26b42f9d6ab58c39f806c2bd90e61e5">&#9670;&#160;</a></span>TRO_SYSTEM_BSD_LIKE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRO_SYSTEM_BSD_LIKE&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Igual ao <a class="el" href="#a202cc31420b8862ddd4949fdcd9f5862" title="TRO_SYSTEM_BSD">TRO_SYSTEM_BSD</a>, mas se o sistema for <b>Darwin</b>, também resulta em 1.</p>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="#a0a25d3c8564506ce7fb13a6a6abdf08b">TRO_SYSTEM_UNIX_LIKE</a> </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>tro</b></li><li class="navelem"><a href="../../d9/d6a/conditionals_8h.html">conditionals.h</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

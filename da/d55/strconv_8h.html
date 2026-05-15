@@ -1,0 +1,977 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LibTRO: Referência do Arquivo tro/strconv.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../codefolding.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../navtreedata.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">LibTRO<span id="projectnumber">&#160;0</span>
+   </div>
+   <div id="projectbrief">Uma biblioteca com funções semelhantes às do C                           para fins educacionais na Eletrônica, IF Sul Pelotas.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "../../search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('../../',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Busca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('da/d55/strconv_8h.html','../../',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrado</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referência do Arquivo strconv.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><a href="../../da/d55/strconv_8h_source.html">Ir para o código-fonte desse arquivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Definições e Macros</h2></td></tr>
+<tr class="memitem:a08302314cf43892dc97c09f28da23176" id="r_a08302314cf43892dc97c09f28da23176"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a08302314cf43892dc97c09f28da23176">TRO_INT_CHAR_MAX</a>&#160;&#160;&#160;21</td></tr>
+<tr class="memitem:a3fda8cc72656618e7b8526393242efe9" id="r_a3fda8cc72656618e7b8526393242efe9"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a3fda8cc72656618e7b8526393242efe9">TRO_UINT_CHAR_MAX</a>&#160;&#160;&#160;20</td></tr>
+<tr class="memitem:af3922d6d851d091a367867de00105af1" id="r_af3922d6d851d091a367867de00105af1"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#af3922d6d851d091a367867de00105af1">TRO_FLOAT_CHAR_MAX_PRECISION</a>&#160;&#160;&#160;17</td></tr>
+<tr class="memitem:ac94cff3ccf158e3024ecc43cf9859bec" id="r_ac94cff3ccf158e3024ecc43cf9859bec"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ac94cff3ccf158e3024ecc43cf9859bec">TRO_FLOAT_FIXED_CHAR_MAX</a>&#160;&#160;&#160;(2 + 309 + <a class="el" href="#af3922d6d851d091a367867de00105af1">TRO_FLOAT_CHAR_MAX_PRECISION</a>)</td></tr>
+<tr class="memitem:ac268ba431e65ea21c3e865d70bc94e18" id="r_ac268ba431e65ea21c3e865d70bc94e18"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ac268ba431e65ea21c3e865d70bc94e18">TRO_FLOAT_E_CHAR_MAX</a>&#160;&#160;&#160;25</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:a351f17d577f9b1f3eeb7e6199a13dba2" id="r_a351f17d577f9b1f3eeb7e6199a13dba2"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a351f17d577f9b1f3eeb7e6199a13dba2">tro_int2str</a> (int64_t num, char *out, size_t outcap)</td></tr>
+<tr class="memitem:a6bc630cd83bcefd8a3cfb1da28c30c8d" id="r_a6bc630cd83bcefd8a3cfb1da28c30c8d"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a6bc630cd83bcefd8a3cfb1da28c30c8d">tro_uint2str</a> (uint64_t num, char *out, size_t outcap)</td></tr>
+<tr class="memitem:af26e0b3a959806240db112ce40af015d" id="r_af26e0b3a959806240db112ce40af015d"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#af26e0b3a959806240db112ce40af015d">tro_int2str16</a> (int64_t num, <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *out, size_t outcap)</td></tr>
+<tr class="memitem:a52781d6271c278084fcc5c27e22d48cd" id="r_a52781d6271c278084fcc5c27e22d48cd"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a52781d6271c278084fcc5c27e22d48cd">tro_uint2str16</a> (uint64_t num, <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *out, size_t outcap)</td></tr>
+<tr class="memitem:af01f773e186427c2730f83948b429f19" id="r_af01f773e186427c2730f83948b429f19"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#af01f773e186427c2730f83948b429f19">tro_float2str</a> (double num, char *out, size_t outcap)</td></tr>
+<tr class="memitem:ad806ef61c02ac46f6cc85e047bdbffc4" id="r_ad806ef61c02ac46f6cc85e047bdbffc4"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#ad806ef61c02ac46f6cc85e047bdbffc4">tro_float2str_adjustable</a> (double num, uint32_t precision, char *out, size_t outcap)</td></tr>
+<tr class="memitem:a9978f006ee654d7d5448e02b1372c7d8" id="r_a9978f006ee654d7d5448e02b1372c7d8"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a9978f006ee654d7d5448e02b1372c7d8">tro_float2str_fixed</a> (double num, uint32_t precision, char *out, size_t outcap)</td></tr>
+<tr class="memitem:a53a812f8e9191da8e6a6593c0fde3187" id="r_a53a812f8e9191da8e6a6593c0fde3187"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a53a812f8e9191da8e6a6593c0fde3187">tro_float2str_E</a> (double num, char *out, size_t outcap)</td></tr>
+<tr class="memitem:ab1c9696acb6173c5809849c386ba52ee" id="r_ab1c9696acb6173c5809849c386ba52ee"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#ab1c9696acb6173c5809849c386ba52ee">tro_float2str_e</a> (double num, char *out, size_t outcap)</td></tr>
+<tr class="memitem:ae9caa154344d673fdbc7d578a1b7f981" id="r_ae9caa154344d673fdbc7d578a1b7f981"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#ae9caa154344d673fdbc7d578a1b7f981">tro_float2str_fixed_E</a> (double num, uint32_t precision, char *out, size_t outcap)</td></tr>
+<tr class="memitem:ab9a0462a4902461d88932232f247be37" id="r_ab9a0462a4902461d88932232f247be37"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#ab9a0462a4902461d88932232f247be37">tro_float2str_fixed_e</a> (double num, uint32_t precision, char *out, size_t outcap)</td></tr>
+<tr class="memitem:a00fc464b3ea1769b4ad706721a5aa6df" id="r_a00fc464b3ea1769b4ad706721a5aa6df"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a00fc464b3ea1769b4ad706721a5aa6df">tro_float2str16</a> (double num, <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *out, size_t outcap)</td></tr>
+<tr class="memitem:aa23738fd64e3784da88192912ef74b0c" id="r_aa23738fd64e3784da88192912ef74b0c"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#aa23738fd64e3784da88192912ef74b0c">tro_float2str16_adjustable</a> (double num, uint32_t precision, <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *out, size_t outcap)</td></tr>
+<tr class="memitem:ac27b0a224b4ea28ddba6c57fa16cf415" id="r_ac27b0a224b4ea28ddba6c57fa16cf415"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#ac27b0a224b4ea28ddba6c57fa16cf415">tro_float2str16_fixed</a> (double num, uint32_t precision, <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *out, size_t outcap)</td></tr>
+<tr class="memitem:a57a2c4e1c7fcf57bf320055c84e1eafb" id="r_a57a2c4e1c7fcf57bf320055c84e1eafb"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a57a2c4e1c7fcf57bf320055c84e1eafb">tro_float2str16_E</a> (double num, <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *out, size_t outcap)</td></tr>
+<tr class="memitem:a24c77e82f1aa9f741053ea37e3a40d91" id="r_a24c77e82f1aa9f741053ea37e3a40d91"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a24c77e82f1aa9f741053ea37e3a40d91">tro_float2str16_e</a> (double num, <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *out, size_t outcap)</td></tr>
+<tr class="memitem:a7a650a084e8d041c25e216658d15cd9b" id="r_a7a650a084e8d041c25e216658d15cd9b"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a7a650a084e8d041c25e216658d15cd9b">tro_float2str16_fixed_E</a> (double num, uint32_t precision, <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *out, size_t outcap)</td></tr>
+<tr class="memitem:ac1d2329f12b75f50867feb47f1f7b32a" id="r_ac1d2329f12b75f50867feb47f1f7b32a"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#ac1d2329f12b75f50867feb47f1f7b32a">tro_float2str16_fixed_e</a> (double num, uint32_t precision, <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *out, size_t outcap)</td></tr>
+</table>
+<a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Definições e macros</h2>
+<a id="a08302314cf43892dc97c09f28da23176" name="a08302314cf43892dc97c09f28da23176"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08302314cf43892dc97c09f28da23176">&#9670;&#160;</a></span>TRO_INT_CHAR_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRO_INT_CHAR_MAX&#160;&#160;&#160;21</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Comprimento <b>máximo</b> que uma <b>string</b> pode chegar em uma conversão de um <em>inteiro</em> para uma <em>strint decimal</em> desconsiderando o <span class="tt">'\0'</span> no final.</p>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="#a351f17d577f9b1f3eeb7e6199a13dba2">tro_int2str</a> </dd>
+<dd>
+<a class="el" href="#af26e0b3a959806240db112ce40af015d">tro_int2str16</a> </dd></dl>
+
+</div>
+</div>
+<a id="a3fda8cc72656618e7b8526393242efe9" name="a3fda8cc72656618e7b8526393242efe9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fda8cc72656618e7b8526393242efe9">&#9670;&#160;</a></span>TRO_UINT_CHAR_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRO_UINT_CHAR_MAX&#160;&#160;&#160;20</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Comprimento <b>máximo</b> que uma <b>string</b> pode chegar em uma conversão de um <em>inteiro sem sinal</em> para uma <em>strint decimal</em> desconsiderando o <span class="tt">'\0'</span> no final.</p>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="#a6bc630cd83bcefd8a3cfb1da28c30c8d">tro_uint2str</a> </dd>
+<dd>
+<a class="el" href="#a52781d6271c278084fcc5c27e22d48cd">tro_uint2str16</a> </dd></dl>
+
+</div>
+</div>
+<a id="af3922d6d851d091a367867de00105af1" name="af3922d6d851d091a367867de00105af1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3922d6d851d091a367867de00105af1">&#9670;&#160;</a></span>TRO_FLOAT_CHAR_MAX_PRECISION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRO_FLOAT_CHAR_MAX_PRECISION&#160;&#160;&#160;17</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Precisão <b>máxima</b> suportada por funções de conversão de <em>número de ponto flutuante</em> para <em>string</em>. </p>
+
+</div>
+</div>
+<a id="ac94cff3ccf158e3024ecc43cf9859bec" name="ac94cff3ccf158e3024ecc43cf9859bec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac94cff3ccf158e3024ecc43cf9859bec">&#9670;&#160;</a></span>TRO_FLOAT_FIXED_CHAR_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRO_FLOAT_FIXED_CHAR_MAX&#160;&#160;&#160;(2 + 309 + <a class="el" href="#af3922d6d851d091a367867de00105af1">TRO_FLOAT_CHAR_MAX_PRECISION</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Comprimento <b>máximo</b> que uma <b>string</b> pode chegar em uma conversão de um <em>número de ponto flutuante</em> para uma <em>strint de um número real</em> desconsiderando o <span class="tt">'\0'</span> no final.</p>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="#af01f773e186427c2730f83948b429f19">tro_float2str</a> </dd>
+<dd>
+<a class="el" href="#ad806ef61c02ac46f6cc85e047bdbffc4">tro_float2str_adjustable</a> </dd>
+<dd>
+<a class="el" href="#a9978f006ee654d7d5448e02b1372c7d8">tro_float2str_fixed</a> </dd>
+<dd>
+<a class="el" href="#a00fc464b3ea1769b4ad706721a5aa6df">tro_float2str16</a> </dd>
+<dd>
+<a class="el" href="#aa23738fd64e3784da88192912ef74b0c">tro_float2str16_adjustable</a> </dd>
+<dd>
+<a class="el" href="#ac27b0a224b4ea28ddba6c57fa16cf415">tro_float2str16_fixed</a> </dd></dl>
+
+</div>
+</div>
+<a id="ac268ba431e65ea21c3e865d70bc94e18" name="ac268ba431e65ea21c3e865d70bc94e18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac268ba431e65ea21c3e865d70bc94e18">&#9670;&#160;</a></span>TRO_FLOAT_E_CHAR_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRO_FLOAT_E_CHAR_MAX&#160;&#160;&#160;25</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Comprimento <b>máximo</b> que uma <b>string</b> pode chegar em uma conversão de um <em>número de ponto flutuante</em> para uma <em>strint de um número em notação E</em> desconsiderando o <span class="tt">'\0'</span> no final.</p>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="#a53a812f8e9191da8e6a6593c0fde3187">tro_float2str_E</a> </dd>
+<dd>
+<a class="el" href="#ab1c9696acb6173c5809849c386ba52ee">tro_float2str_e</a> </dd>
+<dd>
+<a class="el" href="#ae9caa154344d673fdbc7d578a1b7f981">tro_float2str_fixed_E</a> </dd>
+<dd>
+<a class="el" href="#ab9a0462a4902461d88932232f247be37">tro_float2str_fixed_e</a> </dd>
+<dd>
+<a class="el" href="#a57a2c4e1c7fcf57bf320055c84e1eafb">tro_float2str16_E</a> </dd>
+<dd>
+<a class="el" href="#a24c77e82f1aa9f741053ea37e3a40d91">tro_float2str16_e</a> </dd>
+<dd>
+<a class="el" href="#a7a650a084e8d041c25e216658d15cd9b">tro_float2str16_fixed_E</a> </dd>
+<dd>
+<a class="el" href="#ac1d2329f12b75f50867feb47f1f7b32a">tro_float2str16_fixed_e</a> </dd></dl>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Funções</h2>
+<a id="a351f17d577f9b1f3eeb7e6199a13dba2" name="a351f17d577f9b1f3eeb7e6199a13dba2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a351f17d577f9b1f3eeb7e6199a13dba2">&#9670;&#160;</a></span>tro_int2str()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_int2str </td>
+          <td>(</td>
+          <td class="paramtype">int64_t</td>          <td class="paramname"><span class="paramname"><em>num</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>outcap</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Faz uma conversão de um <em>inteiro</em> para uma <b>string decimal UTF-8</b>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>é o <em>número</em> em questão. </td></tr>
+    <tr><td class="paramname">out</td><td>é onde a <em>string</em> será escrita. </td></tr>
+    <tr><td class="paramname">outcap</td><td>é a capacidade de <span class="tt">out</span>, idealmente <span class="tt"><a class="el" href="#a08302314cf43892dc97c09f28da23176">TRO_INT_CHAR_MAX</a> + 1</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>o comprimento final da <em>string</em>. </dd></dl>
+
+</div>
+</div>
+<a id="a6bc630cd83bcefd8a3cfb1da28c30c8d" name="a6bc630cd83bcefd8a3cfb1da28c30c8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bc630cd83bcefd8a3cfb1da28c30c8d">&#9670;&#160;</a></span>tro_uint2str()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_uint2str </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>num</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>outcap</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Faz uma conversão de um <em>inteiro sem sinal</em> para uma <b>string decimal UTF-8</b>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>é o <em>número</em> em questão. </td></tr>
+    <tr><td class="paramname">out</td><td>é onde a <em>string</em> será escrita. </td></tr>
+    <tr><td class="paramname">outcap</td><td>é a capacidade de <span class="tt">out</span>, idealmente <span class="tt"><a class="el" href="#a3fda8cc72656618e7b8526393242efe9">TRO_UINT_CHAR_MAX</a> + 1</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>o comprimento final da <em>string</em>. </dd></dl>
+
+</div>
+</div>
+<a id="af26e0b3a959806240db112ce40af015d" name="af26e0b3a959806240db112ce40af015d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af26e0b3a959806240db112ce40af015d">&#9670;&#160;</a></span>tro_int2str16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_int2str16 </td>
+          <td>(</td>
+          <td class="paramtype">int64_t</td>          <td class="paramname"><span class="paramname"><em>num</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>outcap</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Faz uma conversão de um <em>inteiro</em> para uma <b>string decimal UTF-16</b>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>é o <em>número</em> em questão. </td></tr>
+    <tr><td class="paramname">out</td><td>é onde a <em>string</em> será escrita. </td></tr>
+    <tr><td class="paramname">outcap</td><td>é a capacidade de <span class="tt">out</span>, idealmente <span class="tt"><a class="el" href="#a08302314cf43892dc97c09f28da23176">TRO_INT_CHAR_MAX</a> + 1</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>o comprimento final da <em>string</em>. </dd></dl>
+
+</div>
+</div>
+<a id="a52781d6271c278084fcc5c27e22d48cd" name="a52781d6271c278084fcc5c27e22d48cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52781d6271c278084fcc5c27e22d48cd">&#9670;&#160;</a></span>tro_uint2str16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_uint2str16 </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>num</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>outcap</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Faz uma conversão de um <em>inteiro sem sinal</em> para uma <b>string decimal UTF-16</b>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>é o <em>número</em> em questão. </td></tr>
+    <tr><td class="paramname">out</td><td>é onde a <em>string</em> será escrita. </td></tr>
+    <tr><td class="paramname">outcap</td><td>é a capacidade de <span class="tt">out</span>, idealmente <span class="tt"><a class="el" href="#a3fda8cc72656618e7b8526393242efe9">TRO_UINT_CHAR_MAX</a> + 1</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>o comprimento final da <em>string</em>. </dd></dl>
+
+</div>
+</div>
+<a id="af01f773e186427c2730f83948b429f19" name="af01f773e186427c2730f83948b429f19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af01f773e186427c2730f83948b429f19">&#9670;&#160;</a></span>tro_float2str()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_float2str </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>num</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>outcap</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Faz uma conversão de um <em>número de ponto flutuante</em> para uma <b>string de número real UTF-8</b>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>é o <em>número</em> em questão. </td></tr>
+    <tr><td class="paramname">out</td><td>é onde a <em>string</em> será escrita. </td></tr>
+    <tr><td class="paramname">outcap</td><td>é a capacidade de <span class="tt">out</span>, idealmente <span class="tt"><a class="el" href="#ac94cff3ccf158e3024ecc43cf9859bec">TRO_FLOAT_FIXED_CHAR_MAX</a> + 1</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>o comprimento final da <em>string</em>. </dd></dl>
+
+</div>
+</div>
+<a id="ad806ef61c02ac46f6cc85e047bdbffc4" name="ad806ef61c02ac46f6cc85e047bdbffc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad806ef61c02ac46f6cc85e047bdbffc4">&#9670;&#160;</a></span>tro_float2str_adjustable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_float2str_adjustable </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>num</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>precision</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>outcap</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Faz uma conversão com <b>precisão ajustável</b> de um <em>número de ponto flutuante</em> para uma <b>string de número real UTF-8</b>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>é o <em>número</em> em questão. </td></tr>
+    <tr><td class="paramname">precision</td><td>é a <em>precisão</em> em casas da fração. </td></tr>
+    <tr><td class="paramname">out</td><td>é onde a <em>string</em> será escrita. </td></tr>
+    <tr><td class="paramname">outcap</td><td>é a capacidade de <span class="tt">out</span>, idealmente <span class="tt"><a class="el" href="#ac94cff3ccf158e3024ecc43cf9859bec">TRO_FLOAT_FIXED_CHAR_MAX</a> + 1</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>o comprimento final da <em>string</em>. </dd></dl>
+
+</div>
+</div>
+<a id="a9978f006ee654d7d5448e02b1372c7d8" name="a9978f006ee654d7d5448e02b1372c7d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9978f006ee654d7d5448e02b1372c7d8">&#9670;&#160;</a></span>tro_float2str_fixed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_float2str_fixed </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>num</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>precision</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>outcap</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Faz uma conversão com <b>casas fixas de fração</b> de um <em>número de ponto flutuante</em> para uma <b>string de número real UTF-8</b>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>é o <em>número</em> em questão. </td></tr>
+    <tr><td class="paramname">precision</td><td>é a <em>precisão</em> em casas da fração. </td></tr>
+    <tr><td class="paramname">out</td><td>é onde a <em>string</em> será escrita. </td></tr>
+    <tr><td class="paramname">outcap</td><td>é a capacidade de <span class="tt">out</span>, idealmente <span class="tt"><a class="el" href="#ac94cff3ccf158e3024ecc43cf9859bec">TRO_FLOAT_FIXED_CHAR_MAX</a> + 1</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>o comprimento final da <em>string</em>. </dd></dl>
+
+</div>
+</div>
+<a id="a53a812f8e9191da8e6a6593c0fde3187" name="a53a812f8e9191da8e6a6593c0fde3187"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53a812f8e9191da8e6a6593c0fde3187">&#9670;&#160;</a></span>tro_float2str_E()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_float2str_E </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>num</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>outcap</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Faz uma conversão de um <em>número de ponto flutuante</em> para uma <b>string de número em notação E UTF-8</b>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>é o <em>número</em> em questão. </td></tr>
+    <tr><td class="paramname">out</td><td>é onde a <em>string</em> será escrita. </td></tr>
+    <tr><td class="paramname">outcap</td><td>é a capacidade de <span class="tt">out</span>, idealmente <span class="tt"><a class="el" href="#ac268ba431e65ea21c3e865d70bc94e18">TRO_FLOAT_E_CHAR_MAX</a> + 1</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>o comprimento final da <em>string</em>. </dd></dl>
+
+</div>
+</div>
+<a id="ab1c9696acb6173c5809849c386ba52ee" name="ab1c9696acb6173c5809849c386ba52ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1c9696acb6173c5809849c386ba52ee">&#9670;&#160;</a></span>tro_float2str_e()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_float2str_e </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>num</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>outcap</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Faz uma conversão de um <em>número de ponto flutuante</em> para uma <b>string de número em notação E (minúsculo) UTF-8</b>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>é o <em>número</em> em questão. </td></tr>
+    <tr><td class="paramname">out</td><td>é onde a <em>string</em> será escrita. </td></tr>
+    <tr><td class="paramname">outcap</td><td>é a capacidade de <span class="tt">out</span>, idealmente <span class="tt"><a class="el" href="#ac268ba431e65ea21c3e865d70bc94e18">TRO_FLOAT_E_CHAR_MAX</a> + 1</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>o comprimento final da <em>string</em>. </dd></dl>
+
+</div>
+</div>
+<a id="ae9caa154344d673fdbc7d578a1b7f981" name="ae9caa154344d673fdbc7d578a1b7f981"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9caa154344d673fdbc7d578a1b7f981">&#9670;&#160;</a></span>tro_float2str_fixed_E()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_float2str_fixed_E </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>num</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>precision</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>outcap</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Faz uma conversão com <b>precisão fixa</b> de um <em>número de ponto flutuante</em> para uma <b>string de número em notação E UTF-8</b>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>é o <em>número</em> em questão. </td></tr>
+    <tr><td class="paramname">precision</td><td>é a <em>precisão</em> em casas da fração. </td></tr>
+    <tr><td class="paramname">out</td><td>é onde a <em>string</em> será escrita. </td></tr>
+    <tr><td class="paramname">outcap</td><td>é a capacidade de <span class="tt">out</span>, idealmente <span class="tt"><a class="el" href="#ac268ba431e65ea21c3e865d70bc94e18">TRO_FLOAT_E_CHAR_MAX</a> + 1</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>o comprimento final da <em>string</em>. </dd></dl>
+
+</div>
+</div>
+<a id="ab9a0462a4902461d88932232f247be37" name="ab9a0462a4902461d88932232f247be37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9a0462a4902461d88932232f247be37">&#9670;&#160;</a></span>tro_float2str_fixed_e()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_float2str_fixed_e </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>num</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>precision</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>outcap</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Faz uma conversão com <b>precisão fixa</b> de um <em>número de ponto flutuante</em> para uma <b>string de número em notação E (minúsculo) UTF-8</b>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>é o <em>número</em> em questão. </td></tr>
+    <tr><td class="paramname">precision</td><td>é a <em>precisão</em> em casas da fração. </td></tr>
+    <tr><td class="paramname">out</td><td>é onde a <em>string</em> será escrita. </td></tr>
+    <tr><td class="paramname">outcap</td><td>é a capacidade de <span class="tt">out</span>, idealmente <span class="tt"><a class="el" href="#ac268ba431e65ea21c3e865d70bc94e18">TRO_FLOAT_E_CHAR_MAX</a> + 1</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>o comprimento final da <em>string</em>. </dd></dl>
+
+</div>
+</div>
+<a id="a00fc464b3ea1769b4ad706721a5aa6df" name="a00fc464b3ea1769b4ad706721a5aa6df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00fc464b3ea1769b4ad706721a5aa6df">&#9670;&#160;</a></span>tro_float2str16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_float2str16 </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>num</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>outcap</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Faz uma conversão de um <em>número de ponto flutuante</em> para uma <b>string de número real UTF-16</b>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>é o <em>número</em> em questão. </td></tr>
+    <tr><td class="paramname">out</td><td>é onde a <em>string</em> será escrita. </td></tr>
+    <tr><td class="paramname">outcap</td><td>é a capacidade de <span class="tt">out</span>, idealmente <span class="tt"><a class="el" href="#ac94cff3ccf158e3024ecc43cf9859bec">TRO_FLOAT_FIXED_CHAR_MAX</a> + 1</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>o comprimento final da <em>string</em>. </dd></dl>
+
+</div>
+</div>
+<a id="aa23738fd64e3784da88192912ef74b0c" name="aa23738fd64e3784da88192912ef74b0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa23738fd64e3784da88192912ef74b0c">&#9670;&#160;</a></span>tro_float2str16_adjustable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_float2str16_adjustable </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>num</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>precision</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>outcap</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Faz uma conversão com <b>precisão ajustável</b> de um <em>número de ponto flutuante</em> para uma <b>string de número real UTF-16</b>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>é o <em>número</em> em questão. </td></tr>
+    <tr><td class="paramname">precision</td><td>é a <em>precisão</em> em casas da fração. </td></tr>
+    <tr><td class="paramname">out</td><td>é onde a <em>string</em> será escrita. </td></tr>
+    <tr><td class="paramname">outcap</td><td>é a capacidade de <span class="tt">out</span>, idealmente <span class="tt"><a class="el" href="#ac94cff3ccf158e3024ecc43cf9859bec">TRO_FLOAT_FIXED_CHAR_MAX</a> + 1</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>o comprimento final da <em>string</em>. </dd></dl>
+
+</div>
+</div>
+<a id="ac27b0a224b4ea28ddba6c57fa16cf415" name="ac27b0a224b4ea28ddba6c57fa16cf415"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac27b0a224b4ea28ddba6c57fa16cf415">&#9670;&#160;</a></span>tro_float2str16_fixed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_float2str16_fixed </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>num</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>precision</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>outcap</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Faz uma conversão com <b>casas fixas de fração</b> de um <em>número de ponto flutuante</em> para uma <b>string de número real UTF-16</b>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>é o <em>número</em> em questão. </td></tr>
+    <tr><td class="paramname">precision</td><td>é a <em>precisão</em> em casas da fração. </td></tr>
+    <tr><td class="paramname">out</td><td>é onde a <em>string</em> será escrita. </td></tr>
+    <tr><td class="paramname">outcap</td><td>é a capacidade de <span class="tt">out</span>, idealmente <span class="tt"><a class="el" href="#ac94cff3ccf158e3024ecc43cf9859bec">TRO_FLOAT_FIXED_CHAR_MAX</a> + 1</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>o comprimento final da <em>string</em>. </dd></dl>
+
+</div>
+</div>
+<a id="a57a2c4e1c7fcf57bf320055c84e1eafb" name="a57a2c4e1c7fcf57bf320055c84e1eafb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57a2c4e1c7fcf57bf320055c84e1eafb">&#9670;&#160;</a></span>tro_float2str16_E()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_float2str16_E </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>num</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>outcap</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Faz uma conversão de um <em>número de ponto flutuante</em> para uma <b>string de número em notação E UTF-16</b>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>é o <em>número</em> em questão. </td></tr>
+    <tr><td class="paramname">out</td><td>é onde a <em>string</em> será escrita. </td></tr>
+    <tr><td class="paramname">outcap</td><td>é a capacidade de <span class="tt">out</span>, idealmente <span class="tt"><a class="el" href="#ac268ba431e65ea21c3e865d70bc94e18">TRO_FLOAT_E_CHAR_MAX</a> + 1</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>o comprimento final da <em>string</em>. </dd></dl>
+
+</div>
+</div>
+<a id="a24c77e82f1aa9f741053ea37e3a40d91" name="a24c77e82f1aa9f741053ea37e3a40d91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24c77e82f1aa9f741053ea37e3a40d91">&#9670;&#160;</a></span>tro_float2str16_e()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_float2str16_e </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>num</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>outcap</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Faz uma conversão de um <em>número de ponto flutuante</em> para uma <b>string de número em notação E (minúsculo) UTF-16</b>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>é o <em>número</em> em questão. </td></tr>
+    <tr><td class="paramname">out</td><td>é onde a <em>string</em> será escrita. </td></tr>
+    <tr><td class="paramname">outcap</td><td>é a capacidade de <span class="tt">out</span>, idealmente <span class="tt"><a class="el" href="#ac268ba431e65ea21c3e865d70bc94e18">TRO_FLOAT_E_CHAR_MAX</a> + 1</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>o comprimento final da <em>string</em>. </dd></dl>
+
+</div>
+</div>
+<a id="a7a650a084e8d041c25e216658d15cd9b" name="a7a650a084e8d041c25e216658d15cd9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a650a084e8d041c25e216658d15cd9b">&#9670;&#160;</a></span>tro_float2str16_fixed_E()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_float2str16_fixed_E </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>num</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>precision</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>outcap</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Faz uma conversão com <b>precisão fixa</b> de um <em>número de ponto flutuante</em> para uma <b>string de número em notação E UTF-16</b>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>é o <em>número</em> em questão. </td></tr>
+    <tr><td class="paramname">precision</td><td>é a <em>precisão</em> em casas da fração. </td></tr>
+    <tr><td class="paramname">out</td><td>é onde a <em>string</em> será escrita. </td></tr>
+    <tr><td class="paramname">outcap</td><td>é a capacidade de <span class="tt">out</span>, idealmente <span class="tt"><a class="el" href="#ac268ba431e65ea21c3e865d70bc94e18">TRO_FLOAT_E_CHAR_MAX</a> + 1</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>o comprimento final da <em>string</em>. </dd></dl>
+
+</div>
+</div>
+<a id="ac1d2329f12b75f50867feb47f1f7b32a" name="ac1d2329f12b75f50867feb47f1f7b32a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1d2329f12b75f50867feb47f1f7b32a">&#9670;&#160;</a></span>tro_float2str16_fixed_e()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_float2str16_fixed_e </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>num</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>precision</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>outcap</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Faz uma conversão com <b>precisão fixa</b> de um <em>número de ponto flutuante</em> para uma <b>string de número em notação E (minúsculo) UTF-16</b>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>é o <em>número</em> em questão. </td></tr>
+    <tr><td class="paramname">precision</td><td>é a <em>precisão</em> em casas da fração. </td></tr>
+    <tr><td class="paramname">out</td><td>é onde a <em>string</em> será escrita. </td></tr>
+    <tr><td class="paramname">outcap</td><td>é a capacidade de <span class="tt">out</span>, idealmente <span class="tt"><a class="el" href="#ac268ba431e65ea21c3e865d70bc94e18">TRO_FLOAT_E_CHAR_MAX</a> + 1</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>o comprimento final da <em>string</em>. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>tro</b></li><li class="navelem"><a href="../../da/d55/strconv_8h.html">strconv.h</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

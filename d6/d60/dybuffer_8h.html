@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LibTRO: Referência do Arquivo tro/dybuffer.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../codefolding.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../navtreedata.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">LibTRO<span id="projectnumber">&#160;0</span>
+   </div>
+   <div id="projectbrief">Uma biblioteca com funções semelhantes às do C                           para fins educacionais na Eletrônica, IF Sul Pelotas.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "../../search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('../../',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Busca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('d6/d60/dybuffer_8h.html','../../',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrado</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referência do Arquivo dybuffer.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><a href="../../d6/d60/dybuffer_8h_source.html">Ir para o código-fonte desse arquivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Estruturas de Dados</h2></td></tr>
+<tr class="memitem:tro_5Fdybuffer_5Fi" id="r_tro_5Fdybuffer_5Fi"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="../../df/daf/structtro__dybuffer__i.html">tro_dybuffer_i</a></td></tr>
+<tr class="memitem:tro_5Fdybuffer_5Fobj" id="r_tro_5Fdybuffer_5Fobj"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="../../d8/dcc/structtro__dybuffer__obj.html">tro_dybuffer_obj</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Definições e Macros</h2></td></tr>
+<tr class="memitem:acb2b1f981162627854b2b675551d079d" id="r_acb2b1f981162627854b2b675551d079d"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#acb2b1f981162627854b2b675551d079d">tro_dispatch_dybuffer</a>(o,  varname)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerações</h2></td></tr>
+<tr class="memitem:a715bb8f733e0f66ba87c3a15f2f686ec" id="r_a715bb8f733e0f66ba87c3a15f2f686ec"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#a715bb8f733e0f66ba87c3a15f2f686ec">tro_dybuf_pref</a> { <br />
+&#160;&#160;<a class="el" href="#a715bb8f733e0f66ba87c3a15f2f686eca3f010b929c5abb200442776d062ceb38">TRO_DYBUF_PREF_ANY</a>
+, <br />
+&#160;&#160;<a class="el" href="#a715bb8f733e0f66ba87c3a15f2f686eca0b58fae4f27242cf98d759f94483485a">TRO_DYBUF_PREF_U8</a>
+, <br />
+&#160;&#160;<a class="el" href="#a715bb8f733e0f66ba87c3a15f2f686eca7f32f2fb1588778ddc26b30a54d134d8">TRO_DYBUF_PREF_U16</a>
+<br />
+ }</td></tr>
+</table>
+<a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Definições e macros</h2>
+<a id="acb2b1f981162627854b2b675551d079d" name="acb2b1f981162627854b2b675551d079d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb2b1f981162627854b2b675551d079d">&#9670;&#160;</a></span>tro_dispatch_dybuffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define tro_dispatch_dybuffer</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>o</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>varname</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor:</b><div class="fragment"><div class="line"><span class="keywordtype">void</span> *<span class="keyword">const</span> varname = o.obj;                                           \</div>
+<div class="line">                                                                       \</div>
+<div class="line">bool (*<span class="keyword">const</span> varname##_writes)(<span class="keywordtype">void</span> *buf, <span class="keyword">const</span> <span class="keywordtype">char</span> *data,            \</div>
+<div class="line">                               <span class="keywordtype">size_t</span> datal) = o.vtable-&gt;writes;       \</div>
+<div class="line">                                                                       \</div>
+<div class="line">bool (*<span class="keyword">const</span> varname##_writes16)(<span class="keywordtype">void</span> *buf, <span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *data,    \</div>
+<div class="line">                                 <span class="keywordtype">size_t</span> datal) = o.vtable-&gt;writes16;   \</div>
+<div class="line">                                                                       \</div>
+<div class="line">bool (*<span class="keyword">const</span> varname##_writeb)(<span class="keywordtype">void</span> *buf, <span class="keyword">const</span> uint8_t *data,         \</div>
+<div class="line">                               <span class="keywordtype">size_t</span> datal) = o.vtable-&gt;writeb;       \</div>
+<div class="line">                                                                       \</div>
+<div class="line">bool (*<span class="keyword">const</span> varname##_writec)(<span class="keywordtype">void</span> *buf, <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">tro_urune</a> rune,              \</div>
+<div class="line">                               <span class="keywordtype">size_t</span> count) = o.vtable-&gt;writec;       \</div>
+<div class="line">                                                                       \</div>
+<div class="line">tro_dybuf_pref (*<span class="keyword">const</span> varname##_preference)(<span class="keyword">const</span> <span class="keywordtype">void</span> *buf) =        \</div>
+<div class="line">    o.vtable-&gt;preference;                                              \</div>
+<div class="line">                                                                       \</div>
+<div class="line"><span class="comment">/* Supressão de warnings. */</span> {                                         \</div>
+<div class="line">        (void)varname;                                                 \</div>
+<div class="line">        (void)varname##_writes;                                        \</div>
+<div class="line">        (void)varname##_writes16;                                      \</div>
+<div class="line">        (void)varname##_writeb;                                        \</div>
+<div class="line">        (void)varname##_writec;                                        \</div>
+<div class="line">        (void)varname##_preference;                                    \</div>
+<div class="line">}</div>
+<div class="ttc" id="auchar_8h_html_a25ef2305998b3747aba47f22b6354272"><div class="ttname"><a href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a></div><div class="ttdeci">uint16_t tro_char16</div><div class="ttdef"><b>Definição</b> uchar.h:199</div></div>
+<div class="ttc" id="auchar_8h_html_aa0373d69337dc49ab65ac05348387038"><div class="ttname"><a href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">tro_urune</a></div><div class="ttdeci">uint32_t tro_urune</div><div class="ttdef"><b>Definição</b> uchar.h:51</div></div>
+</div><!-- fragment --><dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">o</td><td>é o <a class="el" href="../../d8/dcc/structtro__dybuffer__obj.html" title="tro_dybuffer_obj">tro_dybuffer_obj</a> a se <b>fazer o dispacho</b> dos <em>métodos</em>. </td></tr>
+    <tr><td class="paramname">varname</td><td>é o nome da <b>constante</b> que representa o <em>objeto real</em> e também o <b>prefixo</b> dos <b>métodos dispachados</b>: <div class="fragment"><div class="line">&lt;varname&gt;            = ... ;</div>
+<div class="line">&lt;varname&gt;_writes     = ... ;</div>
+<div class="line">&lt;varname&gt;_writes16   = ... ;</div>
+<div class="line">&lt;varname&gt;_writeb     = ... ;</div>
+<div class="line">&lt;varname&gt;_writec     = ... ;</div>
+<div class="line">&lt;varname&gt;_preference = ... ;</div>
+</div><!-- fragment --> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumerações</h2>
+<a id="a715bb8f733e0f66ba87c3a15f2f686ec" name="a715bb8f733e0f66ba87c3a15f2f686ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a715bb8f733e0f66ba87c3a15f2f686ec">&#9670;&#160;</a></span>tro_dybuf_pref</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a715bb8f733e0f66ba87c3a15f2f686ec">tro_dybuf_pref</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Representa a <b>preferência</b> de <em>encoding</em> de um objeto <a class="el" href="../../d8/dcc/structtro__dybuffer__obj.html" title="tro_dybuffer_obj">tro_dybuffer_obj</a>.</p>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="../../df/daf/structtro__dybuffer__i.html">tro_dybuffer_i</a> </dd></dl>
+<table class="fieldtable">
+<tr><th colspan="2">Enumeradores</th></tr><tr><td class="fieldname"><a id="a715bb8f733e0f66ba87c3a15f2f686eca3f010b929c5abb200442776d062ceb38" name="a715bb8f733e0f66ba87c3a15f2f686eca3f010b929c5abb200442776d062ceb38"></a>TRO_DYBUF_PREF_ANY&#160;</td><td class="fielddoc"><p>Significa que <a class="el" href="../../d8/dcc/structtro__dybuffer__obj.html" title="tro_dybuffer_obj">tro_dybuffer_obj</a> <b>NÃO</b> tem nenhuma preferência de encoding. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a715bb8f733e0f66ba87c3a15f2f686eca0b58fae4f27242cf98d759f94483485a" name="a715bb8f733e0f66ba87c3a15f2f686eca0b58fae4f27242cf98d759f94483485a"></a>TRO_DYBUF_PREF_U8&#160;</td><td class="fielddoc"><p>Significa que <a class="el" href="../../d8/dcc/structtro__dybuffer__obj.html" title="tro_dybuffer_obj">tro_dybuffer_obj</a> tem <b>UTF-8</b> como <em>encoding preferencial</em>. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a715bb8f733e0f66ba87c3a15f2f686eca7f32f2fb1588778ddc26b30a54d134d8" name="a715bb8f733e0f66ba87c3a15f2f686eca7f32f2fb1588778ddc26b30a54d134d8"></a>TRO_DYBUF_PREF_U16&#160;</td><td class="fielddoc"><p>Significa que <a class="el" href="../../d8/dcc/structtro__dybuffer__obj.html" title="tro_dybuffer_obj">tro_dybuffer_obj</a> tem <b>UTF-16</b> como <em>encoding preferencial</em>. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>tro</b></li><li class="navelem"><a href="../../d6/d60/dybuffer_8h.html">dybuffer.h</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LibTRO: Código-Fonte de tro/dybuffer.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../codefolding.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../navtreedata.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">LibTRO<span id="projectnumber">&#160;0</span>
+   </div>
+   <div id="projectbrief">Uma biblioteca com funções semelhantes às do C                           para fins educacionais na Eletrônica, IF Sul Pelotas.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "../../search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('../../',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Busca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('d6/d60/dybuffer_8h_source.html','../../',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrado</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">dybuffer.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d6/d60/dybuffer_8h.html">Ir para a documentação desse arquivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#ifndef TRO_DYBUFFER_H_</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#define TRO_DYBUFFER_H_</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;tro/private/api.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;tro/private/bool.h&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;tro/private/doxy.h&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#if TRO__USE_STDBOOL</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor"># include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="../../d5/d5e/uchar_8h.html">tro/uchar.h</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>TRO__C_API_BEGIN</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span></div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="};">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="../../d6/d60/dybuffer_8h.html#a715bb8f733e0f66ba87c3a15f2f686ec">   26</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> tro__ndoxy(<a class="code hl_enumeration" href="../../d6/d60/dybuffer_8h.html#a715bb8f733e0f66ba87c3a15f2f686ec">tro_dybuf_pref</a>) {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="../../d6/d60/dybuffer_8h.html#a715bb8f733e0f66ba87c3a15f2f686eca3f010b929c5abb200442776d062ceb38">   32</a></span>        <a class="code hl_enumvalue" href="../../d6/d60/dybuffer_8h.html#a715bb8f733e0f66ba87c3a15f2f686eca3f010b929c5abb200442776d062ceb38">TRO_DYBUF_PREF_ANY</a>,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="../../d6/d60/dybuffer_8h.html#a715bb8f733e0f66ba87c3a15f2f686eca0b58fae4f27242cf98d759f94483485a">   37</a></span>        <a class="code hl_enumvalue" href="../../d6/d60/dybuffer_8h.html#a715bb8f733e0f66ba87c3a15f2f686eca0b58fae4f27242cf98d759f94483485a">TRO_DYBUF_PREF_U8</a>,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="../../d6/d60/dybuffer_8h.html#a715bb8f733e0f66ba87c3a15f2f686eca7f32f2fb1588778ddc26b30a54d134d8">   42</a></span>        <a class="code hl_enumvalue" href="../../d6/d60/dybuffer_8h.html#a715bb8f733e0f66ba87c3a15f2f686eca7f32f2fb1588778ddc26b30a54d134d8">TRO_DYBUF_PREF_U16</a>,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>} <a class="code hl_enumeration" href="../../d6/d60/dybuffer_8h.html#a715bb8f733e0f66ba87c3a15f2f686ec">tro_dybuf_pref</a>;</div>
+</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span></div>
+<div class="foldopen" id="foldopen00052" data-start="{" data-end="};">
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="../../df/daf/structtro__dybuffer__i.html">   52</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>tro__ndoxy(tro_dybuffer_i)</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>{</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="../../df/daf/structtro__dybuffer__i.html#aaec1ec1aa3df614515e0555196a3476a">   63</a></span>        bool (*<span class="keyword">const</span> <a class="code hl_variable" href="../../df/daf/structtro__dybuffer__i.html#aaec1ec1aa3df614515e0555196a3476a">writes</a>)(<span class="keywordtype">void</span> *buf, <span class="keyword">const</span> <span class="keywordtype">char</span> *data, <span class="keywordtype">size_t</span> datal);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="../../df/daf/structtro__dybuffer__i.html#abb0d724f6a1f061e69278e802b914320">   73</a></span>        bool (*<span class="keyword">const</span> <a class="code hl_variable" href="../../df/daf/structtro__dybuffer__i.html#abb0d724f6a1f061e69278e802b914320">writes16</a>)(<span class="keywordtype">void</span> *buf, <span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *data, <span class="keywordtype">size_t</span> datal);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="../../df/daf/structtro__dybuffer__i.html#ad95a7148c9e78d01931397872c121677">   81</a></span>        bool (*<span class="keyword">const</span> <a class="code hl_variable" href="../../df/daf/structtro__dybuffer__i.html#ad95a7148c9e78d01931397872c121677">writeb</a>)(<span class="keywordtype">void</span> *buf, <span class="keyword">const</span> uint8_t *data, <span class="keywordtype">size_t</span> datal);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="../../df/daf/structtro__dybuffer__i.html#a3a2a379c84b10ecf45d7ca616a5952df">   89</a></span>        bool (*<span class="keyword">const</span> <a class="code hl_variable" href="../../df/daf/structtro__dybuffer__i.html#a3a2a379c84b10ecf45d7ca616a5952df">writec</a>)(<span class="keywordtype">void</span> *buf, <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">tro_urune</a> rune, <span class="keywordtype">size_t</span> count);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="../../df/daf/structtro__dybuffer__i.html#afc8e64f7e74acc4beda8e7068e8f61b0">   95</a></span>        <a class="code hl_enumeration" href="../../d6/d60/dybuffer_8h.html#a715bb8f733e0f66ba87c3a15f2f686ec">tro_dybuf_pref</a> (*<span class="keyword">const</span> <a class="code hl_variable" href="../../df/daf/structtro__dybuffer__i.html#afc8e64f7e74acc4beda8e7068e8f61b0">preference</a>)(<span class="keyword">const</span> <span class="keywordtype">void</span> *buf);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>}</div>
+</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><a class="code hl_struct" href="../../df/daf/structtro__dybuffer__i.html">tro_dybuffer_i</a>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span></div>
+<div class="foldopen" id="foldopen00106" data-start="{" data-end="};">
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="../../d8/dcc/structtro__dybuffer__obj.html">  106</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>tro__ndoxy(tro_dybuffer_obj)</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>{</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="../../d8/dcc/structtro__dybuffer__obj.html#ac3f91eda9ef49becc5ce6394fa44b51e">  112</a></span>        <span class="keywordtype">void</span> *<span class="keyword">const</span> <a class="code hl_variable" href="../../d8/dcc/structtro__dybuffer__obj.html#ac3f91eda9ef49becc5ce6394fa44b51e">obj</a>;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="../../d8/dcc/structtro__dybuffer__obj.html#a2d503582dd180a54a6fc04d4cf6fc1bc">  119</a></span>        <span class="keyword">const</span> <a class="code hl_struct" href="../../df/daf/structtro__dybuffer__i.html">tro_dybuffer_i</a> *<span class="keyword">const</span> <a class="code hl_variable" href="../../d8/dcc/structtro__dybuffer__obj.html#a2d503582dd180a54a6fc04d4cf6fc1bc">vtable</a>;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>}</div>
+</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><a class="code hl_struct" href="../../d8/dcc/structtro__dybuffer__obj.html">tro_dybuffer_obj</a>;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span></div>
+<div class="foldopen" id="foldopen00140" data-start="" data-end="">
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="../../d6/d60/dybuffer_8h.html#acb2b1f981162627854b2b675551d079d">  140</a></span><span class="preprocessor">#define tro_dispatch_dybuffer(o, varname)                                      \</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="preprocessor">        void *const varname = o.obj;                                           \</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="preprocessor">                                                                               \</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="preprocessor">        bool (*const varname##_writes)(void *buf, const char *data,            \</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="preprocessor">                                       size_t datal) = o.vtable-&gt;writes;       \</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="preprocessor">                                                                               \</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="preprocessor">        bool (*const varname##_writes16)(void *buf, const tro_char16 *data,    \</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="preprocessor">                                         size_t datal) = o.vtable-&gt;writes16;   \</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="preprocessor">                                                                               \</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="preprocessor">        bool (*const varname##_writeb)(void *buf, const uint8_t *data,         \</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="preprocessor">                                       size_t datal) = o.vtable-&gt;writeb;       \</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="preprocessor">                                                                               \</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="preprocessor">        bool (*const varname##_writec)(void *buf, tro_urune rune,              \</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="preprocessor">                                       size_t count) = o.vtable-&gt;writec;       \</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="preprocessor">                                                                               \</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="preprocessor">        tro_dybuf_pref (*const varname##_preference)(const void *buf) =        \</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="preprocessor">            o.vtable-&gt;preference;                                              \</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="preprocessor">                                                                               \</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="preprocessor">        </span><span class="comment">/* Supressão de warnings. */</span><span class="preprocessor"> {                                         \</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="preprocessor">                (void)varname;                                                 \</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="preprocessor">                (void)varname##_writes;                                        \</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="preprocessor">                (void)varname##_writes16;                                      \</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="preprocessor">                (void)varname##_writeb;                                        \</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="preprocessor">                (void)varname##_writec;                                        \</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="preprocessor">                (void)varname##_preference;                                    \</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="preprocessor">        }</span></div>
+</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>TRO__C_API_END</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="preprocessor">#endif </span><span class="comment">// TRO_DYBUFFER_H_</span></div>
+<div class="ttc" id="adybuffer_8h_html_a715bb8f733e0f66ba87c3a15f2f686ec"><div class="ttname"><a href="../../d6/d60/dybuffer_8h.html#a715bb8f733e0f66ba87c3a15f2f686ec">tro_dybuf_pref</a></div><div class="ttdeci">tro_dybuf_pref</div><div class="ttdef"><b>Definição</b> dybuffer.h:26</div></div>
+<div class="ttc" id="adybuffer_8h_html_a715bb8f733e0f66ba87c3a15f2f686eca0b58fae4f27242cf98d759f94483485a"><div class="ttname"><a href="../../d6/d60/dybuffer_8h.html#a715bb8f733e0f66ba87c3a15f2f686eca0b58fae4f27242cf98d759f94483485a">TRO_DYBUF_PREF_U8</a></div><div class="ttdeci">@ TRO_DYBUF_PREF_U8</div><div class="ttdef"><b>Definição</b> dybuffer.h:37</div></div>
+<div class="ttc" id="adybuffer_8h_html_a715bb8f733e0f66ba87c3a15f2f686eca3f010b929c5abb200442776d062ceb38"><div class="ttname"><a href="../../d6/d60/dybuffer_8h.html#a715bb8f733e0f66ba87c3a15f2f686eca3f010b929c5abb200442776d062ceb38">TRO_DYBUF_PREF_ANY</a></div><div class="ttdeci">@ TRO_DYBUF_PREF_ANY</div><div class="ttdef"><b>Definição</b> dybuffer.h:32</div></div>
+<div class="ttc" id="adybuffer_8h_html_a715bb8f733e0f66ba87c3a15f2f686eca7f32f2fb1588778ddc26b30a54d134d8"><div class="ttname"><a href="../../d6/d60/dybuffer_8h.html#a715bb8f733e0f66ba87c3a15f2f686eca7f32f2fb1588778ddc26b30a54d134d8">TRO_DYBUF_PREF_U16</a></div><div class="ttdeci">@ TRO_DYBUF_PREF_U16</div><div class="ttdef"><b>Definição</b> dybuffer.h:42</div></div>
+<div class="ttc" id="astructtro__dybuffer__i_html"><div class="ttname"><a href="../../df/daf/structtro__dybuffer__i.html">tro_dybuffer_i</a></div><div class="ttdef"><b>Definição</b> dybuffer.h:53</div></div>
+<div class="ttc" id="astructtro__dybuffer__i_html_a3a2a379c84b10ecf45d7ca616a5952df"><div class="ttname"><a href="../../df/daf/structtro__dybuffer__i.html#a3a2a379c84b10ecf45d7ca616a5952df">tro_dybuffer_i::writec</a></div><div class="ttdeci">bool(*const writec)(void *buf, tro_urune rune, size_t count)</div><div class="ttdef"><b>Definição</b> dybuffer.h:89</div></div>
+<div class="ttc" id="astructtro__dybuffer__i_html_aaec1ec1aa3df614515e0555196a3476a"><div class="ttname"><a href="../../df/daf/structtro__dybuffer__i.html#aaec1ec1aa3df614515e0555196a3476a">tro_dybuffer_i::writes</a></div><div class="ttdeci">bool(*const writes)(void *buf, const char *data, size_t datal)</div><div class="ttdef"><b>Definição</b> dybuffer.h:63</div></div>
+<div class="ttc" id="astructtro__dybuffer__i_html_abb0d724f6a1f061e69278e802b914320"><div class="ttname"><a href="../../df/daf/structtro__dybuffer__i.html#abb0d724f6a1f061e69278e802b914320">tro_dybuffer_i::writes16</a></div><div class="ttdeci">bool(*const writes16)(void *buf, const tro_char16 *data, size_t datal)</div><div class="ttdef"><b>Definição</b> dybuffer.h:73</div></div>
+<div class="ttc" id="astructtro__dybuffer__i_html_ad95a7148c9e78d01931397872c121677"><div class="ttname"><a href="../../df/daf/structtro__dybuffer__i.html#ad95a7148c9e78d01931397872c121677">tro_dybuffer_i::writeb</a></div><div class="ttdeci">bool(*const writeb)(void *buf, const uint8_t *data, size_t datal)</div><div class="ttdef"><b>Definição</b> dybuffer.h:81</div></div>
+<div class="ttc" id="astructtro__dybuffer__i_html_afc8e64f7e74acc4beda8e7068e8f61b0"><div class="ttname"><a href="../../df/daf/structtro__dybuffer__i.html#afc8e64f7e74acc4beda8e7068e8f61b0">tro_dybuffer_i::preference</a></div><div class="ttdeci">tro_dybuf_pref(*const preference)(const void *buf)</div><div class="ttdef"><b>Definição</b> dybuffer.h:95</div></div>
+<div class="ttc" id="astructtro__dybuffer__obj_html"><div class="ttname"><a href="../../d8/dcc/structtro__dybuffer__obj.html">tro_dybuffer_obj</a></div><div class="ttdef"><b>Definição</b> dybuffer.h:107</div></div>
+<div class="ttc" id="astructtro__dybuffer__obj_html_a2d503582dd180a54a6fc04d4cf6fc1bc"><div class="ttname"><a href="../../d8/dcc/structtro__dybuffer__obj.html#a2d503582dd180a54a6fc04d4cf6fc1bc">tro_dybuffer_obj::vtable</a></div><div class="ttdeci">const tro_dybuffer_i *const vtable</div><div class="ttdef"><b>Definição</b> dybuffer.h:119</div></div>
+<div class="ttc" id="astructtro__dybuffer__obj_html_ac3f91eda9ef49becc5ce6394fa44b51e"><div class="ttname"><a href="../../d8/dcc/structtro__dybuffer__obj.html#ac3f91eda9ef49becc5ce6394fa44b51e">tro_dybuffer_obj::obj</a></div><div class="ttdeci">void *const obj</div><div class="ttdef"><b>Definição</b> dybuffer.h:112</div></div>
+<div class="ttc" id="auchar_8h_html"><div class="ttname"><a href="../../d5/d5e/uchar_8h.html">uchar.h</a></div></div>
+<div class="ttc" id="auchar_8h_html_a25ef2305998b3747aba47f22b6354272"><div class="ttname"><a href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a></div><div class="ttdeci">uint16_t tro_char16</div><div class="ttdef"><b>Definição</b> uchar.h:199</div></div>
+<div class="ttc" id="auchar_8h_html_aa0373d69337dc49ab65ac05348387038"><div class="ttname"><a href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">tro_urune</a></div><div class="ttdeci">uint32_t tro_urune</div><div class="ttdef"><b>Definição</b> uchar.h:51</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>tro</b></li><li class="navelem"><a href="../../d6/d60/dybuffer_8h.html">dybuffer.h</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

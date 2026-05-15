@@ -1,0 +1,328 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LibTRO: Código-Fonte de tro/string.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../codefolding.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../navtreedata.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">LibTRO<span id="projectnumber">&#160;0</span>
+   </div>
+   <div id="projectbrief">Uma biblioteca com funções semelhantes às do C                           para fins educacionais na Eletrônica, IF Sul Pelotas.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "../../search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('../../',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Busca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('da/d66/string_8h_source.html','../../',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrado</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">string.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../da/d66/string_8h.html">Ir para a documentação desse arquivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#ifndef TRO_STRING_H_</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#define TRO_STRING_H_</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;tro/private/api.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;tro/private/bool.h&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#if TRO__USE_STDBOOL</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor"># include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;stdarg.h&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="../../d6/d60/dybuffer_8h.html">tro/dybuffer.h</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;<a class="code" href="../../d5/d5e/uchar_8h.html">tro/uchar.h</a>&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>TRO__C_API_BEGIN</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a1c6089564957512b1ee5e05f771b39fe">   26</a></span>TRO__API <span class="keywordtype">size_t</span> <a class="code hl_function" href="../../da/d66/string_8h.html#a1c6089564957512b1ee5e05f771b39fe">tro_strulen</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *str);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a50b0608e6e69ec3c8a172657a192da56">   33</a></span>TRO__API <span class="keywordtype">size_t</span> <a class="code hl_function" href="../../da/d66/string_8h.html#a50b0608e6e69ec3c8a172657a192da56">tro_str16ulen</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *str);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a2eb891e44e17153df6bf4d29e3cddb5a">   46</a></span>TRO__API <span class="keywordtype">size_t</span> <a class="code hl_function" href="../../da/d66/string_8h.html#a2eb891e44e17153df6bf4d29e3cddb5a">tro_conv_str_to_str16</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *in, <span class="keywordtype">size_t</span> inlen,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                                      <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *out, <span class="keywordtype">size_t</span> outcap);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#adadb662e35d906db44621c825b793717">   60</a></span>TRO__API <span class="keywordtype">size_t</span> <a class="code hl_function" href="../../da/d66/string_8h.html#adadb662e35d906db44621c825b793717">tro_conv_str16_to_str</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *in, <span class="keywordtype">size_t</span> inlen,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                                      <span class="keywordtype">char</span> *out, <span class="keywordtype">size_t</span> outcap);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#afd0572b1ea64328f35b5af1c3c231654">   75</a></span>TRO__API <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *<a class="code hl_function" href="../../da/d66/string_8h.html#afd0572b1ea64328f35b5af1c3c231654">tro_cnvlloc_str_to_str16</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *in, <span class="keywordtype">size_t</span> inlen,</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                                              <span class="keywordtype">size_t</span> *lenout);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a2b7c9af9eb21fdb20d562515cdaf7167">   90</a></span>TRO__API <span class="keywordtype">char</span> *<a class="code hl_function" href="../../da/d66/string_8h.html#a2b7c9af9eb21fdb20d562515cdaf7167">tro_cnvlloc_str16_to_str</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *in, <span class="keywordtype">size_t</span> inlen,</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                                        <span class="keywordtype">size_t</span> *lenout);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a6bf39e8b7d85dc64aa9cb2a4665f1616">  100</a></span>TRO__API <span class="keywordtype">size_t</span> <a class="code hl_function" href="../../da/d66/string_8h.html#a6bf39e8b7d85dc64aa9cb2a4665f1616">tro_str16len</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *str);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a83e11ec3253181abf5842a588d897e4a">  110</a></span>TRO__API <span class="keywordtype">size_t</span> <a class="code hl_function" href="../../da/d66/string_8h.html#a83e11ec3253181abf5842a588d897e4a">tro_str16nlen</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *str, <span class="keywordtype">size_t</span> maxlen);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a8ad817b8b3564595fbcf6bfba47ef613">  121</a></span>TRO__API <span class="keywordtype">int</span> <a class="code hl_function" href="../../da/d66/string_8h.html#a8ad817b8b3564595fbcf6bfba47ef613">tro_str16cmp</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *s1, <span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *s2);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a0940cb71e9fc9ef6b93ca4b2ddf33cd2">  133</a></span>TRO__API <span class="keywordtype">int</span> <a class="code hl_function" href="../../da/d66/string_8h.html#a0940cb71e9fc9ef6b93ca4b2ddf33cd2">tro_str16ncmp</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *s1, <span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *s2,</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>                           <span class="keywordtype">size_t</span> maxlen);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a7ee74df3e67ef47b8a44cf4e2387fb8a">  142</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_typedef" href="../../da/d66/string_8h.html#a7ee74df3e67ef47b8a44cf4e2387fb8a">tro_strdybuf</a> <a class="code hl_typedef" href="../../da/d66/string_8h.html#a7ee74df3e67ef47b8a44cf4e2387fb8a">tro_strdybuf</a>;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a533b6c504945aaaeb7d8d55aec752e4b">  147</a></span>TRO__API <span class="keyword">const</span> <a class="code hl_struct" href="../../df/daf/structtro__dybuffer__i.html">tro_dybuffer_i</a> *<span class="keyword">const</span> <a class="code hl_variable" href="../../da/d66/string_8h.html#a533b6c504945aaaeb7d8d55aec752e4b">tro_strdybuf_dybuffer_vt</a>;</div>
+<div class="foldopen" id="foldopen00153" data-start="" data-end="">
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#add9b41e787849908a32a7a38d2ff672c">  153</a></span><span class="preprocessor">#define tro_strdybuf_dybuffer(buf)                                             \</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="preprocessor">        ((tro_dybuffer_obj){                                                   \</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="preprocessor">            .obj    = (void *)buf,                                             \</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="preprocessor">            .vtable = tro_strdybuf_dybuffer_vt,                                \</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="preprocessor">        })</span></div>
+</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a025c0ee43bd280bc7b144006e53ad5cc">  168</a></span>TRO__API <a class="code hl_typedef" href="../../da/d66/string_8h.html#a7ee74df3e67ef47b8a44cf4e2387fb8a">tro_strdybuf</a> *<a class="code hl_function" href="../../da/d66/string_8h.html#a025c0ee43bd280bc7b144006e53ad5cc">tro_create_strdybuf</a>(<span class="keywordtype">size_t</span> pagecap);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#ab3930b4b93879a9dc4b36f2340f83fa8">  173</a></span>TRO__API <span class="keywordtype">void</span> <a class="code hl_function" href="../../da/d66/string_8h.html#ab3930b4b93879a9dc4b36f2340f83fa8">tro_destroy_strdybuf</a>(<a class="code hl_typedef" href="../../da/d66/string_8h.html#a7ee74df3e67ef47b8a44cf4e2387fb8a">tro_strdybuf</a> *buf);</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#aa3ee602b688254e05f17e53b55b3f6cb">  184</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../da/d66/string_8h.html#aa3ee602b688254e05f17e53b55b3f6cb">tro_strdybuf_writes</a>(<a class="code hl_typedef" href="../../da/d66/string_8h.html#a7ee74df3e67ef47b8a44cf4e2387fb8a">tro_strdybuf</a> *buf, <span class="keyword">const</span> <span class="keywordtype">char</span> *data,</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>                                  <span class="keywordtype">size_t</span> datal);</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a6cf4ca817d5c816a1973341f91e269ee">  196</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../da/d66/string_8h.html#a6cf4ca817d5c816a1973341f91e269ee">tro_strdybuf_writes16</a>(<a class="code hl_typedef" href="../../da/d66/string_8h.html#a7ee74df3e67ef47b8a44cf4e2387fb8a">tro_strdybuf</a> *buf, <span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *data,</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>                                    <span class="keywordtype">size_t</span> datal);</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a173e294669492e4513479958b54ac2f6">  206</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../da/d66/string_8h.html#a173e294669492e4513479958b54ac2f6">tro_strdybuf_writeb</a>(<a class="code hl_typedef" href="../../da/d66/string_8h.html#a7ee74df3e67ef47b8a44cf4e2387fb8a">tro_strdybuf</a> *buf, <span class="keyword">const</span> uint8_t *data,</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>                                  <span class="keywordtype">size_t</span> datal);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#aadbefdd370e4f346c6078d26e7f36632">  216</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../da/d66/string_8h.html#aadbefdd370e4f346c6078d26e7f36632">tro_strdybuf_writec</a>(<a class="code hl_typedef" href="../../da/d66/string_8h.html#a7ee74df3e67ef47b8a44cf4e2387fb8a">tro_strdybuf</a> *buf, <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">tro_urune</a> rune,</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>                                  <span class="keywordtype">size_t</span> count);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a3b5101c9b3ad1a436ac9486b1df94fcf">  224</a></span>TRO__API <a class="code hl_enumeration" href="../../d6/d60/dybuffer_8h.html#a715bb8f733e0f66ba87c3a15f2f686ec">tro_dybuf_pref</a> <a class="code hl_function" href="../../da/d66/string_8h.html#a3b5101c9b3ad1a436ac9486b1df94fcf">tro_strdybuf_preference</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../da/d66/string_8h.html#a7ee74df3e67ef47b8a44cf4e2387fb8a">tro_strdybuf</a> *buf);</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a52ef0f0079c84d83a33ff2d429dab276">  233</a></span>TRO__API <span class="keywordtype">size_t</span> <a class="code hl_function" href="../../da/d66/string_8h.html#a52ef0f0079c84d83a33ff2d429dab276">tro_strdybuf_get</a>(<a class="code hl_typedef" href="../../da/d66/string_8h.html#a7ee74df3e67ef47b8a44cf4e2387fb8a">tro_strdybuf</a> *buf, <span class="keywordtype">char</span> *out, <span class="keywordtype">size_t</span> outcap);</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a8db335a0fbc2f644e88fc65786e07b60">  243</a></span>TRO__API <span class="keywordtype">char</span> *<a class="code hl_function" href="../../da/d66/string_8h.html#a8db335a0fbc2f644e88fc65786e07b60">tro_strdybuf_getlloc</a>(<a class="code hl_typedef" href="../../da/d66/string_8h.html#a7ee74df3e67ef47b8a44cf4e2387fb8a">tro_strdybuf</a> *buf, <span class="keywordtype">size_t</span> *outlen);</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#aecc29e172ef7b3941ed868901853415e">  251</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_typedef" href="../../da/d66/string_8h.html#aecc29e172ef7b3941ed868901853415e">tro_str16dybuf</a> <a class="code hl_typedef" href="../../da/d66/string_8h.html#aecc29e172ef7b3941ed868901853415e">tro_str16dybuf</a>;</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#ac23327b35817047c66c32f0a674b4213">  256</a></span>TRO__API <span class="keyword">const</span> <a class="code hl_struct" href="../../df/daf/structtro__dybuffer__i.html">tro_dybuffer_i</a> *<span class="keyword">const</span> <a class="code hl_variable" href="../../da/d66/string_8h.html#ac23327b35817047c66c32f0a674b4213">tro_str16dybuf_dybuffer_vt</a>;</div>
+<div class="foldopen" id="foldopen00262" data-start="" data-end="">
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a6b787aa76502e3aebe11738509a5d361">  262</a></span><span class="preprocessor">#define tro_str16dybuf_dybuffer(buf)                                           \</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span><span class="preprocessor">        ((tro_dybuffer_obj){                                                   \</span></div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span><span class="preprocessor">            .obj    = (void *)buf,                                             \</span></div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span><span class="preprocessor">            .vtable = tro_str16dybuf_dybuffer_vt,                              \</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="preprocessor">        })</span></div>
+</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a23ea4150d5765450e8d41e2600fb755e">  277</a></span>TRO__API <a class="code hl_typedef" href="../../da/d66/string_8h.html#aecc29e172ef7b3941ed868901853415e">tro_str16dybuf</a> *<a class="code hl_function" href="../../da/d66/string_8h.html#a23ea4150d5765450e8d41e2600fb755e">tro_create_str16dybuf</a>(<span class="keywordtype">size_t</span> pagecap);</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span></div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#ad65668d9484392027b12d022f523196d">  282</a></span>TRO__API <span class="keywordtype">void</span> <a class="code hl_function" href="../../da/d66/string_8h.html#ad65668d9484392027b12d022f523196d">tro_destroy_str16dybuf</a>(<a class="code hl_typedef" href="../../da/d66/string_8h.html#aecc29e172ef7b3941ed868901853415e">tro_str16dybuf</a> *buf);</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#abe98a23477aec131a8dac5725f551083">  293</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../da/d66/string_8h.html#abe98a23477aec131a8dac5725f551083">tro_str16dybuf_writes</a>(<a class="code hl_typedef" href="../../da/d66/string_8h.html#aecc29e172ef7b3941ed868901853415e">tro_str16dybuf</a> *buf, <span class="keyword">const</span> <span class="keywordtype">char</span> *data,</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>                                    <span class="keywordtype">size_t</span> datal);</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a1360eec4ecda212f3544d7dcfc2f6fe8">  305</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../da/d66/string_8h.html#a1360eec4ecda212f3544d7dcfc2f6fe8">tro_str16dybuf_writes16</a>(<a class="code hl_typedef" href="../../da/d66/string_8h.html#aecc29e172ef7b3941ed868901853415e">tro_str16dybuf</a> *buf,</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>                                      <span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *data, <span class="keywordtype">size_t</span> datal);</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span></div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a6b46221ff9e4ce09554d455776138746">  315</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../da/d66/string_8h.html#a6b46221ff9e4ce09554d455776138746">tro_str16dybuf_writeb</a>(<a class="code hl_typedef" href="../../da/d66/string_8h.html#aecc29e172ef7b3941ed868901853415e">tro_str16dybuf</a> *buf, <span class="keyword">const</span> uint8_t *data,</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>                                    <span class="keywordtype">size_t</span> datal);</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span></div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a757be07c64f5d2f13a540fea2c31fc38">  325</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../da/d66/string_8h.html#a757be07c64f5d2f13a540fea2c31fc38">tro_str16dybuf_writec</a>(<a class="code hl_typedef" href="../../da/d66/string_8h.html#aecc29e172ef7b3941ed868901853415e">tro_str16dybuf</a> *buf, <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">tro_urune</a> rune,</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>                                    <span class="keywordtype">size_t</span> count);</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span></div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a6ceb25c3a4b53b9f3e6f1bc133e666dd">  333</a></span>TRO__API <a class="code hl_enumeration" href="../../d6/d60/dybuffer_8h.html#a715bb8f733e0f66ba87c3a15f2f686ec">tro_dybuf_pref</a> <a class="code hl_function" href="../../da/d66/string_8h.html#a6ceb25c3a4b53b9f3e6f1bc133e666dd">tro_str16dybuf_preference</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../da/d66/string_8h.html#aecc29e172ef7b3941ed868901853415e">tro_str16dybuf</a> *buf);</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span></div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#ab8e9b9021105bf8154f2b55e842d211b">  342</a></span>TRO__API <span class="keywordtype">size_t</span> <a class="code hl_function" href="../../da/d66/string_8h.html#ab8e9b9021105bf8154f2b55e842d211b">tro_str16dybuf_get</a>(<a class="code hl_typedef" href="../../da/d66/string_8h.html#aecc29e172ef7b3941ed868901853415e">tro_str16dybuf</a> *buf, <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *out,</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>                                   <span class="keywordtype">size_t</span> outcap);</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span></div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a7cde74fd180de1e41c88257197c3c5c8">  353</a></span>TRO__API <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *<a class="code hl_function" href="../../da/d66/string_8h.html#a7cde74fd180de1e41c88257197c3c5c8">tro_str16dybuf_getlloc</a>(<a class="code hl_typedef" href="../../da/d66/string_8h.html#aecc29e172ef7b3941ed868901853415e">tro_str16dybuf</a> *buf,</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>                                            <span class="keywordtype">size_t</span> *outlen);</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span></div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span></div>
+<div class="line"><a id="l00592" name="l00592"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#acfa253d28a7f0a29fcebf6ed57e1ea2e">  592</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../da/d66/string_8h.html#acfa253d28a7f0a29fcebf6ed57e1ea2e">tro_sfmt</a>(<a class="code hl_struct" href="../../d8/dcc/structtro__dybuffer__obj.html">tro_dybuffer_obj</a> buf, <span class="keyword">const</span> <span class="keywordtype">char</span> *format, ...);</div>
+<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span></div>
+<div class="line"><a id="l00605" name="l00605"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a1d8e91274c1487a1ba3da86f45f47b62">  605</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../da/d66/string_8h.html#a1d8e91274c1487a1ba3da86f45f47b62">tro_vsfmt</a>(<a class="code hl_struct" href="../../d8/dcc/structtro__dybuffer__obj.html">tro_dybuffer_obj</a> buf, <span class="keyword">const</span> <span class="keywordtype">char</span> *format, va_list args);</div>
+<div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span></div>
+<div class="line"><a id="l00616" name="l00616"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a4d8c9ede02aa26f334924978b40a3e8e">  616</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../da/d66/string_8h.html#a4d8c9ede02aa26f334924978b40a3e8e">tro_sfmt16</a>(<a class="code hl_struct" href="../../d8/dcc/structtro__dybuffer__obj.html">tro_dybuffer_obj</a> buf, <span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *format, ...);</div>
+<div class="line"><a id="l00617" name="l00617"></a><span class="lineno">  617</span></div>
+<div class="line"><a id="l00629" name="l00629"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#af4b294c7f525e0013a22380b3230fa99">  629</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../da/d66/string_8h.html#af4b294c7f525e0013a22380b3230fa99">tro_vsfmt16</a>(<a class="code hl_struct" href="../../d8/dcc/structtro__dybuffer__obj.html">tro_dybuffer_obj</a> buf, <span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *format,</div>
+<div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span>                          va_list args);</div>
+<div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span></div>
+<div class="line"><a id="l00643" name="l00643"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a02d008c0ff054d0ce24487b0c2670aec">  643</a></span>TRO__API <span class="keywordtype">char</span> *<a class="code hl_function" href="../../da/d66/string_8h.html#a02d008c0ff054d0ce24487b0c2670aec">tro_str_fmt</a>(<span class="keywordtype">size_t</span> *outlen, <span class="keyword">const</span> <span class="keywordtype">char</span> *format, ...);</div>
+<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span></div>
+<div class="line"><a id="l00658" name="l00658"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#aec9b193a2433b424f29da9f84c62fd78">  658</a></span>TRO__API <span class="keywordtype">char</span> *<a class="code hl_function" href="../../da/d66/string_8h.html#aec9b193a2433b424f29da9f84c62fd78">tro_vstr_fmt</a>(<span class="keywordtype">size_t</span> *outlen, <span class="keyword">const</span> <span class="keywordtype">char</span> *format, va_list args);</div>
+<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span></div>
+<div class="line"><a id="l00671" name="l00671"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#aa99c47970d2331a5776125182b3ae440">  671</a></span>TRO__API <span class="keywordtype">char</span> *<a class="code hl_function" href="../../da/d66/string_8h.html#aa99c47970d2331a5776125182b3ae440">tro_str_fmt16</a>(<span class="keywordtype">size_t</span> *outlen, <span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *format, ...);</div>
+<div class="line"><a id="l00672" name="l00672"></a><span class="lineno">  672</span></div>
+<div class="line"><a id="l00686" name="l00686"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a034d8136f30ef6fa5cdc474bfc17ce4a">  686</a></span>TRO__API <span class="keywordtype">char</span> *<a class="code hl_function" href="../../da/d66/string_8h.html#a034d8136f30ef6fa5cdc474bfc17ce4a">tro_vstr_fmt16</a>(<span class="keywordtype">size_t</span> *outlen, <span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *format,</div>
+<div class="line"><a id="l00687" name="l00687"></a><span class="lineno">  687</span>                              va_list args);</div>
+<div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span></div>
+<div class="line"><a id="l00700" name="l00700"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a38453b40d3d348951fdeeb077398e22f">  700</a></span>TRO__API <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *<a class="code hl_function" href="../../da/d66/string_8h.html#a38453b40d3d348951fdeeb077398e22f">tro_str16_fmt</a>(<span class="keywordtype">size_t</span> *outlen, <span class="keyword">const</span> <span class="keywordtype">char</span> *format, ...);</div>
+<div class="line"><a id="l00701" name="l00701"></a><span class="lineno">  701</span></div>
+<div class="line"><a id="l00715" name="l00715"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#ad2d994066dea35e51ab40ac193608e0f">  715</a></span>TRO__API <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *<a class="code hl_function" href="../../da/d66/string_8h.html#ad2d994066dea35e51ab40ac193608e0f">tro_vstr16_fmt</a>(<span class="keywordtype">size_t</span> *outlen, <span class="keyword">const</span> <span class="keywordtype">char</span> *format,</div>
+<div class="line"><a id="l00716" name="l00716"></a><span class="lineno">  716</span>                                    va_list args);</div>
+<div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span></div>
+<div class="line"><a id="l00729" name="l00729"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#ad36481f136c1ce6cc3b149e838cb46b6">  729</a></span>TRO__API <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *<a class="code hl_function" href="../../da/d66/string_8h.html#ad36481f136c1ce6cc3b149e838cb46b6">tro_str16_fmt16</a>(<span class="keywordtype">size_t</span> *outlen, <span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *format,</div>
+<div class="line"><a id="l00730" name="l00730"></a><span class="lineno">  730</span>                                     ...);</div>
+<div class="line"><a id="l00731" name="l00731"></a><span class="lineno">  731</span></div>
+<div class="line"><a id="l00745" name="l00745"></a><span class="lineno"><a class="line" href="../../da/d66/string_8h.html#a09f107f58cb30494e27c36701684d3bb">  745</a></span>TRO__API <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *<a class="code hl_function" href="../../da/d66/string_8h.html#a09f107f58cb30494e27c36701684d3bb">tro_vstr16_fmt16</a>(<span class="keywordtype">size_t</span> *outlen, <span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *format,</div>
+<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span>                                      va_list args);</div>
+<div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span> </div>
+<div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span>TRO__C_API_END</div>
+<div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span> </div>
+<div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span><span class="preprocessor">#endif </span><span class="comment">// TRO_STRING_H_</span></div>
+<div class="ttc" id="adybuffer_8h_html"><div class="ttname"><a href="../../d6/d60/dybuffer_8h.html">dybuffer.h</a></div></div>
+<div class="ttc" id="adybuffer_8h_html_a715bb8f733e0f66ba87c3a15f2f686ec"><div class="ttname"><a href="../../d6/d60/dybuffer_8h.html#a715bb8f733e0f66ba87c3a15f2f686ec">tro_dybuf_pref</a></div><div class="ttdeci">tro_dybuf_pref</div><div class="ttdef"><b>Definição</b> dybuffer.h:26</div></div>
+<div class="ttc" id="astring_8h_html_a025c0ee43bd280bc7b144006e53ad5cc"><div class="ttname"><a href="../../da/d66/string_8h.html#a025c0ee43bd280bc7b144006e53ad5cc">tro_create_strdybuf</a></div><div class="ttdeci">tro_strdybuf * tro_create_strdybuf(size_t pagecap)</div></div>
+<div class="ttc" id="astring_8h_html_a02d008c0ff054d0ce24487b0c2670aec"><div class="ttname"><a href="../../da/d66/string_8h.html#a02d008c0ff054d0ce24487b0c2670aec">tro_str_fmt</a></div><div class="ttdeci">char * tro_str_fmt(size_t *outlen, const char *format,...)</div></div>
+<div class="ttc" id="astring_8h_html_a034d8136f30ef6fa5cdc474bfc17ce4a"><div class="ttname"><a href="../../da/d66/string_8h.html#a034d8136f30ef6fa5cdc474bfc17ce4a">tro_vstr_fmt16</a></div><div class="ttdeci">char * tro_vstr_fmt16(size_t *outlen, const tro_char16 *format, va_list args)</div></div>
+<div class="ttc" id="astring_8h_html_a0940cb71e9fc9ef6b93ca4b2ddf33cd2"><div class="ttname"><a href="../../da/d66/string_8h.html#a0940cb71e9fc9ef6b93ca4b2ddf33cd2">tro_str16ncmp</a></div><div class="ttdeci">int tro_str16ncmp(const tro_char16 *s1, const tro_char16 *s2, size_t maxlen)</div></div>
+<div class="ttc" id="astring_8h_html_a09f107f58cb30494e27c36701684d3bb"><div class="ttname"><a href="../../da/d66/string_8h.html#a09f107f58cb30494e27c36701684d3bb">tro_vstr16_fmt16</a></div><div class="ttdeci">tro_char16 * tro_vstr16_fmt16(size_t *outlen, const tro_char16 *format, va_list args)</div></div>
+<div class="ttc" id="astring_8h_html_a1360eec4ecda212f3544d7dcfc2f6fe8"><div class="ttname"><a href="../../da/d66/string_8h.html#a1360eec4ecda212f3544d7dcfc2f6fe8">tro_str16dybuf_writes16</a></div><div class="ttdeci">bool tro_str16dybuf_writes16(tro_str16dybuf *buf, const tro_char16 *data, size_t datal)</div></div>
+<div class="ttc" id="astring_8h_html_a173e294669492e4513479958b54ac2f6"><div class="ttname"><a href="../../da/d66/string_8h.html#a173e294669492e4513479958b54ac2f6">tro_strdybuf_writeb</a></div><div class="ttdeci">bool tro_strdybuf_writeb(tro_strdybuf *buf, const uint8_t *data, size_t datal)</div></div>
+<div class="ttc" id="astring_8h_html_a1c6089564957512b1ee5e05f771b39fe"><div class="ttname"><a href="../../da/d66/string_8h.html#a1c6089564957512b1ee5e05f771b39fe">tro_strulen</a></div><div class="ttdeci">size_t tro_strulen(const char *str)</div></div>
+<div class="ttc" id="astring_8h_html_a1d8e91274c1487a1ba3da86f45f47b62"><div class="ttname"><a href="../../da/d66/string_8h.html#a1d8e91274c1487a1ba3da86f45f47b62">tro_vsfmt</a></div><div class="ttdeci">bool tro_vsfmt(tro_dybuffer_obj buf, const char *format, va_list args)</div></div>
+<div class="ttc" id="astring_8h_html_a23ea4150d5765450e8d41e2600fb755e"><div class="ttname"><a href="../../da/d66/string_8h.html#a23ea4150d5765450e8d41e2600fb755e">tro_create_str16dybuf</a></div><div class="ttdeci">tro_str16dybuf * tro_create_str16dybuf(size_t pagecap)</div></div>
+<div class="ttc" id="astring_8h_html_a2b7c9af9eb21fdb20d562515cdaf7167"><div class="ttname"><a href="../../da/d66/string_8h.html#a2b7c9af9eb21fdb20d562515cdaf7167">tro_cnvlloc_str16_to_str</a></div><div class="ttdeci">char * tro_cnvlloc_str16_to_str(const tro_char16 *in, size_t inlen, size_t *lenout)</div></div>
+<div class="ttc" id="astring_8h_html_a2eb891e44e17153df6bf4d29e3cddb5a"><div class="ttname"><a href="../../da/d66/string_8h.html#a2eb891e44e17153df6bf4d29e3cddb5a">tro_conv_str_to_str16</a></div><div class="ttdeci">size_t tro_conv_str_to_str16(const char *in, size_t inlen, tro_char16 *out, size_t outcap)</div></div>
+<div class="ttc" id="astring_8h_html_a38453b40d3d348951fdeeb077398e22f"><div class="ttname"><a href="../../da/d66/string_8h.html#a38453b40d3d348951fdeeb077398e22f">tro_str16_fmt</a></div><div class="ttdeci">tro_char16 * tro_str16_fmt(size_t *outlen, const char *format,...)</div></div>
+<div class="ttc" id="astring_8h_html_a3b5101c9b3ad1a436ac9486b1df94fcf"><div class="ttname"><a href="../../da/d66/string_8h.html#a3b5101c9b3ad1a436ac9486b1df94fcf">tro_strdybuf_preference</a></div><div class="ttdeci">tro_dybuf_pref tro_strdybuf_preference(const tro_strdybuf *buf)</div></div>
+<div class="ttc" id="astring_8h_html_a4d8c9ede02aa26f334924978b40a3e8e"><div class="ttname"><a href="../../da/d66/string_8h.html#a4d8c9ede02aa26f334924978b40a3e8e">tro_sfmt16</a></div><div class="ttdeci">bool tro_sfmt16(tro_dybuffer_obj buf, const tro_char16 *format,...)</div></div>
+<div class="ttc" id="astring_8h_html_a50b0608e6e69ec3c8a172657a192da56"><div class="ttname"><a href="../../da/d66/string_8h.html#a50b0608e6e69ec3c8a172657a192da56">tro_str16ulen</a></div><div class="ttdeci">size_t tro_str16ulen(const tro_char16 *str)</div></div>
+<div class="ttc" id="astring_8h_html_a52ef0f0079c84d83a33ff2d429dab276"><div class="ttname"><a href="../../da/d66/string_8h.html#a52ef0f0079c84d83a33ff2d429dab276">tro_strdybuf_get</a></div><div class="ttdeci">size_t tro_strdybuf_get(tro_strdybuf *buf, char *out, size_t outcap)</div></div>
+<div class="ttc" id="astring_8h_html_a533b6c504945aaaeb7d8d55aec752e4b"><div class="ttname"><a href="../../da/d66/string_8h.html#a533b6c504945aaaeb7d8d55aec752e4b">tro_strdybuf_dybuffer_vt</a></div><div class="ttdeci">const tro_dybuffer_i *const tro_strdybuf_dybuffer_vt</div><div class="ttdef"><b>Definição</b> string.h:147</div></div>
+<div class="ttc" id="astring_8h_html_a6b46221ff9e4ce09554d455776138746"><div class="ttname"><a href="../../da/d66/string_8h.html#a6b46221ff9e4ce09554d455776138746">tro_str16dybuf_writeb</a></div><div class="ttdeci">bool tro_str16dybuf_writeb(tro_str16dybuf *buf, const uint8_t *data, size_t datal)</div></div>
+<div class="ttc" id="astring_8h_html_a6bf39e8b7d85dc64aa9cb2a4665f1616"><div class="ttname"><a href="../../da/d66/string_8h.html#a6bf39e8b7d85dc64aa9cb2a4665f1616">tro_str16len</a></div><div class="ttdeci">size_t tro_str16len(const tro_char16 *str)</div></div>
+<div class="ttc" id="astring_8h_html_a6ceb25c3a4b53b9f3e6f1bc133e666dd"><div class="ttname"><a href="../../da/d66/string_8h.html#a6ceb25c3a4b53b9f3e6f1bc133e666dd">tro_str16dybuf_preference</a></div><div class="ttdeci">tro_dybuf_pref tro_str16dybuf_preference(const tro_str16dybuf *buf)</div></div>
+<div class="ttc" id="astring_8h_html_a6cf4ca817d5c816a1973341f91e269ee"><div class="ttname"><a href="../../da/d66/string_8h.html#a6cf4ca817d5c816a1973341f91e269ee">tro_strdybuf_writes16</a></div><div class="ttdeci">bool tro_strdybuf_writes16(tro_strdybuf *buf, const tro_char16 *data, size_t datal)</div></div>
+<div class="ttc" id="astring_8h_html_a757be07c64f5d2f13a540fea2c31fc38"><div class="ttname"><a href="../../da/d66/string_8h.html#a757be07c64f5d2f13a540fea2c31fc38">tro_str16dybuf_writec</a></div><div class="ttdeci">bool tro_str16dybuf_writec(tro_str16dybuf *buf, tro_urune rune, size_t count)</div></div>
+<div class="ttc" id="astring_8h_html_a7cde74fd180de1e41c88257197c3c5c8"><div class="ttname"><a href="../../da/d66/string_8h.html#a7cde74fd180de1e41c88257197c3c5c8">tro_str16dybuf_getlloc</a></div><div class="ttdeci">tro_char16 * tro_str16dybuf_getlloc(tro_str16dybuf *buf, size_t *outlen)</div></div>
+<div class="ttc" id="astring_8h_html_a7ee74df3e67ef47b8a44cf4e2387fb8a"><div class="ttname"><a href="../../da/d66/string_8h.html#a7ee74df3e67ef47b8a44cf4e2387fb8a">tro_strdybuf</a></div><div class="ttdeci">struct tro_strdybuf tro_strdybuf</div><div class="ttdef"><b>Definição</b> string.h:142</div></div>
+<div class="ttc" id="astring_8h_html_a83e11ec3253181abf5842a588d897e4a"><div class="ttname"><a href="../../da/d66/string_8h.html#a83e11ec3253181abf5842a588d897e4a">tro_str16nlen</a></div><div class="ttdeci">size_t tro_str16nlen(const tro_char16 *str, size_t maxlen)</div></div>
+<div class="ttc" id="astring_8h_html_a8ad817b8b3564595fbcf6bfba47ef613"><div class="ttname"><a href="../../da/d66/string_8h.html#a8ad817b8b3564595fbcf6bfba47ef613">tro_str16cmp</a></div><div class="ttdeci">int tro_str16cmp(const tro_char16 *s1, const tro_char16 *s2)</div></div>
+<div class="ttc" id="astring_8h_html_a8db335a0fbc2f644e88fc65786e07b60"><div class="ttname"><a href="../../da/d66/string_8h.html#a8db335a0fbc2f644e88fc65786e07b60">tro_strdybuf_getlloc</a></div><div class="ttdeci">char * tro_strdybuf_getlloc(tro_strdybuf *buf, size_t *outlen)</div></div>
+<div class="ttc" id="astring_8h_html_aa3ee602b688254e05f17e53b55b3f6cb"><div class="ttname"><a href="../../da/d66/string_8h.html#aa3ee602b688254e05f17e53b55b3f6cb">tro_strdybuf_writes</a></div><div class="ttdeci">bool tro_strdybuf_writes(tro_strdybuf *buf, const char *data, size_t datal)</div></div>
+<div class="ttc" id="astring_8h_html_aa99c47970d2331a5776125182b3ae440"><div class="ttname"><a href="../../da/d66/string_8h.html#aa99c47970d2331a5776125182b3ae440">tro_str_fmt16</a></div><div class="ttdeci">char * tro_str_fmt16(size_t *outlen, const tro_char16 *format,...)</div></div>
+<div class="ttc" id="astring_8h_html_aadbefdd370e4f346c6078d26e7f36632"><div class="ttname"><a href="../../da/d66/string_8h.html#aadbefdd370e4f346c6078d26e7f36632">tro_strdybuf_writec</a></div><div class="ttdeci">bool tro_strdybuf_writec(tro_strdybuf *buf, tro_urune rune, size_t count)</div></div>
+<div class="ttc" id="astring_8h_html_ab3930b4b93879a9dc4b36f2340f83fa8"><div class="ttname"><a href="../../da/d66/string_8h.html#ab3930b4b93879a9dc4b36f2340f83fa8">tro_destroy_strdybuf</a></div><div class="ttdeci">void tro_destroy_strdybuf(tro_strdybuf *buf)</div></div>
+<div class="ttc" id="astring_8h_html_ab8e9b9021105bf8154f2b55e842d211b"><div class="ttname"><a href="../../da/d66/string_8h.html#ab8e9b9021105bf8154f2b55e842d211b">tro_str16dybuf_get</a></div><div class="ttdeci">size_t tro_str16dybuf_get(tro_str16dybuf *buf, tro_char16 *out, size_t outcap)</div></div>
+<div class="ttc" id="astring_8h_html_abe98a23477aec131a8dac5725f551083"><div class="ttname"><a href="../../da/d66/string_8h.html#abe98a23477aec131a8dac5725f551083">tro_str16dybuf_writes</a></div><div class="ttdeci">bool tro_str16dybuf_writes(tro_str16dybuf *buf, const char *data, size_t datal)</div></div>
+<div class="ttc" id="astring_8h_html_ac23327b35817047c66c32f0a674b4213"><div class="ttname"><a href="../../da/d66/string_8h.html#ac23327b35817047c66c32f0a674b4213">tro_str16dybuf_dybuffer_vt</a></div><div class="ttdeci">const tro_dybuffer_i *const tro_str16dybuf_dybuffer_vt</div><div class="ttdef"><b>Definição</b> string.h:256</div></div>
+<div class="ttc" id="astring_8h_html_acfa253d28a7f0a29fcebf6ed57e1ea2e"><div class="ttname"><a href="../../da/d66/string_8h.html#acfa253d28a7f0a29fcebf6ed57e1ea2e">tro_sfmt</a></div><div class="ttdeci">bool tro_sfmt(tro_dybuffer_obj buf, const char *format,...)</div></div>
+<div class="ttc" id="astring_8h_html_ad2d994066dea35e51ab40ac193608e0f"><div class="ttname"><a href="../../da/d66/string_8h.html#ad2d994066dea35e51ab40ac193608e0f">tro_vstr16_fmt</a></div><div class="ttdeci">tro_char16 * tro_vstr16_fmt(size_t *outlen, const char *format, va_list args)</div></div>
+<div class="ttc" id="astring_8h_html_ad36481f136c1ce6cc3b149e838cb46b6"><div class="ttname"><a href="../../da/d66/string_8h.html#ad36481f136c1ce6cc3b149e838cb46b6">tro_str16_fmt16</a></div><div class="ttdeci">tro_char16 * tro_str16_fmt16(size_t *outlen, const tro_char16 *format,...)</div></div>
+<div class="ttc" id="astring_8h_html_ad65668d9484392027b12d022f523196d"><div class="ttname"><a href="../../da/d66/string_8h.html#ad65668d9484392027b12d022f523196d">tro_destroy_str16dybuf</a></div><div class="ttdeci">void tro_destroy_str16dybuf(tro_str16dybuf *buf)</div></div>
+<div class="ttc" id="astring_8h_html_adadb662e35d906db44621c825b793717"><div class="ttname"><a href="../../da/d66/string_8h.html#adadb662e35d906db44621c825b793717">tro_conv_str16_to_str</a></div><div class="ttdeci">size_t tro_conv_str16_to_str(const tro_char16 *in, size_t inlen, char *out, size_t outcap)</div></div>
+<div class="ttc" id="astring_8h_html_aec9b193a2433b424f29da9f84c62fd78"><div class="ttname"><a href="../../da/d66/string_8h.html#aec9b193a2433b424f29da9f84c62fd78">tro_vstr_fmt</a></div><div class="ttdeci">char * tro_vstr_fmt(size_t *outlen, const char *format, va_list args)</div></div>
+<div class="ttc" id="astring_8h_html_aecc29e172ef7b3941ed868901853415e"><div class="ttname"><a href="../../da/d66/string_8h.html#aecc29e172ef7b3941ed868901853415e">tro_str16dybuf</a></div><div class="ttdeci">struct tro_str16dybuf tro_str16dybuf</div><div class="ttdef"><b>Definição</b> string.h:251</div></div>
+<div class="ttc" id="astring_8h_html_af4b294c7f525e0013a22380b3230fa99"><div class="ttname"><a href="../../da/d66/string_8h.html#af4b294c7f525e0013a22380b3230fa99">tro_vsfmt16</a></div><div class="ttdeci">bool tro_vsfmt16(tro_dybuffer_obj buf, const tro_char16 *format, va_list args)</div></div>
+<div class="ttc" id="astring_8h_html_afd0572b1ea64328f35b5af1c3c231654"><div class="ttname"><a href="../../da/d66/string_8h.html#afd0572b1ea64328f35b5af1c3c231654">tro_cnvlloc_str_to_str16</a></div><div class="ttdeci">tro_char16 * tro_cnvlloc_str_to_str16(const char *in, size_t inlen, size_t *lenout)</div></div>
+<div class="ttc" id="astructtro__dybuffer__i_html"><div class="ttname"><a href="../../df/daf/structtro__dybuffer__i.html">tro_dybuffer_i</a></div><div class="ttdef"><b>Definição</b> dybuffer.h:53</div></div>
+<div class="ttc" id="astructtro__dybuffer__obj_html"><div class="ttname"><a href="../../d8/dcc/structtro__dybuffer__obj.html">tro_dybuffer_obj</a></div><div class="ttdef"><b>Definição</b> dybuffer.h:107</div></div>
+<div class="ttc" id="auchar_8h_html"><div class="ttname"><a href="../../d5/d5e/uchar_8h.html">uchar.h</a></div></div>
+<div class="ttc" id="auchar_8h_html_a25ef2305998b3747aba47f22b6354272"><div class="ttname"><a href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a></div><div class="ttdeci">uint16_t tro_char16</div><div class="ttdef"><b>Definição</b> uchar.h:199</div></div>
+<div class="ttc" id="auchar_8h_html_aa0373d69337dc49ab65ac05348387038"><div class="ttname"><a href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">tro_urune</a></div><div class="ttdeci">uint32_t tro_urune</div><div class="ttdef"><b>Definição</b> uchar.h:51</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>tro</b></li><li class="navelem"><a href="../../da/d66/string_8h.html">string.h</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

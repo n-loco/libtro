@@ -1,0 +1,602 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LibTRO: Referência do Arquivo tro/uchar.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../codefolding.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../navtreedata.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">LibTRO<span id="projectnumber">&#160;0</span>
+   </div>
+   <div id="projectbrief">Uma biblioteca com funções semelhantes às do C                           para fins educacionais na Eletrônica, IF Sul Pelotas.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "../../search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('../../',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Busca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('d5/d5e/uchar_8h.html','../../',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrado</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referência do Arquivo uchar.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><a href="../../d5/d5e/uchar_8h_source.html">Ir para o código-fonte desse arquivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Definições e Macros</h2></td></tr>
+<tr class="memitem:a4ea70217bb9a3b97cb649727d750b542" id="r_a4ea70217bb9a3b97cb649727d750b542"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a4ea70217bb9a3b97cb649727d750b542">TRO_MULTI_U8CODE_MAX</a>&#160;&#160;&#160;4</td></tr>
+<tr class="memitem:a42c5e98c3a0c64b1d1557ffc9ab30adb" id="r_a42c5e98c3a0c64b1d1557ffc9ab30adb"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a42c5e98c3a0c64b1d1557ffc9ab30adb">TRO_MULTI_U16CODE_MAX</a>&#160;&#160;&#160;2</td></tr>
+<tr class="memitem:adb11081eca597e00fc4acc3593431490" id="r_adb11081eca597e00fc4acc3593431490"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#adb11081eca597e00fc4acc3593431490">TRO_URUNE_MAX</a>&#160;&#160;&#160;0x10FFFF</td></tr>
+<tr class="memitem:aed415bf99af95f7fd063059ca9e99d33" id="r_aed415bf99af95f7fd063059ca9e99d33"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aed415bf99af95f7fd063059ca9e99d33">TRO_URUNE_IS_VALID</a>(rune)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Definições de Tipos</h2></td></tr>
+<tr class="memitem:a5be0c2a82f94210c2b3ab7d24d1cdc48" id="r_a5be0c2a82f94210c2b3ab7d24d1cdc48"><td class="memItemLeft">typedef uint8_t&#160;</td><td class="memItemRight"><a class="el" href="#a5be0c2a82f94210c2b3ab7d24d1cdc48">tro_u8code</a></td></tr>
+<tr class="memitem:af146cd308f100eece56f21036ed488b6" id="r_af146cd308f100eece56f21036ed488b6"><td class="memItemLeft">typedef uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#af146cd308f100eece56f21036ed488b6">tro_u16code</a></td></tr>
+<tr class="memitem:aa0373d69337dc49ab65ac05348387038" id="r_aa0373d69337dc49ab65ac05348387038"><td class="memItemLeft">typedef uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#aa0373d69337dc49ab65ac05348387038">tro_urune</a></td></tr>
+<tr class="memitem:a25ef2305998b3747aba47f22b6354272" id="r_a25ef2305998b3747aba47f22b6354272"><td class="memItemLeft">typedef uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#a25ef2305998b3747aba47f22b6354272">tro_char16</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:ac3934a216896165d034d50b347f6998c" id="r_ac3934a216896165d034d50b347f6998c"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#ac3934a216896165d034d50b347f6998c">tro_urune_to_u8codes</a> (<a class="el" href="#aa0373d69337dc49ab65ac05348387038">tro_urune</a> rune, <a class="el" href="#a5be0c2a82f94210c2b3ab7d24d1cdc48">tro_u8code</a> *out)</td></tr>
+<tr class="memitem:a650bc86340d2a181952571713ba84958" id="r_a650bc86340d2a181952571713ba84958"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a650bc86340d2a181952571713ba84958">tro_u8codes_to_urune</a> (const <a class="el" href="#a5be0c2a82f94210c2b3ab7d24d1cdc48">tro_u8code</a> *seq, size_t seqlen, <a class="el" href="#aa0373d69337dc49ab65ac05348387038">tro_urune</a> *out)</td></tr>
+<tr class="memitem:a9bd76f28b78e2dfc83f842531808100b" id="r_a9bd76f28b78e2dfc83f842531808100b"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a9bd76f28b78e2dfc83f842531808100b">tro_urune_to_u16codes</a> (<a class="el" href="#aa0373d69337dc49ab65ac05348387038">tro_urune</a> rune, <a class="el" href="#af146cd308f100eece56f21036ed488b6">tro_u16code</a> *out)</td></tr>
+<tr class="memitem:ac1c04f4c8ceddf22c2aa2f42177fa3d2" id="r_ac1c04f4c8ceddf22c2aa2f42177fa3d2"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#ac1c04f4c8ceddf22c2aa2f42177fa3d2">tro_u16codes_to_urune</a> (const <a class="el" href="#af146cd308f100eece56f21036ed488b6">tro_u16code</a> *seq, size_t seqlen, <a class="el" href="#aa0373d69337dc49ab65ac05348387038">tro_urune</a> *out)</td></tr>
+<tr class="memitem:a6263ee01226c9fc1002e87049d458243" id="r_a6263ee01226c9fc1002e87049d458243"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a6263ee01226c9fc1002e87049d458243">tro_u8codes_to_u16codes</a> (const <a class="el" href="#a5be0c2a82f94210c2b3ab7d24d1cdc48">tro_u8code</a> *seq, size_t seqlen, <a class="el" href="#af146cd308f100eece56f21036ed488b6">tro_u16code</a> *out, size_t *outlen)</td></tr>
+<tr class="memitem:af3040aec0440643365fcc0530800cc37" id="r_af3040aec0440643365fcc0530800cc37"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#af3040aec0440643365fcc0530800cc37">tro_u16codes_to_u8codes</a> (const <a class="el" href="#af146cd308f100eece56f21036ed488b6">tro_u16code</a> *seq, size_t seqlen, <a class="el" href="#a5be0c2a82f94210c2b3ab7d24d1cdc48">tro_u8code</a> *out, size_t *outlen)</td></tr>
+<tr class="memitem:a684662d8c39b6a9da787109f7650436f" id="r_a684662d8c39b6a9da787109f7650436f"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a684662d8c39b6a9da787109f7650436f">tro_str8_urune_len</a> (const char *str, size_t strl)</td></tr>
+<tr class="memitem:a5c65b7df6f3d24ac008755b1fd7362ca" id="r_a5c65b7df6f3d24ac008755b1fd7362ca"><td class="memItemLeft">size_t&#160;</td><td class="memItemRight"><a class="el" href="#a5c65b7df6f3d24ac008755b1fd7362ca">tro_str16_urune_len</a> (const <a class="el" href="#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *str, size_t strl)</td></tr>
+</table>
+<a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Definições e macros</h2>
+<a id="a4ea70217bb9a3b97cb649727d750b542" name="a4ea70217bb9a3b97cb649727d750b542"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ea70217bb9a3b97cb649727d750b542">&#9670;&#160;</a></span>TRO_MULTI_U8CODE_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRO_MULTI_U8CODE_MAX&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Define o <b>máximo</b> que um <a class="el" href="#aa0373d69337dc49ab65ac05348387038" title="tro_urune">tro_urune</a> pode chegar como uma sequência <a class="el" href="#a5be0c2a82f94210c2b3ab7d24d1cdc48" title="tro_u8code">tro_u8code</a>.</p>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="#ac3934a216896165d034d50b347f6998c">tro_urune_to_u8codes</a> </dd>
+<dd>
+<a class="el" href="#af3040aec0440643365fcc0530800cc37">tro_u16codes_to_u8codes</a> </dd></dl>
+
+</div>
+</div>
+<a id="a42c5e98c3a0c64b1d1557ffc9ab30adb" name="a42c5e98c3a0c64b1d1557ffc9ab30adb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42c5e98c3a0c64b1d1557ffc9ab30adb">&#9670;&#160;</a></span>TRO_MULTI_U16CODE_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRO_MULTI_U16CODE_MAX&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Define o <b>máximo</b> que <a class="el" href="#aa0373d69337dc49ab65ac05348387038" title="tro_urune">tro_urune</a> pode chegar como uma sequência <a class="el" href="#af146cd308f100eece56f21036ed488b6" title="tro_u16code">tro_u16code</a>.</p>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="#a9bd76f28b78e2dfc83f842531808100b">tro_urune_to_u16codes</a> </dd>
+<dd>
+<a class="el" href="#a6263ee01226c9fc1002e87049d458243">tro_u8codes_to_u16codes</a> </dd></dl>
+
+</div>
+</div>
+<a id="adb11081eca597e00fc4acc3593431490" name="adb11081eca597e00fc4acc3593431490"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb11081eca597e00fc4acc3593431490">&#9670;&#160;</a></span>TRO_URUNE_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRO_URUNE_MAX&#160;&#160;&#160;0x10FFFF</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Define o valor máximo de <a class="el" href="#aa0373d69337dc49ab65ac05348387038" title="tro_urune">tro_urune</a>, ou seja, o <b>último code point</b>. </p>
+
+</div>
+</div>
+<a id="aed415bf99af95f7fd063059ca9e99d33" name="aed415bf99af95f7fd063059ca9e99d33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed415bf99af95f7fd063059ca9e99d33">&#9670;&#160;</a></span>TRO_URUNE_IS_VALID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRO_URUNE_IS_VALID</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>rune</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor:</b><div class="fragment"><div class="line">((rune &lt; 0xD800 || 0xDFFF &lt; rune) &amp;&amp; rune &lt;= <a class="code hl_define" href="#adb11081eca597e00fc4acc3593431490">TRO_URUNE_MAX</a>)</div>
+<div class="ttc" id="auchar_8h_html_adb11081eca597e00fc4acc3593431490"><div class="ttname"><a href="#adb11081eca597e00fc4acc3593431490">TRO_URUNE_MAX</a></div><div class="ttdeci">#define TRO_URUNE_MAX</div><div class="ttdef"><b>Definição</b> uchar.h:59</div></div>
+</div><!-- fragment --><p>Retorna se <span class="tt">rune</span> é um <b>code point</b> realmente <b>válido</b>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rune</td><td>deve ser um <b>número</b>, de preferência um <a class="el" href="#aa0373d69337dc49ab65ac05348387038" title="tro_urune">tro_urune</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Definições dos tipos</h2>
+<a id="a5be0c2a82f94210c2b3ab7d24d1cdc48" name="a5be0c2a82f94210c2b3ab7d24d1cdc48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5be0c2a82f94210c2b3ab7d24d1cdc48">&#9670;&#160;</a></span>tro_u8code</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef uint8_t <a class="el" href="#a5be0c2a82f94210c2b3ab7d24d1cdc48">tro_u8code</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Representa <b>um</b> único <b>byte</b> de uma sequência <b>UTF-8</b>. </p>
+
+</div>
+</div>
+<a id="af146cd308f100eece56f21036ed488b6" name="af146cd308f100eece56f21036ed488b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af146cd308f100eece56f21036ed488b6">&#9670;&#160;</a></span>tro_u16code</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef uint16_t <a class="el" href="#af146cd308f100eece56f21036ed488b6">tro_u16code</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Representa <b>um</b> único <b>surrogate</b> (<em>número de 16 bits</em>) de uma sequência <b>UTF-16</b>. </p>
+
+</div>
+</div>
+<a id="aa0373d69337dc49ab65ac05348387038" name="aa0373d69337dc49ab65ac05348387038"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0373d69337dc49ab65ac05348387038">&#9670;&#160;</a></span>tro_urune</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef uint32_t <a class="el" href="#aa0373d69337dc49ab65ac05348387038">tro_urune</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Representa um <b>code point Unicode</b>. </p>
+
+</div>
+</div>
+<a id="a25ef2305998b3747aba47f22b6354272" name="a25ef2305998b3747aba47f22b6354272"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25ef2305998b3747aba47f22b6354272">&#9670;&#160;</a></span>tro_char16</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef uint16_t <a class="el" href="#a25ef2305998b3747aba47f22b6354272">tro_char16</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Representa um <b>caractere UTF-16</b> e <b>strings UTF-16</b> via <span class="tt"><a class="el" href="#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *</span>, em contra partida ao <span class="tt">char</span>, que <b>nesta biblioteca</b> se assume <b>UTF-8</b>.</p>
+<dl class="section note"><dt>Observação</dt><dd>A biblioteca <b>não</b> utiliza <span class="tt">uchar.h</span> pela sua ausência em algumas plataformas, mas caso disponível, <span class="tt"><a class="el" href="#a25ef2305998b3747aba47f22b6354272">tro_char16</a></span> é completamente compatível com <span class="tt">char16_t</span>. </dd></dl>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Funções</h2>
+<a id="ac3934a216896165d034d50b347f6998c" name="ac3934a216896165d034d50b347f6998c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3934a216896165d034d50b347f6998c">&#9670;&#160;</a></span>tro_urune_to_u8codes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_urune_to_u8codes </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#aa0373d69337dc49ab65ac05348387038">tro_urune</a></td>          <td class="paramname"><span class="paramname"><em>rune</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a5be0c2a82f94210c2b3ab7d24d1cdc48">tro_u8code</a> *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Converte um <a class="el" href="#aa0373d69337dc49ab65ac05348387038" title="tro_urune">tro_urune</a> para uma sequência <a class="el" href="#a5be0c2a82f94210c2b3ab7d24d1cdc48" title="tro_u8code">tro_u8code</a>. Em caso de <b>erro</b>, a sequência codificada será do <span class="tt">u'�'</span> (<em>REPLACEMENT CHARACTER</em>).</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rune</td><td>é a runa com o <b>code point</b>. </td></tr>
+    <tr><td class="paramname">out</td><td>é um array de tamanho <a class="el" href="#a4ea70217bb9a3b97cb649727d750b542" title="TRO_MULTI_U8CODE_MAX">TRO_MULTI_U8CODE_MAX</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>o tamanho da sequência final.</dd></dl>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="#a650bc86340d2a181952571713ba84958">tro_u8codes_to_urune</a> </dd>
+<dd>
+<a class="el" href="#af3040aec0440643365fcc0530800cc37">tro_u16codes_to_u8codes</a> </dd></dl>
+
+</div>
+</div>
+<a id="a650bc86340d2a181952571713ba84958" name="a650bc86340d2a181952571713ba84958"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a650bc86340d2a181952571713ba84958">&#9670;&#160;</a></span>tro_u8codes_to_urune()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_u8codes_to_urune </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a5be0c2a82f94210c2b3ab7d24d1cdc48">tro_u8code</a> *</td>          <td class="paramname"><span class="paramname"><em>seq</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>seqlen</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#aa0373d69337dc49ab65ac05348387038">tro_urune</a> *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Converte uma sequência <a class="el" href="#a5be0c2a82f94210c2b3ab7d24d1cdc48" title="tro_u8code">tro_u8code</a> para um <a class="el" href="#aa0373d69337dc49ab65ac05348387038" title="tro_urune">tro_urune</a>. Em caso de <b>erro</b>, a <b>runa</b> será <span class="tt">u'�'</span> (<em>REPLACEMENT CHARACTER</em>).</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seq</td><td>é a sequência <b>UTF-8</b> para decodificar. </td></tr>
+    <tr><td class="paramname">seqlen</td><td>é o <b>comprimento máximo</b> da sequência. Se for <span class="tt">0</span>, se assume <span class="tt">seq</span> terminado em <span class="tt">'\0'</span>. </td></tr>
+    <tr><td class="paramname">out</td><td>é um <b>ponteiro</b> para armazenar a <b>runa</b> decodificada.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>quantidade de <b>bytes</b> lidos.</dd></dl>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="#ac3934a216896165d034d50b347f6998c">tro_urune_to_u8codes</a> </dd>
+<dd>
+<a class="el" href="#a9bd76f28b78e2dfc83f842531808100b">tro_urune_to_u16codes</a> </dd></dl>
+
+</div>
+</div>
+<a id="a9bd76f28b78e2dfc83f842531808100b" name="a9bd76f28b78e2dfc83f842531808100b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bd76f28b78e2dfc83f842531808100b">&#9670;&#160;</a></span>tro_urune_to_u16codes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_urune_to_u16codes </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#aa0373d69337dc49ab65ac05348387038">tro_urune</a></td>          <td class="paramname"><span class="paramname"><em>rune</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#af146cd308f100eece56f21036ed488b6">tro_u16code</a> *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Converte um <a class="el" href="#aa0373d69337dc49ab65ac05348387038" title="tro_urune">tro_urune</a> para uma sequência <a class="el" href="#af146cd308f100eece56f21036ed488b6" title="tro_u16code">tro_u16code</a>. Em caso de <b>erro</b>, a sequência codificada será do <span class="tt">u'�'</span> (<em>REPLACEMENT CHARACTER</em>).</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rune</td><td>é a runa com o <b>code point</b>. </td></tr>
+    <tr><td class="paramname">out</td><td>é um array de tamanho <a class="el" href="#a42c5e98c3a0c64b1d1557ffc9ab30adb" title="TRO_MULTI_U16CODE_MAX">TRO_MULTI_U16CODE_MAX</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>o tamanho da sequência final.</dd></dl>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="#a6263ee01226c9fc1002e87049d458243">tro_u8codes_to_u16codes</a> </dd>
+<dd>
+<a class="el" href="#ac1c04f4c8ceddf22c2aa2f42177fa3d2">tro_u16codes_to_urune</a> </dd></dl>
+
+</div>
+</div>
+<a id="ac1c04f4c8ceddf22c2aa2f42177fa3d2" name="ac1c04f4c8ceddf22c2aa2f42177fa3d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1c04f4c8ceddf22c2aa2f42177fa3d2">&#9670;&#160;</a></span>tro_u16codes_to_urune()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_u16codes_to_urune </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#af146cd308f100eece56f21036ed488b6">tro_u16code</a> *</td>          <td class="paramname"><span class="paramname"><em>seq</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>seqlen</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#aa0373d69337dc49ab65ac05348387038">tro_urune</a> *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Converte uma sequência <a class="el" href="#af146cd308f100eece56f21036ed488b6" title="tro_u16code">tro_u16code</a> para um <a class="el" href="#aa0373d69337dc49ab65ac05348387038" title="tro_urune">tro_urune</a>. Em caso de <b>erro</b>, a <b>runa</b> será <span class="tt">u'�'</span> (<em>REPLACEMENT CHARACTER</em>).</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seq</td><td>é a sequência <b>UTF-16</b> para decodificar. </td></tr>
+    <tr><td class="paramname">seqlen</td><td>é o <b>comprimento máximo</b> da sequência. Se for <span class="tt">0</span>, se assume <span class="tt">seq</span> terminado em <span class="tt">'\0'</span>. </td></tr>
+    <tr><td class="paramname">out</td><td>é um <b>ponteiro</b> para armazenar a <b>runa</b> decodificada.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>quantidade de <b>surrogates</b> lidos.</dd></dl>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="#ac3934a216896165d034d50b347f6998c">tro_urune_to_u8codes</a> </dd>
+<dd>
+<a class="el" href="#a9bd76f28b78e2dfc83f842531808100b">tro_urune_to_u16codes</a> </dd></dl>
+
+</div>
+</div>
+<a id="a6263ee01226c9fc1002e87049d458243" name="a6263ee01226c9fc1002e87049d458243"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6263ee01226c9fc1002e87049d458243">&#9670;&#160;</a></span>tro_u8codes_to_u16codes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_u8codes_to_u16codes </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a5be0c2a82f94210c2b3ab7d24d1cdc48">tro_u8code</a> *</td>          <td class="paramname"><span class="paramname"><em>seq</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>seqlen</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#af146cd308f100eece56f21036ed488b6">tro_u16code</a> *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *</td>          <td class="paramname"><span class="paramname"><em>outlen</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Converte uma sequência <a class="el" href="#a5be0c2a82f94210c2b3ab7d24d1cdc48" title="tro_u8code">tro_u8code</a> <b>direto</b> para uma sequência <a class="el" href="#af146cd308f100eece56f21036ed488b6" title="tro_u16code">tro_u16code</a>. Em caso de <b>erro</b>, a sequência codificada será do <span class="tt">u'�'</span> (<em>REPLACEMENT CHARACTER</em>).</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seq</td><td>é a sequência <b>UTF-8</b> para decodificar. </td></tr>
+    <tr><td class="paramname">seqlen</td><td>é o <b>comprimento máximo</b> da sequência. Se for <span class="tt">0</span>, se assume <span class="tt">seq</span> terminado em <span class="tt">'\0'</span>. </td></tr>
+    <tr><td class="paramname">out</td><td>é um array de tamanho <a class="el" href="#a42c5e98c3a0c64b1d1557ffc9ab30adb" title="TRO_MULTI_U16CODE_MAX">TRO_MULTI_U16CODE_MAX</a>. </td></tr>
+    <tr><td class="paramname">outlen</td><td>é um <b>ponteiro</b> para armazenar o tamanho da sequência final.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>quantidade de <b>bytes</b> lidos.</dd></dl>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="#a9bd76f28b78e2dfc83f842531808100b">tro_urune_to_u16codes</a> </dd>
+<dd>
+<a class="el" href="#af3040aec0440643365fcc0530800cc37">tro_u16codes_to_u8codes</a> </dd></dl>
+
+</div>
+</div>
+<a id="af3040aec0440643365fcc0530800cc37" name="af3040aec0440643365fcc0530800cc37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3040aec0440643365fcc0530800cc37">&#9670;&#160;</a></span>tro_u16codes_to_u8codes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_u16codes_to_u8codes </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#af146cd308f100eece56f21036ed488b6">tro_u16code</a> *</td>          <td class="paramname"><span class="paramname"><em>seq</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>seqlen</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a5be0c2a82f94210c2b3ab7d24d1cdc48">tro_u8code</a> *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *</td>          <td class="paramname"><span class="paramname"><em>outlen</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Converte uma sequência <a class="el" href="#af146cd308f100eece56f21036ed488b6" title="tro_u16code">tro_u16code</a> <b>direto</b> para uma sequência <a class="el" href="#a5be0c2a82f94210c2b3ab7d24d1cdc48" title="tro_u8code">tro_u8code</a>. Em caso de <b>erro</b>, a sequência codificada será do <span class="tt">u'�'</span> (<em>REPLACEMENT CHARACTER</em>).</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seq</td><td>é a sequência <b>UTF-16</b> para decodificar. </td></tr>
+    <tr><td class="paramname">seqlen</td><td>é o <b>comprimento máximo</b> da sequência. Se for <span class="tt">0</span>, se assume <span class="tt">seq</span> terminado em <span class="tt">'\0'</span>. </td></tr>
+    <tr><td class="paramname">out</td><td>é um array de tamanho <a class="el" href="#a4ea70217bb9a3b97cb649727d750b542" title="TRO_MULTI_U8CODE_MAX">TRO_MULTI_U8CODE_MAX</a>. </td></tr>
+    <tr><td class="paramname">outlen</td><td>é um <b>ponteiro</b> para armazenar o tamanho da sequência final.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>quantidade de <b>surrogates</b> lidos.</dd></dl>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="#ac3934a216896165d034d50b347f6998c">tro_urune_to_u8codes</a> </dd>
+<dd>
+<a class="el" href="#a6263ee01226c9fc1002e87049d458243">tro_u8codes_to_u16codes</a> </dd></dl>
+
+</div>
+</div>
+<a id="a684662d8c39b6a9da787109f7650436f" name="a684662d8c39b6a9da787109f7650436f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a684662d8c39b6a9da787109f7650436f">&#9670;&#160;</a></span>tro_str8_urune_len()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_str8_urune_len </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>str</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>strl</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>é uma <b>string UTF-8</b>. </td></tr>
+    <tr><td class="paramname">strl</td><td>é o comprimento de <span class="tt">str</span>, caso seja <span class="tt">0</span>, se assume <span class="tt">str</span> terminado em <span class="tt">'\0'</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>a quantidade de <b>code points</b> em <span class="tt">str</span>. </dd></dl>
+
+</div>
+</div>
+<a id="a5c65b7df6f3d24ac008755b1fd7362ca" name="a5c65b7df6f3d24ac008755b1fd7362ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c65b7df6f3d24ac008755b1fd7362ca">&#9670;&#160;</a></span>tro_str16_urune_len()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t tro_str16_urune_len </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *</td>          <td class="paramname"><span class="paramname"><em>str</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>strl</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>é uma <b>string UTF-16</b>. </td></tr>
+    <tr><td class="paramname">strl</td><td>é o comprimento de <span class="tt">str</span>, caso seja <span class="tt">0</span>, se assume <span class="tt">str</span> terminado em <span class="tt">'\0'</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>a quantidade de <b>code points</b> em <span class="tt">str</span>.</dd></dl>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="#a25ef2305998b3747aba47f22b6354272">tro_char16</a> </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>tro</b></li><li class="navelem"><a href="../../d5/d5e/uchar_8h.html">uchar.h</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

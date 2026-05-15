@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LibTRO: Código-Fonte de tro/uchar.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../codefolding.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../navtreedata.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">LibTRO<span id="projectnumber">&#160;0</span>
+   </div>
+   <div id="projectbrief">Uma biblioteca com funções semelhantes às do C                           para fins educacionais na Eletrônica, IF Sul Pelotas.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "../../search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('../../',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Busca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('d5/d5e/uchar_8h_source.html','../../',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrado</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">uchar.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d5/d5e/uchar_8h.html">Ir para a documentação desse arquivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#ifndef TRO_UCHAR_H_</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#define TRO_UCHAR_H_</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;tro/private/api.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>TRO__C_API_BEGIN</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="../../d5/d5e/uchar_8h.html#a5be0c2a82f94210c2b3ab7d24d1cdc48">   17</a></span><span class="keyword">typedef</span> uint8_t <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a5be0c2a82f94210c2b3ab7d24d1cdc48">tro_u8code</a>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="../../d5/d5e/uchar_8h.html#a4ea70217bb9a3b97cb649727d750b542">   28</a></span><span class="preprocessor">#define TRO_MULTI_U8CODE_MAX 4</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="../../d5/d5e/uchar_8h.html#af146cd308f100eece56f21036ed488b6">   35</a></span><span class="keyword">typedef</span> uint16_t <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#af146cd308f100eece56f21036ed488b6">tro_u16code</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="../../d5/d5e/uchar_8h.html#a42c5e98c3a0c64b1d1557ffc9ab30adb">   46</a></span><span class="preprocessor">#define TRO_MULTI_U16CODE_MAX 2</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">   51</a></span><span class="keyword">typedef</span> uint32_t <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">tro_urune</a>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="../../d5/d5e/uchar_8h.html#adb11081eca597e00fc4acc3593431490">   59</a></span><span class="preprocessor">#define TRO_URUNE_MAX 0x10FFFF</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span></div>
+<div class="foldopen" id="foldopen00070" data-start="" data-end="">
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="../../d5/d5e/uchar_8h.html#aed415bf99af95f7fd063059ca9e99d33">   70</a></span><span class="preprocessor">#define TRO_URUNE_IS_VALID(rune)                                               \</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="preprocessor">        ((rune &lt; 0xD800 || 0xDFFF &lt; rune) &amp;&amp; rune &lt;= TRO_URUNE_MAX)</span></div>
+</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="../../d5/d5e/uchar_8h.html#ac3934a216896165d034d50b347f6998c">   87</a></span>TRO__API <span class="keywordtype">size_t</span> <a class="code hl_function" href="../../d5/d5e/uchar_8h.html#ac3934a216896165d034d50b347f6998c">tro_urune_to_u8codes</a>(<a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">tro_urune</a> rune, <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a5be0c2a82f94210c2b3ab7d24d1cdc48">tro_u8code</a> *out);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="../../d5/d5e/uchar_8h.html#a650bc86340d2a181952571713ba84958">  106</a></span>TRO__API <span class="keywordtype">size_t</span> <a class="code hl_function" href="../../d5/d5e/uchar_8h.html#a650bc86340d2a181952571713ba84958">tro_u8codes_to_urune</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a5be0c2a82f94210c2b3ab7d24d1cdc48">tro_u8code</a> *seq, <span class="keywordtype">size_t</span> seqlen,</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                                     <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">tro_urune</a> *out);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="../../d5/d5e/uchar_8h.html#a9bd76f28b78e2dfc83f842531808100b">  123</a></span>TRO__API <span class="keywordtype">size_t</span> <a class="code hl_function" href="../../d5/d5e/uchar_8h.html#a9bd76f28b78e2dfc83f842531808100b">tro_urune_to_u16codes</a>(<a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">tro_urune</a> rune, <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#af146cd308f100eece56f21036ed488b6">tro_u16code</a> *out);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="../../d5/d5e/uchar_8h.html#ac1c04f4c8ceddf22c2aa2f42177fa3d2">  142</a></span>TRO__API <span class="keywordtype">size_t</span> <a class="code hl_function" href="../../d5/d5e/uchar_8h.html#ac1c04f4c8ceddf22c2aa2f42177fa3d2">tro_u16codes_to_urune</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#af146cd308f100eece56f21036ed488b6">tro_u16code</a> *seq, <span class="keywordtype">size_t</span> seqlen,</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>                                      <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">tro_urune</a> *out);</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="../../d5/d5e/uchar_8h.html#a6263ee01226c9fc1002e87049d458243">  162</a></span>TRO__API <span class="keywordtype">size_t</span> <a class="code hl_function" href="../../d5/d5e/uchar_8h.html#a6263ee01226c9fc1002e87049d458243">tro_u8codes_to_u16codes</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a5be0c2a82f94210c2b3ab7d24d1cdc48">tro_u8code</a> *seq, <span class="keywordtype">size_t</span> seqlen,</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>                                        <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#af146cd308f100eece56f21036ed488b6">tro_u16code</a> *out, <span class="keywordtype">size_t</span> *outlen);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="../../d5/d5e/uchar_8h.html#af3040aec0440643365fcc0530800cc37">  183</a></span>TRO__API <span class="keywordtype">size_t</span> <a class="code hl_function" href="../../d5/d5e/uchar_8h.html#af3040aec0440643365fcc0530800cc37">tro_u16codes_to_u8codes</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#af146cd308f100eece56f21036ed488b6">tro_u16code</a> *seq, <span class="keywordtype">size_t</span> seqlen,</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>                                        <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a5be0c2a82f94210c2b3ab7d24d1cdc48">tro_u8code</a> *out, <span class="keywordtype">size_t</span> *outlen);</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">  199</a></span><span class="keyword">typedef</span> uint16_t <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a>;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno"><a class="line" href="../../d5/d5e/uchar_8h.html#a684662d8c39b6a9da787109f7650436f">  208</a></span>TRO__API <span class="keywordtype">size_t</span> <a class="code hl_function" href="../../d5/d5e/uchar_8h.html#a684662d8c39b6a9da787109f7650436f">tro_str8_urune_len</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *str, <span class="keywordtype">size_t</span> strl);</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno"><a class="line" href="../../d5/d5e/uchar_8h.html#a5c65b7df6f3d24ac008755b1fd7362ca">  219</a></span>TRO__API <span class="keywordtype">size_t</span> <a class="code hl_function" href="../../d5/d5e/uchar_8h.html#a5c65b7df6f3d24ac008755b1fd7362ca">tro_str16_urune_len</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *str, <span class="keywordtype">size_t</span> strl);</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>TRO__C_API_END</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="preprocessor">#endif </span><span class="comment">// TRO_UCHAR_H_</span></div>
+<div class="ttc" id="auchar_8h_html_a25ef2305998b3747aba47f22b6354272"><div class="ttname"><a href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a></div><div class="ttdeci">uint16_t tro_char16</div><div class="ttdef"><b>Definição</b> uchar.h:199</div></div>
+<div class="ttc" id="auchar_8h_html_a5be0c2a82f94210c2b3ab7d24d1cdc48"><div class="ttname"><a href="../../d5/d5e/uchar_8h.html#a5be0c2a82f94210c2b3ab7d24d1cdc48">tro_u8code</a></div><div class="ttdeci">uint8_t tro_u8code</div><div class="ttdef"><b>Definição</b> uchar.h:17</div></div>
+<div class="ttc" id="auchar_8h_html_a5c65b7df6f3d24ac008755b1fd7362ca"><div class="ttname"><a href="../../d5/d5e/uchar_8h.html#a5c65b7df6f3d24ac008755b1fd7362ca">tro_str16_urune_len</a></div><div class="ttdeci">size_t tro_str16_urune_len(const tro_char16 *str, size_t strl)</div></div>
+<div class="ttc" id="auchar_8h_html_a6263ee01226c9fc1002e87049d458243"><div class="ttname"><a href="../../d5/d5e/uchar_8h.html#a6263ee01226c9fc1002e87049d458243">tro_u8codes_to_u16codes</a></div><div class="ttdeci">size_t tro_u8codes_to_u16codes(const tro_u8code *seq, size_t seqlen, tro_u16code *out, size_t *outlen)</div></div>
+<div class="ttc" id="auchar_8h_html_a650bc86340d2a181952571713ba84958"><div class="ttname"><a href="../../d5/d5e/uchar_8h.html#a650bc86340d2a181952571713ba84958">tro_u8codes_to_urune</a></div><div class="ttdeci">size_t tro_u8codes_to_urune(const tro_u8code *seq, size_t seqlen, tro_urune *out)</div></div>
+<div class="ttc" id="auchar_8h_html_a684662d8c39b6a9da787109f7650436f"><div class="ttname"><a href="../../d5/d5e/uchar_8h.html#a684662d8c39b6a9da787109f7650436f">tro_str8_urune_len</a></div><div class="ttdeci">size_t tro_str8_urune_len(const char *str, size_t strl)</div></div>
+<div class="ttc" id="auchar_8h_html_a9bd76f28b78e2dfc83f842531808100b"><div class="ttname"><a href="../../d5/d5e/uchar_8h.html#a9bd76f28b78e2dfc83f842531808100b">tro_urune_to_u16codes</a></div><div class="ttdeci">size_t tro_urune_to_u16codes(tro_urune rune, tro_u16code *out)</div></div>
+<div class="ttc" id="auchar_8h_html_aa0373d69337dc49ab65ac05348387038"><div class="ttname"><a href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">tro_urune</a></div><div class="ttdeci">uint32_t tro_urune</div><div class="ttdef"><b>Definição</b> uchar.h:51</div></div>
+<div class="ttc" id="auchar_8h_html_ac1c04f4c8ceddf22c2aa2f42177fa3d2"><div class="ttname"><a href="../../d5/d5e/uchar_8h.html#ac1c04f4c8ceddf22c2aa2f42177fa3d2">tro_u16codes_to_urune</a></div><div class="ttdeci">size_t tro_u16codes_to_urune(const tro_u16code *seq, size_t seqlen, tro_urune *out)</div></div>
+<div class="ttc" id="auchar_8h_html_ac3934a216896165d034d50b347f6998c"><div class="ttname"><a href="../../d5/d5e/uchar_8h.html#ac3934a216896165d034d50b347f6998c">tro_urune_to_u8codes</a></div><div class="ttdeci">size_t tro_urune_to_u8codes(tro_urune rune, tro_u8code *out)</div></div>
+<div class="ttc" id="auchar_8h_html_af146cd308f100eece56f21036ed488b6"><div class="ttname"><a href="../../d5/d5e/uchar_8h.html#af146cd308f100eece56f21036ed488b6">tro_u16code</a></div><div class="ttdeci">uint16_t tro_u16code</div><div class="ttdef"><b>Definição</b> uchar.h:35</div></div>
+<div class="ttc" id="auchar_8h_html_af3040aec0440643365fcc0530800cc37"><div class="ttname"><a href="../../d5/d5e/uchar_8h.html#af3040aec0440643365fcc0530800cc37">tro_u16codes_to_u8codes</a></div><div class="ttdeci">size_t tro_u16codes_to_u8codes(const tro_u16code *seq, size_t seqlen, tro_u8code *out, size_t *outlen)</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>tro</b></li><li class="navelem"><a href="../../d5/d5e/uchar_8h.html">uchar.h</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

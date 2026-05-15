@@ -1,0 +1,1395 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LibTRO: Referência do Arquivo troio.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../codefolding.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../navtreedata.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">LibTRO<span id="projectnumber">&#160;0</span>
+   </div>
+   <div id="projectbrief">Uma biblioteca com funções semelhantes às do C                           para fins educacionais na Eletrônica, IF Sul Pelotas.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "../../search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('../../',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Busca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('d3/d3c/troio_8h.html','../../',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrado</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referência do Arquivo troio.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><a href="../../d3/d3c/troio_8h_source.html">Ir para o código-fonte desse arquivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Definições e Macros</h2></td></tr>
+<tr class="memitem:a7c4628959a272e90c4beaae4a7f77aaa" id="r_a7c4628959a272e90c4beaae4a7f77aaa"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a7c4628959a272e90c4beaae4a7f77aaa">TRO_BUFFER_CAPACITY</a>&#160;&#160;&#160;512</td></tr>
+<tr class="memitem:af23ff27e9c25d4665cd1a517c1412962" id="r_af23ff27e9c25d4665cd1a517c1412962"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#af23ff27e9c25d4665cd1a517c1412962">tro_fdybuffer</a>(file)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Definições de Tipos</h2></td></tr>
+<tr class="memitem:acbeb8b14fc62a98658307d7a776149b8" id="r_acbeb8b14fc62a98658307d7a776149b8"><td class="memItemLeft">typedef struct <a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a>&#160;</td><td class="memItemRight"><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerações</h2></td></tr>
+<tr class="memitem:af1389618b92cdc1649c850febe0a2fc0" id="r_af1389618b92cdc1649c850febe0a2fc0"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#af1389618b92cdc1649c850febe0a2fc0">tro_fmode</a> { <br />
+&#160;&#160;<a class="el" href="#af1389618b92cdc1649c850febe0a2fc0a4c622a69759b91ee9ecf3431ee72d999">TRO_FMODE_NULL</a>
+, <br />
+&#160;&#160;<a class="el" href="#af1389618b92cdc1649c850febe0a2fc0a8910a0da23a6e2f3bf46b9a328527da7">TRO_FMODE_READ</a>
+, <br />
+&#160;&#160;<a class="el" href="#af1389618b92cdc1649c850febe0a2fc0a7b5f819ab169f613a12d3a36ec466d65">TRO_FMODE_WRITE</a>
+, <br />
+&#160;&#160;<a class="el" href="#af1389618b92cdc1649c850febe0a2fc0a2cb19238e86f772dcf949e82f2e23fe8">TRO_FMODE_APPEND</a>
+, <br />
+&#160;&#160;<a class="el" href="#af1389618b92cdc1649c850febe0a2fc0abe76e0af2e3eff5d5ca7c87243575a41">TRO_FMODE_RDWT</a>
+, <br />
+&#160;&#160;<a class="el" href="#af1389618b92cdc1649c850febe0a2fc0a11b985d1a42ae530b63cdb4363dfe61c">TRO_FMODE_RDAD</a>
+<br />
+ }</td></tr>
+<tr class="memitem:a093917f356108b3680e64af117358b6e" id="r_a093917f356108b3680e64af117358b6e"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#a093917f356108b3680e64af117358b6e">tro_fbufmode</a> { <br />
+&#160;&#160;<a class="el" href="#a093917f356108b3680e64af117358b6eadf8592e5dcc8b0df7e4f91f044ec8c4d">TRO_FBUFMODE_NO_BUFFER</a>
+, <br />
+&#160;&#160;<a class="el" href="#a093917f356108b3680e64af117358b6ea93e2d17dd5d51d6980eaa1b7baa3257d">TRO_FBUFMODE_LINE_BUFFER</a>
+, <br />
+&#160;&#160;<a class="el" href="#a093917f356108b3680e64af117358b6ea968f11edef66adee40bbc6257f842ffe">TRO_FBUFMODE_FULL_BUFFER</a>
+<br />
+ }</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:a03e5d1851e18b25ea51daa29e4ed8e3c" id="r_a03e5d1851e18b25ea51daa29e4ed8e3c"><td class="memItemLeft"><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a03e5d1851e18b25ea51daa29e4ed8e3c">tro_fopen</a> (const char *filepath, <a class="el" href="#af1389618b92cdc1649c850febe0a2fc0">tro_fmode</a> mode)</td></tr>
+<tr class="memitem:a1c0c73a42a103a651f4e7095cd9f4e6d" id="r_a1c0c73a42a103a651f4e7095cd9f4e6d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1c0c73a42a103a651f4e7095cd9f4e6d">tro_fclose</a> (<a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file)</td></tr>
+<tr class="memitem:a385af618c63512e8a7ce11b89135a356" id="r_a385af618c63512e8a7ce11b89135a356"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a385af618c63512e8a7ce11b89135a356">tro_fsetbuf</a> (<a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, <a class="el" href="#a093917f356108b3680e64af117358b6e">tro_fbufmode</a> mode, size_t capacity)</td></tr>
+<tr class="memitem:a08ddc196a9b3a46b1b4a77a9d1b090b1" id="r_a08ddc196a9b3a46b1b4a77a9d1b090b1"><td class="memItemLeft">uintptr_t&#160;</td><td class="memItemRight"><a class="el" href="#a08ddc196a9b3a46b1b4a77a9d1b090b1">tro_fileno</a> (const <a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file)</td></tr>
+<tr class="memitem:ad1d7752d6a1174c7dcc915df77aa9742" id="r_ad1d7752d6a1174c7dcc915df77aa9742"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ad1d7752d6a1174c7dcc915df77aa9742">tro_fterminal</a> (const <a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file)</td></tr>
+<tr class="memitem:aa4714c45e29c0f53f5fc13ba8f3f6018" id="r_aa4714c45e29c0f53f5fc13ba8f3f6018"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aa4714c45e29c0f53f5fc13ba8f3f6018">tro_fwrites</a> (<a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, const char *data, size_t datal)</td></tr>
+<tr class="memitem:ae08e6bc58c62da3856ca152cf7d17064" id="r_ae08e6bc58c62da3856ca152cf7d17064"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ae08e6bc58c62da3856ca152cf7d17064">tro_fwrites16</a> (<a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, const <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *data, size_t datal)</td></tr>
+<tr class="memitem:a27ff5492c42ae47d199cf525c3b556fd" id="r_a27ff5492c42ae47d199cf525c3b556fd"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a27ff5492c42ae47d199cf525c3b556fd">tro_fwriteb</a> (<a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, const uint8_t *data, size_t datal)</td></tr>
+<tr class="memitem:ad581f93f29f7ed2951e452a418fe422c" id="r_ad581f93f29f7ed2951e452a418fe422c"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ad581f93f29f7ed2951e452a418fe422c">tro_fwritec</a> (<a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, uint32_t rune, size_t count)</td></tr>
+<tr class="memitem:a0d201d2b84efe252f34812032e579c87" id="r_a0d201d2b84efe252f34812032e579c87"><td class="memItemLeft"><a class="el" href="../../d6/d60/dybuffer_8h.html#a715bb8f733e0f66ba87c3a15f2f686ec">tro_dybuf_pref</a>&#160;</td><td class="memItemRight"><a class="el" href="#a0d201d2b84efe252f34812032e579c87">tro_fbufpref</a> (const <a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file)</td></tr>
+<tr class="memitem:ab7f60636e621814a5c2c21cf7f3f6fd4" id="r_ab7f60636e621814a5c2c21cf7f3f6fd4"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ab7f60636e621814a5c2c21cf7f3f6fd4">tro_fputc</a> (<a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, <a class="el" href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">tro_urune</a> rune)</td></tr>
+<tr class="memitem:a959a16680bb4f0041f2daf51e22ee808" id="r_a959a16680bb4f0041f2daf51e22ee808"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a959a16680bb4f0041f2daf51e22ee808">tro_fputs</a> (<a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, const char *s)</td></tr>
+<tr class="memitem:a36f7481760ad6131d42a6b358c163cf3" id="r_a36f7481760ad6131d42a6b358c163cf3"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a36f7481760ad6131d42a6b358c163cf3">tro_fputs16</a> (<a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, const <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *s)</td></tr>
+<tr class="memitem:a1f8fd4de65f898a284acd07d9d72b539" id="r_a1f8fd4de65f898a284acd07d9d72b539"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a1f8fd4de65f898a284acd07d9d72b539">tro_fflush</a> (<a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file)</td></tr>
+<tr class="memitem:ab6fa53c4cfd11de915b84b854df6b612" id="r_ab6fa53c4cfd11de915b84b854df6b612"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ab6fa53c4cfd11de915b84b854df6b612">tro_fprintf</a> (<a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, const char *format,...)</td></tr>
+<tr class="memitem:addc89c462719b1a61362255bfeb1cb06" id="r_addc89c462719b1a61362255bfeb1cb06"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#addc89c462719b1a61362255bfeb1cb06">tro_vfprintf</a> (<a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, const char *format, va_list args)</td></tr>
+<tr class="memitem:afda4d55fb75928c8eccbbbfe74b43505" id="r_afda4d55fb75928c8eccbbbfe74b43505"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#afda4d55fb75928c8eccbbbfe74b43505">tro_fprintf16</a> (<a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, const <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *format,...)</td></tr>
+<tr class="memitem:af1bca3276a233455669741e644ceb490" id="r_af1bca3276a233455669741e644ceb490"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af1bca3276a233455669741e644ceb490">tro_vfprintf16</a> (<a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, const <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *format, va_list args)</td></tr>
+<tr class="memitem:ab46eaf4644ef63b1181eeb594c167d01" id="r_ab46eaf4644ef63b1181eeb594c167d01"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ab46eaf4644ef63b1181eeb594c167d01">tro_putc</a> (<a class="el" href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">tro_urune</a> rune)</td></tr>
+<tr class="memitem:a0ba367de7b4ac5b119ef34890edd7e7b" id="r_a0ba367de7b4ac5b119ef34890edd7e7b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a0ba367de7b4ac5b119ef34890edd7e7b">tro_puts</a> (const char *s)</td></tr>
+<tr class="memitem:afcf4fdaebc16210830e9f4d638352c85" id="r_afcf4fdaebc16210830e9f4d638352c85"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#afcf4fdaebc16210830e9f4d638352c85">tro_puts16</a> (const <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *s)</td></tr>
+<tr class="memitem:a4eb045e2c3c59ccdff0f2307e8ca54c7" id="r_a4eb045e2c3c59ccdff0f2307e8ca54c7"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a4eb045e2c3c59ccdff0f2307e8ca54c7">tro_eputc</a> (<a class="el" href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">tro_urune</a> rune)</td></tr>
+<tr class="memitem:a7dfcf2973b272b0c51607e2473da561f" id="r_a7dfcf2973b272b0c51607e2473da561f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a7dfcf2973b272b0c51607e2473da561f">tro_eputs</a> (const char *s)</td></tr>
+<tr class="memitem:af408c530871935ff32d1a7e0b3c3ffa2" id="r_af408c530871935ff32d1a7e0b3c3ffa2"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af408c530871935ff32d1a7e0b3c3ffa2">tro_eputs16</a> (const <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *s)</td></tr>
+<tr class="memitem:ac82aa8efcb5f9311fb35503ff29dd89c" id="r_ac82aa8efcb5f9311fb35503ff29dd89c"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac82aa8efcb5f9311fb35503ff29dd89c">tro_printf</a> (const char *format,...)</td></tr>
+<tr class="memitem:afb2e0c42083c962d0e2ccfe0abeebff3" id="r_afb2e0c42083c962d0e2ccfe0abeebff3"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#afb2e0c42083c962d0e2ccfe0abeebff3">tro_vprintf</a> (const char *format, va_list args)</td></tr>
+<tr class="memitem:aeccc3a6d789ca8adf7b4dc83987a329b" id="r_aeccc3a6d789ca8adf7b4dc83987a329b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aeccc3a6d789ca8adf7b4dc83987a329b">tro_printf16</a> (const <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *format,...)</td></tr>
+<tr class="memitem:af8e18707e0c86c363839398e9f626724" id="r_af8e18707e0c86c363839398e9f626724"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af8e18707e0c86c363839398e9f626724">tro_vprintf16</a> (const <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *format, va_list args)</td></tr>
+<tr class="memitem:a7b7585daaa94a9531a6968cb17bb9cdf" id="r_a7b7585daaa94a9531a6968cb17bb9cdf"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a7b7585daaa94a9531a6968cb17bb9cdf">tro_eprintf</a> (const char *format,...)</td></tr>
+<tr class="memitem:aec099791813a9029af2ba87e8a07834e" id="r_aec099791813a9029af2ba87e8a07834e"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aec099791813a9029af2ba87e8a07834e">tro_veprintf</a> (const char *format, va_list args)</td></tr>
+<tr class="memitem:af72612e4d522e0aac3e7b5c39d55ef9f" id="r_af72612e4d522e0aac3e7b5c39d55ef9f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af72612e4d522e0aac3e7b5c39d55ef9f">tro_eprintf16</a> (const <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *format,...)</td></tr>
+<tr class="memitem:a106a33982201b748609a8921514d370e" id="r_a106a33982201b748609a8921514d370e"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a106a33982201b748609a8921514d370e">tro_veprintf16</a> (const <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *format, va_list args)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variáveis</h2></td></tr>
+<tr class="memitem:a9310d9699861029967922c7f0d5fedab" id="r_a9310d9699861029967922c7f0d5fedab"><td class="memItemLeft">const <a class="el" href="../../df/daf/structtro__dybuffer__i.html">tro_dybuffer_i</a> *const&#160;</td><td class="memItemRight"><a class="el" href="#a9310d9699861029967922c7f0d5fedab">tro_fdybuffer_vt</a></td></tr>
+<tr class="memitem:ae75e192ed62ce4c65371a6800b5d5e3a" id="r_ae75e192ed62ce4c65371a6800b5d5e3a"><td class="memItemLeft"><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *const&#160;</td><td class="memItemRight"><a class="el" href="#ae75e192ed62ce4c65371a6800b5d5e3a">troout</a></td></tr>
+<tr class="memitem:a87ea8a63a77185538c1f642dba472755" id="r_a87ea8a63a77185538c1f642dba472755"><td class="memItemLeft"><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *const&#160;</td><td class="memItemRight"><a class="el" href="#a87ea8a63a77185538c1f642dba472755">troin</a></td></tr>
+<tr class="memitem:adc20b84b18e70f1e8c3a084748d1277c" id="r_adc20b84b18e70f1e8c3a084748d1277c"><td class="memItemLeft"><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *const&#160;</td><td class="memItemRight"><a class="el" href="#adc20b84b18e70f1e8c3a084748d1277c">troerr</a></td></tr>
+</table>
+<a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Definições e macros</h2>
+<a id="a7c4628959a272e90c4beaae4a7f77aaa" name="a7c4628959a272e90c4beaae4a7f77aaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c4628959a272e90c4beaae4a7f77aaa">&#9670;&#160;</a></span>TRO_BUFFER_CAPACITY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRO_BUFFER_CAPACITY&#160;&#160;&#160;512</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Capacidade padrão do <em>buffer</em> de <a class="el" href="#acbeb8b14fc62a98658307d7a776149b8" title="tro_file">tro_file</a>.</p>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="#a385af618c63512e8a7ce11b89135a356">tro_fsetbuf</a> </dd></dl>
+
+</div>
+</div>
+<a id="af23ff27e9c25d4665cd1a517c1412962" name="af23ff27e9c25d4665cd1a517c1412962"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af23ff27e9c25d4665cd1a517c1412962">&#9670;&#160;</a></span>tro_fdybuffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define tro_fdybuffer</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>file</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Valor:</b><div class="fragment"><div class="line">((<a class="code hl_struct" href="../../d8/dcc/structtro__dybuffer__obj.html">tro_dybuffer_obj</a>){                                                   \</div>
+<div class="line">    .obj    = (<span class="keywordtype">void</span> *)file,                                            \</div>
+<div class="line">    .vtable = <a class="code hl_variable" href="#a9310d9699861029967922c7f0d5fedab">tro_fdybuffer_vt</a>,                                        \</div>
+<div class="line">})</div>
+<div class="ttc" id="astructtro__dybuffer__obj_html"><div class="ttname"><a href="../../d8/dcc/structtro__dybuffer__obj.html">tro_dybuffer_obj</a></div><div class="ttdef"><b>Definição</b> dybuffer.h:107</div></div>
+<div class="ttc" id="atroio_8h_html_a9310d9699861029967922c7f0d5fedab"><div class="ttname"><a href="#a9310d9699861029967922c7f0d5fedab">tro_fdybuffer_vt</a></div><div class="ttdeci">const tro_dybuffer_i *const tro_fdybuffer_vt</div><div class="ttdef"><b>Definição</b> troio.h:47</div></div>
+</div><!-- fragment --><p>Macro de <b>cast</b> de <a class="el" href="#acbeb8b14fc62a98658307d7a776149b8" title="tro_file">tro_file</a> para <a class="el" href="../../d8/dcc/structtro__dybuffer__obj.html" title="tro_dybuffer_obj">tro_dybuffer_obj</a>. </p>
+
+</div>
+</div>
+<a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Definições dos tipos</h2>
+<a id="acbeb8b14fc62a98658307d7a776149b8" name="acbeb8b14fc62a98658307d7a776149b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbeb8b14fc62a98658307d7a776149b8">&#9670;&#160;</a></span>tro_file</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> <a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Normalmente, representa um <b>arquivo</b> do sistema, mas também pode representar um <b>console/terminal</b>. Implementa a <b>interface</b> <span class="tt">tro_dybuffer</span>.</p>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="#af23ff27e9c25d4665cd1a517c1412962">tro_fdybuffer</a> </dd>
+<dd>
+<a class="el" href="#ae75e192ed62ce4c65371a6800b5d5e3a">troout</a>; </dd>
+<dd>
+<a class="el" href="#a87ea8a63a77185538c1f642dba472755">troin</a>; </dd>
+<dd>
+<a class="el" href="#adc20b84b18e70f1e8c3a084748d1277c">troerr</a>; </dd></dl>
+
+</div>
+</div>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumerações</h2>
+<a id="af1389618b92cdc1649c850febe0a2fc0" name="af1389618b92cdc1649c850febe0a2fc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1389618b92cdc1649c850febe0a2fc0">&#9670;&#160;</a></span>tro_fmode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#af1389618b92cdc1649c850febe0a2fc0">tro_fmode</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Representa o <b>modo de acesso</b> de um <a class="el" href="#acbeb8b14fc62a98658307d7a776149b8" title="tro_file">tro_file</a>. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumeradores</th></tr><tr><td class="fieldname"><a id="af1389618b92cdc1649c850febe0a2fc0a4c622a69759b91ee9ecf3431ee72d999" name="af1389618b92cdc1649c850febe0a2fc0a4c622a69759b91ee9ecf3431ee72d999"></a>TRO_FMODE_NULL&#160;</td><td class="fielddoc"><p><em>Nenhum modo</em>. Só aparece quando há problemas. <b>NÃO</b> deve ser usado para <em>abrir</em> um <a class="el" href="#acbeb8b14fc62a98658307d7a776149b8" title="tro_file">tro_file</a>. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="af1389618b92cdc1649c850febe0a2fc0a8910a0da23a6e2f3bf46b9a328527da7" name="af1389618b92cdc1649c850febe0a2fc0a8910a0da23a6e2f3bf46b9a328527da7"></a>TRO_FMODE_READ&#160;</td><td class="fielddoc"><p><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8" title="tro_file">tro_file</a> é <b>apenas leitura</b>. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="af1389618b92cdc1649c850febe0a2fc0a7b5f819ab169f613a12d3a36ec466d65" name="af1389618b92cdc1649c850febe0a2fc0a7b5f819ab169f613a12d3a36ec466d65"></a>TRO_FMODE_WRITE&#160;</td><td class="fielddoc"><p><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8" title="tro_file">tro_file</a> é <b>apenas escrita</b>. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="af1389618b92cdc1649c850febe0a2fc0a2cb19238e86f772dcf949e82f2e23fe8" name="af1389618b92cdc1649c850febe0a2fc0a2cb19238e86f772dcf949e82f2e23fe8"></a>TRO_FMODE_APPEND&#160;</td><td class="fielddoc"><p><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8" title="tro_file">tro_file</a> é <b>apenas escrita aditiva</b>. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="af1389618b92cdc1649c850febe0a2fc0abe76e0af2e3eff5d5ca7c87243575a41" name="af1389618b92cdc1649c850febe0a2fc0abe76e0af2e3eff5d5ca7c87243575a41"></a>TRO_FMODE_RDWT&#160;</td><td class="fielddoc"><p><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8" title="tro_file">tro_file</a> é <b>leitura e escrita</b>. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="af1389618b92cdc1649c850febe0a2fc0a11b985d1a42ae530b63cdb4363dfe61c" name="af1389618b92cdc1649c850febe0a2fc0a11b985d1a42ae530b63cdb4363dfe61c"></a>TRO_FMODE_RDAD&#160;</td><td class="fielddoc"><p><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8" title="tro_file">tro_file</a> é <b>leitura e escrita aditiva</b>. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a093917f356108b3680e64af117358b6e" name="a093917f356108b3680e64af117358b6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a093917f356108b3680e64af117358b6e">&#9670;&#160;</a></span>tro_fbufmode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a093917f356108b3680e64af117358b6e">tro_fbufmode</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Representa o <b>modo de gerenciamento</b> do <em>buffer interno</em> de <a class="el" href="#acbeb8b14fc62a98658307d7a776149b8" title="tro_file">tro_file</a>.</p>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="#a385af618c63512e8a7ce11b89135a356">tro_fsetbuf</a> </dd></dl>
+<table class="fieldtable">
+<tr><th colspan="2">Enumeradores</th></tr><tr><td class="fieldname"><a id="a093917f356108b3680e64af117358b6eadf8592e5dcc8b0df7e4f91f044ec8c4d" name="a093917f356108b3680e64af117358b6eadf8592e5dcc8b0df7e4f91f044ec8c4d"></a>TRO_FBUFMODE_NO_BUFFER&#160;</td><td class="fielddoc"><p><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8" title="tro_file">tro_file</a> simplesmente <b>não</b> usa um <em>buffer</em>, escreve tudo <b>imediatamente</b>. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a093917f356108b3680e64af117358b6ea93e2d17dd5d51d6980eaa1b7baa3257d" name="a093917f356108b3680e64af117358b6ea93e2d17dd5d51d6980eaa1b7baa3257d"></a>TRO_FBUFMODE_LINE_BUFFER&#160;</td><td class="fielddoc"><p><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8" title="tro_file">tro_file</a> fica armazenando os dados escritos em seu <em>buffer interno</em> até um <span class="tt">'\n'</span> ser escrito (ou até o <em>buffer</em> ficar cheio) para aí sim escrever os dados do <em>buffer interno</em> no arquivo real. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a093917f356108b3680e64af117358b6ea968f11edef66adee40bbc6257f842ffe" name="a093917f356108b3680e64af117358b6ea968f11edef66adee40bbc6257f842ffe"></a>TRO_FBUFMODE_FULL_BUFFER&#160;</td><td class="fielddoc"><p><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8" title="tro_file">tro_file</a> fica armazenando os dados escritos em seu <em>buffer interno</em> até ele ficar cheio para aí sim escrever os dados do <em>buffer interno</em> no arquivo real. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Funções</h2>
+<a id="a03e5d1851e18b25ea51daa29e4ed8e3c" name="a03e5d1851e18b25ea51daa29e4ed8e3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03e5d1851e18b25ea51daa29e4ed8e3c">&#9670;&#160;</a></span>tro_fopen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> * tro_fopen </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>filepath</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#af1389618b92cdc1649c850febe0a2fc0">tro_fmode</a></td>          <td class="paramname"><span class="paramname"><em>mode</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Abre um arquivo ou cria um se não existir.</p>
+<p>Por padrão o <b>modo de gerenciamento</b> do <em>buffer interno</em> é <a class="el" href="#a093917f356108b3680e64af117358b6ea968f11edef66adee40bbc6257f842ffe" title="TRO_FBUFMODE_FULL_BUFFER">TRO_FBUFMODE_FULL_BUFFER</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filepath</td><td>é o caminho do arquivo. </td></tr>
+    <tr><td class="paramname">mode</td><td>é o <b>modo de acesso</b>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>um <b>ponteiro</b> para o objeto <a class="el" href="#acbeb8b14fc62a98658307d7a776149b8" title="tro_file">tro_file</a> aberto, <span class="tt">NULL</span> em caso de falha.</dd></dl>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="#a1c0c73a42a103a651f4e7095cd9f4e6d">tro_fclose</a> </dd></dl>
+
+</div>
+</div>
+<a id="a1c0c73a42a103a651f4e7095cd9f4e6d" name="a1c0c73a42a103a651f4e7095cd9f4e6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c0c73a42a103a651f4e7095cd9f4e6d">&#9670;&#160;</a></span>tro_fclose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tro_fclose </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *</td>          <td class="paramname"><span class="paramname"><em>file</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Fecha um arquivo e automaticamente usa <a class="el" href="#a1f8fd4de65f898a284acd07d9d72b539" title="tro_fflush">tro_fflush</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>o arquivo a ser fechado. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a385af618c63512e8a7ce11b89135a356" name="a385af618c63512e8a7ce11b89135a356"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a385af618c63512e8a7ce11b89135a356">&#9670;&#160;</a></span>tro_fsetbuf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tro_fsetbuf </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *</td>          <td class="paramname"><span class="paramname"><em>file</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a093917f356108b3680e64af117358b6e">tro_fbufmode</a></td>          <td class="paramname"><span class="paramname"><em>mode</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>capacity</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Configura o <em>buffer interno</em> de um <a class="el" href="#acbeb8b14fc62a98658307d7a776149b8" title="tro_file">tro_file</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>o objeto. </td></tr>
+    <tr><td class="paramname">mode</td><td>o <b>modo de gerenciamento</b> do <em>buffer interno</em>. </td></tr>
+    <tr><td class="paramname">capacity</td><td>é a capacidade do <em>buffer interno</em>. Se for <span class="tt">0</span>, não muda a capacidade. Completamente ignorado se <span class="tt">mode</span> for <a class="el" href="#a093917f356108b3680e64af117358b6eadf8592e5dcc8b0df7e4f91f044ec8c4d" title="TRO_FBUFMODE_NO_BUFFER">TRO_FBUFMODE_NO_BUFFER</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a08ddc196a9b3a46b1b4a77a9d1b090b1" name="a08ddc196a9b3a46b1b4a77a9d1b090b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08ddc196a9b3a46b1b4a77a9d1b090b1">&#9670;&#160;</a></span>tro_fileno()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uintptr_t tro_fileno </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *</td>          <td class="paramname"><span class="paramname"><em>file</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>o objeto.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>o <b>identificador nativo</b> do arquivo aberto, sendo um <span class="tt">HANDLE</span> em <b>Win32</b> ou um <span class="tt">int</span> (<em>file descriptor</em>) em <b>ambiente tipo Unix</b>, então cast é seguro. <div class="fragment"><div class="line"><span class="preprocessor">#if TRO_SYSTEM_WIN32</span></div>
+<div class="line">HANDLE hnd = (HANDLE)<a class="code hl_function" href="#a08ddc196a9b3a46b1b4a77a9d1b090b1">tro_fileno</a>(file);</div>
+<div class="line"><span class="comment">// Código Windows...</span></div>
+<div class="line"><span class="preprocessor">#elif TRO_SYSTEM_UNIX_LIKE</span></div>
+<div class="line"><span class="keywordtype">int</span> fd = (int)<a class="code hl_function" href="#a08ddc196a9b3a46b1b4a77a9d1b090b1">tro_fileno</a>(file);</div>
+<div class="line"><span class="comment">// Código POSIX...</span></div>
+<div class="line"><span class="preprocessor">#else</span></div>
+<div class="line"><span class="preprocessor"># error &quot;...&quot;</span></div>
+<div class="line"><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="atroio_8h_html_a08ddc196a9b3a46b1b4a77a9d1b090b1"><div class="ttname"><a href="#a08ddc196a9b3a46b1b4a77a9d1b090b1">tro_fileno</a></div><div class="ttdeci">uintptr_t tro_fileno(const tro_file *file)</div></div>
+</div><!-- fragment --></dd></dl>
+<dl class="section see"><dt>Veja também</dt><dd><a class="el" href="../../d9/d6a/conditionals_8h.html">tro/conditionals.h</a> </dd></dl>
+
+</div>
+</div>
+<a id="ad1d7752d6a1174c7dcc915df77aa9742" name="ad1d7752d6a1174c7dcc915df77aa9742"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1d7752d6a1174c7dcc915df77aa9742">&#9670;&#160;</a></span>tro_fterminal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_fterminal </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *</td>          <td class="paramname"><span class="paramname"><em>file</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>o objeto.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se <span class="tt">file</span> for um <b>console/terminal</b>, <span class="tt">false</span> caso contrário. </dd></dl>
+
+</div>
+</div>
+<a id="aa4714c45e29c0f53f5fc13ba8f3f6018" name="aa4714c45e29c0f53f5fc13ba8f3f6018"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4714c45e29c0f53f5fc13ba8f3f6018">&#9670;&#160;</a></span>tro_fwrites()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_fwrites </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *</td>          <td class="paramname"><span class="paramname"><em>file</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>datal</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>o objeto. </td></tr>
+    <tr><td class="paramname">data</td><td>é uma <b>string UTF-8</b>. </td></tr>
+    <tr><td class="paramname">datal</td><td>é o comprimento de <span class="tt">data</span>, caso seja <span class="tt">0</span>, se assume <span class="tt">data</span> terminado em <span class="tt">'\0'</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="ae08e6bc58c62da3856ca152cf7d17064" name="ae08e6bc58c62da3856ca152cf7d17064"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae08e6bc58c62da3856ca152cf7d17064">&#9670;&#160;</a></span>tro_fwrites16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_fwrites16 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *</td>          <td class="paramname"><span class="paramname"><em>file</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>datal</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>o objeto. </td></tr>
+    <tr><td class="paramname">data</td><td>é uma <b>string UTF-16</b>. </td></tr>
+    <tr><td class="paramname">datal</td><td>é o comprimento de <span class="tt">data</span>, caso seja <span class="tt">0</span>, se assume <span class="tt">data</span> terminado em <span class="tt">'\0'</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="a27ff5492c42ae47d199cf525c3b556fd" name="a27ff5492c42ae47d199cf525c3b556fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27ff5492c42ae47d199cf525c3b556fd">&#9670;&#160;</a></span>tro_fwriteb()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_fwriteb </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *</td>          <td class="paramname"><span class="paramname"><em>file</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>datal</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>o objeto. </td></tr>
+    <tr><td class="paramname">data</td><td>é uma <b>sequência de bytes arbitrária</b>. </td></tr>
+    <tr><td class="paramname">datal</td><td>é o comprimento de <span class="tt">data</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="ad581f93f29f7ed2951e452a418fe422c" name="ad581f93f29f7ed2951e452a418fe422c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad581f93f29f7ed2951e452a418fe422c">&#9670;&#160;</a></span>tro_fwritec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_fwritec </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *</td>          <td class="paramname"><span class="paramname"><em>file</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>rune</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>count</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>o objeto. </td></tr>
+    <tr><td class="paramname">rune</td><td>é uma <b>runa</b> (<b>code point</b>). </td></tr>
+    <tr><td class="paramname">count</td><td>diz quantas vezes se deve escrever <span class="tt">rune</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="a0d201d2b84efe252f34812032e579c87" name="a0d201d2b84efe252f34812032e579c87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d201d2b84efe252f34812032e579c87">&#9670;&#160;</a></span>tro_fbufpref()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d6/d60/dybuffer_8h.html#a715bb8f733e0f66ba87c3a15f2f686ec">tro_dybuf_pref</a> tro_fbufpref </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *</td>          <td class="paramname"><span class="paramname"><em>file</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>o objeto.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>a <em>preferência de encoding</em>. </dd></dl>
+
+</div>
+</div>
+<a id="ab7f60636e621814a5c2c21cf7f3f6fd4" name="ab7f60636e621814a5c2c21cf7f3f6fd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7f60636e621814a5c2c21cf7f3f6fd4">&#9670;&#160;</a></span>tro_fputc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_fputc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *</td>          <td class="paramname"><span class="paramname"><em>file</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">tro_urune</a></td>          <td class="paramname"><span class="paramname"><em>rune</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Escreve uma <b>runa</b> em um <a class="el" href="#acbeb8b14fc62a98658307d7a776149b8" title="tro_file">tro_file</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>o objeto. </td></tr>
+    <tr><td class="paramname">rune</td><td>é a <b>runa</b> (<b>code point</b>).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="a959a16680bb4f0041f2daf51e22ee808" name="a959a16680bb4f0041f2daf51e22ee808"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a959a16680bb4f0041f2daf51e22ee808">&#9670;&#160;</a></span>tro_fputs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_fputs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *</td>          <td class="paramname"><span class="paramname"><em>file</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>s</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Escreve uma <em>string</em> terminada em <span class="tt">'\0'</span> em um <a class="el" href="#acbeb8b14fc62a98658307d7a776149b8" title="tro_file">tro_file</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>o objeto. </td></tr>
+    <tr><td class="paramname">s</td><td>é <b>string UTF-8</b>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="a36f7481760ad6131d42a6b358c163cf3" name="a36f7481760ad6131d42a6b358c163cf3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36f7481760ad6131d42a6b358c163cf3">&#9670;&#160;</a></span>tro_fputs16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_fputs16 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *</td>          <td class="paramname"><span class="paramname"><em>file</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *</td>          <td class="paramname"><span class="paramname"><em>s</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Escreve uma <em>string</em> terminada em <span class="tt">'\0'</span> em um <a class="el" href="#acbeb8b14fc62a98658307d7a776149b8" title="tro_file">tro_file</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>o objeto. </td></tr>
+    <tr><td class="paramname">s</td><td>é <b>string UTF-16</b>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="a1f8fd4de65f898a284acd07d9d72b539" name="a1f8fd4de65f898a284acd07d9d72b539"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f8fd4de65f898a284acd07d9d72b539">&#9670;&#160;</a></span>tro_fflush()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_fflush </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *</td>          <td class="paramname"><span class="paramname"><em>file</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Escreve os dados do <em>buffer interno</em> no arquivo real e esvazia o <em>buffer interno**. Não tem efeito quando o <b>modo de gerenciamento</b> do *buffer interno</em> do <a class="el" href="#acbeb8b14fc62a98658307d7a776149b8" title="tro_file">tro_file</a> é <a class="el" href="#a093917f356108b3680e64af117358b6eadf8592e5dcc8b0df7e4f91f044ec8c4d" title="TRO_FBUFMODE_NO_BUFFER">TRO_FBUFMODE_NO_BUFFER</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>o objeto.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="ab6fa53c4cfd11de915b84b854df6b612" name="ab6fa53c4cfd11de915b84b854df6b612"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6fa53c4cfd11de915b84b854df6b612">&#9670;&#160;</a></span>tro_fprintf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_fprintf </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *</td>          <td class="paramname"><span class="paramname"><em>file</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Esta função segue o padrão <a class="el" href="../../d7/ddc/tro_sfmt_spec.html" title="Especificadores de Formato TRO">Especificadores de Formato TRO</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>o objeto. </td></tr>
+    <tr><td class="paramname">format</td><td>é a <b>string de formatação</b> em <b>UTF-8</b>. </td></tr>
+    <tr><td class="paramname">...</td><td>argumentos baseados em <span class="tt">format</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="addc89c462719b1a61362255bfeb1cb06" name="addc89c462719b1a61362255bfeb1cb06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addc89c462719b1a61362255bfeb1cb06">&#9670;&#160;</a></span>tro_vfprintf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_vfprintf </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *</td>          <td class="paramname"><span class="paramname"><em>file</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">va_list</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Implementação com <b>lista variádica</b> de <a class="el" href="#ab6fa53c4cfd11de915b84b854df6b612" title="tro_fprintf">tro_fprintf</a>.</p>
+<p>Esta função segue o padrão <a class="el" href="../../d7/ddc/tro_sfmt_spec.html" title="Especificadores de Formato TRO">Especificadores de Formato TRO</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>o objeto. </td></tr>
+    <tr><td class="paramname">format</td><td>é a <b>string de formatação</b> em <b>UTF-8</b>. </td></tr>
+    <tr><td class="paramname">args</td><td><b>lista variádica</b> de argumentos baseados em <span class="tt">format</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="afda4d55fb75928c8eccbbbfe74b43505" name="afda4d55fb75928c8eccbbbfe74b43505"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afda4d55fb75928c8eccbbbfe74b43505">&#9670;&#160;</a></span>tro_fprintf16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_fprintf16 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *</td>          <td class="paramname"><span class="paramname"><em>file</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Esta função segue o padrão <a class="el" href="../../d7/ddc/tro_sfmt_spec.html" title="Especificadores de Formato TRO">Especificadores de Formato TRO</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>o objeto. </td></tr>
+    <tr><td class="paramname">format</td><td>é a <b>string de formatação</b> em <b>UTF-16</b>. </td></tr>
+    <tr><td class="paramname">...</td><td>argumentos baseados em <span class="tt">format</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="af1bca3276a233455669741e644ceb490" name="af1bca3276a233455669741e644ceb490"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1bca3276a233455669741e644ceb490">&#9670;&#160;</a></span>tro_vfprintf16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_vfprintf16 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *</td>          <td class="paramname"><span class="paramname"><em>file</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">va_list</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Implementação com <b>lista variádica</b> de <a class="el" href="#afda4d55fb75928c8eccbbbfe74b43505" title="tro_fprintf16">tro_fprintf16</a>.</p>
+<p>Esta função segue o padrão <a class="el" href="../../d7/ddc/tro_sfmt_spec.html" title="Especificadores de Formato TRO">Especificadores de Formato TRO</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">file</td><td>o objeto. </td></tr>
+    <tr><td class="paramname">format</td><td>é a <b>string de formatação</b> em <b>UTF-16</b>. </td></tr>
+    <tr><td class="paramname">args</td><td><b>lista variádica</b> de argumentos baseados em <span class="tt">format</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="ab46eaf4644ef63b1181eeb594c167d01" name="ab46eaf4644ef63b1181eeb594c167d01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab46eaf4644ef63b1181eeb594c167d01">&#9670;&#160;</a></span>tro_putc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_putc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">tro_urune</a></td>          <td class="paramname"><span class="paramname"><em>rune</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Escreve uma <b>runa</b> em <a class="el" href="#ae75e192ed62ce4c65371a6800b5d5e3a" title="troout">troout</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rune</td><td>é a <b>runa</b> (<b>code point</b>).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="a0ba367de7b4ac5b119ef34890edd7e7b" name="a0ba367de7b4ac5b119ef34890edd7e7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ba367de7b4ac5b119ef34890edd7e7b">&#9670;&#160;</a></span>tro_puts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_puts </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Escreve uma <em>string</em> terminada em <span class="tt">'\0'</span> em <a class="el" href="#ae75e192ed62ce4c65371a6800b5d5e3a" title="troout">troout</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>é <b>string UTF-8</b>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="afcf4fdaebc16210830e9f4d638352c85" name="afcf4fdaebc16210830e9f4d638352c85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcf4fdaebc16210830e9f4d638352c85">&#9670;&#160;</a></span>tro_puts16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_puts16 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *</td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Escreve uma <em>string</em> terminada em <span class="tt">'\0'</span> em <a class="el" href="#ae75e192ed62ce4c65371a6800b5d5e3a" title="troout">troout</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>é <b>string UTF-16</b>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="a4eb045e2c3c59ccdff0f2307e8ca54c7" name="a4eb045e2c3c59ccdff0f2307e8ca54c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eb045e2c3c59ccdff0f2307e8ca54c7">&#9670;&#160;</a></span>tro_eputc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_eputc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">tro_urune</a></td>          <td class="paramname"><span class="paramname"><em>rune</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Escreve uma <b>runa</b> em <a class="el" href="#adc20b84b18e70f1e8c3a084748d1277c" title="troerr">troerr</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rune</td><td>é a <b>runa</b> (<b>code point</b>).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="a7dfcf2973b272b0c51607e2473da561f" name="a7dfcf2973b272b0c51607e2473da561f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7dfcf2973b272b0c51607e2473da561f">&#9670;&#160;</a></span>tro_eputs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_eputs </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Escreve uma <em>string</em> terminada em <span class="tt">'\0'</span> em <a class="el" href="#adc20b84b18e70f1e8c3a084748d1277c" title="troerr">troerr</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>é <b>string UTF-8</b>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="af408c530871935ff32d1a7e0b3c3ffa2" name="af408c530871935ff32d1a7e0b3c3ffa2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af408c530871935ff32d1a7e0b3c3ffa2">&#9670;&#160;</a></span>tro_eputs16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_eputs16 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *</td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Escreve uma <em>string</em> terminada em <span class="tt">'\0'</span> em <a class="el" href="#adc20b84b18e70f1e8c3a084748d1277c" title="troerr">troerr</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>é <b>string UTF-16</b>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="ac82aa8efcb5f9311fb35503ff29dd89c" name="ac82aa8efcb5f9311fb35503ff29dd89c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac82aa8efcb5f9311fb35503ff29dd89c">&#9670;&#160;</a></span>tro_printf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_printf </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Esta função segue o padrão <a class="el" href="../../d7/ddc/tro_sfmt_spec.html" title="Especificadores de Formato TRO">Especificadores de Formato TRO</a> e escreve em <a class="el" href="#ae75e192ed62ce4c65371a6800b5d5e3a" title="troout">troout</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">format</td><td>é a <b>string de formatação</b> em <b>UTF-8</b>. </td></tr>
+    <tr><td class="paramname">...</td><td>argumentos baseados em <span class="tt">format</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="afb2e0c42083c962d0e2ccfe0abeebff3" name="afb2e0c42083c962d0e2ccfe0abeebff3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb2e0c42083c962d0e2ccfe0abeebff3">&#9670;&#160;</a></span>tro_vprintf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_vprintf </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">va_list</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Implementação com <b>lista variádica</b> de <a class="el" href="#ac82aa8efcb5f9311fb35503ff29dd89c" title="tro_printf">tro_printf</a>.</p>
+<p>Esta função segue o padrão <a class="el" href="../../d7/ddc/tro_sfmt_spec.html" title="Especificadores de Formato TRO">Especificadores de Formato TRO</a> e escreve em <a class="el" href="#ae75e192ed62ce4c65371a6800b5d5e3a" title="troout">troout</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">format</td><td>é a <b>string de formatação</b> em <b>UTF-8</b>. </td></tr>
+    <tr><td class="paramname">args</td><td><b>lista variádica</b> de argumentos baseados em <span class="tt">format</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="aeccc3a6d789ca8adf7b4dc83987a329b" name="aeccc3a6d789ca8adf7b4dc83987a329b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeccc3a6d789ca8adf7b4dc83987a329b">&#9670;&#160;</a></span>tro_printf16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_printf16 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Esta função segue o padrão <a class="el" href="../../d7/ddc/tro_sfmt_spec.html" title="Especificadores de Formato TRO">Especificadores de Formato TRO</a> e escreve em <a class="el" href="#ae75e192ed62ce4c65371a6800b5d5e3a" title="troout">troout</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">format</td><td>é a <b>string de formatação</b> em <b>UTF-16</b>. </td></tr>
+    <tr><td class="paramname">...</td><td>argumentos baseados em <span class="tt">format</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="af8e18707e0c86c363839398e9f626724" name="af8e18707e0c86c363839398e9f626724"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8e18707e0c86c363839398e9f626724">&#9670;&#160;</a></span>tro_vprintf16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_vprintf16 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">va_list</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Implementação com <b>lista variádica</b> de <a class="el" href="#ac82aa8efcb5f9311fb35503ff29dd89c" title="tro_printf">tro_printf</a>.</p>
+<p>Esta função segue o padrão <a class="el" href="../../d7/ddc/tro_sfmt_spec.html" title="Especificadores de Formato TRO">Especificadores de Formato TRO</a> e escreve em <a class="el" href="#ae75e192ed62ce4c65371a6800b5d5e3a" title="troout">troout</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">format</td><td>é a <b>string de formatação</b> em <b>UTF-16</b>. </td></tr>
+    <tr><td class="paramname">args</td><td><b>lista variádica</b> de argumentos baseados em <span class="tt">format</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="a7b7585daaa94a9531a6968cb17bb9cdf" name="a7b7585daaa94a9531a6968cb17bb9cdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b7585daaa94a9531a6968cb17bb9cdf">&#9670;&#160;</a></span>tro_eprintf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_eprintf </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Esta função segue o padrão <a class="el" href="../../d7/ddc/tro_sfmt_spec.html" title="Especificadores de Formato TRO">Especificadores de Formato TRO</a> e escreve em <a class="el" href="#adc20b84b18e70f1e8c3a084748d1277c" title="troerr">troerr</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">format</td><td>é a <b>string de formatação</b> em <b>UTF-8</b>. </td></tr>
+    <tr><td class="paramname">...</td><td>argumentos baseados em <span class="tt">format</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="aec099791813a9029af2ba87e8a07834e" name="aec099791813a9029af2ba87e8a07834e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec099791813a9029af2ba87e8a07834e">&#9670;&#160;</a></span>tro_veprintf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_veprintf </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">va_list</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Implementação com <b>lista variádica</b> de <a class="el" href="#a7b7585daaa94a9531a6968cb17bb9cdf" title="tro_eprintf">tro_eprintf</a>.</p>
+<p>Esta função segue o padrão <a class="el" href="../../d7/ddc/tro_sfmt_spec.html" title="Especificadores de Formato TRO">Especificadores de Formato TRO</a> e escreve em <a class="el" href="#adc20b84b18e70f1e8c3a084748d1277c" title="troerr">troerr</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">format</td><td>é a <b>string de formatação</b> em <b>UTF-8</b>. </td></tr>
+    <tr><td class="paramname">args</td><td><b>lista variádica</b> de argumentos baseados em <span class="tt">format</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="af72612e4d522e0aac3e7b5c39d55ef9f" name="af72612e4d522e0aac3e7b5c39d55ef9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af72612e4d522e0aac3e7b5c39d55ef9f">&#9670;&#160;</a></span>tro_eprintf16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_eprintf16 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Esta função segue o padrão <a class="el" href="../../d7/ddc/tro_sfmt_spec.html" title="Especificadores de Formato TRO">Especificadores de Formato TRO</a> e escreve em <a class="el" href="#adc20b84b18e70f1e8c3a084748d1277c" title="troerr">troerr</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">format</td><td>é a <b>string de formatação</b> em <b>UTF-16</b>. </td></tr>
+    <tr><td class="paramname">...</td><td>argumentos baseados em <span class="tt">format</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a id="a106a33982201b748609a8921514d370e" name="a106a33982201b748609a8921514d370e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a106a33982201b748609a8921514d370e">&#9670;&#160;</a></span>tro_veprintf16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tro_veprintf16 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">va_list</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Implementação com <b>lista variádica</b> de <a class="el" href="#af72612e4d522e0aac3e7b5c39d55ef9f" title="tro_eprintf16">tro_eprintf16</a>.</p>
+<p>Esta função segue o padrão <a class="el" href="../../d7/ddc/tro_sfmt_spec.html" title="Especificadores de Formato TRO">Especificadores de Formato TRO</a> e escreve em <a class="el" href="#adc20b84b18e70f1e8c3a084748d1277c" title="troerr">troerr</a>.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">format</td><td>é a <b>string de formatação</b> em <b>UTF-16</b>. </td></tr>
+    <tr><td class="paramname">args</td><td><b>lista variádica</b> de argumentos baseados em <span class="tt">format</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd><span class="tt">true</span> se sucedido, <span class="tt">false</span> se falhou. </dd></dl>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variáveis</h2>
+<a id="a9310d9699861029967922c7f0d5fedab" name="a9310d9699861029967922c7f0d5fedab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9310d9699861029967922c7f0d5fedab">&#9670;&#160;</a></span>tro_fdybuffer_vt</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="../../df/daf/structtro__dybuffer__i.html">tro_dybuffer_i</a>* const tro_fdybuffer_vt</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><b>Tabela virtual</b> com os métodos de <a class="el" href="#acbeb8b14fc62a98658307d7a776149b8" title="tro_file">tro_file</a> para a <b>interface</b> <span class="tt">tro_dybuffer</span>. </p>
+
+</div>
+</div>
+<a id="ae75e192ed62ce4c65371a6800b5d5e3a" name="ae75e192ed62ce4c65371a6800b5d5e3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae75e192ed62ce4c65371a6800b5d5e3a">&#9670;&#160;</a></span>troout</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a>* const troout</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Representação da <b>saída padrão</b>. O <b>modo de gerenciamento</b> do <em>buffer interno</em> é <a class="el" href="#a093917f356108b3680e64af117358b6ea93e2d17dd5d51d6980eaa1b7baa3257d" title="TRO_FBUFMODE_LINE_BUFFER">TRO_FBUFMODE_LINE_BUFFER</a>. Normalmente é um <b>console/terminal</b> a menos que tenha sido <em>redirecionado</em> para um arquivo.</p>
+<dl class="section warning"><dt>Aviso</dt><dd>Este objeto <b>é gerenciada pela LibTRO</b>, portanto você <b>NÃO</b> deve usar <a class="el" href="#a1c0c73a42a103a651f4e7095cd9f4e6d" title="tro_fclose">tro_fclose</a> neste arquivo pois <b>pode causar comportamentos indefinidos e imprevisíveis</b>. </dd></dl>
+
+</div>
+</div>
+<a id="a87ea8a63a77185538c1f642dba472755" name="a87ea8a63a77185538c1f642dba472755"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87ea8a63a77185538c1f642dba472755">&#9670;&#160;</a></span>troin</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a>* const troin</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Representação da <b>entrada padrão</b>. Normalmente é um <b>console/terminal</b> a menos que tenha sido <em>redirecionado</em> para um arquivo.</p>
+<dl class="section warning"><dt>Aviso</dt><dd>Este objeto <b>é gerenciada pela LibTRO</b>, portanto você <b>NÃO</b> deve usar <a class="el" href="#a1c0c73a42a103a651f4e7095cd9f4e6d" title="tro_fclose">tro_fclose</a> neste arquivo pois <b>pode causar comportamentos indefinidos e imprevisíveis</b>. </dd></dl>
+
+</div>
+</div>
+<a id="adc20b84b18e70f1e8c3a084748d1277c" name="adc20b84b18e70f1e8c3a084748d1277c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc20b84b18e70f1e8c3a084748d1277c">&#9670;&#160;</a></span>troerr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#acbeb8b14fc62a98658307d7a776149b8">tro_file</a>* const troerr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Representação da <b>saída de erro padrão</b>. O <b>modo de gerenciamento</b> do <em>buffer interno</em> é <a class="el" href="#a093917f356108b3680e64af117358b6ea93e2d17dd5d51d6980eaa1b7baa3257d" title="TRO_FBUFMODE_LINE_BUFFER">TRO_FBUFMODE_LINE_BUFFER</a>. Normalmente é um <b>console/terminal</b> a menos que tenha sido <em>redirecionado</em> para um arquivo.</p>
+<dl class="section warning"><dt>Aviso</dt><dd>Este objeto <b>é gerenciada pela LibTRO</b>, portanto você <b>NÃO</b> deve usar <a class="el" href="#a1c0c73a42a103a651f4e7095cd9f4e6d" title="tro_fclose">tro_fclose</a> neste arquivo pois <b>pode causar comportamentos indefinidos e imprevisíveis</b>. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="../../d3/d3c/troio_8h.html">troio.h</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

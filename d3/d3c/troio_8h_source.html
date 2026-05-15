@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LibTRO: Código-Fonte de troio.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../codefolding.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../navtreedata.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">LibTRO<span id="projectnumber">&#160;0</span>
+   </div>
+   <div id="projectbrief">Uma biblioteca com funções semelhantes às do C                           para fins educacionais na Eletrônica, IF Sul Pelotas.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "../../search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('../../',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Busca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('d3/d3c/troio_8h_source.html','../../',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrado</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">troio.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d3/d3c/troio_8h.html">Ir para a documentação desse arquivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#ifndef TRO_TROIO_H_</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#define TRO_TROIO_H_</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;tro/private/api.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;tro/private/bool.h&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;tro/private/doxy.h&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#if TRO__USE_STDBOOL</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor"># include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;stdarg.h&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;<a class="code" href="../../d6/d60/dybuffer_8h.html">tro/dybuffer.h</a>&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;<a class="code" href="../../d5/d5e/uchar_8h.html">tro/uchar.h</a>&quot;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>TRO__C_API_BEGIN</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#a7c4628959a272e90c4beaae4a7f77aaa">   29</a></span><span class="preprocessor">#define TRO_BUFFER_CAPACITY 512</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">   42</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_typedef" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> <a class="code hl_typedef" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#a9310d9699861029967922c7f0d5fedab">   47</a></span>TRO__API <span class="keyword">const</span> <a class="code hl_struct" href="../../df/daf/structtro__dybuffer__i.html">tro_dybuffer_i</a> *<span class="keyword">const</span> <a class="code hl_variable" href="../../d3/d3c/troio_8h.html#a9310d9699861029967922c7f0d5fedab">tro_fdybuffer_vt</a>;</div>
+<div class="foldopen" id="foldopen00053" data-start="" data-end="">
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#af23ff27e9c25d4665cd1a517c1412962">   53</a></span><span class="preprocessor">#define tro_fdybuffer(file)                                                    \</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">        ((tro_dybuffer_obj){                                                   \</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">            .obj    = (void *)file,                                            \</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">            .vtable = tro_fdybuffer_vt,                                        \</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">        })</span></div>
+</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span></div>
+<div class="foldopen" id="foldopen00063" data-start="{" data-end="};">
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#af1389618b92cdc1649c850febe0a2fc0">   63</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> tro__ndoxy(<a class="code hl_enumeration" href="../../d3/d3c/troio_8h.html#af1389618b92cdc1649c850febe0a2fc0">tro_fmode</a>) {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#af1389618b92cdc1649c850febe0a2fc0a4c622a69759b91ee9ecf3431ee72d999">   70</a></span>        <a class="code hl_enumvalue" href="../../d3/d3c/troio_8h.html#af1389618b92cdc1649c850febe0a2fc0a4c622a69759b91ee9ecf3431ee72d999">TRO_FMODE_NULL</a>,</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#af1389618b92cdc1649c850febe0a2fc0a8910a0da23a6e2f3bf46b9a328527da7">   74</a></span>        <a class="code hl_enumvalue" href="../../d3/d3c/troio_8h.html#af1389618b92cdc1649c850febe0a2fc0a8910a0da23a6e2f3bf46b9a328527da7">TRO_FMODE_READ</a>,</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#af1389618b92cdc1649c850febe0a2fc0a7b5f819ab169f613a12d3a36ec466d65">   78</a></span>        <a class="code hl_enumvalue" href="../../d3/d3c/troio_8h.html#af1389618b92cdc1649c850febe0a2fc0a7b5f819ab169f613a12d3a36ec466d65">TRO_FMODE_WRITE</a>,</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#af1389618b92cdc1649c850febe0a2fc0a2cb19238e86f772dcf949e82f2e23fe8">   82</a></span>        <a class="code hl_enumvalue" href="../../d3/d3c/troio_8h.html#af1389618b92cdc1649c850febe0a2fc0a2cb19238e86f772dcf949e82f2e23fe8">TRO_FMODE_APPEND</a>,</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#af1389618b92cdc1649c850febe0a2fc0abe76e0af2e3eff5d5ca7c87243575a41">   86</a></span>        <a class="code hl_enumvalue" href="../../d3/d3c/troio_8h.html#af1389618b92cdc1649c850febe0a2fc0abe76e0af2e3eff5d5ca7c87243575a41">TRO_FMODE_RDWT</a>,</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#af1389618b92cdc1649c850febe0a2fc0a11b985d1a42ae530b63cdb4363dfe61c">   90</a></span>        <a class="code hl_enumvalue" href="../../d3/d3c/troio_8h.html#af1389618b92cdc1649c850febe0a2fc0a11b985d1a42ae530b63cdb4363dfe61c">TRO_FMODE_RDAD</a>,</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>} <a class="code hl_enumeration" href="../../d3/d3c/troio_8h.html#af1389618b92cdc1649c850febe0a2fc0">tro_fmode</a>;</div>
+</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span></div>
+<div class="foldopen" id="foldopen00099" data-start="{" data-end="};">
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#a093917f356108b3680e64af117358b6e">   99</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> tro__ndoxy(<a class="code hl_enumeration" href="../../d3/d3c/troio_8h.html#a093917f356108b3680e64af117358b6e">tro_fbufmode</a>) {</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#a093917f356108b3680e64af117358b6eadf8592e5dcc8b0df7e4f91f044ec8c4d">  105</a></span>        <a class="code hl_enumvalue" href="../../d3/d3c/troio_8h.html#a093917f356108b3680e64af117358b6eadf8592e5dcc8b0df7e4f91f044ec8c4d">TRO_FBUFMODE_NO_BUFFER</a>,</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#a093917f356108b3680e64af117358b6ea93e2d17dd5d51d6980eaa1b7baa3257d">  113</a></span>        <a class="code hl_enumvalue" href="../../d3/d3c/troio_8h.html#a093917f356108b3680e64af117358b6ea93e2d17dd5d51d6980eaa1b7baa3257d">TRO_FBUFMODE_LINE_BUFFER</a>,</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#a093917f356108b3680e64af117358b6ea968f11edef66adee40bbc6257f842ffe">  121</a></span>        <a class="code hl_enumvalue" href="../../d3/d3c/troio_8h.html#a093917f356108b3680e64af117358b6ea968f11edef66adee40bbc6257f842ffe">TRO_FBUFMODE_FULL_BUFFER</a>,</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>} <a class="code hl_enumeration" href="../../d3/d3c/troio_8h.html#a093917f356108b3680e64af117358b6e">tro_fbufmode</a>;</div>
+</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#a03e5d1851e18b25ea51daa29e4ed8e3c">  138</a></span>TRO__API <a class="code hl_typedef" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *<a class="code hl_function" href="../../d3/d3c/troio_8h.html#a03e5d1851e18b25ea51daa29e4ed8e3c">tro_fopen</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *filepath, <a class="code hl_enumeration" href="../../d3/d3c/troio_8h.html#af1389618b92cdc1649c850febe0a2fc0">tro_fmode</a> mode);</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#a1c0c73a42a103a651f4e7095cd9f4e6d">  146</a></span>TRO__API <span class="keywordtype">void</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#a1c0c73a42a103a651f4e7095cd9f4e6d">tro_fclose</a>(<a class="code hl_typedef" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#a385af618c63512e8a7ce11b89135a356">  157</a></span>TRO__API <span class="keywordtype">void</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#a385af618c63512e8a7ce11b89135a356">tro_fsetbuf</a>(<a class="code hl_typedef" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, <a class="code hl_enumeration" href="../../d3/d3c/troio_8h.html#a093917f356108b3680e64af117358b6e">tro_fbufmode</a> mode, <span class="keywordtype">size_t</span> capacity);</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#a08ddc196a9b3a46b1b4a77a9d1b090b1">  180</a></span>TRO__API uintptr_t <a class="code hl_function" href="../../d3/d3c/troio_8h.html#a08ddc196a9b3a46b1b4a77a9d1b090b1">tro_fileno</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#ad1d7752d6a1174c7dcc915df77aa9742">  189</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#ad1d7752d6a1174c7dcc915df77aa9742">tro_fterminal</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file);</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#aa4714c45e29c0f53f5fc13ba8f3f6018">  200</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#aa4714c45e29c0f53f5fc13ba8f3f6018">tro_fwrites</a>(<a class="code hl_typedef" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, <span class="keyword">const</span> <span class="keywordtype">char</span> *data, <span class="keywordtype">size_t</span> datal);</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#ae08e6bc58c62da3856ca152cf7d17064">  211</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#ae08e6bc58c62da3856ca152cf7d17064">tro_fwrites16</a>(<a class="code hl_typedef" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, <span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *data,</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>                            <span class="keywordtype">size_t</span> datal);</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#a27ff5492c42ae47d199cf525c3b556fd">  221</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#a27ff5492c42ae47d199cf525c3b556fd">tro_fwriteb</a>(<a class="code hl_typedef" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, <span class="keyword">const</span> uint8_t *data, <span class="keywordtype">size_t</span> datal);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#ad581f93f29f7ed2951e452a418fe422c">  230</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#ad581f93f29f7ed2951e452a418fe422c">tro_fwritec</a>(<a class="code hl_typedef" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, uint32_t rune, <span class="keywordtype">size_t</span> count);</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#a0d201d2b84efe252f34812032e579c87">  237</a></span>TRO__API <a class="code hl_enumeration" href="../../d6/d60/dybuffer_8h.html#a715bb8f733e0f66ba87c3a15f2f686ec">tro_dybuf_pref</a> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#a0d201d2b84efe252f34812032e579c87">tro_fbufpref</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file);</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span></div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#ab7f60636e621814a5c2c21cf7f3f6fd4">  247</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#ab7f60636e621814a5c2c21cf7f3f6fd4">tro_fputc</a>(<a class="code hl_typedef" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">tro_urune</a> rune);</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#a959a16680bb4f0041f2daf51e22ee808">  258</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#a959a16680bb4f0041f2daf51e22ee808">tro_fputs</a>(<a class="code hl_typedef" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, <span class="keyword">const</span> <span class="keywordtype">char</span> *s);</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#a36f7481760ad6131d42a6b358c163cf3">  269</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#a36f7481760ad6131d42a6b358c163cf3">tro_fputs16</a>(<a class="code hl_typedef" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, <span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *s);</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span></div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#a1f8fd4de65f898a284acd07d9d72b539">  282</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#a1f8fd4de65f898a284acd07d9d72b539">tro_fflush</a>(<a class="code hl_typedef" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file);</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#ab6fa53c4cfd11de915b84b854df6b612">  293</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#ab6fa53c4cfd11de915b84b854df6b612">tro_fprintf</a>(<a class="code hl_typedef" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, <span class="keyword">const</span> <span class="keywordtype">char</span> *format, ...);</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#addc89c462719b1a61362255bfeb1cb06">  306</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#addc89c462719b1a61362255bfeb1cb06">tro_vfprintf</a>(<a class="code hl_typedef" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, <span class="keyword">const</span> <span class="keywordtype">char</span> *format, va_list args);</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span></div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#afda4d55fb75928c8eccbbbfe74b43505">  317</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#afda4d55fb75928c8eccbbbfe74b43505">tro_fprintf16</a>(<a class="code hl_typedef" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, <span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *format, ...);</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span></div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#af1bca3276a233455669741e644ceb490">  330</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#af1bca3276a233455669741e644ceb490">tro_vfprintf16</a>(<a class="code hl_typedef" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *file, <span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *format,</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>                             va_list args);</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span></div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span><span class="keyword">extern</span> <a class="code hl_typedef" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *<span class="keyword">const</span> <a class="code hl_variable" href="../../d3/d3c/troio_8h.html#ae75e192ed62ce4c65371a6800b5d5e3a">troout</a>;</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span><span class="keyword">extern</span> <a class="code hl_typedef" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *<span class="keyword">const</span> <a class="code hl_variable" href="../../d3/d3c/troio_8h.html#a87ea8a63a77185538c1f642dba472755">troin</a>;</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span><span class="keyword">extern</span> <a class="code hl_typedef" href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a> *<span class="keyword">const</span> <a class="code hl_variable" href="../../d3/d3c/troio_8h.html#adc20b84b18e70f1e8c3a084748d1277c">troerr</a>;</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span></div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#ab46eaf4644ef63b1181eeb594c167d01">  384</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#ab46eaf4644ef63b1181eeb594c167d01">tro_putc</a>(<a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">tro_urune</a> rune);</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span></div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#a0ba367de7b4ac5b119ef34890edd7e7b">  394</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#a0ba367de7b4ac5b119ef34890edd7e7b">tro_puts</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *s);</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span></div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#afcf4fdaebc16210830e9f4d638352c85">  404</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#afcf4fdaebc16210830e9f4d638352c85">tro_puts16</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *s);</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span></div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#a4eb045e2c3c59ccdff0f2307e8ca54c7">  413</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#a4eb045e2c3c59ccdff0f2307e8ca54c7">tro_eputc</a>(<a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">tro_urune</a> rune);</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span></div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#a7dfcf2973b272b0c51607e2473da561f">  423</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#a7dfcf2973b272b0c51607e2473da561f">tro_eputs</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *s);</div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span></div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#af408c530871935ff32d1a7e0b3c3ffa2">  433</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#af408c530871935ff32d1a7e0b3c3ffa2">tro_eputs16</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *s);</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span></div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#ac82aa8efcb5f9311fb35503ff29dd89c">  444</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#ac82aa8efcb5f9311fb35503ff29dd89c">tro_printf</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *format, ...);</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span></div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#afb2e0c42083c962d0e2ccfe0abeebff3">  457</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#afb2e0c42083c962d0e2ccfe0abeebff3">tro_vprintf</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *format, va_list args);</div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span></div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#aeccc3a6d789ca8adf7b4dc83987a329b">  468</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#aeccc3a6d789ca8adf7b4dc83987a329b">tro_printf16</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *format, ...);</div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span></div>
+<div class="line"><a id="l00481" name="l00481"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#af8e18707e0c86c363839398e9f626724">  481</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#af8e18707e0c86c363839398e9f626724">tro_vprintf16</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *format, va_list args);</div>
+<div class="line"><a id="l00482" name="l00482"></a><span class="lineno">  482</span></div>
+<div class="line"><a id="l00492" name="l00492"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#a7b7585daaa94a9531a6968cb17bb9cdf">  492</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#a7b7585daaa94a9531a6968cb17bb9cdf">tro_eprintf</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *format, ...);</div>
+<div class="line"><a id="l00493" name="l00493"></a><span class="lineno">  493</span></div>
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#aec099791813a9029af2ba87e8a07834e">  505</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#aec099791813a9029af2ba87e8a07834e">tro_veprintf</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *format, va_list args);</div>
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span></div>
+<div class="line"><a id="l00516" name="l00516"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#af72612e4d522e0aac3e7b5c39d55ef9f">  516</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#af72612e4d522e0aac3e7b5c39d55ef9f">tro_eprintf16</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *format, ...);</div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span></div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno"><a class="line" href="../../d3/d3c/troio_8h.html#a106a33982201b748609a8921514d370e">  529</a></span>TRO__API <span class="keywordtype">bool</span> <a class="code hl_function" href="../../d3/d3c/troio_8h.html#a106a33982201b748609a8921514d370e">tro_veprintf16</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a> *format, va_list args);</div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span> </div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span>TRO__C_API_END</div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span> </div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span><span class="preprocessor">#endif </span><span class="comment">// TRO_TROIO_H_</span></div>
+<div class="ttc" id="adybuffer_8h_html"><div class="ttname"><a href="../../d6/d60/dybuffer_8h.html">dybuffer.h</a></div></div>
+<div class="ttc" id="adybuffer_8h_html_a715bb8f733e0f66ba87c3a15f2f686ec"><div class="ttname"><a href="../../d6/d60/dybuffer_8h.html#a715bb8f733e0f66ba87c3a15f2f686ec">tro_dybuf_pref</a></div><div class="ttdeci">tro_dybuf_pref</div><div class="ttdef"><b>Definição</b> dybuffer.h:26</div></div>
+<div class="ttc" id="astructtro__dybuffer__i_html"><div class="ttname"><a href="../../df/daf/structtro__dybuffer__i.html">tro_dybuffer_i</a></div><div class="ttdef"><b>Definição</b> dybuffer.h:53</div></div>
+<div class="ttc" id="atroio_8h_html_a03e5d1851e18b25ea51daa29e4ed8e3c"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#a03e5d1851e18b25ea51daa29e4ed8e3c">tro_fopen</a></div><div class="ttdeci">tro_file * tro_fopen(const char *filepath, tro_fmode mode)</div></div>
+<div class="ttc" id="atroio_8h_html_a08ddc196a9b3a46b1b4a77a9d1b090b1"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#a08ddc196a9b3a46b1b4a77a9d1b090b1">tro_fileno</a></div><div class="ttdeci">uintptr_t tro_fileno(const tro_file *file)</div></div>
+<div class="ttc" id="atroio_8h_html_a093917f356108b3680e64af117358b6e"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#a093917f356108b3680e64af117358b6e">tro_fbufmode</a></div><div class="ttdeci">tro_fbufmode</div><div class="ttdef"><b>Definição</b> troio.h:99</div></div>
+<div class="ttc" id="atroio_8h_html_a093917f356108b3680e64af117358b6ea93e2d17dd5d51d6980eaa1b7baa3257d"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#a093917f356108b3680e64af117358b6ea93e2d17dd5d51d6980eaa1b7baa3257d">TRO_FBUFMODE_LINE_BUFFER</a></div><div class="ttdeci">@ TRO_FBUFMODE_LINE_BUFFER</div><div class="ttdef"><b>Definição</b> troio.h:113</div></div>
+<div class="ttc" id="atroio_8h_html_a093917f356108b3680e64af117358b6ea968f11edef66adee40bbc6257f842ffe"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#a093917f356108b3680e64af117358b6ea968f11edef66adee40bbc6257f842ffe">TRO_FBUFMODE_FULL_BUFFER</a></div><div class="ttdeci">@ TRO_FBUFMODE_FULL_BUFFER</div><div class="ttdef"><b>Definição</b> troio.h:121</div></div>
+<div class="ttc" id="atroio_8h_html_a093917f356108b3680e64af117358b6eadf8592e5dcc8b0df7e4f91f044ec8c4d"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#a093917f356108b3680e64af117358b6eadf8592e5dcc8b0df7e4f91f044ec8c4d">TRO_FBUFMODE_NO_BUFFER</a></div><div class="ttdeci">@ TRO_FBUFMODE_NO_BUFFER</div><div class="ttdef"><b>Definição</b> troio.h:105</div></div>
+<div class="ttc" id="atroio_8h_html_a0ba367de7b4ac5b119ef34890edd7e7b"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#a0ba367de7b4ac5b119ef34890edd7e7b">tro_puts</a></div><div class="ttdeci">bool tro_puts(const char *s)</div></div>
+<div class="ttc" id="atroio_8h_html_a0d201d2b84efe252f34812032e579c87"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#a0d201d2b84efe252f34812032e579c87">tro_fbufpref</a></div><div class="ttdeci">tro_dybuf_pref tro_fbufpref(const tro_file *file)</div></div>
+<div class="ttc" id="atroio_8h_html_a106a33982201b748609a8921514d370e"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#a106a33982201b748609a8921514d370e">tro_veprintf16</a></div><div class="ttdeci">bool tro_veprintf16(const tro_char16 *format, va_list args)</div></div>
+<div class="ttc" id="atroio_8h_html_a1c0c73a42a103a651f4e7095cd9f4e6d"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#a1c0c73a42a103a651f4e7095cd9f4e6d">tro_fclose</a></div><div class="ttdeci">void tro_fclose(tro_file *file)</div></div>
+<div class="ttc" id="atroio_8h_html_a1f8fd4de65f898a284acd07d9d72b539"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#a1f8fd4de65f898a284acd07d9d72b539">tro_fflush</a></div><div class="ttdeci">bool tro_fflush(tro_file *file)</div></div>
+<div class="ttc" id="atroio_8h_html_a27ff5492c42ae47d199cf525c3b556fd"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#a27ff5492c42ae47d199cf525c3b556fd">tro_fwriteb</a></div><div class="ttdeci">bool tro_fwriteb(tro_file *file, const uint8_t *data, size_t datal)</div></div>
+<div class="ttc" id="atroio_8h_html_a36f7481760ad6131d42a6b358c163cf3"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#a36f7481760ad6131d42a6b358c163cf3">tro_fputs16</a></div><div class="ttdeci">bool tro_fputs16(tro_file *file, const tro_char16 *s)</div></div>
+<div class="ttc" id="atroio_8h_html_a385af618c63512e8a7ce11b89135a356"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#a385af618c63512e8a7ce11b89135a356">tro_fsetbuf</a></div><div class="ttdeci">void tro_fsetbuf(tro_file *file, tro_fbufmode mode, size_t capacity)</div></div>
+<div class="ttc" id="atroio_8h_html_a4eb045e2c3c59ccdff0f2307e8ca54c7"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#a4eb045e2c3c59ccdff0f2307e8ca54c7">tro_eputc</a></div><div class="ttdeci">bool tro_eputc(tro_urune rune)</div></div>
+<div class="ttc" id="atroio_8h_html_a7b7585daaa94a9531a6968cb17bb9cdf"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#a7b7585daaa94a9531a6968cb17bb9cdf">tro_eprintf</a></div><div class="ttdeci">bool tro_eprintf(const char *format,...)</div></div>
+<div class="ttc" id="atroio_8h_html_a7dfcf2973b272b0c51607e2473da561f"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#a7dfcf2973b272b0c51607e2473da561f">tro_eputs</a></div><div class="ttdeci">bool tro_eputs(const char *s)</div></div>
+<div class="ttc" id="atroio_8h_html_a87ea8a63a77185538c1f642dba472755"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#a87ea8a63a77185538c1f642dba472755">troin</a></div><div class="ttdeci">tro_file *const troin</div></div>
+<div class="ttc" id="atroio_8h_html_a9310d9699861029967922c7f0d5fedab"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#a9310d9699861029967922c7f0d5fedab">tro_fdybuffer_vt</a></div><div class="ttdeci">const tro_dybuffer_i *const tro_fdybuffer_vt</div><div class="ttdef"><b>Definição</b> troio.h:47</div></div>
+<div class="ttc" id="atroio_8h_html_a959a16680bb4f0041f2daf51e22ee808"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#a959a16680bb4f0041f2daf51e22ee808">tro_fputs</a></div><div class="ttdeci">bool tro_fputs(tro_file *file, const char *s)</div></div>
+<div class="ttc" id="atroio_8h_html_aa4714c45e29c0f53f5fc13ba8f3f6018"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#aa4714c45e29c0f53f5fc13ba8f3f6018">tro_fwrites</a></div><div class="ttdeci">bool tro_fwrites(tro_file *file, const char *data, size_t datal)</div></div>
+<div class="ttc" id="atroio_8h_html_ab46eaf4644ef63b1181eeb594c167d01"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#ab46eaf4644ef63b1181eeb594c167d01">tro_putc</a></div><div class="ttdeci">bool tro_putc(tro_urune rune)</div></div>
+<div class="ttc" id="atroio_8h_html_ab6fa53c4cfd11de915b84b854df6b612"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#ab6fa53c4cfd11de915b84b854df6b612">tro_fprintf</a></div><div class="ttdeci">bool tro_fprintf(tro_file *file, const char *format,...)</div></div>
+<div class="ttc" id="atroio_8h_html_ab7f60636e621814a5c2c21cf7f3f6fd4"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#ab7f60636e621814a5c2c21cf7f3f6fd4">tro_fputc</a></div><div class="ttdeci">bool tro_fputc(tro_file *file, tro_urune rune)</div></div>
+<div class="ttc" id="atroio_8h_html_ac82aa8efcb5f9311fb35503ff29dd89c"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#ac82aa8efcb5f9311fb35503ff29dd89c">tro_printf</a></div><div class="ttdeci">bool tro_printf(const char *format,...)</div></div>
+<div class="ttc" id="atroio_8h_html_acbeb8b14fc62a98658307d7a776149b8"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#acbeb8b14fc62a98658307d7a776149b8">tro_file</a></div><div class="ttdeci">struct tro_file tro_file</div><div class="ttdef"><b>Definição</b> troio.h:42</div></div>
+<div class="ttc" id="atroio_8h_html_ad1d7752d6a1174c7dcc915df77aa9742"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#ad1d7752d6a1174c7dcc915df77aa9742">tro_fterminal</a></div><div class="ttdeci">bool tro_fterminal(const tro_file *file)</div></div>
+<div class="ttc" id="atroio_8h_html_ad581f93f29f7ed2951e452a418fe422c"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#ad581f93f29f7ed2951e452a418fe422c">tro_fwritec</a></div><div class="ttdeci">bool tro_fwritec(tro_file *file, uint32_t rune, size_t count)</div></div>
+<div class="ttc" id="atroio_8h_html_adc20b84b18e70f1e8c3a084748d1277c"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#adc20b84b18e70f1e8c3a084748d1277c">troerr</a></div><div class="ttdeci">tro_file *const troerr</div></div>
+<div class="ttc" id="atroio_8h_html_addc89c462719b1a61362255bfeb1cb06"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#addc89c462719b1a61362255bfeb1cb06">tro_vfprintf</a></div><div class="ttdeci">bool tro_vfprintf(tro_file *file, const char *format, va_list args)</div></div>
+<div class="ttc" id="atroio_8h_html_ae08e6bc58c62da3856ca152cf7d17064"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#ae08e6bc58c62da3856ca152cf7d17064">tro_fwrites16</a></div><div class="ttdeci">bool tro_fwrites16(tro_file *file, const tro_char16 *data, size_t datal)</div></div>
+<div class="ttc" id="atroio_8h_html_ae75e192ed62ce4c65371a6800b5d5e3a"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#ae75e192ed62ce4c65371a6800b5d5e3a">troout</a></div><div class="ttdeci">tro_file *const troout</div></div>
+<div class="ttc" id="atroio_8h_html_aec099791813a9029af2ba87e8a07834e"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#aec099791813a9029af2ba87e8a07834e">tro_veprintf</a></div><div class="ttdeci">bool tro_veprintf(const char *format, va_list args)</div></div>
+<div class="ttc" id="atroio_8h_html_aeccc3a6d789ca8adf7b4dc83987a329b"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#aeccc3a6d789ca8adf7b4dc83987a329b">tro_printf16</a></div><div class="ttdeci">bool tro_printf16(const tro_char16 *format,...)</div></div>
+<div class="ttc" id="atroio_8h_html_af1389618b92cdc1649c850febe0a2fc0"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#af1389618b92cdc1649c850febe0a2fc0">tro_fmode</a></div><div class="ttdeci">tro_fmode</div><div class="ttdef"><b>Definição</b> troio.h:63</div></div>
+<div class="ttc" id="atroio_8h_html_af1389618b92cdc1649c850febe0a2fc0a11b985d1a42ae530b63cdb4363dfe61c"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#af1389618b92cdc1649c850febe0a2fc0a11b985d1a42ae530b63cdb4363dfe61c">TRO_FMODE_RDAD</a></div><div class="ttdeci">@ TRO_FMODE_RDAD</div><div class="ttdef"><b>Definição</b> troio.h:90</div></div>
+<div class="ttc" id="atroio_8h_html_af1389618b92cdc1649c850febe0a2fc0a2cb19238e86f772dcf949e82f2e23fe8"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#af1389618b92cdc1649c850febe0a2fc0a2cb19238e86f772dcf949e82f2e23fe8">TRO_FMODE_APPEND</a></div><div class="ttdeci">@ TRO_FMODE_APPEND</div><div class="ttdef"><b>Definição</b> troio.h:82</div></div>
+<div class="ttc" id="atroio_8h_html_af1389618b92cdc1649c850febe0a2fc0a4c622a69759b91ee9ecf3431ee72d999"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#af1389618b92cdc1649c850febe0a2fc0a4c622a69759b91ee9ecf3431ee72d999">TRO_FMODE_NULL</a></div><div class="ttdeci">@ TRO_FMODE_NULL</div><div class="ttdef"><b>Definição</b> troio.h:70</div></div>
+<div class="ttc" id="atroio_8h_html_af1389618b92cdc1649c850febe0a2fc0a7b5f819ab169f613a12d3a36ec466d65"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#af1389618b92cdc1649c850febe0a2fc0a7b5f819ab169f613a12d3a36ec466d65">TRO_FMODE_WRITE</a></div><div class="ttdeci">@ TRO_FMODE_WRITE</div><div class="ttdef"><b>Definição</b> troio.h:78</div></div>
+<div class="ttc" id="atroio_8h_html_af1389618b92cdc1649c850febe0a2fc0a8910a0da23a6e2f3bf46b9a328527da7"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#af1389618b92cdc1649c850febe0a2fc0a8910a0da23a6e2f3bf46b9a328527da7">TRO_FMODE_READ</a></div><div class="ttdeci">@ TRO_FMODE_READ</div><div class="ttdef"><b>Definição</b> troio.h:74</div></div>
+<div class="ttc" id="atroio_8h_html_af1389618b92cdc1649c850febe0a2fc0abe76e0af2e3eff5d5ca7c87243575a41"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#af1389618b92cdc1649c850febe0a2fc0abe76e0af2e3eff5d5ca7c87243575a41">TRO_FMODE_RDWT</a></div><div class="ttdeci">@ TRO_FMODE_RDWT</div><div class="ttdef"><b>Definição</b> troio.h:86</div></div>
+<div class="ttc" id="atroio_8h_html_af1bca3276a233455669741e644ceb490"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#af1bca3276a233455669741e644ceb490">tro_vfprintf16</a></div><div class="ttdeci">bool tro_vfprintf16(tro_file *file, const tro_char16 *format, va_list args)</div></div>
+<div class="ttc" id="atroio_8h_html_af408c530871935ff32d1a7e0b3c3ffa2"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#af408c530871935ff32d1a7e0b3c3ffa2">tro_eputs16</a></div><div class="ttdeci">bool tro_eputs16(const tro_char16 *s)</div></div>
+<div class="ttc" id="atroio_8h_html_af72612e4d522e0aac3e7b5c39d55ef9f"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#af72612e4d522e0aac3e7b5c39d55ef9f">tro_eprintf16</a></div><div class="ttdeci">bool tro_eprintf16(const tro_char16 *format,...)</div></div>
+<div class="ttc" id="atroio_8h_html_af8e18707e0c86c363839398e9f626724"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#af8e18707e0c86c363839398e9f626724">tro_vprintf16</a></div><div class="ttdeci">bool tro_vprintf16(const tro_char16 *format, va_list args)</div></div>
+<div class="ttc" id="atroio_8h_html_afb2e0c42083c962d0e2ccfe0abeebff3"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#afb2e0c42083c962d0e2ccfe0abeebff3">tro_vprintf</a></div><div class="ttdeci">bool tro_vprintf(const char *format, va_list args)</div></div>
+<div class="ttc" id="atroio_8h_html_afcf4fdaebc16210830e9f4d638352c85"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#afcf4fdaebc16210830e9f4d638352c85">tro_puts16</a></div><div class="ttdeci">bool tro_puts16(const tro_char16 *s)</div></div>
+<div class="ttc" id="atroio_8h_html_afda4d55fb75928c8eccbbbfe74b43505"><div class="ttname"><a href="../../d3/d3c/troio_8h.html#afda4d55fb75928c8eccbbbfe74b43505">tro_fprintf16</a></div><div class="ttdeci">bool tro_fprintf16(tro_file *file, const tro_char16 *format,...)</div></div>
+<div class="ttc" id="auchar_8h_html"><div class="ttname"><a href="../../d5/d5e/uchar_8h.html">uchar.h</a></div></div>
+<div class="ttc" id="auchar_8h_html_a25ef2305998b3747aba47f22b6354272"><div class="ttname"><a href="../../d5/d5e/uchar_8h.html#a25ef2305998b3747aba47f22b6354272">tro_char16</a></div><div class="ttdeci">uint16_t tro_char16</div><div class="ttdef"><b>Definição</b> uchar.h:199</div></div>
+<div class="ttc" id="auchar_8h_html_aa0373d69337dc49ab65ac05348387038"><div class="ttname"><a href="../../d5/d5e/uchar_8h.html#aa0373d69337dc49ab65ac05348387038">tro_urune</a></div><div class="ttdeci">uint32_t tro_urune</div><div class="ttdef"><b>Definição</b> uchar.h:51</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="../../d3/d3c/troio_8h.html">troio.h</a></li>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>
