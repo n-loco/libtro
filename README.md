@@ -25,6 +25,7 @@ a [documentação de referência online](https://n-loco.github.io/libtro).
 ## Buildando
 Bem simples.
 ```sh
+just setup
 just build
 ```
 Os arquivos de build vão estar *normalmente* em `build/`,
