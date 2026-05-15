@@ -10,8 +10,8 @@ set shell := ["sh", "-c"]
 
 python := if os() == "windows" { require("python") } else { require("python3") }
 meson := require("meson")
-clang-format := require("clang-format")
-doxygen := which('doxygen')
+clang-format := which("clang-format")
+doxygen := which("doxygen")
 
 # Opções #
 #========#

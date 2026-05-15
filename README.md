@@ -14,10 +14,13 @@ a [documentação de referência online](https://n-loco.github.io/libtro).
 ## Requisitos
  - [**Just**](https://just.systems/) >= 1.48.x;
  - **Um compilador C11** — *preferencialmente Clang, GCC ou MSVC*;
- - **Clang Format** >= 18.1.x
  - [**Python**](https://www.python.org/downloads/) 3;
  - [**Meson**](https://mesonbuild.com/) >= 1.10.x;
    - [**Ninja**](https://ninja-build.org/) >= 1.23.x — _**Meson** precisa_.
+ - **Clang Format** >= 18.1.x — *opcional*
+   > [!note]  
+   > Opcional para *build*, mas **extremamente**
+   > recomendado para *desenvolvimento*.
  - [**Doxygen**](https://www.doxygen.nl/) >= 1.17.x — *opcional*.
 
 ## Buildando
