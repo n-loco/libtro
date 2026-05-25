@@ -47,6 +47,10 @@ unset_variable('unix_like_test_code')
 # Lista de argumentos com sintaxe tipo MSVC.
 project_args_msvc_syntax = [
     '/utf-8',
+    # Existe um bug no Visual Studio 2022
+    # que é um falso positivo para o warning C4200,
+    # então nós desabilitamos este warning :^)
+    '/wd4200',
 ]
 # Lista de argumentos com sintaxe tipo GCC (GCC, Clang, etc.).
 project_args_gcc_syntax = [

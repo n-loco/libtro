@@ -98,7 +98,7 @@ size_t tro__parse_fmt_spec_T(const CHAR_T *sspec, fmt_specifier *out)
 
 	// Tipo principal
 	if (!parse_type(sspec, &spec)) {
-		const char c = *sspec;
+		const CHAR_T c = *sspec;
 		if (c != '\0')
 			d_read++;
 		goto ERROR;

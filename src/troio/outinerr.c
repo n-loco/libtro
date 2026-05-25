@@ -116,9 +116,9 @@ static DWORD og_in_mode;
 static DWORD og_err_mode;
 #endif
 
-#if TRO_SYSTEM_WIN32
+#if TRO_COMPILER_MSVC
 // Definição de construtor abaixo da função.
-#elif TRO_SYSTEM_UNIX_LIKE && defined(__GNUC__)
+#elif TRO_COMPILER_GCC_LIKE
 __attribute__((constructor))
 #else
 # error "Unnable to specify constructor."
@@ -178,7 +178,7 @@ static void outinerr_ctor(void)
 }
 
 // clang-format off
-#if TRO_SYSTEM_WIN32
+#if TRO_COMPILER_MSVC
 
 #pragma section(".CRT$XCU", read)
 __declspec(allocate(".CRT$XCU"))
@@ -187,9 +187,9 @@ void (*tro__outinerr_ctor)(void) = outinerr_ctor;
 #endif
 // clang-format on
 
-#if TRO_SYSTEM_WIN32
+#if TRO_COMPILER_MSVC
 // Definição de destruidor abaixo da função.
-#elif TRO_SYSTEM_UNIX_LIKE && defined(__GNUC__)
+#elif TRO_COMPILER_GCC_LIKE
 __attribute__((destructor))
 #else
 # error "Unnable to specify destructor."
@@ -224,7 +224,7 @@ static void outinerr_dtor(void)
 }
 
 // clang-format off
-#if TRO_SYSTEM_WIN32
+#if TRO_COMPILER_MSVC
 
 #pragma section(".CRT$XPU", read)
 __declspec(allocate(".CRT$XPU"))

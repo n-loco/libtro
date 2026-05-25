@@ -63,7 +63,15 @@ struct tro_strdybuf_T {
 	mempage *first;
 	mempage *last;
 };
-static const tro_dybuffer_i dybuffer_impl;
+static const tro_dybuffer_i dybuffer_impl = {
+    .writes = (bool (*)(void *, const char *, size_t))tro_strdybuf_writes_T,
+    .writes16 =
+        (bool (*)(void *, const tro_char16 *, size_t))tro_strdybuf_writes16_T,
+    .writeb = (bool (*)(void *, const uint8_t *, size_t))tro_strdybuf_writeb_T,
+    .writec = (bool (*)(void *, uint32_t, size_t))tro_strdybuf_writec_T,
+    .preference = (tro_dybuf_pref(*)(const void *))tro_strdybuf_preference_T,
+};
+
 const tro_dybuffer_i *const tro_strdybuf_dybuffer_vt_T = &dybuffer_impl;
 
 tro_strdybuf_T *tro_create_strdybuf_T(size_t pagecap)
@@ -181,12 +189,3 @@ bool tro_strdybuf_writeb_T(tro_strdybuf_T *buf, const uint8_t *data,
 
 	return true;
 }
-
-static const tro_dybuffer_i dybuffer_impl = {
-    .writes = (bool (*)(void *, const char *, size_t))tro_strdybuf_writes_T,
-    .writes16 =
-        (bool (*)(void *, const tro_char16 *, size_t))tro_strdybuf_writes16_T,
-    .writeb = (bool (*)(void *, const uint8_t *, size_t))tro_strdybuf_writeb_T,
-    .writec = (bool (*)(void *, uint32_t, size_t))tro_strdybuf_writec_T,
-    .preference = (tro_dybuf_pref(*)(const void *))tro_strdybuf_preference_T,
-};

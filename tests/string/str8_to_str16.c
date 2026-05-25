@@ -71,14 +71,14 @@ static bool impl__str16_assert(const char *name, const tro_char16 *e, size_t el,
 			    name, i);
 
 			fprintf(stderr, "  expected surrogates:");
-			for (size_t i = 0; i < el; i++) {
-				fprintf(stderr, " \\x%04X", e[i]);
+			for (size_t j = 0; j < el; j++) {
+				fprintf(stderr, " \\x%04X", e[j]);
 			}
 			fprintf(stderr, "\n");
 
 			fprintf(stderr, "       got surrogates:");
-			for (size_t i = 0; i < el; i++) {
-				fprintf(stderr, " \\x%04X", g[i]);
+			for (size_t j = 0; j < el; j++) {
+				fprintf(stderr, " \\x%04X", g[j]);
 			}
 			fprintf(stderr, "\n");
 

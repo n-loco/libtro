@@ -70,14 +70,14 @@ static bool impl__str8_assert(const char *name, const char *e, size_t el,
 			        name, i);
 
 			fprintf(stderr, "  expected bytes:");
-			for (size_t i = 0; i < el; i++) {
-				fprintf(stderr, " \\x%02hhX", e[i]);
+			for (size_t j = 0; j < el; j++) {
+				fprintf(stderr, " \\x%02hhX", e[j]);
 			}
 			fprintf(stderr, "\n");
 
 			fprintf(stderr, "       got bytes:");
-			for (size_t i = 0; i < el; i++) {
-				fprintf(stderr, " \\x%02hhX", g[i]);
+			for (size_t j = 0; j < el; j++) {
+				fprintf(stderr, " \\x%02hhX", g[j]);
 			}
 			fprintf(stderr, "\n");
 

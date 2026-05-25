@@ -451,10 +451,14 @@ size_t tro_str16_urune_len(const tro_char16 *str, size_t strl)
 
 static inline tro_u8code u8asm_0(size_t len, tro_urune rune)
 {
-	return ((len == 1) * rune) // Apenas retorna a própria runa.
-	       + ((len == 2) * ((rune >> 6) | 0xC0))  // Para o segundo layout.
-	       + ((len == 3) * ((rune >> 12) | 0xE0)) // Para o terceiro layout.
-	       + ((len == 4) * ((rune >> 18) | 0xF0)); // Para o último layout.
+	return (
+	    tro_u8code)(((len == 1) * rune) // Apenas retorna a própria runa.
+	                + ((len == 2) *
+	                   ((rune >> 6) | 0xC0)) // Para o segundo layout.
+	                + ((len == 3) *
+	                   ((rune >> 12) | 0xE0)) // Para o terceiro layout.
+	                + ((len == 4) *
+	                   ((rune >> 18) | 0xF0))); // Para o último layout.
 }
 /*
    Macro para montar byte de
@@ -560,9 +564,10 @@ static inline tro_urune u8dasm_3(tro_u8code byte, size_t len)
 
 static inline tro_u16code u16asm_w1(size_t len, tro_urune rune)
 {
-	return ((len == 1) * rune) // Apenas retorna o surrogate.
-	       + ((len == 2) *
-	          ((rune >> 10) | 0xD800)); // Monta o surrogate high.
+	return (
+	    tro_u16code)(((len == 1) * rune) // Apenas retorna o surrogate.
+	                 + ((len == 2) * ((rune >> 10) |
+	                                  0xD800))); // Monta o surrogate high.
 }
 
 static inline tro_u16code u16asm_w2(size_t len, tro_urune rune)

@@ -216,7 +216,7 @@ static bool fmt_u(tro_dybuffer_obj buf, const opts_oxXu *opts);
 typedef struct {
 	double_t dfloat;
 	size_t width;
-	size_t precision;
+	uint32_t precision;
 	bool left_justified: 1;
 	bool zero_pad      : 1;
 	bool sign_always   : 1;
@@ -234,11 +234,12 @@ typedef struct {
 		                 ? (size_t)va_arg(ap, unsigned int)            \
 		                 : (fmt)->field_width.width;                   \
                                                                                \
-		(o)->precision = (fmt)->precision_width.dot                    \
-		                     ? (fmt)->precision_width.from_va          \
-		                           ? (size_t)va_arg(ap, unsigned int)  \
-		                           : (fmt)->precision_width.width      \
-		                     : 6;                                      \
+		(o)->precision =                                               \
+		    (fmt)->precision_width.dot                                 \
+		        ? (fmt)->precision_width.from_va                       \
+		              ? (uint32_t)va_arg(ap, unsigned int)             \
+		              : (uint32_t)(fmt)->precision_width.width         \
+		        : 6;                                                   \
                                                                                \
 		(o)->left_justified = (fmt)->flags.left_justified;             \
 		(o)->zero_pad       = (fmt)->flags.zero_pad;                   \
@@ -647,12 +648,12 @@ static bool fmt_f(tro_dybuffer_obj buf_obj, const opts_feEgGaA *opts)
 	bool (*const buf_writes_DYN)(void *, const void *, size_t) =
 	    buf_get_writes_DYN(buf_obj);
 
-	const double num       = opts->dfloat;
-	const size_t precision = opts->precision;
-	const bool alternative = opts->alternative;
-	const bool sign_always = opts->sign_always;
-	const bool left_just   = opts->left_justified;
-	const bool zero_pad    = opts->zero_pad;
+	const double num         = opts->dfloat;
+	const uint32_t precision = opts->precision;
+	const bool alternative   = opts->alternative;
+	const bool sign_always   = opts->sign_always;
+	const bool left_just     = opts->left_justified;
+	const bool zero_pad      = opts->zero_pad;
 
 	size_t width = opts->width;
 

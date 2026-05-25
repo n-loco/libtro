@@ -1,7 +1,7 @@
 # Configurações #
 #===============#
 
-set unstable := true
+set unstable
 set windows-shell := ["cmd", "/c"]
 set shell := ["sh", "-c"]
 

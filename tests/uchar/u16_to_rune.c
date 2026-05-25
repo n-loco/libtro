@@ -20,11 +20,7 @@
 	}
 
 #define c(s) (const tro_u16code *)u##s
-#define rc(...)                                                                \
-	(const tro_u16code[])                                                  \
-	{                                                                      \
-		__VA_ARGS__, 0x0000                                            \
-	}
+#define rc(...) (const tro_u16code[]){__VA_ARGS__, 0x0000}
 
 int main(void)
 {

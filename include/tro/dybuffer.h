@@ -49,8 +49,7 @@ typedef enum tro__ndoxy(tro_dybuf_pref) {
  *
  * @see tro_dybuffer_obj
  */
-typedef struct tro__ndoxy(tro_dybuffer_i)
-{
+typedef struct tro__ndoxy(tro_dybuffer_i) {
 	/**
 	 * @param buf o objeto.
 	 * @param data é uma **string UTF-8**.
@@ -93,8 +92,7 @@ typedef struct tro__ndoxy(tro_dybuffer_i)
 	 * @returns a *preferência de encoding*.
 	 */
 	tro_dybuf_pref (*const preference)(const void *buf);
-}
-tro_dybuffer_i;
+} tro_dybuffer_i;
 
 /**
  * Um **ponteiro gordo** para uma
@@ -103,8 +101,7 @@ tro_dybuffer_i;
  * **NUNCA** deve ser **passado
  * como um ponteiro**.
  */
-typedef struct tro__ndoxy(tro_dybuffer_obj)
-{
+typedef struct tro__ndoxy(tro_dybuffer_obj) {
 	/**
 	 * Um **ponteiro opaco** para
 	 * o objeto real.
@@ -117,8 +114,7 @@ typedef struct tro__ndoxy(tro_dybuffer_obj)
 	 * @ref tro_dybuffer_i.
 	 */
 	const tro_dybuffer_i *const vtable;
-}
-tro_dybuffer_obj;
+} tro_dybuffer_obj;
 
 /**
  * @def tro_dispatch_dybuffer(o, varname)

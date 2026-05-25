@@ -162,6 +162,9 @@ bool tro_fwrites16(tro_file *file, const tro_char16 *data, size_t datal)
 
 bool tro_fwriteb(tro_file *file, const uint8_t *data, size_t datal)
 {
+	if (datal == 0)
+		return false;
+
 	if (file->terminal)
 		return fwrites_term(file, (const char *)data, datal);
 	return fwrites_file(file, (const char *)data, datal);
@@ -170,7 +173,7 @@ bool tro_fwriteb(tro_file *file, const uint8_t *data, size_t datal)
 static bool fwritec_file(tro_file *file, uint32_t rune, size_t count);
 static bool fwritec_term(tro_file *file, uint32_t rune, size_t count);
 
-bool tro_fwritec(tro_file *file, tro_char16 rune, size_t count)
+bool tro_fwritec(tro_file *file, tro_urune rune, size_t count)
 {
 	if (file->terminal)
 		return fwritec_term(file, rune, count);
@@ -261,8 +264,6 @@ static bool fwrites16_file(tro_file *file, const tro_char16 *data, size_t datal)
 		return success;
 	}
 
-	return true;
-
 	size_t i = 0;
 	while (i < datal) {
 		bool new_line = data[i] == '\n' &&
@@ -293,6 +294,8 @@ static bool fwrites16_file(tro_file *file, const tro_char16 *data, size_t datal)
 			}
 		}
 	}
+
+	return true;
 
 WRITE_ERROR:
 	file->buffer_size = 0;
@@ -351,8 +354,8 @@ static bool fwrites_term(tro_file *file, const char *data, size_t datal)
 		size_t codesn;
 		i += tro_u8codes_to_u16codes(seq, seql, codes, &codesn);
 
-		for (size_t i = 0; i < codesn; i++) {
-			file->wbuffer[file->buffer_size++] = codes[i];
+		for (size_t j = 0; j < codesn; j++) {
+			file->wbuffer[file->buffer_size++] = codes[j];
 
 			if (file->buffer_size == file->buffer_capacity) {
 				bool success = tro_fflush(file);

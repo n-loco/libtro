@@ -13,11 +13,7 @@
 		}                                                              \
 	}
 
-#define rs(...)                                                                \
-	(const tro_char16[])                                                   \
-	{                                                                      \
-		__VA_ARGS__, 0x0000                                            \
-	}
+#define rs(...) (const tro_char16[]){__VA_ARGS__, 0x0000}
 
 int main(void)
 {
