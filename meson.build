@@ -1,9 +1,8 @@
 project(
     'libtro',
     'c',
-    # Manter MAJOR sincronizado com o
-    # PROJECT_NUMBER no Doxyfile.
-    version: '0.1',
+    # Veja: tools/bin
+    version: run_command('version', check: true).stdout(),
     meson_version: '>= 1.10.0',
     default_options: [
         'warning_level=3',
@@ -21,7 +20,7 @@ c_syntax_msvc = c_compiler.get_argument_syntax() == 'msvc'
 # Útil para fazer compilação condicional
 # direto pelo Meson, selecionando arquivos.
 # https://mesonbuild.com/Reference-tables.html#operating-system-names
-system_name = build_machine.system()
+system_name = host_machine.system()
 if system_name == 'cygwin'
     error('Cygwin and MSYS are not currently supported.')
 endif
@@ -102,8 +101,7 @@ subdir('src')
 
 lib_name_prefix = []
 lib_name_suffix = []
-
-if system_name == 'windows'
+if c_syntax_msvc
     lib_name_prefix = ''
     lib_name_suffix = 'lib'
 endif
@@ -126,10 +124,12 @@ subdir('tests')
 # Importante para build-systems serem capazes
 # de encontrar esta biblioteca automatiamente,
 # especialmente em distribuições de Linux.
-if is_unix_like
+if not c_syntax_msvc
     pkg_mod = import('pkgconfig')
     pkg_mod.generate(
         lib,
+        filebase: 'tro',
+        name: 'LibTRO',
         # Manter sincronizado com o Doxyfile, com o
         # README.md e com a descrição no GitHub.
         description: 'Uma biblioteca com funções semelhantes às do C para fins educacionais na Eletrônica, IF Sul Pelotas.',

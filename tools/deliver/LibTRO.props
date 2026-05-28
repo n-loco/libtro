@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup Label="LibTRO">
+    <LibTRORoot>$(MSBuildThisFileDirectory)</LibTRORoot>
+
+    <LibTROTriple Condition="'$(Platform)' == 'Win32'">x86-pc-windows-msvc</LibTROTriple>
+    <LibTROTriple Condition="'$(Platform)' == 'x64'">x86_64-pc-windows-msvc</LibTROTriple>
+    <LibTROTriple Condition="'$(Platform)' == 'ARM64'">aarch64-pc-windows-msvc</LibTROTriple>
+  </PropertyGroup>
+
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(LibTRORoot)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+
+    <Link>
+      <AdditionalLibraryDirectories>$(LibTRORoot)lib\$(LibTROTriple);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+
+      <AdditionalDependencies>tro.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+
+</Project>

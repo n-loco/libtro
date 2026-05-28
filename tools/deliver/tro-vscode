@@ -1,0 +1,113 @@
+#!/usr/bin/env python3
+
+from pathlib import Path
+import os.path as path
+from os import getcwd
+import sys
+import platform
+
+TASKS_JSON = '''{{
+    "version": "2.0.0",
+    "tasks": [
+        {{
+            "label": "createdir",
+            "type": "shell",
+            "command": "mkdir",
+            "args": ["-p", "${{fileDirname}}/build"],
+            "hide": true,
+            "presentation": {{
+                "revealProblems": "onProblem",
+                "echo": true,
+                "reveal": "never",
+                "focus": false,
+                "panel": "shared",
+            }}
+        }},
+        {{
+            "label": "Compilar Arquivo Atual",
+            "type": "process",
+            "dependsOn": ["createdir"],
+            "command": "cc",
+            "args": [
+                "-g",
+                "-o",
+                "${{fileDirname}}/build/${{fileBasenameNoExtension}}",
+                "-I{includedir}",
+                "${{file}}",
+                "-L{libdir}",
+                "-ltro"
+            ],
+            "isBuildCommand": true,
+            "problemMatcher": "$nvcc",
+            "icon": {{
+                "color": "terminal.ansiGreen",
+                "id": "build"
+            }},
+            "presentation": {{
+                "revealProblems": "onProblem",
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared",
+                "close": true
+            }}
+        }}
+    ]
+}}
+'''
+
+LAUNCH_JSON = '''{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Rodar Arquivo Atual",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${fileDirname}/build/${fileBasenameNoExtension}",
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": "Compilar Arquivo Atual",
+        }
+    ]
+}
+'''
+
+CLANGD = '''CompileFlags:
+  Add:
+    - -I{includedir}
+'''
+
+def linux_subdir() -> str:
+    return f'{platform.machine()}-unknown-linux-gnu'
+
+
+if __name__ == '__main__':
+    CWD = getcwd()
+    VSCODE = path.join(CWD, '.vscode')
+    Path(VSCODE).mkdir(parents=True, exist_ok=True)
+
+    BINDIR = path.dirname(__file__)
+
+    if sys.platform == 'darwin':
+        LIBDIR = path.normpath(path.join(BINDIR, '..', 'lib'))
+    elif sys.platform == 'linux':
+        LIBDIR = path.normpath(path.join(BINDIR, '..', 'lib', linux_subdir()))
+    else:
+        exit(1)
+
+    INCLUDEDIR = path.normpath(path.join(BINDIR, '..', 'include'))
+
+    TASKS_JSON_PATH = path.join(VSCODE, 'tasks.json')
+    LAUNCH_JSON_PATH = path.join(VSCODE, 'launch.json')
+    CLANGD_PATH = path.join(CWD, '.clangd')
+
+    with open(TASKS_JSON_PATH, 'wb') as TASKS_JSON_FILE:
+        FMT = TASKS_JSON.format(includedir=INCLUDEDIR, libdir=LIBDIR)
+        TASKS_JSON_FILE.write(bytes(FMT, encoding='utf-8'))
+
+    with open(LAUNCH_JSON_PATH, 'wb') as LAUNCH_JSON_FILE:
+        LAUNCH_JSON_FILE.write(bytes(LAUNCH_JSON, encoding='utf-8'))
+
+    with open(CLANGD_PATH, 'wb') as CLANGD_FILE:
+        FMT = CLANGD.format(includedir=INCLUDEDIR)
+        CLANGD_FILE.write(bytes(FMT, encoding='utf-8'))

@@ -21,6 +21,11 @@ __pycache__/
 # Doxygen
 doc/dist
 
+# Gerado por ferramentas
+## just config Meson+MSYS
+*-pc-windows-gnu.ini
+
 # etc.
 *[Uu][Ss][Ee][Rr]*
 .env
+.DS_Store

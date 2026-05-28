@@ -1,35 +1,32 @@
-from os import getenv
 import os.path as path
 from subprocess import Popen
-from term import BOLD, ITALLIC, YELLOW, RESET
 
+from justenv import CLANG_FORMAT, MESON, JUST
+from term import BOLD, ITALLIC, BRIGHT_YELLOW, BRIGHT_RED, RESET
 from globr import globr
 
 def run_tool(toolexe: str, args: list[str]) -> int:
     TOOLNAME = path.basename(toolexe)
 
-    argline: str
+    ARG_LINE: str
     if len(args) > 4:
-        argline = ' '.join(args[:4]) + f' ...{ITALLIC}+{len(args) - 4}{RESET}'
+        ARG_LINE = ' '.join(args[:4]) + f' ...{ITALLIC}+{len(args) - 4}{RESET}'
     else:
-        argline = ' '.join(args)
+        ARG_LINE = ' '.join(args)
 
-    print(f'{TOOLNAME} {argline}')
-
-    proc = Popen([toolexe, *args])
-    return proc.wait()
+    print(f'{TOOLNAME} {ARG_LINE}')
+    exit_code = Popen([toolexe, *args]).wait()
+    if exit_code != 0:
+        print(f'{BRIGHT_RED}{BOLD}ERRO:{RESET} {TOOLNAME} terminou com código de saída: {exit_code}')
+    return exit_code
 
 if __name__ == '__main__':
-    exit_code = 0
+    print(f'Usando {JUST}')
 
-    JUST = 'just'
-    CLANG_FORMAT = getenv('CLANG_FORMAT_PATH', 'clang-format')
-    MESON = getenv('MESON_PATH', 'meson')
-
-    if CLANG_FORMAT != '':
-        print(f'Usando {CLANG_FORMAT}')
+    if CLANG_FORMAT == None:
+        print(f'{BRIGHT_YELLOW}{BOLD}ATENÇÃO:{RESET} Clang Format não encontrado')
     else:
-        print(f'{YELLOW}{BOLD}ATENÇÃO:{RESET} Clang Format não encontrado')
+        print(f'Usando {CLANG_FORMAT}')
 
     print(f'Usando {MESON}')
 
@@ -53,7 +50,7 @@ if __name__ == '__main__':
     exit_code = 0
 
     exit_code += run_tool(JUST, ['--fmt'])
-    if CLANG_FORMAT != '':
+    if CLANG_FORMAT != None:
         exit_code += run_tool(CLANG_FORMAT, ['-i', *c_files])
     exit_code += run_tool(MESON, ['fmt', '-i', *meson_files])
 

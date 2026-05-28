@@ -1,7 +1,10 @@
-from project import MESON_BUILDDIR, MESON_TARGETS, MesonTargetType
 import os.path as path
-import posixpath
+import posixpath as ppath
 import json
+
+from mespy import MesonTargetType
+from justenv import MESON_BUILDDIR
+from project import MESON_TARGETS
 
 launch_data = {
     'version': '0.2.0',
@@ -11,7 +14,7 @@ launch_data = {
 def append_launch(name: str, program: str):
     program = program.replace('\\', '/')
 
-    TASK_PATH = program.replace(posixpath.normpath(MESON_BUILDDIR.replace('\\', '/'))+'/', '').replace('.exe', '')
+    TASK_PATH = program.replace(ppath.normpath(MESON_BUILDDIR.replace('\\', '/'))+'/', '').replace('.exe', '')
     TASK = f'Meson: Build {TASK_PATH}:executable'
 
     launch_data['configurations'].append({

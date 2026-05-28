@@ -58,6 +58,7 @@ Para depurar os testes usando a extensão [CodeLLDB](https://marketplace.visuals
 (*listada nas [recomendações de extensões](./.vscode/extensions.json)*)
 é muito importante executar:
 ```sh
+just setup
 just config CodeLLDB
 ```
 que ira gerar um `launch.json` do *Visual Studio Code*
@@ -65,4 +66,4 @@ com todos os *targets* gerados pelo **Meson**.
 
 > [!note]  
 > Sempre que um *target* novo é adicionado,
-> é recomendado executar esta tarefa novamente.
+> é recomendado executar `just config CodeLLDB` novamente.

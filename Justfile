@@ -1,7 +1,7 @@
 # Configurações #
 #===============#
 
-set unstable
+set unstable := true
 set windows-shell := ["cmd", "/c"]
 set shell := ["sh", "-c"]
 
@@ -16,15 +16,18 @@ doxygen := which("doxygen")
 # Opções #
 #========#
 
-build-dir := env("MESON_BUILDDIR", "build")
+build-dir := env("MESON_BUILDDIR", justfile_dir() / "build")
 
 # Ambiente Exportado #
 #====================#
 
+export PATH := (justfile_dir() / 'tools' / 'bin') + PATH_VAR_SEP + env("PATH")
 export CLANG_FORMAT_PATH := clang-format
 export MESON_PATH := meson
-export PYTHONPATH := "tools/lib"
+export PYTHON3_PATH := python
 export MESON_BUILDDIR := build-dir
+export MESON_CROSS_DIR := justfile_dir() / "tools" / "meson" / "cross"
+export PYTHONPATH := justfile_dir() / "tools" / "lib"
 
 # Tarefas #
 #=========#
@@ -55,13 +58,17 @@ list_tests: setup
 
 # Formata os arquivos do projeto.
 format:
-    {{ python }} tools/scripts/format.py
+    {{ python }} {{ justfile_dir() / 'tools' / 'scripts' / 'format.py' }}
 
 # Roda um script de configuração.
-[arg("tool", help="A ferramenta. (valores: CodeLLDB)")]
-config tool: setup
-    {{ python }} tools/configs/{{ tool }}.py
+[arg("tool", help="A ferramenta. (valores: CodeLLDB, Meson+MSYS)")]
+config tool:
+    {{ python }} {{ justfile_dir() / 'tools' / 'configs' / tool + '.py' }}
 
 # Gera documentação (depende do Doxygen).
 document:
-    {{ if doxygen == "" { error("Doxygen não encontrado") } else { doxygen } }}
+    {{ if doxygen == '' { error('Doxygen não encontrado') } else { doxygen } }}
+
+# Recipe apenas para CI (mais informações em tools/scripts/ci/README.md).
+ci job *args:
+    {{ python }} {{ justfile_dir() / 'tools' / 'scripts' / 'ci' / job + '.py' }} {{ args }}
