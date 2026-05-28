@@ -56,7 +56,7 @@ test *args: build
 list_tests: setup
     {{ meson }} test --no-rebuild --list -C {{ build-dir }}
 
-# Formata os arquivos do projeto.
+# Formata os arquivos do projeto (requer Clang Format).
 format:
     {{ python }} {{ justfile_dir() / 'tools' / 'scripts' / 'format.py' }}
 
@@ -65,7 +65,7 @@ format:
 config tool:
     {{ python }} {{ justfile_dir() / 'tools' / 'configs' / tool + '.py' }}
 
-# Gera documentação (depende do Doxygen).
+# Gera documentação (requer Doxygen).
 document:
     {{ if doxygen == '' { error('Doxygen não encontrado') } else { doxygen } }}
 

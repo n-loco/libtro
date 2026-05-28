@@ -11,7 +11,8 @@
 Para aprender a usar a **LibTRO** basta acessar
 a [documentação de referência online](https://n-loco.github.io/libtro).
 
-## Requisitos
+## Como buildar?
+### Requisitos
  - [**Just**](https://just.systems/) >= 1.48.x;
  - **Um compilador C11** — *preferencialmente Clang, GCC ou MSVC*;
  - [**Python**](https://www.python.org/downloads/) 3;
@@ -19,7 +20,7 @@ a [documentação de referência online](https://n-loco.github.io/libtro).
    - [**Ninja**](https://ninja-build.org/) >= 1.13.x — _**Meson** precisa_.
  - [**Doxygen**](https://www.doxygen.nl/) >= 1.17.x — *opcional*.
 
-## Buildando
+### Buildando
 Bem simples.
 ```sh
 just setup
@@ -42,6 +43,10 @@ just help
 # E também
 just help tarefa
 ```
+
+> [!note]  
+> `just format` requer **Clang Format** >= 18.1.x
+> instalado para funcionar corretamente.
 
 ## Integração com IDEs e Editores de Código
 ### JetBrains CLion
