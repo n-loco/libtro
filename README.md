@@ -18,7 +18,6 @@ a [documentação de referência online](https://n-loco.github.io/libtro).
  - [**Python**](https://www.python.org/downloads/) 3;
  - [**Meson**](https://mesonbuild.com/) >= 1.10.x;
    - [**Ninja**](https://ninja-build.org/) >= 1.13.x — _**Meson** precisa_.
- - [**Doxygen**](https://www.doxygen.nl/) >= 1.17.x — *opcional*.
 
 ### Buildando
 Bem simples.
@@ -45,8 +44,9 @@ just help tarefa
 ```
 
 > [!note]  
-> `just format` requer **Clang Format** >= 18.1.x
-> instalado para funcionar corretamente.
+> - `just format` requer **Clang Format** >= 18.1.x
+>   instalado para funcionar corretamente;
+> - `just document` requer [**Doxygen**](https://www.doxygen.nl/) >= 1.17.x.
 
 ## Integração com IDEs e Editores de Código
 ### JetBrains CLion
